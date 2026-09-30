@@ -2,7 +2,7 @@
 
 Generated from `modpack.lock.json` by `tools/modpack.py`. Do not edit by hand.
 
-Minecraft **1.21.1**, Fabric Loader **0.19.5**, **140** files (138 mods).
+Minecraft **1.21.1**, Fabric Loader **0.19.5**, **161** files (154 mods).
 
 ## Cobblemon core
 
@@ -80,23 +80,36 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **140** files (138 mods).
 
 | Project | Version | Side | Why |
 | --- | --- | --- | --- |
+| [[Let's Do] Meadow](https://modrinth.com/mod/lets-do-meadow) | `1.4.9` | both | Ranch life and wooden decor for Paniola Ranch |
+| [[Let's Do] Vinery](https://modrinth.com/mod/lets-do-vinery) | `1.5.4` | both | Vineyards, lattices and wooden decor |
+| [Adorn](https://modrinth.com/mod/adorn) | `6.3.1-fabric` | both | Chairs, tables, sofas, shelves, kitchen counters |
 | [Amendments](https://modrinth.com/mod/amendments) | `1.21-2.1.10` | both | Small vanilla block improvements that pair with Supplementaries |
 | [Another Furniture](https://modrinth.com/mod/another-furniture) | `4.0.2` | both | Even more furniture |
 | [Beautify: Refabricated](https://modrinth.com/mod/beautify-refabricated) | `2.0.0+1.21.1` | both | Hanging pots, trellises and botanical decor |
+| [Chipped](https://modrinth.com/mod/chipped) | `4.0.2` | both | Hundreds of block variants for detailed building |
 | [CobbleFurnies](https://modrinth.com/mod/cobblefurnies) | `1.2` | both | Pokémon-themed furniture |
 | [Cobblemon additions](https://modrinth.com/mod/cobblemon-additions) | `4.3.0` | both | Extra Pokémon-flavored blocks and items |
+| [Diagonal Fences](https://modrinth.com/mod/diagonal-fences) | `v21.1.1-1.21.1-Fabric` | both | Diagonal fences |
+| [Diagonal Walls](https://modrinth.com/mod/diagonal-walls) | `v21.1.2-1.21.1-Fabric` | both | Diagonal walls |
+| [Diagonal Windows](https://modrinth.com/mod/diagonal-windows) | `v21.1.1-1.21.1-Fabric` | both | Diagonal glass panes |
+| [Every Compat (Wood Good)](https://modrinth.com/mod/every-compat) | `1.21-2.11.52` | both | Decoration blocks in every wood type |
 | [Handcrafted](https://modrinth.com/mod/handcrafted) | `4.0.3` | both | Furniture: couches, tables, beds and shelves |
 | [Macaw's Bridges](https://modrinth.com/mod/macaws-bridges) | `3.1.2` | both | Bridges and piers for boardwalks |
 | [Macaw's Doors](https://modrinth.com/mod/macaws-doors) | `1.1.5` | both | Doors |
 | [Macaw's Fences and Walls](https://modrinth.com/mod/macaws-fences-and-walls) | `1.2.1` | both | Fences and walls |
 | [Macaw's Furniture](https://modrinth.com/mod/macaws-furniture) | `3.4.1` | both | More furniture |
+| [Macaw's Holidays](https://modrinth.com/mod/macaws-holidays) | `1.1.2` | both | Seasonal and festival decorations |
 | [Macaw's Lights and Lamps](https://modrinth.com/mod/macaws-lights-and-lamps) | `1.1.5` | both | Lamps and lanterns |
+| [Macaw's Paintings](https://modrinth.com/mod/macaws-paintings) | `1.1.0` | both | Paintings for Alolan homes |
 | [Macaw's Paths and Pavings](https://modrinth.com/mod/macaws-paths-and-pavings) | `1.1.2` | both | Paths and pavings for routes |
 | [Macaw's Roofs](https://modrinth.com/mod/macaws-roofs) | `2.3.2` | both | Roof shapes for island houses |
+| [Macaw's Stairs](https://modrinth.com/mod/macaws-stairs) | `1.0.2` | both | Stairs, balconies and railings |
 | [Macaw's Trapdoors](https://modrinth.com/mod/macaws-trapdoors) | `1.1.5` | both | Trapdoors |
 | [Macaw's Windows](https://modrinth.com/mod/macaws-windows) | `2.4.2` | both | Windows, shutters and blinds |
 | [Pokeblocks](https://modrinth.com/mod/pokeblocks) | `1.5.0-1.21.1` | both | Pokémon-themed blocks for Pokémon Centers and Marts |
+| [Rechiseled](https://modrinth.com/mod/rechiseled) | `1.2.6-fabric-mc1.21` | both | Chiselled block variants |
 | [Supplementaries](https://modrinth.com/mod/supplementaries) | `1.21.1-3.9.9` | both | Decorative and functional blocks: signposts, jars, flags and more |
+| [Supplementaries Squared](https://modrinth.com/mod/supplementaries-squared) | `1.21-1.2.18` | both | More Supplementaries blocks |
 
 ## Travel: Ride Pager, Town Map and your Bag
 
@@ -118,13 +131,18 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **140** files (138 mods).
 | [[EMF] Entity Model Features](https://modrinth.com/mod/entity-model-features) | `3.3.9-fabric-1.21` | client | Needed by Fresh Animations |
 | [[ETF] Entity Texture Features](https://modrinth.com/mod/entitytexturefeatures) | `7.2.4-fabric-1.21` | client | Needed by Fresh Animations |
 | [AmbientSounds](https://modrinth.com/mod/ambientsounds) | `6.3.8` | client | Waves, wind, jungle birds and night insects |
+| [BSL Shaders](https://modrinth.com/shader/bsl-shaders) | `10.1.8` | client | Classic BSL shaders |
+| [Cobblemon Interface](https://modrinth.com/resourcepack/cobblemon-interface) | `1.6.0` | client | Cleaner Cobblemon interface |
 | [Complementary Shaders - Reimagined](https://modrinth.com/shader/complementary-reimagined) | `r5.9.3` | client | Bright, colorful shader for tropical sunsets; bundled, off by default |
+| [Complementary Shaders - Unbound](https://modrinth.com/shader/complementary-unbound) | `r5.9.3` | client | Alternative Complementary style with richer skies and water |
 | [Continuity](https://modrinth.com/mod/continuity) | `3.0.0+1.21` | client | Connected textures |
 | [Distant Horizons](https://modrinth.com/mod/distanthorizons) | `3.3.3-1.21.1` | client | See distant islands on the horizon (turn off in its settings on slow PCs) |
 | [Falling Leaves](https://modrinth.com/mod/fallingleaves) | `1.17.1+1.21.1` | client | Leaves drift down from trees |
 | [Fresh Animations](https://modrinth.com/resourcepack/fresh-animations) | `1.10.4` | client | Livelier vanilla mob animations |
 | [Iris Shaders](https://modrinth.com/mod/iris) | `1.8.14-beta.1+1.21.1-fabric` | client | Shader support (shaders start off; turn them on under Video Settings > Shader Packs) |
 | [LambDynamicLights - Dynamic Lights](https://modrinth.com/mod/lambdynamiclights) | `4.8.11+1.21.1` | client | Held torches and fiery Pokémon light the area |
+| [MakeUp - Ultra Fast](https://modrinth.com/shader/makeup-ultra-fast-shaders) | `9.5f` | client | Lightweight shader for slower PCs |
+| [Motschen's Better Leaves](https://modrinth.com/resourcepack/better-leaves) | `9.6` | client | Bushier leaves for the jungles |
 | [Not Enough Animations](https://modrinth.com/mod/not-enough-animations) | `1.12.6` | client | Third-person player animations |
 | [Particle Rain](https://modrinth.com/mod/particle-rain) | `v4-beta.11+1.21.1-fabric` | client | Rain, snow and sand particles |
 | [Presence Footsteps](https://modrinth.com/mod/presence-footsteps) | `1.11.2+1.21` | client | Footstep sounds on sand, wood and grass |
@@ -181,29 +199,32 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **140** files (138 mods).
 | --- | --- | --- | --- |
 | [[Let's Do] Farm & Charm](https://modrinth.com/mod/lets-do-farm-charm) | `1.1.26` | both | needed by lets-do-bakery-farmcharm-compat |
 | [Accessories](https://modrinth.com/mod/accessories) | `1.1.0-beta.53+1.21.1` | both | needed by cobblemon-mega-showdown, legendary-monuments |
-| [Architectury API](https://modrinth.com/mod/architectury-api) | `13.0.11+fabric` | both | needed by cobblefurnies, cobblemon-fight-or-flight-reborn, cobblemon-mega-showdown, cobblemon-size-variations, lets-do-bakery-farmcharm-compat, lets-do-beachparty, lets-do-farm-charm, more-cobblemon-tweaks, rctapi, simpletms-tms-and-trs-for-cobblemon |
+| [Architectury API](https://modrinth.com/mod/architectury-api) | `13.0.11+fabric` | both | needed by cobblefurnies, cobblemon-fight-or-flight-reborn, cobblemon-mega-showdown, cobblemon-size-variations, lets-do-bakery-farmcharm-compat, lets-do-beachparty, lets-do-farm-charm, lets-do-meadow, lets-do-vinery, more-cobblemon-tweaks, rctapi, simpletms-tms-and-trs-for-cobblemon |
 | [Athena](https://modrinth.com/mod/athena-ctm) | `4.0.6` | both | needed by chipped, cobblefurnies |
 | [Balm](https://modrinth.com/mod/balm) | `21.0.66+fabric-1.21.1` | both | needed by waystones |
 | [Bookshelf](https://modrinth.com/mod/bookshelf-lib) | `21.1.81` | client | needed by enchantment-descriptions |
 | [Cardinal Components API](https://modrinth.com/mod/cardinal-components-api) | `6.1.3` | both | needed by travelersbackpack |
-| [Chipped](https://modrinth.com/mod/chipped) | `4.0.2` | both | needed by legendary-monuments |
-| [Cloth Config API](https://modrinth.com/mod/cloth-config) | `15.0.140+fabric` | both | needed by cristel-lib, fallingleaves, lets-do-bakery-farmcharm-compat, lets-do-beachparty, lets-do-farm-charm, moreculling, travelersbackpack, visuality, yungs-better-desert-temples, yungs-better-dungeons, yungs-better-jungle-temples, yungs-better-mineshafts, yungs-better-ocean-monuments, yungs-bridges, yungs-extras |
+| [Cloth Config API](https://modrinth.com/mod/cloth-config) | `15.0.140+fabric` | both | needed by cristel-lib, fallingleaves, lets-do-bakery-farmcharm-compat, lets-do-beachparty, lets-do-farm-charm, lets-do-meadow, moreculling, travelersbackpack, visuality, yungs-better-desert-temples, yungs-better-dungeons, yungs-better-jungle-temples, yungs-better-mineshafts, yungs-better-ocean-monuments, yungs-bridges, yungs-extras |
 | [Cobblemon Tim Core](https://modrinth.com/mod/cobblemon-tim-core) | `1.7.3-fabric-1.32.0` | both | needed by cobblemon-capture-xp, cobblemon-counter, cobblemon-spawn-notification |
 | [CreativeCore](https://modrinth.com/mod/creativecore) | `2.13.48` | client | needed by ambientsounds |
 | [Cristel Lib](https://modrinth.com/mod/cristel-lib) | `fabric-1.21.1-3.1.7` | both | needed by expanded-ecosphere, towns-and-towers |
-| [Fabric API](https://modrinth.com/mod/fabric-api) | `0.116.17+1.21.1` | both | needed by 3dskinlayers, accessories, ambientsounds, appleskin, architectury-api, athena-ctm, balm, bookshelf-lib, catch-rate-display, chipped, clumps, cobbledollars, cobblefurnies, cobbleloots, cobblemon, cobblemon-battle-extras, cobblemon-integrations, cobblemon-mega-showdown, cobblemon-party-extras, cobblemon-pokenav, continuity, controlling, creativecore, cristel-lib, dynamic-fps, enchantment-descriptions, entityculling, expanded-ecosphere, fallingleaves, farmers-delight-refabricated, forge-config-api-port, geckolib, handcrafted, iceberg, lambdynamiclights, lithostitched, macaws-bridges, macaws-doors, macaws-fences-and-walls, macaws-furniture, macaws-lights-and-lamps, macaws-paths-and-pavings, macaws-roofs, macaws-trapdoors, macaws-windows, modmenu, mouse-tweaks, no-chat-reports, not-enough-animations, owo-lib, particle-rain, patchouli, prickle, resourceful-lib, searchables, shoulder-surfing-reloaded, shulkerboxtooltip, simpletms-tms-and-trs-for-cobblemon, travelersbackpack, visuality, wakes, waystones, xaeros-minimap, xaeros-world-map, yacl, yungs-api, yungs-better-desert-temples, yungs-better-dungeons, yungs-better-jungle-temples, yungs-better-mineshafts, yungs-better-ocean-monuments, yungs-bridges, yungs-extras, zoomify |
+| [Fabric API](https://modrinth.com/mod/fabric-api) | `0.116.17+1.21.1` | both | needed by 3dskinlayers, accessories, adorn, ambientsounds, appleskin, architectury-api, athena-ctm, balm, bookshelf-lib, catch-rate-display, chipped, clumps, cobbledollars, cobblefurnies, cobbleloots, cobblemon, cobblemon-battle-extras, cobblemon-integrations, cobblemon-mega-showdown, cobblemon-party-extras, cobblemon-pokenav, continuity, controlling, creativecore, cristel-lib, diagonal-fences, diagonal-walls, diagonal-windows, dynamic-fps, enchantment-descriptions, entityculling, every-compat, expanded-ecosphere, fallingleaves, farmers-delight-refabricated, forge-config-api-port, fusion-connected-textures, geckolib, handcrafted, iceberg, lambdynamiclights, lithostitched, macaws-bridges, macaws-doors, macaws-fences-and-walls, macaws-furniture, macaws-holidays, macaws-lights-and-lamps, macaws-paintings, macaws-paths-and-pavings, macaws-roofs, macaws-stairs, macaws-trapdoors, macaws-windows, modmenu, mouse-tweaks, no-chat-reports, not-enough-animations, owo-lib, particle-rain, patchouli, prickle, puzzles-lib, rechiseled, resourceful-lib, searchables, shoulder-surfing-reloaded, shulkerboxtooltip, simpletms-tms-and-trs-for-cobblemon, supermartijn642s-config-lib, supermartijn642s-core-lib, travelersbackpack, visuality, wakes, waystones, xaeros-minimap, xaeros-world-map, yacl, yungs-api, yungs-better-desert-temples, yungs-better-dungeons, yungs-better-jungle-temples, yungs-better-mineshafts, yungs-better-ocean-monuments, yungs-bridges, yungs-extras, zoomify |
 | [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin) | `1.14.1+kotlin.2.4.20` | both | needed by catch-rate-display, cobblemon-integrations, zoomify |
-| [Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) | `v21.1.6-1.21.1-Fabric` | both | needed by cobblemon-integrations, rctmod, shoulder-surfing-reloaded |
+| [Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) | `v21.1.6-1.21.1-Fabric` | both | needed by cobblemon-integrations, diagonal-fences, diagonal-walls, diagonal-windows, puzzles-lib, rctmod, shoulder-surfing-reloaded |
+| [Fusion (Connected Textures)](https://modrinth.com/mod/fusion-connected-textures) | `1.3.15b-fabric-mc1.21` | both | needed by rechiseled |
 | [Geckolib](https://modrinth.com/mod/geckolib) | `4.9.3` | both | needed by pokeblocks |
 | [Iceberg](https://modrinth.com/mod/iceberg) | `1.3.2` | client | needed by advancement-plaques |
 | [Lithostitched](https://modrinth.com/mod/lithostitched) | `1.8.0-fabric-21.1` | both | needed by legendary-monuments |
-| [Moonlight Lib](https://modrinth.com/mod/moonlight) | `1.21.1-3.7.0` | both | needed by amendments, supplementaries |
+| [Moonlight Lib](https://modrinth.com/mod/moonlight) | `1.21.1-3.7.0` | both | needed by amendments, every-compat, supplementaries, supplementaries-squared |
 | [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) | `0.12.15.4+1.21` | both | needed by accessories, cobblemon-mega-showdown |
 | [Patchouli](https://modrinth.com/mod/patchouli) | `1.21.1-93-fabric` | both | needed by cobblepedia |
 | [Prickle](https://modrinth.com/mod/prickle) | `21.1.11` | client | needed by enchantment-descriptions |
+| [Puzzles Lib](https://modrinth.com/mod/puzzles-lib) | `21.1.62` | both | needed by diagonal-fences, diagonal-walls, diagonal-windows |
 | [Radical Cobblemon Trainers API](https://modrinth.com/mod/rctapi) | `0.15.2-beta` | both | needed by rctmod |
 | [Resourceful Lib](https://modrinth.com/mod/resourceful-lib) | `3.0.12` | both | needed by chipped, handcrafted |
 | [Searchables](https://modrinth.com/mod/searchables) | `1.0.2` | client | needed by controlling |
+| [SuperMartijn642's Config Lib](https://modrinth.com/mod/supermartijn642s-config-lib) | `1.1.8-fabric-mc1.21` | both | needed by rechiseled |
+| [SuperMartijn642's Core Lib](https://modrinth.com/mod/supermartijn642s-core-lib) | `1.1.24a-fabric-mc1.21` | both | needed by rechiseled |
 | [Text Placeholder API](https://modrinth.com/mod/placeholder-api) | `2.4.2+1.21` | client | needed by modmenu |
 | [Trinkets](https://modrinth.com/mod/trinkets) | `3.10.0` | both | needed by lets-do-beachparty |
 | [YetAnotherConfigLib (YACL)](https://modrinth.com/mod/yacl) | `3.8.2+1.21.1-fabric` | client | needed by zoomify |

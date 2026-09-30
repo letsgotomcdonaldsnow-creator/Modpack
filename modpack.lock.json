@@ -5,6 +5,40 @@
   "fabric_loader": "0.19.5",
   "files": [
     {
+      "project_id": "E6FUtRJh",
+      "slug": "adorn",
+      "title": "Adorn",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "Chairs, tables, sofas, shelves, kitchen counters",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "kxeS10s2",
+      "version_number": "6.3.1-fabric",
+      "version_type": "release",
+      "filename": "Adorn-6.3.1+1.21.1-fabric.jar",
+      "path": "mods/Adorn-6.3.1+1.21.1-fabric.jar",
+      "url": "https://cdn.modrinth.com/data/E6FUtRJh/versions/kxeS10s2/Adorn-6.3.1%2B1.21.1-fabric.jar",
+      "sha1": "8040026115bbbea56771f02748f751225c6c701f",
+      "sha512": "de0570ebc3cbcc8275a0debab8cf7ec30918d0b43cf32d20b41b8fb510332a530b2987373cb2c051d5bcd7f449e3f9e4e1911f0b0bcdf0efa9409c6a05321c73",
+      "size": 6035949,
+      "deps": [
+        "P7dR8mSH"
+      ],
+      "fabric_id": "adorn",
+      "fabric_version": "6.3.1+1.21.1",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": []
+    },
+    {
       "project_id": "9NM0dXub",
       "slug": "advancement-plaques",
       "title": "Advancement Plaques",
@@ -1027,6 +1061,114 @@
       "required_by": []
     },
     {
+      "project_id": "IKARgflD",
+      "slug": "diagonal-fences",
+      "title": "Diagonal Fences",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "Diagonal fences",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "9jL3vlSG",
+      "version_number": "v21.1.1-1.21.1-Fabric",
+      "version_type": "release",
+      "filename": "DiagonalFences-v21.1.1-1.21.1-Fabric.jar",
+      "path": "mods/DiagonalFences-v21.1.1-1.21.1-Fabric.jar",
+      "url": "https://cdn.modrinth.com/data/IKARgflD/versions/9jL3vlSG/DiagonalFences-v21.1.1-1.21.1-Fabric.jar",
+      "sha1": "a555e794d6f830208a830ea4949f38481eb4fc59",
+      "sha512": "567113496f3de0db5b9acd9f62634d3929b56c1a42c1b0b0a447daf8ab96f279769dd72a86be5440640c9d42507e6969dbf412c79db62ddf63af8964042aaec4",
+      "size": 165134,
+      "deps": [
+        "P7dR8mSH",
+        "QAGBst4M",
+        "ohNO6lps"
+      ],
+      "fabric_id": "diagonalfences",
+      "fabric_version": "21.1.1",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": []
+    },
+    {
+      "project_id": "FQgc8dib",
+      "slug": "diagonal-walls",
+      "title": "Diagonal Walls",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "Diagonal walls",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "CeH1sDcA",
+      "version_number": "v21.1.2-1.21.1-Fabric",
+      "version_type": "release",
+      "filename": "DiagonalWalls-v21.1.2-1.21.1-Fabric.jar",
+      "path": "mods/DiagonalWalls-v21.1.2-1.21.1-Fabric.jar",
+      "url": "https://cdn.modrinth.com/data/FQgc8dib/versions/CeH1sDcA/DiagonalWalls-v21.1.2-1.21.1-Fabric.jar",
+      "sha1": "89c53d706cc1649a92796a520e572b0f716acf97",
+      "sha512": "41ff3dad47560a096450519cdcaf079775373080700df0906f0bb5c37fbe1594a512deb70b42d3e9bb31cd68b52f11b0755da49d849344e7356b1beaab5fb214",
+      "size": 161428,
+      "deps": [
+        "P7dR8mSH",
+        "QAGBst4M",
+        "ohNO6lps"
+      ],
+      "fabric_id": "diagonalwalls",
+      "fabric_version": "21.1.2",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": []
+    },
+    {
+      "project_id": "oOi0CKes",
+      "slug": "diagonal-windows",
+      "title": "Diagonal Windows",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "Diagonal glass panes",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "8Kb6Dcsd",
+      "version_number": "v21.1.1-1.21.1-Fabric",
+      "version_type": "release",
+      "filename": "DiagonalWindows-v21.1.1-1.21.1-Fabric.jar",
+      "path": "mods/DiagonalWindows-v21.1.1-1.21.1-Fabric.jar",
+      "url": "https://cdn.modrinth.com/data/oOi0CKes/versions/8Kb6Dcsd/DiagonalWindows-v21.1.1-1.21.1-Fabric.jar",
+      "sha1": "9b77aa8115535631a195b08ec66b61abfd910433",
+      "sha512": "577dbe0297510b582081db98101891d61827ffde5cec94d25b2893f77914f657337f9a43b10ade5a9ac138ae215c5297be3d7e9dc4377fc10b96a629e3f3cf90",
+      "size": 165740,
+      "deps": [
+        "P7dR8mSH",
+        "QAGBst4M",
+        "ohNO6lps"
+      ],
+      "fabric_id": "diagonalwindows",
+      "fabric_version": "21.1.1",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": []
+    },
+    {
       "project_id": "uCdwusMi",
       "slug": "distanthorizons",
       "title": "Distant Horizons",
@@ -1283,6 +1425,41 @@
       "env": {
         "client": "required",
         "server": "unsupported"
+      },
+      "required_by": []
+    },
+    {
+      "project_id": "eiktJyw1",
+      "slug": "every-compat",
+      "title": "Every Compat (Wood Good)",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "Decoration blocks in every wood type",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "q1gzXX7M",
+      "version_number": "1.21-2.11.52",
+      "version_type": "release",
+      "filename": "everycomp-1.21-2.11.52-fabric.jar",
+      "path": "mods/everycomp-1.21-2.11.52-fabric.jar",
+      "url": "https://cdn.modrinth.com/data/eiktJyw1/versions/q1gzXX7M/everycomp-1.21-2.11.52-fabric.jar",
+      "sha1": "3e4e1b5d62bdd9cbd0c126841a500008bc81ad3f",
+      "sha512": "26ecef3531d9ebd16dd97b55728cf648e26852ed9f1beff1970b9dbfef02fcb6056f27a17ab2f4564a1cc11bb475ac0cc68c7764cebedbe89841c60433eff33a",
+      "size": 2521085,
+      "deps": [
+        "P7dR8mSH",
+        "twkfQtEc"
+      ],
+      "fabric_id": "everycomp",
+      "fabric_version": "1.21-2.11.52",
+      "env": {
+        "client": "required",
+        "server": "required"
       },
       "required_by": []
     },
@@ -1849,6 +2026,75 @@
       "required_by": []
     },
     {
+      "project_id": "ra7o6Sl7",
+      "slug": "lets-do-meadow",
+      "title": "[Let's Do] Meadow",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "Ranch life and wooden decor for Paniola Ranch",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "6SFe2fpE",
+      "version_number": "1.4.9",
+      "version_type": "release",
+      "filename": "letsdo-meadow-fabric-1.4.9.jar",
+      "path": "mods/letsdo-meadow-fabric-1.4.9.jar",
+      "url": "https://cdn.modrinth.com/data/ra7o6Sl7/versions/6SFe2fpE/letsdo-meadow-fabric-1.4.9.jar",
+      "sha1": "1318470213339371584fb22177e8405b25e63383",
+      "sha512": "58bbe611f7dcce0f31a71974eb7c8fe96d259713db595762f4d75253b6f66cd6e4cfd239665bce2ce4d2a7cbb87efdc3baf8e9d9ee0c806e603770c6bae82e3a",
+      "size": 2143012,
+      "deps": [
+        "9s6osm5g",
+        "lhGA9TYQ"
+      ],
+      "fabric_id": "meadow",
+      "fabric_version": "1.4.9",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": []
+    },
+    {
+      "project_id": "1DWmBJVA",
+      "slug": "lets-do-vinery",
+      "title": "[Let's Do] Vinery",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "Vineyards, lattices and wooden decor",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "zump1BXr",
+      "version_number": "1.5.4",
+      "version_type": "beta",
+      "filename": "letsdo-vinery-fabric-1.5.4.jar",
+      "path": "mods/letsdo-vinery-fabric-1.5.4.jar",
+      "url": "https://cdn.modrinth.com/data/1DWmBJVA/versions/zump1BXr/letsdo-vinery-fabric-1.5.4.jar",
+      "sha1": "e85c531e386bd0f074430c95c6a718ab66b4666e",
+      "sha512": "e7772cb245b14f028876261272e657aab21c8b054f5daf744f04dc5fe102c32c8dffac21485fbb205f61c3212abb92a43e7d2bf68125e31cf3b546ea9b3c69c4",
+      "size": 3000759,
+      "deps": [
+        "lhGA9TYQ"
+      ],
+      "fabric_id": "vinery",
+      "fabric_version": "1.5.4",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": []
+    },
+    {
       "project_id": "gvQqBUqZ",
       "slug": "lithium",
       "title": "Lithium",
@@ -1979,6 +2225,40 @@
       "required_by": []
     },
     {
+      "project_id": "rH20L2Lp",
+      "slug": "macaws-holidays",
+      "title": "Macaw's Holidays",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "Seasonal and festival decorations",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "lUJ6xjps",
+      "version_number": "1.1.2",
+      "version_type": "release",
+      "filename": "mcw-holidays-1.1.2-mc1.21.1fabric.jar",
+      "path": "mods/mcw-holidays-1.1.2-mc1.21.1fabric.jar",
+      "url": "https://cdn.modrinth.com/data/rH20L2Lp/versions/lUJ6xjps/mcw-holidays-1.1.2-mc1.21.1fabric.jar",
+      "sha1": "59a0d8de46d73ad29c907715d0e2c4973f7c369b",
+      "sha512": "050e78c38feea099752ec9a0d9a6959b56f0e2929c9c934486d35f305fce13387713ff73918e4409bf39a7cd909217b07cc6718e606c17cfad8d369767ee92ca",
+      "size": 999600,
+      "deps": [
+        "P7dR8mSH"
+      ],
+      "fabric_id": "mcwholidays",
+      "fabric_version": "1.1.2",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": []
+    },
+    {
       "project_id": "w4an97C2",
       "slug": "macaws-lights-and-lamps",
       "title": "Macaw's Lights and Lamps",
@@ -2045,6 +2325,40 @@
       "required_by": []
     },
     {
+      "project_id": "iP3wH1ha",
+      "slug": "macaws-stairs",
+      "title": "Macaw's Stairs",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "Stairs, balconies and railings",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "VXYxDkZ8",
+      "version_number": "1.0.2",
+      "version_type": "release",
+      "filename": "mcw-mcwstairs-1.0.2-mc1.21.1fabric.jar",
+      "path": "mods/mcw-mcwstairs-1.0.2-mc1.21.1fabric.jar",
+      "url": "https://cdn.modrinth.com/data/iP3wH1ha/versions/VXYxDkZ8/mcw-mcwstairs-1.0.2-mc1.21.1fabric.jar",
+      "sha1": "1b549de4a2a4059e56ed8868b556e3746adc73fb",
+      "sha512": "ab85fc3d82572d5461927c5c9227c3c7cfa4ce107c9254fac21b85774408f97a523c908281664afbeb2f6e1e98c6091c13ddc2ab8f9e2200f44297c3db5ef2f1",
+      "size": 521922,
+      "deps": [
+        "P7dR8mSH"
+      ],
+      "fabric_id": "mcwstairs",
+      "fabric_version": "1.0.2",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": []
+    },
+    {
       "project_id": "C7I0BCni",
       "slug": "macaws-windows",
       "title": "Macaw's Windows",
@@ -2071,6 +2385,40 @@
       ],
       "fabric_id": "mcwwindows",
       "fabric_version": "2.4.2",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": []
+    },
+    {
+      "project_id": "okE6QVAY",
+      "slug": "macaws-paintings",
+      "title": "Macaw's Paintings",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "Paintings for Alolan homes",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "1TcCdrZ2",
+      "version_number": "1.1.0",
+      "version_type": "release",
+      "filename": "mcw-paintings-1.1.0-mc1.21.1fabric.jar",
+      "path": "mods/mcw-paintings-1.1.0-mc1.21.1fabric.jar",
+      "url": "https://cdn.modrinth.com/data/okE6QVAY/versions/1TcCdrZ2/mcw-paintings-1.1.0-mc1.21.1fabric.jar",
+      "sha1": "c987bbb2aa9b01da8604f955a26f9d06876d25c3",
+      "sha512": "89d3d886abc5bd18d866cc351b8e26a13c45bd1f82afbcfb3cd7c0d265d3bfb9f237545a9993e71b1775bae8d4d20a2a7f89ef967fb11ac0864ce1be834c6595",
+      "size": 179348,
+      "deps": [
+        "P7dR8mSH"
+      ],
+      "fabric_id": "mcwpaintings",
+      "fabric_version": "1.1.0",
       "env": {
         "client": "required",
         "server": "required"
@@ -2737,6 +3085,43 @@
       "required_by": []
     },
     {
+      "project_id": "B0g2vT6l",
+      "slug": "rechiseled",
+      "title": "Rechiseled",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "Chiselled block variants",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "7411ZFAs",
+      "version_number": "1.2.6-fabric-mc1.21",
+      "version_type": "release",
+      "filename": "rechiseled-1.2.6-fabric-mc1.21.jar",
+      "path": "mods/rechiseled-1.2.6-fabric-mc1.21.jar",
+      "url": "https://cdn.modrinth.com/data/B0g2vT6l/versions/7411ZFAs/rechiseled-1.2.6-fabric-mc1.21.jar",
+      "sha1": "627ce63b5f25a60707d7f8d9a9c336217a2f3c9a",
+      "sha512": "5541c06a62364ecf30118d0e3246d0a4ce3beb5bf835fec86ac4749a6ac3e432ea0a601a88b3a7194ab3bf2d5ba9529a3714898b960cb86c532561f228b2f70a",
+      "size": 11951835,
+      "deps": [
+        "LN9BxssP",
+        "P7dR8mSH",
+        "p19vrgc2",
+        "rOUBggPv"
+      ],
+      "fabric_id": "rechiseled",
+      "fabric_version": "1.2.6",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": []
+    },
+    {
       "project_id": "Bh37bMuy",
       "slug": "reeses-sodium-options",
       "title": "Reese's Sodium Options",
@@ -3064,6 +3449,43 @@
       ],
       "fabric_id": "supplementaries",
       "fabric_version": "1.21.1-3.9.9",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": [
+        "supplementaries-squared"
+      ]
+    },
+    {
+      "project_id": "dCCkNFwE",
+      "slug": "supplementaries-squared",
+      "title": "Supplementaries Squared",
+      "kind": "mod",
+      "category": "Building Hau'oli City: furniture and decor",
+      "explicit": true,
+      "note": "More Supplementaries blocks",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "wNDokve9",
+      "version_number": "1.21-1.2.18",
+      "version_type": "release",
+      "filename": "suppsquared-fabric-1.21-1.2.18.jar",
+      "path": "mods/suppsquared-fabric-1.21-1.2.18.jar",
+      "url": "https://cdn.modrinth.com/data/dCCkNFwE/versions/wNDokve9/suppsquared-fabric-1.21-1.2.18.jar",
+      "sha1": "7de2cea14aec7ebf25814b816d666eb54403eb33",
+      "sha512": "ed882f7ea6b4ada2c5de9b091c3345ae92ddb659e27fc90ffb0480c4f68e55c4ff395b4cac545c3a7b94c69d2b06e8de2b86e9347768b04c82b69f066f7d3ea2",
+      "size": 771938,
+      "deps": [
+        "fFEIiSDQ",
+        "twkfQtEc"
+      ],
+      "fabric_id": "suppsquared",
+      "fabric_version": "1.21-1.2.18",
       "env": {
         "client": "required",
         "server": "required"
@@ -3648,6 +4070,70 @@
       "required_by": []
     },
     {
+      "project_id": "uvpymuxq",
+      "slug": "better-leaves",
+      "title": "Motschen's Better Leaves",
+      "kind": "resourcepack",
+      "category": "Atmosphere: sun, sea and sound",
+      "explicit": true,
+      "note": "Bushier leaves for the jungles",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "unsupported",
+      "version_id": "w4ReEpuG",
+      "version_number": "9.6",
+      "version_type": "release",
+      "filename": "Better-Leaves-9.6.zip",
+      "path": "resourcepacks/Better-Leaves-9.6.zip",
+      "url": "https://cdn.modrinth.com/data/uvpymuxq/versions/w4ReEpuG/Better-Leaves-9.6.zip",
+      "sha1": "fa3a961b82a9f15a4e80b1f7f021bc121649f073",
+      "sha512": "793dacaca4c200656e8875195e42975ecb628af114e13aad2059368b51cf45f00280f86075368e9adf492e847718a9d593bdf481664e10cf1aa9628d2a51a8d6",
+      "size": 1977146,
+      "deps": [],
+      "fabric_id": null,
+      "fabric_version": null,
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "required_by": []
+    },
+    {
+      "project_id": "gfiYlQU0",
+      "slug": "cobblemon-interface",
+      "title": "Cobblemon Interface",
+      "kind": "resourcepack",
+      "category": "Atmosphere: sun, sea and sound",
+      "explicit": true,
+      "note": "Cleaner Cobblemon interface",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "unsupported",
+      "version_id": "8SjyMuZO",
+      "version_number": "1.6.0",
+      "version_type": "release",
+      "filename": "Cobblemon Interface v1.6.0.zip",
+      "path": "resourcepacks/Cobblemon Interface v1.6.0.zip",
+      "url": "https://cdn.modrinth.com/data/gfiYlQU0/versions/8SjyMuZO/Cobblemon%20Interface%20v1.6.0.zip",
+      "sha1": "f91aa128e036b579fc687e55f9b9a240e3fbf65a",
+      "sha512": "abdcfbebba867f7479080ca52f9ebbaecfdecd5a8b459508426f65543ade53fb8b8761b2f319a9a234167a8f24683334faaadd5134b5748d6a6f152cc9601c54",
+      "size": 14108266,
+      "deps": [],
+      "fabric_id": null,
+      "fabric_version": null,
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "required_by": []
+    },
+    {
       "project_id": "50dA9Sha",
       "slug": "fresh-animations",
       "title": "Fresh Animations",
@@ -3679,6 +4165,38 @@
       "required_by": []
     },
     {
+      "project_id": "Q1vvjJYV",
+      "slug": "bsl-shaders",
+      "title": "BSL Shaders",
+      "kind": "shader",
+      "category": "Atmosphere: sun, sea and sound",
+      "explicit": true,
+      "note": "Classic BSL shaders",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "unsupported",
+      "version_id": "Y68yiql9",
+      "version_number": "10.1.8",
+      "version_type": "release",
+      "filename": "BSL_v10.1.8.zip",
+      "path": "shaderpacks/BSL_v10.1.8.zip",
+      "url": "https://cdn.modrinth.com/data/Q1vvjJYV/versions/Y68yiql9/BSL_v10.1.8.zip",
+      "sha1": "e89818c8827d0131c102fb480c3c3446624db0df",
+      "sha512": "94a3c25d6820868db624e11347873e6b572e7cd571967d9ac6f4690ca5d37ca302a7645d85eec800e0654541e3825fba14d37b5a25d3996aaf038178552be26f",
+      "size": 1134153,
+      "deps": [],
+      "fabric_id": null,
+      "fabric_version": null,
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "required_by": []
+    },
+    {
       "project_id": "HVnmMxH1",
       "slug": "complementary-reimagined",
       "title": "Complementary Shaders - Reimagined",
@@ -3700,6 +4218,70 @@
       "sha1": "838139b54cddb56b2e83cd260d8efd960ac536d6",
       "sha512": "45304b1d7862afdb2177b7e6226fc9c6737911d17a4ad46cc9c519ca4deb935f05072cd337cd8b19a15bb8062b57b54eceec7bdee4cd572d94858e2946d37d85",
       "size": 553397,
+      "deps": [],
+      "fabric_id": null,
+      "fabric_version": null,
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "required_by": []
+    },
+    {
+      "project_id": "R6NEzAwj",
+      "slug": "complementary-unbound",
+      "title": "Complementary Shaders - Unbound",
+      "kind": "shader",
+      "category": "Atmosphere: sun, sea and sound",
+      "explicit": true,
+      "note": "Alternative Complementary style with richer skies and water",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "unsupported",
+      "version_id": "B1kyfoUZ",
+      "version_number": "r5.9.3",
+      "version_type": "release",
+      "filename": "ComplementaryUnbound_r5.9.3.zip",
+      "path": "shaderpacks/ComplementaryUnbound_r5.9.3.zip",
+      "url": "https://cdn.modrinth.com/data/R6NEzAwj/versions/B1kyfoUZ/ComplementaryUnbound_r5.9.3.zip",
+      "sha1": "2ee08300e1d6f039e63eae8484dddf57b3aaaf67",
+      "sha512": "a085d1d8cda67cd17a2b414eeba48bbd809da069f269bab46246235ec8fe714a275013c70d0504527b0987d810deddddba4564332414ab3b3bd7435932ff808c",
+      "size": 553400,
+      "deps": [],
+      "fabric_id": null,
+      "fabric_version": null,
+      "env": {
+        "client": "required",
+        "server": "unsupported"
+      },
+      "required_by": []
+    },
+    {
+      "project_id": "izsIPI7a",
+      "slug": "makeup-ultra-fast-shaders",
+      "title": "MakeUp - Ultra Fast",
+      "kind": "shader",
+      "category": "Atmosphere: sun, sea and sound",
+      "explicit": true,
+      "note": "Lightweight shader for slower PCs",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "unsupported",
+      "version_id": "IUFkxmHz",
+      "version_number": "9.5f",
+      "version_type": "release",
+      "filename": "MakeUp-UltraFast-9.5f.zip",
+      "path": "shaderpacks/MakeUp-UltraFast-9.5f.zip",
+      "url": "https://cdn.modrinth.com/data/izsIPI7a/versions/IUFkxmHz/MakeUp-UltraFast-9.5f.zip",
+      "sha1": "b3873dcc6b39093a6c13c2ec9c5d5eee90c06827",
+      "sha512": "86d7d21eea4eaa257a43896d639d8f8ea1709f721ea70092504d273c7c9b47a16ede605be99548dbebf8ead8749c1effe44e6f1724ecba884d67ef185fff51e4",
+      "size": 403666,
       "deps": [],
       "fabric_id": null,
       "fabric_version": null,
@@ -3785,6 +4367,8 @@
         "lets-do-bakery-farmcharm-compat",
         "lets-do-beachparty",
         "lets-do-farm-charm",
+        "lets-do-meadow",
+        "lets-do-vinery",
         "more-cobblemon-tweaks",
         "rctapi",
         "simpletms-tms-and-trs-for-cobblemon"
@@ -3934,9 +4518,9 @@
       "slug": "chipped",
       "title": "Chipped",
       "kind": "mod",
-      "category": "Libraries & dependencies",
+      "category": "Building Hau'oli City: furniture and decor",
       "explicit": false,
-      "note": "",
+      "note": "Hundreds of block variants for detailed building",
       "pin": null,
       "side": null,
       "optional": false,
@@ -4001,6 +4585,7 @@
         "lets-do-bakery-farmcharm-compat",
         "lets-do-beachparty",
         "lets-do-farm-charm",
+        "lets-do-meadow",
         "moreculling",
         "travelersbackpack",
         "visuality",
@@ -4117,6 +4702,7 @@
       "required_by": [
         "3dskinlayers",
         "accessories",
+        "adorn",
         "ambientsounds",
         "appleskin",
         "architectury-api",
@@ -4139,13 +4725,18 @@
         "controlling",
         "creativecore",
         "cristel-lib",
+        "diagonal-fences",
+        "diagonal-walls",
+        "diagonal-windows",
         "dynamic-fps",
         "enchantment-descriptions",
         "entityculling",
+        "every-compat",
         "expanded-ecosphere",
         "fallingleaves",
         "farmers-delight-refabricated",
         "forge-config-api-port",
+        "fusion-connected-textures",
         "geckolib",
         "handcrafted",
         "iceberg",
@@ -4155,9 +4746,12 @@
         "macaws-doors",
         "macaws-fences-and-walls",
         "macaws-furniture",
+        "macaws-holidays",
         "macaws-lights-and-lamps",
+        "macaws-paintings",
         "macaws-paths-and-pavings",
         "macaws-roofs",
+        "macaws-stairs",
         "macaws-trapdoors",
         "macaws-windows",
         "modmenu",
@@ -4168,11 +4762,15 @@
         "particle-rain",
         "patchouli",
         "prickle",
+        "puzzles-lib",
+        "rechiseled",
         "resourceful-lib",
         "searchables",
         "shoulder-surfing-reloaded",
         "shulkerboxtooltip",
         "simpletms-tms-and-trs-for-cobblemon",
+        "supermartijn642s-config-lib",
+        "supermartijn642s-core-lib",
         "travelersbackpack",
         "visuality",
         "wakes",
@@ -4259,8 +4857,48 @@
       },
       "required_by": [
         "cobblemon-integrations",
+        "diagonal-fences",
+        "diagonal-walls",
+        "diagonal-windows",
+        "puzzles-lib",
         "rctmod",
         "shoulder-surfing-reloaded"
+      ]
+    },
+    {
+      "project_id": "p19vrgc2",
+      "slug": "fusion-connected-textures",
+      "title": "Fusion (Connected Textures)",
+      "kind": "mod",
+      "category": "Libraries & dependencies",
+      "explicit": false,
+      "note": "",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "unsupported",
+      "version_id": "mC2fap1x",
+      "version_number": "1.3.15b-fabric-mc1.21",
+      "version_type": "release",
+      "filename": "fusion-1.3.15b-fabric-mc1.21.jar",
+      "path": "mods/fusion-1.3.15b-fabric-mc1.21.jar",
+      "url": "https://cdn.modrinth.com/data/p19vrgc2/versions/mC2fap1x/fusion-1.3.15b-fabric-mc1.21.jar",
+      "sha1": "c1d308b76763ef3c063f7af3cde3312f5186145a",
+      "sha512": "dcaf96bca75ee3b9f6c213558d0b2d7d7278a27870a36e59d2d9c7e597dffe673e2a28c1b580790b3321a16266d14fd58002cce332524ae8dfdff027ec62b7c9",
+      "size": 913399,
+      "deps": [
+        "P7dR8mSH"
+      ],
+      "fabric_id": "fusion",
+      "fabric_version": "1.3.15+b",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": [
+        "rechiseled"
       ]
     },
     {
@@ -4435,7 +5073,9 @@
       },
       "required_by": [
         "amendments",
-        "supplementaries"
+        "every-compat",
+        "supplementaries",
+        "supplementaries-squared"
       ]
     },
     {
@@ -4578,6 +5218,45 @@
       ]
     },
     {
+      "project_id": "QAGBst4M",
+      "slug": "puzzles-lib",
+      "title": "Puzzles Lib",
+      "kind": "mod",
+      "category": "Libraries & dependencies",
+      "explicit": false,
+      "note": "",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "optional",
+      "project_server_side": "optional",
+      "version_id": "k2VtZBAO",
+      "version_number": "21.1.62",
+      "version_type": "release",
+      "filename": "puzzleslib-v21.1.62-mc1.21.1+fabric.jar",
+      "path": "mods/puzzleslib-v21.1.62-mc1.21.1+fabric.jar",
+      "url": "https://cdn.modrinth.com/data/QAGBst4M/versions/k2VtZBAO/puzzleslib-v21.1.62-mc1.21.1%2Bfabric.jar",
+      "sha1": "54e31f7ebb57e86e8cc0d0515b2afdd6034dad7f",
+      "sha512": "3fe164f95585ca4d943a9e88d1298f4397f0a8daff2fd52104e3d0e1dae54191dfc13175f439f6281989d52dfb2aad82dbc6abaf89b0e0d0e51ed805ac71f555",
+      "size": 1506517,
+      "deps": [
+        "P7dR8mSH",
+        "ohNO6lps"
+      ],
+      "fabric_id": "puzzleslib",
+      "fabric_version": "21.1.62",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": [
+        "diagonal-fences",
+        "diagonal-walls",
+        "diagonal-windows"
+      ]
+    },
+    {
       "project_id": "CBfM2yw7",
       "slug": "rctapi",
       "title": "Radical Cobblemon Trainers API",
@@ -4682,6 +5361,78 @@
       },
       "required_by": [
         "controlling"
+      ]
+    },
+    {
+      "project_id": "LN9BxssP",
+      "slug": "supermartijn642s-config-lib",
+      "title": "SuperMartijn642's Config Lib",
+      "kind": "mod",
+      "category": "Libraries & dependencies",
+      "explicit": false,
+      "note": "",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "optional",
+      "project_server_side": "optional",
+      "version_id": "euSlaAtA",
+      "version_number": "1.1.8-fabric-mc1.21",
+      "version_type": "release",
+      "filename": "supermartijn642configlib-1.1.8-fabric-mc1.21.jar",
+      "path": "mods/supermartijn642configlib-1.1.8-fabric-mc1.21.jar",
+      "url": "https://cdn.modrinth.com/data/LN9BxssP/versions/euSlaAtA/supermartijn642configlib-1.1.8-fabric-mc1.21.jar",
+      "sha1": "8427e42f1db8ea7b4b6c21cc94bfcfa398f0ff63",
+      "sha512": "479838148fc1979409474b460de73162b7730c36b201eb903e299c144a056fed4f6dfb4498e0ded1e93a168379ff7efe0623279aa33a82b1b222c68468c477d6",
+      "size": 206993,
+      "deps": [
+        "P7dR8mSH"
+      ],
+      "fabric_id": "supermartijn642configlib",
+      "fabric_version": "1.1.8",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": [
+        "rechiseled"
+      ]
+    },
+    {
+      "project_id": "rOUBggPv",
+      "slug": "supermartijn642s-core-lib",
+      "title": "SuperMartijn642's Core Lib",
+      "kind": "mod",
+      "category": "Libraries & dependencies",
+      "explicit": false,
+      "note": "",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "F7LbHCLz",
+      "version_number": "1.1.24a-fabric-mc1.21",
+      "version_type": "release",
+      "filename": "supermartijn642corelib-1.1.24a-fabric-mc1.21.jar",
+      "path": "mods/supermartijn642corelib-1.1.24a-fabric-mc1.21.jar",
+      "url": "https://cdn.modrinth.com/data/rOUBggPv/versions/F7LbHCLz/supermartijn642corelib-1.1.24a-fabric-mc1.21.jar",
+      "sha1": "ca24a3e4b45e3ed08f45f66e52588214ee24dbcf",
+      "sha512": "7641f580dd7e9b4ed7bd66dd56a4e5241023de40a6a3f945673f7f716a8bee7df48c22690d953e77458e83635739b43f31b5c54c848fb9b18ebad03b577b5631",
+      "size": 622210,
+      "deps": [
+        "P7dR8mSH"
+      ],
+      "fabric_id": "supermartijn642corelib",
+      "fabric_version": "1.1.24+a",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": [
+        "rechiseled"
       ]
     },
     {
