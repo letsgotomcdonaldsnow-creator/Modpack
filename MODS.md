@@ -2,7 +2,7 @@
 
 Generated from `modpack.lock.json` by `tools/modpack.py`. Do not edit by hand.
 
-Minecraft **1.21.1**, Fabric Loader **0.19.5**, **160** files (153 mods).
+Minecraft **1.21.1**, Fabric Loader **0.19.5**, **168** files (161 mods).
 
 ## Cobblemon core
 
@@ -55,8 +55,12 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **160** files (153 mods).
 | --- | --- | --- | --- |
 | [[Let's Do] Beachparty](https://modrinth.com/mod/lets-do-beachparty) | `2.1.5` | both | Palm trees, coconuts, beach chairs, hammocks, cocktails and a proper beach vibe |
 | [Dungeons and Taverns](https://modrinth.com/mod/dungeons-and-taverns) | `v4.4.4+mod` | both | Taverns, ruins and dungeons to explore between routes |
+| [Dynamic Trees](https://modrinth.com/mod/dynamictrees) | `1.7.2-BETA` | both | Dynamic Trees: trees that grow branch by branch and fall when chopped |
 | [Hopo Better Underwater Ruins](https://modrinth.com/mod/hopo-better-underwater-ruins) | `1.2.1b` | both | Underwater ruins for your Surf and Dive trips |
+| [Slabbed](https://modrinth.com/mod/slabbed) | `0.4.2-beta.1` | both | Terrain Slabs: half-height grass, sand and dirt so hills and paths are smooth |
 | [Towns and Towers](https://modrinth.com/mod/towns-and-towers) | `1.13.11` | both | More varied villages and outposts to act as Alolan towns |
+| [Wilder Flowers](https://modrinth.com/mod/wilder-flowers) | `1.1.0+1.21.1-fabric` | both | Wildflower and clover patches |
+| [Wilder Wild](https://modrinth.com/mod/wilder-wild) | `4.2.1-mc1.21.1` | both | Bushes, new flowers, grass variants, fireflies and more natural foliage |
 | [William Wythers' Expanded Ecosphere](https://modrinth.com/mod/expanded-ecosphere) | `fabric-1.21.1-3.4.7` | both | William Wythers' overworld: tropical islands, tropical volcanoes, beaches and jungles, all with native Cobblemon spawns |
 | [YUNG's Better Desert Temples](https://modrinth.com/mod/yungs-better-desert-temples) | `1.21.1-Fabric-4.1.5` | both | Reworked desert temples, like the Ruins of Abundance in Haina Desert |
 | [YUNG's Better Dungeons](https://modrinth.com/mod/yungs-better-dungeons) | `1.21.1-Fabric-5.1.4` | both | Reworked dungeons |
@@ -107,6 +111,8 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **160** files (153 mods).
 | [Macaw's Windows](https://modrinth.com/mod/macaws-windows) | `2.4.2` | both | Windows, shutters and blinds |
 | [Pokeblocks](https://modrinth.com/mod/pokeblocks) | `1.5.0-1.21.1` | both | Pokémon-themed blocks for Pokémon Centers and Marts |
 | [Rechiseled](https://modrinth.com/mod/rechiseled) | `1.2.6-fabric-mc1.21` | both | Chiselled block variants |
+| [Saro´s Road Blocks](https://modrinth.com/mod/saros-road-blocks) | `5.13` | both | Saro's Road Blocks: asphalt, road markings, curbs and sidewalks for Alola's cities |
+| [Saro´s Road Signs](https://modrinth.com/mod/saros-road-signs) | `4.21` | both | Saro's Road Signs: real street signs for the routes and cities |
 | [Supplementaries](https://modrinth.com/mod/supplementaries) | `1.21.1-3.9.9` | both | Decorative and functional blocks: signposts, jars, flags and more |
 | [Supplementaries Squared](https://modrinth.com/mod/supplementaries-squared) | `1.21-1.2.18` | both | More Supplementaries blocks |
 
@@ -190,6 +196,7 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **160** files (153 mods).
 | Project | Version | Side | Why |
 | --- | --- | --- | --- |
 | [No Chat Reports](https://modrinth.com/mod/no-chat-reports) | `Fabric-1.21.1-v2.9.1` | both | Removes chat reporting |
+| [Open Parties and Claims](https://modrinth.com/mod/open-parties-and-claims) | `fabric-1.21.1-0.31.6` | both | Parties and land claims, so players can build their Alola homes safely |
 | [Simple Voice Chat](https://modrinth.com/mod/simple-voice-chat) | `fabric-1.21.1-2.6.24` | both | Proximity voice chat |
 
 ## Libraries & dependencies
@@ -207,9 +214,10 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **160** files (153 mods).
 | [Cobblemon Tim Core](https://modrinth.com/mod/cobblemon-tim-core) | `1.7.3-fabric-1.32.0` | both | needed by cobblemon-capture-xp, cobblemon-counter, cobblemon-spawn-notification |
 | [CreativeCore](https://modrinth.com/mod/creativecore) | `2.13.48` | client | needed by ambientsounds |
 | [Cristel Lib](https://modrinth.com/mod/cristel-lib) | `fabric-1.21.1-3.1.7` | both | needed by expanded-ecosphere, towns-and-towers |
-| [Fabric API](https://modrinth.com/mod/fabric-api) | `0.116.17+1.21.1` | both | needed by 3dskinlayers, accessories, ambientsounds, appleskin, architectury-api, athena-ctm, balm, bookshelf-lib, catch-rate-display, chipped, clumps, cobbledollars, cobblefurnies, cobbleloots, cobblemon, cobblemon-battle-extras, cobblemon-integrations, cobblemon-mega-showdown, cobblemon-party-extras, cobblemon-pokenav, continuity, controlling, creativecore, cristel-lib, diagonal-fences, diagonal-walls, diagonal-windows, dynamic-fps, enchantment-descriptions, entityculling, every-compat, expanded-ecosphere, fallingleaves, farmers-delight-refabricated, forge-config-api-port, fusion-connected-textures, geckolib, handcrafted, iceberg, lambdynamiclights, lithostitched, macaws-bridges, macaws-doors, macaws-fences-and-walls, macaws-furniture, macaws-holidays, macaws-lights-and-lamps, macaws-paintings, macaws-paths-and-pavings, macaws-roofs, macaws-stairs, macaws-trapdoors, macaws-windows, modmenu, mouse-tweaks, no-chat-reports, not-enough-animations, owo-lib, particle-rain, patchouli, prickle, puzzles-lib, rechiseled, resourceful-lib, searchables, shoulder-surfing-reloaded, shulkerboxtooltip, simpletms-tms-and-trs-for-cobblemon, supermartijn642s-config-lib, supermartijn642s-core-lib, travelersbackpack, visuality, wakes, waystones, xaeros-minimap, xaeros-world-map, yacl, yungs-api, yungs-better-desert-temples, yungs-better-dungeons, yungs-better-jungle-temples, yungs-better-mineshafts, yungs-better-ocean-monuments, yungs-bridges, yungs-extras, zoomify |
+| [Fabric API](https://modrinth.com/mod/fabric-api) | `0.116.17+1.21.1` | both | needed by 3dskinlayers, accessories, ambientsounds, appleskin, architectury-api, athena-ctm, balm, bookshelf-lib, catch-rate-display, chipped, clumps, cobbledollars, cobblefurnies, cobbleloots, cobblemon, cobblemon-battle-extras, cobblemon-integrations, cobblemon-mega-showdown, cobblemon-party-extras, cobblemon-pokenav, continuity, controlling, creativecore, cristel-lib, diagonal-fences, diagonal-walls, diagonal-windows, dynamic-fps, enchantment-descriptions, entityculling, every-compat, expanded-ecosphere, fallingleaves, farmers-delight-refabricated, forge-config-api-port, frozenlib, fusion-connected-textures, geckolib, handcrafted, iceberg, lambdynamiclights, lithostitched, macaws-bridges, macaws-doors, macaws-fences-and-walls, macaws-furniture, macaws-holidays, macaws-lights-and-lamps, macaws-paintings, macaws-paths-and-pavings, macaws-roofs, macaws-stairs, macaws-trapdoors, macaws-windows, modmenu, mouse-tweaks, no-chat-reports, not-enough-animations, open-parties-and-claims, owo-lib, particle-rain, patchouli, prickle, puzzles-lib, rechiseled, resourceful-lib, searchables, shoulder-surfing-reloaded, shulkerboxtooltip, simpletms-tms-and-trs-for-cobblemon, supermartijn642s-config-lib, supermartijn642s-core-lib, travelersbackpack, visuality, wakes, waystones, wilder-flowers, wilder-wild, xaeros-minimap, xaeros-world-map, yacl, yungs-api, yungs-better-desert-temples, yungs-better-dungeons, yungs-better-jungle-temples, yungs-better-mineshafts, yungs-better-ocean-monuments, yungs-bridges, yungs-extras, zoomify |
 | [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin) | `1.14.1+kotlin.2.4.20` | both | needed by catch-rate-display, cobblemon-integrations, zoomify |
-| [Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) | `v21.1.6-1.21.1-Fabric` | both | needed by cobblemon-integrations, diagonal-fences, diagonal-walls, diagonal-windows, puzzles-lib, rctmod, shoulder-surfing-reloaded |
+| [Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) | `v21.1.6-1.21.1-Fabric` | both | needed by cobblemon-integrations, diagonal-fences, diagonal-walls, diagonal-windows, dynamictrees, open-parties-and-claims, puzzles-lib, rctmod, shoulder-surfing-reloaded |
+| [FrozenLib](https://modrinth.com/mod/frozenlib) | `2.2.4-mc1.21.1` | both | needed by wilder-wild |
 | [Fusion (Connected Textures)](https://modrinth.com/mod/fusion-connected-textures) | `1.3.15b-fabric-mc1.21` | both | needed by rechiseled |
 | [Geckolib](https://modrinth.com/mod/geckolib) | `4.9.3` | both | needed by pokeblocks |
 | [Iceberg](https://modrinth.com/mod/iceberg) | `1.3.2` | client | needed by advancement-plaques |
