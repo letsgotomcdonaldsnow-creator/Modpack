@@ -43,6 +43,9 @@ class Street:
     sidewalk: int = 2
     median: int = 0           # planted median width (0 = painted centre line)
     crossings: int = 48       # zebra crossing every n blocks
+    paving: tuple = ()        # road surface for pedestrian / dirt streets (no markings); () = asphalt
+    walk: str = ""            # sidewalk block; "" = Saro's sidewalk
+    lamps: str = "street_lamp"
 
     @property
     def along_x(self) -> bool:
@@ -77,7 +80,9 @@ def paint(c: Canvas, s: Street, rng: random.Random):
             if c.water[i, j] > s.y:
                 c.water[i, j] = -64
             if a > s.half:                                          # sidewalk
-                state = SIDEWALK
+                state = s.walk or SIDEWALK
+            elif s.paving:                                          # pedestrian or dirt street
+                state = s.paving[(t * 7 + o * 13 + rng.randrange(3)) % len(s.paving)]
             elif s.median and a < mh:                               # planted median
                 state = "minecraft:grass_block" if a < mh - 1 or s.median < 3 else "minecraft:smooth_stone"
             elif not s.median and o == 0:
@@ -99,7 +104,7 @@ def paint(c: Canvas, s: Street, rng: random.Random):
             plants.palm(c, x, s.y, z, rng, furn.piece("palm_log"), furn.piece("palm_leaves"))
         for side in (-1, 1):
             x, z = _cell(s, t, side * (s.half + 1))
-            furn.place_tall(c, x, s.y + 1, z, "street_lamp")
+            furn.place_tall(c, x, s.y + 1, z, s.lamps)
         if t % 24 == 6:
             for side in (-1, 1):
                 x, z = _cell(s, t + 4, side * (s.half + s.sidewalk))

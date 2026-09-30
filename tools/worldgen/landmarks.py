@@ -181,40 +181,10 @@ def melemele_misc(t, rng):
 
 def akala(t, rng):
     c = t.c
-    # Heahea City
-    x, z = alola_map.TOWNS["Heahea City"][:2]
-    y = TOWN_Y["Heahea City"]
-    ground(c, x - 80, z - 3, x + 80, z + 3, "minecraft:gray_concrete", y)
-    street_row(t, rng, y, x - 78, z - 5, "north", [
-        (bl.pokemon_center, 17, {"name": "Heahea City"}),
-        (bl.hotel, 25, {"label": "Tide Song Hotel", "floors": 5, "W": 25, "trim": "minecraft:light_blue_concrete"}),
-        (bl.shop, 15, {"label": "Dimensional Research Lab", "color": "minecraft:purple_concrete", "W": 15}),
-        (arch.house, 11, {"W": 11}), (arch.house, 9, {"W": 9}), (arch.house, 11, {"W": 11}),
-    ])
-    street_row(t, rng, y, x - 70, z + 5, "south", [
-        (bl.shop, 13, {"label": "Surf Association", "color": "minecraft:cyan_concrete"}),
-        (arch.house, 11, {"W": 11}), (arch.house, 9, {"W": 9}), (bl.malasada_shop, 11, {}),
-        (arch.house, 11, {"W": 11}),
-    ])
-    lamps_along(c, x - 78, z - 4, x + 78, z - 4, y)
-    back_street(t, rng, y, x - 40, x + 78, z + 32)
-    place(t, bl.ferry_terminal, x - 60, y, z - 36, "north", rng, label="Heahea Ferry Terminal", dest="Hau'oli / Malie")
-    bl.pier(c, x - 58, SEA + 1, z - 60, "north", length=26)
-    bl.ferry_ship(c, x - 50, SEA + 1, z - 70, "west", rng, "S.S. Malie")
-    # Paniola Town + Ranch
-    x, z = alola_map.TOWNS["Paniola Town"][:2]
-    y = TOWN_Y["Paniola Town"]
-    ground(c, x - 40, z - 3, x + 40, z + 3, "minecraft:coarse_dirt", y)
-    street_row(t, rng, y, x - 40, z - 5, "north", [
-        (bl.pokemon_center, 17, {"name": "Paniola Town"}),
-        (arch.house, 11, {"W": 11, "style": "paniola"}),
-        (arch.house, 11, {"W": 11, "style": "paniola"}),
-    ])
-    street_row(t, rng, y, x - 36, z + 5, "south", [
-        (bl.shop, 13, {"label": "Paniola Saloon", "color": "minecraft:brown_concrete"}),
-        (arch.house, 11, {"W": 11, "style": "paniola"}),
-        (arch.house, 11, {"W": 11, "style": "paniola"}),
-    ])
+    from . import city
+    city.heahea(t, rng)
+    city.paniola(t, rng)
+    # Paniola Ranch
     x, z = alola_map.TOWNS["Paniola Ranch"][:2]
     y = TOWN_Y["Paniola Ranch"]
     place(t, sp.barn, x - 7, y, z - 8, "south", rng)
@@ -283,26 +253,10 @@ def akala(t, rng):
     b = B(c, x, y, z, "south")
     b.disc(0, 0, 0, 7, "minecraft:moss_block")
     bl.npc(b, 0, 1, 0, "alola:mallow")
-    # Konikoni City
+    # Konikoni City (Kahuna Olivia's arena north of the market street)
+    city.konikoni(t, rng)
     x, z = alola_map.TOWNS["Konikoni City"][:2]
     y = TOWN_Y["Konikoni City"]
-    ground(c, x - 70, z - 3, x + 70, z + 3, "minecraft:red_terracotta", y)
-    kk = "konikoni"
-    street_row(t, rng, y, x - 68, z - 5, "north", [
-        (bl.pokemon_center, 17, {"name": "Konikoni City"}),
-        (arch.house, 11, {"W": 11, "style": kk, "label": "Olivia's Jewelry"}),
-        (arch.house, 11, {"W": 11, "style": kk, "label": "Herb Shop"}),
-        (arch.house, 11, {"W": 11, "style": kk, "label": "Incense Shop"}),
-        (arch.house, 11, {"W": 11, "style": kk}),
-    ])
-    street_row(t, rng, y, x - 60, z + 5, "south", [
-        (arch.house, 11, {"W": 11, "style": kk}), (arch.house, 11, {"W": 11, "style": kk}),
-        (bl.shop, 13, {"label": "Konikoni Market", "color": "minecraft:red_concrete"}),
-        (arch.house, 11, {"W": 11, "style": kk}),
-    ])
-    for k in range(-60, 70, 10):
-        c.set(x + k, y + 1, z - 4, furn.piece("paper_lamp"))
-    place(t, sp.lighthouse, x + 58, y, z + 30, "north", rng)
     place(t, sp.arena, x - 8, y, z - 40, "south", rng, npc_cls="alola:olivia", label="Kahuna Olivia",
           lines=("Grand Trial", "Akala Island"))
     # Memorial Hill + Ruins of Life
@@ -315,33 +269,9 @@ def akala(t, rng):
 # ======================================================================= Ula'ula
 
 def ulaula(t, rng):
+    from . import city
     c = t.c
-    x, z = alola_map.TOWNS["Malie City"][:2]
-    y = TOWN_Y["Malie City"]
-    ground(c, x - 90, z - 3, x + 90, z + 3, "minecraft:polished_andesite", y)
-    ml = {"W": 11, "style": "malie"}
-    street_row(t, rng, y, x - 88, z - 5, "north", [
-        (bl.pokemon_center, 17, {"name": "Malie City"}),
-        (bl.hotel, 27, {"label": "Malie Library", "floors": 2, "W": 27, "D": 19, "wall": "minecraft:stripped_dark_oak_wood[axis=y]",
-                         "trim": "minecraft:red_concrete"}),
-        (arch.house, 11, dict(ml)),
-        (bl.shop, 13, {"label": "Apparel Shop", "color": "minecraft:pink_concrete"}),
-        (arch.house, 11, dict(ml)),
-        (arch.house, 11, dict(ml)),
-    ])
-    street_row(t, rng, y, x - 80, z + 5, "south", [
-        (bl.shop, 17, {"label": "Malie Community Center", "color": "minecraft:red_concrete", "W": 17}),
-        (bl.malasada_shop, 11, {}),
-        (arch.house, 11, dict(ml)),
-        (arch.house, 11, dict(ml)),
-        (bl.shop, 13, {"label": "Poké Mart", "color": "minecraft:blue_concrete"}),
-    ])
-    for k in range(-85, 90, 10):
-        c.set(x + k, y + 1, z - 4, furn.piece("paper_lamp"))
-    back_street(t, rng, y, x - 86, x + 86, z + 38, style="malie")
-    place(t, bl.ferry_terminal, x - 80, y, z + 50, "south", rng, label="Malie Ferry Terminal", dest="Heahea / Seafolk")
-    bl.pier(c, x - 110, SEA + 1, z + 20, "east", length=26)
-    bl.ferry_ship(c, x - 120, SEA + 1, z + 40, "east", rng, "S.S. Seafolk")
+    city.malie(t, rng)
     # Malie Garden: pond, bridge, tea house
     gx, gz = alola_map.TOWNS["Malie Garden"][:2]
     gy = TOWN_Y["Malie Garden"]

@@ -68,7 +68,10 @@ class City:
         for fn, W, D, kw in items:
             if pos + W - 1 > b:
                 break
-            D = min(D, depth)
+            if D > depth:             # shrink the building to the lot
+                if "D" in kw:
+                    kw = {**kw, "D": kw["D"] - (D - depth)}
+                D = depth
             if s.along_x:
                 fz = s.z1 + off
                 if side < 0:     # north side, faces south
@@ -173,10 +176,19 @@ def _houses(rng, style_pool, depth, n=40, label_first=None):
         yield arch.house, W, D + P, kw
 
 
-def _shop_items(rng, shops, depth, floors=(2, 3)):
-    for kind, label in shops:
+FILLER_SHOPS = [("cafe", "Café"), ("market", "Market"), ("apparel", "Boutique"), ("office", "Offices"),
+                ("mart", "Convenience Store"), ("cafe", "Juice Bar"), ("salon", "Hair Salon"), ("office", "Bank")]
+
+
+def _shop_items(rng, shops, depth, floors=(2, 3), style="modern"):
+    """The named shops first, then ordinary ones for as long as there are lots."""
+    k = 0
+    while True:
+        kind, label = shops[k] if k < len(shops) else rng.choice(FILLER_SHOPS)
+        k += 1
         W = rng.choice([11, 13])
-        yield arch.shop, W, depth, {"kind": kind, "label": label, "W": W, "D": depth, "floors": rng.choice(floors)}
+        yield arch.shop, W, depth, {"kind": kind, "label": label, "W": W, "D": depth, "floors": rng.choice(floors),
+                                    "style": style}
 
 
 def hauoli(t, rng):
@@ -201,7 +213,7 @@ def hauoli(t, rng):
              ("police", "Police Station"), ("surf", "Surf Shop"), ("cafe", "Hau'oli Diner"), ("market", "Market"),
              ("apparel", "Boutique"), ("office", "Pokémon Fan Club"), ("cafe", "Tapioca Bar")]
     rng.shuffle(shops)
-    it = iter(list(_shop_items(rng, shops, 11)))
+    it = _shop_items(rng, shops, 11)
     blocks = [(X1 + 2, -911), (-899, -851), (-839, -741), (-729, -681), (-669, X2)]
     for a, b in blocks:
         city.frontage(boulevard, -1, a, b, it, depth=11)
@@ -218,4 +230,159 @@ def hauoli(t, rng):
     lplace(t, bl.ferry_terminal, mx - 7, my, mz + 4, "south", rng, label="Hau'oli Marina", dest="Heahea City")
     bl.pier(t.c, mx - 2, SEA + 1, mz + 9, "north", length=40, width=5)
     bl.ferry_ship(t.c, mx + 6, SEA + 1, mz + 14, "north", rng, "S.S. Heahea")
+    return city
+
+
+def quay(city: City, x1, z1, x2, z2, pave="mcwpaths:andesite_flagstone"):
+    """Harbour quay: flagstones, lamps, benches, bollards and palms."""
+    c, y, rng = city.c, city.y, city.rng
+    for x in range(x1, x2 + 1):
+        for z in range(z1, z2 + 1):
+            if c.inside(x, z) and not c.is_water(x, z):
+                i, j = z - c.z0, x - c.x0
+                c.height[i, j] = y
+                c.top[i, j] = c.sid(pave)
+    for x in range(x1 + 3, x2, 12):
+        furn.place_tall(c, x, y + 1, z1 + 1, "street_lamp")
+        c.set(x + 4, y + 1, z1 + 1, furn.piece("bench", "north"))
+        c.set(x + 8, y + 1, z1, "minecraft:polished_blackstone_wall")
+    city.mark(x1, z1, x2, z2)
+
+
+# ================================================================== Heahea City
+
+def heahea(t, rng):
+    from . import alola_map, buildings as bl
+    x0, z0, y = alola_map.TOWNS["Heahea City"]
+    city = City(t, y, rng)
+    S = streets.Street
+    X1, X2 = x0 - 76, x0 + 76
+    # harbour: ferry terminal, pier and ship on the north shore
+    city.building(bl.ferry_terminal, x0 - 60, z0 - 38, "north", 15, 9, label="Heahea Ferry Terminal",
+                  dest="Hau'oli / Malie")
+    bl.pier(t.c, x0 - 58, SEA + 1, z0 - 62, "north", length=24)
+    bl.ferry_ship(t.c, x0 - 50, SEA + 1, z0 - 72, "west", rng, "S.S. Malie")
+    main = S(X1, z0 - 10, X2, z0 - 10, y, lanes=2, sidewalk=3)
+    south = S(X1, z0 + 32, X2, z0 + 32, y, lanes=1, sidewalk=2)
+    crosses = [S(x, z0 - 10, x, z0 + 32, y, lanes=1, sidewalk=2, crossings=0) for x in (x0 - 45, x0, x0 + 45)]
+    for s in (main, south, *crosses):
+        city.street(s)
+    quay(city, X1, z0 - 45, X2, z0 - 34)
+    fz = main.z1 + streets.front(main, +1)
+    city.building(bl.pokemon_center, x0 - 20, fz, "north", 17, 15, name="Heahea City")
+    fzn = main.z1 + streets.front(main, -1)
+    city.building(bl.hotel, x0 + 8, fzn, "south", 25, 13, label="Tide Song Hotel", floors=5, W=25, D=13,
+                  trim="minecraft:light_blue_concrete")
+    shops = [("office", "Dimensional Research Lab"), ("surf", "Surf Association"), ("bureau", "Tourist Bureau"),
+             ("malasada", "Malasada Shop"), ("apparel", "Apparel Shop"), ("cafe", "Heahea Café"),
+             ("mart", "Poké Mart"), ("salon", "Salon")]
+    it = _shop_items(rng, shops, 12)
+    blocks = [(X1 + 1, x0 - 51), (x0 - 39, x0 - 6), (x0 + 6, x0 + 39), (x0 + 51, X2)]
+    for a, b in blocks:
+        city.frontage(main, -1, a, b, it, depth=12)
+        city.frontage(main, +1, a, b, it, depth=12)
+    homes = _houses(rng, ["plantation", "hauoli"], 11, n=60)
+    for a, b in blocks:
+        city.frontage(south, -1, a, b, homes, depth=11)
+        city.frontage(south, +1, a, b, homes, depth=11)
+    return city
+
+
+# =================================================================== Malie City
+
+def malie(t, rng):
+    from . import alola_map, buildings as bl
+    x0, z0, y = alola_map.TOWNS["Malie City"]
+    city = City(t, y, rng)
+    S = streets.Street
+    X1, X2 = x0 - 88, x0 + 88
+    city.building(bl.ferry_terminal, x0 - 80, z0 + 50, "south", 15, 9, label="Malie Ferry Terminal",
+                  dest="Heahea / Seafolk")
+    bl.pier(t.c, x0 - 110, SEA + 1, z0 + 20, "east", length=26)
+    bl.ferry_ship(t.c, x0 - 120, SEA + 1, z0 + 40, "east", rng, "S.S. Seafolk")
+    main = S(X1, z0, X2, z0, y, lanes=2, sidewalk=3, lamps="paper_lamp")
+    north = S(X1, z0 - 42, X2, z0 - 42, y, lanes=1, sidewalk=2, lamps="paper_lamp")
+    south = S(X1 + 40, z0 + 40, X2, z0 + 40, y, lanes=1, sidewalk=2, lamps="paper_lamp")
+    crosses = [S(x, z0 - 42, x, z0 + 40, y, lanes=1, sidewalk=2, crossings=0, lamps="paper_lamp")
+               for x in (x0 - 45, x0 + 45)]
+    for s in (main, north, south, *crosses):
+        city.street(s)
+    city.building(bl.pokemon_center, x0 - 30, main.z1 + streets.front(main, -1), "south", 17, 15, name="Malie City")
+    city.building(bl.hotel, x0 - 10, north.z1 + streets.front(north, -1), "south", 27, 12, label="Malie Library",
+                  floors=2, W=27, D=12, wall="minecraft:stripped_dark_oak_wood[axis=y]", trim="minecraft:red_concrete")
+    shops = [("office", "Malie Community Center"), ("apparel", "Apparel Shop"), ("malasada", "Malasada Shop"),
+             ("mart", "Poké Mart"), ("cafe", "Tea House"), ("market", "Kantonian Goods"), ("salon", "Salon")]
+    it = _shop_items(rng, shops, 12, style="malie")
+    blocks = [(X1 + 1, x0 - 51), (x0 - 39, x0 + 39), (x0 + 51, X2)]
+    for a, b in blocks:
+        city.frontage(main, -1, a, b, it, depth=12)
+        city.frontage(main, +1, a, b, it, depth=12)
+    homes = _houses(rng, ["malie"], 11, n=80)
+    for a, b in blocks:
+        city.frontage(north, +1, a, b, homes, depth=11)
+        city.frontage(north, -1, a, b, homes, depth=11)
+        city.frontage(south, -1, a, b, homes, depth=11)
+        city.frontage(south, +1, a, b, homes, depth=11)
+    return city
+
+
+# ================================================================ Konikoni City
+
+def konikoni(t, rng):
+    from . import alola_map, buildings as bl, special as sp
+    x0, z0, y = alola_map.TOWNS["Konikoni City"]
+    city = City(t, y, rng)
+    S = streets.Street
+    X1, X2 = x0 - 66, x0 + 66
+    market_paving = ("mcwpaths:brick_basket_weave_paving", "mcwpaths:brick_running_bond",
+                     "mcwpaths:brick_basket_weave_paving", "minecraft:red_terracotta")
+    main = S(X1, z0, X2, z0, y, lanes=1, sidewalk=2, crossings=0, paving=market_paving,
+             walk="mcwpaths:sandstone_flagstone", lamps="paper_lamp")
+    south = S(X1, z0 + 30, x0 + 40, z0 + 30, y, lanes=1, sidewalk=2, crossings=0, paving=market_paving,
+              walk="mcwpaths:sandstone_flagstone", lamps="paper_lamp")
+    cross = S(x0, z0, x0, z0 + 30, y, lanes=1, sidewalk=2, crossings=0, paving=market_paving,
+              walk="mcwpaths:sandstone_flagstone", lamps="paper_lamp")
+    for s in (main, south, cross):
+        city.street(s)
+    city.building(sp.lighthouse, x0 + 58, z0 + 30, "north", 9, 9)
+    city.building(bl.pokemon_center, x0 - 40, main.z1 + streets.front(main, -1), "south", 17, 15, name="Konikoni City")
+    shops = [("apparel", "Olivia's Jewelry"), ("market", "Herb Shop"), ("market", "Incense Shop"),
+             ("market", "Konikoni Market"), ("cafe", "Noodle Restaurant"), ("mart", "Poké Mart")]
+    it = _shop_items(rng, shops, 10, floors=(2,), style="konikoni")
+    for a, b in ((X1 + 1, x0 - 6), (x0 + 6, X2)):
+        city.frontage(main, -1, a, b, it, depth=10)
+        city.frontage(main, +1, a, b, it, depth=9)
+    homes = _houses(rng, ["konikoni"], 10, n=40)
+    for a, b in ((X1 + 1, x0 - 6), (x0 + 6, x0 + 40)):
+        city.frontage(south, -1, a, b, homes, depth=9)
+        city.frontage(south, +1, a, b, homes, depth=10)
+    # strings of red lanterns across the market street
+    c = t.c
+    for x in range(X1 + 4, X2, 8):
+        for dz in range(-3, 4):
+            c.set(x, y + 6, z0 + dz, "minecraft:chain[axis=z]" if dz % 3 else furn.piece("paper_lamp"))
+        for dz in (-4, 4):
+            for v in range(1, 7):
+                if c.get(x, y + v, z0 + dz) == "minecraft:air":
+                    c.set(x, y + v, z0 + dz, "minecraft:dark_oak_fence")
+    return city
+
+
+# ================================================================= Paniola Town
+
+def paniola(t, rng):
+    from . import alola_map, buildings as bl
+    x0, z0, y = alola_map.TOWNS["Paniola Town"]
+    city = City(t, y, rng)
+    S = streets.Street
+    dirt = ("minecraft:coarse_dirt", "minecraft:dirt_path", "minecraft:coarse_dirt", "minecraft:packed_mud")
+    main = S(x0 - 42, z0, x0 + 42, z0, y, lanes=1, sidewalk=2, crossings=0, paving=dirt,
+             walk="minecraft:spruce_planks")
+    city.street(main)
+    city.building(bl.pokemon_center, x0 - 40, main.z1 + streets.front(main, -1), "south", 17, 15, name="Paniola Town")
+    shops = [("cafe", "Paniola Saloon"), ("market", "General Store"), ("mart", "Poké Mart"), ("office", "Ranch Office")]
+    it = _shop_items(rng, shops, 11, floors=(2,), style="paniola")
+    city.frontage(main, +1, x0 - 40, x0 + 40, it, depth=11)
+    homes = _houses(rng, ["paniola"], 11, n=20)
+    city.frontage(main, -1, x0 - 40, x0 + 40, homes, depth=11)
     return city
