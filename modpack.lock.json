@@ -5,40 +5,6 @@
   "fabric_loader": "0.19.5",
   "files": [
     {
-      "project_id": "E6FUtRJh",
-      "slug": "adorn",
-      "title": "Adorn",
-      "kind": "mod",
-      "category": "Building Hau'oli City: furniture and decor",
-      "explicit": true,
-      "note": "Chairs, tables, sofas, shelves, kitchen counters",
-      "pin": null,
-      "match": null,
-      "side": null,
-      "optional": false,
-      "project_client_side": "required",
-      "project_server_side": "required",
-      "version_id": "kxeS10s2",
-      "version_number": "6.3.1-fabric",
-      "version_type": "release",
-      "filename": "Adorn-6.3.1+1.21.1-fabric.jar",
-      "path": "mods/Adorn-6.3.1+1.21.1-fabric.jar",
-      "url": "https://cdn.modrinth.com/data/E6FUtRJh/versions/kxeS10s2/Adorn-6.3.1%2B1.21.1-fabric.jar",
-      "sha1": "8040026115bbbea56771f02748f751225c6c701f",
-      "sha512": "de0570ebc3cbcc8275a0debab8cf7ec30918d0b43cf32d20b41b8fb510332a530b2987373cb2c051d5bcd7f449e3f9e4e1911f0b0bcdf0efa9409c6a05321c73",
-      "size": 6035949,
-      "deps": [
-        "P7dR8mSH"
-      ],
-      "fabric_id": "adorn",
-      "fabric_version": "6.3.1+1.21.1",
-      "env": {
-        "client": "required",
-        "server": "required"
-      },
-      "required_by": []
-    },
-    {
       "project_id": "9NM0dXub",
       "slug": "advancement-plaques",
       "title": "Advancement Plaques",
@@ -4702,7 +4668,6 @@
       "required_by": [
         "3dskinlayers",
         "accessories",
-        "adorn",
         "ambientsounds",
         "appleskin",
         "architectury-api",
