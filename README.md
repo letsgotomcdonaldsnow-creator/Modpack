@@ -5,7 +5,11 @@
 A **Minecraft 1.21.1 Fabric** modpack that turns Minecraft into a Pokémon Sun & Moon style game. It is built on
 [Cobblemon](https://modrinth.com/mod/cobblemon) and set in **Generation 7's Alola region**: tropical islands and
 volcanoes, Alolan forms, Z-Moves, the Island Challenge, Poké Ride, Poké Pelago, malasadas and island life. It
-bundles about 110 hand-picked mods plus their libraries. See [MODS.md](MODS.md) for every file and version.
+bundles **111 hand-picked projects**, 140 files once libraries are included. See [MODS.md](MODS.md) for every file
+and version.
+
+Every change is tested in CI. A real dedicated server and a real Minecraft client both boot the full pack, and the
+client creates and joins a world, before the downloadable `.mrpack` is updated.
 
 ## What makes it Alola
 

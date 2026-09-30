@@ -4,22 +4,111 @@ Generated from `modpack.lock.json` by `tools/modpack.py`. Do not edit by hand.
 
 Minecraft **1.21.1**, Fabric Loader **0.19.5**, **140** files (138 mods).
 
-## Interface and quality of life
+## Cobblemon core
 
 | Project | Version | Side | Why |
 | --- | --- | --- | --- |
-| [Advancement Plaques](https://modrinth.com/mod/advancement-plaques) | `1.6.8` | client | Trial completions pop up as plaques |
-| [Better Advancements](https://modrinth.com/mod/better-advancements) | `0.4.3.21` | client | Larger advancement screen for the Island Challenge tab |
-| [Chat Heads](https://modrinth.com/mod/chat-heads) | `0.15.7` | client | Player heads in chat |
-| [Controlling](https://modrinth.com/mod/controlling) | `19.0.5` | client | Searchable key bindings |
-| [EMI](https://modrinth.com/mod/emi) | `1.1.24+1.21.1+fabric` | both | Recipe viewer |
-| [Enchantment Descriptions](https://modrinth.com/mod/enchantment-descriptions) | `21.1.11` | client | Explains enchantments in tooltips |
-| [Jade 🔍](https://modrinth.com/mod/jade) | `15.10.6+fabric` | both | Tooltip showing what you are looking at, including Pokémon |
-| [Mod Menu](https://modrinth.com/mod/modmenu) | `11.0.5` | client | Mod list and config screens |
-| [Mouse Tweaks](https://modrinth.com/mod/mouse-tweaks) | `1.21-2.26-fabric` | client | Inventory mouse shortcuts |
-| [Shulker Box Tooltip](https://modrinth.com/mod/shulkerboxtooltip) | `5.1.9+1.21.1-fabric` | both | Preview shulker box contents |
-| [Your Options Shall Be Respected (YOSBR)](https://modrinth.com/mod/yosbr) | `0.1.2` | client | Ships default options without overwriting yours |
-| [Zoomify (Zoom)](https://modrinth.com/mod/zoomify) | `2.15.2+1.21.1` | client | Zoom |
+| [Cobblemon](https://modrinth.com/mod/cobblemon) | `1.7.3` | both | The Pokémon mod. Pinned to 1.7.3, the release the addon ecosystem supports (1.7 brought Poké Ride-style riding) |
+| [Cobblemon Integrations](https://modrinth.com/mod/cobblemon-integrations) | `1.1.7` | both | Glue between Cobblemon and other mods (EMI, Jade and more) |
+
+## Alola: Pokémon, Z-Moves and the Island Challenge
+
+| Project | Version | Side | Why |
+| --- | --- | --- | --- |
+| [Cobbleloots: Loot Balls and More!](https://modrinth.com/mod/cobbleloots) | `2.3.0` | both | Item balls lying around the world, like in the games |
+| [Cobblemon Size Variations](https://modrinth.com/mod/cobblemon-size-variations) | `1.4.0` | both | Pokémon come in different sizes; now and then you meet a Totem-sized one |
+| [Cobblemon: Legendary Monuments](https://modrinth.com/mod/legendary-monuments) | `8.1-Love-for-All` | both | Shrines and structures for encountering legendary Pokémon |
+| [Cobblemon: Mega Showdown](https://modrinth.com/mod/cobblemon-mega-showdown) | `1.9.9+1.7.3+1.21.1` | both | Z-Crystals, the Z-Ring, Z-Moves and Ultra Burst (plus Mega Evolution) |
+| [Complete Cobblemon Collection w Legendary Spawns](https://modrinth.com/mod/complete-cobblemon-collection-w-legendary-spawns) | `2.0.1+mod` | both | Models and spawns for the Pokémon Cobblemon hasn't finished: Rockruff and Lycanroc, Oricorio, Grubbin, Minior, the Tapus, Cosmog, Necrozma and the Ultra Beasts |
+
+## Pokémon life: Poké Pelago, the Nursery, Poké Marts and trainers
+
+| Project | Version | Side | Why |
+| --- | --- | --- | --- |
+| [CobbleDollars [Cobblemon Addon]](https://modrinth.com/mod/cobbledollars) | `2.0.0+Beta-6.1` | both | Poké Dollars, Poké Mart shopkeepers and prize money |
+| [Cobblemon Capture XP](https://modrinth.com/mod/cobblemon-capture-xp) | `1.7.3-fabric-1.3.0` | both | Your party earns EXP for catching Pokémon, as introduced in Gen 6/7 |
+| [Cobblemon Counter](https://modrinth.com/mod/cobblemon-counter) | `1.7.3-fabric-1.9.0` | both | Catch and KO combos that raise shiny odds, a stand-in for SOS chaining |
+| [Cobblemon Exp. All](https://modrinth.com/mod/exp-all) | `1.0.9` | both | Party-wide Exp. Share, as it worked in Sun and Moon |
+| [Cobblemon Fight or Flight Reborn](https://modrinth.com/mod/cobblemon-fight-or-flight-reborn) | `0.10.9` | both | Wild Pokémon react to you: shy ones flee, aggressive ones attack |
+| [Cobblemon Pasture Loot](https://modrinth.com/mod/cobblemon-pasture-loot) | `1.0.5+1.21.1` | both | Pastured Pokémon bring back items, like Isle Abeens |
+| [Cobbleworkers](https://modrinth.com/mod/cobbleworkers) | `2.0.5+1.7.0` | both | Poké Pelago: Pokémon in a pasture take on jobs such as farming, fishing and gathering |
+| [Cobbreeding](https://modrinth.com/mod/cobbreeding) | `2.2.2` | both | Pokémon Nursery: breed Pokémon and hatch eggs in pastures |
+| [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod) | `0.18.1-beta` | both | Radical Cobblemon Trainers: trainers roam the world to battle, with a series of ever-stronger opponents |
+| [SimpleTMs: TMs and TRs for Cobblemon](https://modrinth.com/mod/simpletms-tms-and-trs-for-cobblemon) | `2.3.3` | both | TMs and TRs, reusable like in Generation 7 |
+
+## Rotom Dex and Pokémon interface
+
+| Project | Version | Side | Why |
+| --- | --- | --- | --- |
+| [Better Cobblemon Spectation](https://modrinth.com/mod/better-cobblemon-spectation) | `2.0.3` | client | Better camera when spectating other trainers' battles |
+| [Cobblemon Battle Extras](https://modrinth.com/mod/cobblemon-battle-extras) | `1.13.45` | both | Better battle interface and information |
+| [Cobblemon Catch Rate Display](https://modrinth.com/mod/catch-rate-display) | `2.12.3+fabric` | client | Shows the catch chance of the Poké Ball you are holding |
+| [Cobblemon Party Extras](https://modrinth.com/mod/cobblemon-party-extras) | `1.8.15` | client | Extra party-overlay information |
+| [Cobblemon PokeNav](https://modrinth.com/mod/cobblemon-pokenav) | `2.3.3` | both | Cobblenav: a Rotom Dex-style device for finding and tracking nearby Pokémon |
+| [Cobblemon Poképedia: Cobblepedia](https://modrinth.com/mod/cobblepedia) | `0.7.1-fabric` | both | In-game Pokémon encyclopedia: moves, evolutions and spawns |
+| [Cobblemon Spawn Notification](https://modrinth.com/mod/cobblemon-spawn-notification) | `1.7.3-fabric-2.3.0` | both | Announces shiny and legendary spawns |
+| [MoreCobblemonTweaks](https://modrinth.com/mod/more-cobblemon-tweaks) | `1.3.5-fabric` | client | Quality-of-life tweaks for Cobblemon's screens |
+
+## The Alolan islands: world generation and structures
+
+| Project | Version | Side | Why |
+| --- | --- | --- | --- |
+| [[Let's Do] Beachparty](https://modrinth.com/mod/lets-do-beachparty) | `2.1.5` | both | Palm trees, coconuts, beach chairs, hammocks, cocktails and a proper beach vibe |
+| [Dungeons and Taverns](https://modrinth.com/mod/dungeons-and-taverns) | `v4.4.4+mod` | both | Taverns, ruins and dungeons to explore between routes |
+| [Hopo Better Underwater Ruins](https://modrinth.com/mod/hopo-better-underwater-ruins) | `1.2.1b` | both | Underwater ruins for your Surf and Dive trips |
+| [Towns and Towers](https://modrinth.com/mod/towns-and-towers) | `1.13.11` | both | More varied villages and outposts to act as Alolan towns |
+| [William Wythers' Expanded Ecosphere](https://modrinth.com/mod/expanded-ecosphere) | `fabric-1.21.1-3.4.7` | both | William Wythers' overworld: tropical islands, tropical volcanoes, beaches and jungles, all with native Cobblemon spawns |
+| [YUNG's Better Desert Temples](https://modrinth.com/mod/yungs-better-desert-temples) | `1.21.1-Fabric-4.1.5` | both | Reworked desert temples, like the Ruins of Abundance in Haina Desert |
+| [YUNG's Better Dungeons](https://modrinth.com/mod/yungs-better-dungeons) | `1.21.1-Fabric-5.1.4` | both | Reworked dungeons |
+| [YUNG's Better Jungle Temples](https://modrinth.com/mod/yungs-better-jungle-temples) | `1.21.1-Fabric-3.1.2` | both | Reworked jungle temples: the Lush Jungle has secrets |
+| [YUNG's Better Mineshafts](https://modrinth.com/mod/yungs-better-mineshafts) | `1.21.1-Fabric-5.1.1` | both | Reworked mineshafts, for Diglett Tunnel |
+| [YUNG's Better Ocean Monuments](https://modrinth.com/mod/yungs-better-ocean-monuments) | `1.21.1-Fabric-4.1.2` | both | Reworked ocean monuments |
+| [YUNG's Bridges](https://modrinth.com/mod/yungs-bridges) | `1.21.1-Fabric-5.1.1` | both | Bridges over rivers |
+| [YUNG's Extras](https://modrinth.com/mod/yungs-extras) | `1.21.1-Fabric-5.1.1` | both | Small decorative structures across the world |
+
+## Island cuisine: malasadas, pineapples and fresh seafood
+
+| Project | Version | Side | Why |
+| --- | --- | --- | --- |
+| [[Let's Do] Bakery - Farm&Charm Compat](https://modrinth.com/mod/lets-do-bakery-farmcharm-compat) | `2.1.7` | both | Bakery: doughnuts, cakes and pastries (malasadas in spirit) |
+| [AppleSkin](https://modrinth.com/mod/appleskin) | `3.0.6+mc1.21` | both | Shows hunger and saturation values |
+| [Farmer's Delight Refabricated](https://modrinth.com/mod/farmers-delight-refabricated) | `1.21.1-3.3.6` | both | Cooking, crops and meals |
+| [Ocean's Delight](https://modrinth.com/mod/oceans-delight) | `1.0.3+fabric.1.21.1` | both | Seafood dishes |
+| [Pineapple Delight](https://modrinth.com/mod/pineapple-delight) | `1.1.2-1.21.1-fabric` | both | Pineapples and pineapple dishes |
+
+## Building Hau'oli City: furniture and decor
+
+| Project | Version | Side | Why |
+| --- | --- | --- | --- |
+| [Amendments](https://modrinth.com/mod/amendments) | `1.21-2.1.10` | both | Small vanilla block improvements that pair with Supplementaries |
+| [Another Furniture](https://modrinth.com/mod/another-furniture) | `4.0.2` | both | Even more furniture |
+| [Beautify: Refabricated](https://modrinth.com/mod/beautify-refabricated) | `2.0.0+1.21.1` | both | Hanging pots, trellises and botanical decor |
+| [CobbleFurnies](https://modrinth.com/mod/cobblefurnies) | `1.2` | both | Pokémon-themed furniture |
+| [Cobblemon additions](https://modrinth.com/mod/cobblemon-additions) | `4.3.0` | both | Extra Pokémon-flavored blocks and items |
+| [Handcrafted](https://modrinth.com/mod/handcrafted) | `4.0.3` | both | Furniture: couches, tables, beds and shelves |
+| [Macaw's Bridges](https://modrinth.com/mod/macaws-bridges) | `3.1.2` | both | Bridges and piers for boardwalks |
+| [Macaw's Doors](https://modrinth.com/mod/macaws-doors) | `1.1.5` | both | Doors |
+| [Macaw's Fences and Walls](https://modrinth.com/mod/macaws-fences-and-walls) | `1.2.1` | both | Fences and walls |
+| [Macaw's Furniture](https://modrinth.com/mod/macaws-furniture) | `3.4.1` | both | More furniture |
+| [Macaw's Lights and Lamps](https://modrinth.com/mod/macaws-lights-and-lamps) | `1.1.5` | both | Lamps and lanterns |
+| [Macaw's Paths and Pavings](https://modrinth.com/mod/macaws-paths-and-pavings) | `1.1.2` | both | Paths and pavings for routes |
+| [Macaw's Roofs](https://modrinth.com/mod/macaws-roofs) | `2.3.2` | both | Roof shapes for island houses |
+| [Macaw's Trapdoors](https://modrinth.com/mod/macaws-trapdoors) | `1.1.5` | both | Trapdoors |
+| [Macaw's Windows](https://modrinth.com/mod/macaws-windows) | `2.4.2` | both | Windows, shutters and blinds |
+| [Pokeblocks](https://modrinth.com/mod/pokeblocks) | `1.5.0-1.21.1` | both | Pokémon-themed blocks for Pokémon Centers and Marts |
+| [Supplementaries](https://modrinth.com/mod/supplementaries) | `1.21.1-3.9.9` | both | Decorative and functional blocks: signposts, jars, flags and more |
+
+## Travel: Ride Pager, Town Map and your Bag
+
+| Project | Version | Side | Why |
+| --- | --- | --- | --- |
+| [Carry On](https://modrinth.com/mod/carry-on) | `2.2.6` | both | Pick up chests and small creatures |
+| [Explorer's Compass](https://modrinth.com/mod/explorers-compass) | `1.21.1-2.6.0-fabric` | both | Find a structure |
+| [Nature's Compass](https://modrinth.com/mod/natures-compass) | `1.21.1-2.6.0-fabric` | both | Find a biome, such as a tropical island or a volcano |
+| [Traveler's Backpack](https://modrinth.com/mod/travelersbackpack) | `1.21.1-10.1.39` | both | Backpacks: your Bag |
+| [Waystones](https://modrinth.com/mod/waystones) | `21.1.46+fabric-1.21.1` | both | Fast travel between discovered waystones, like Charizard Glide |
+| [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap) | `fabric-1.21.1-26.5.0` | both | Minimap |
+| [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map) | `fabric-1.21.1-1.46.0` | both | Full-screen Town Map |
 
 ## Atmosphere: sun, sea and sound
 
@@ -44,77 +133,22 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **140** files (138 mods).
 | [Visuality](https://modrinth.com/mod/visuality) | `0.7.7+1.21` | client | Sparkles, water splashes and other small particles |
 | [Wakes](https://modrinth.com/mod/wakes) | `0.4.1+1.21.1` | client | Wakes and splashes behind boats and swimmers |
 
-## Building Hau'oli City: furniture and decor
+## Interface and quality of life
 
 | Project | Version | Side | Why |
 | --- | --- | --- | --- |
-| [Amendments](https://modrinth.com/mod/amendments) | `1.21-2.1.10` | both | Small vanilla block improvements that pair with Supplementaries |
-| [Another Furniture](https://modrinth.com/mod/another-furniture) | `4.0.2` | both | Even more furniture |
-| [Beautify: Refabricated](https://modrinth.com/mod/beautify-refabricated) | `2.0.0+1.21.1` | both | Hanging pots, trellises and botanical decor |
-| [CobbleFurnies](https://modrinth.com/mod/cobblefurnies) | `1.2` | both | Pokémon-themed furniture |
-| [Cobblemon additions](https://modrinth.com/mod/cobblemon-additions) | `4.3.0` | both | Extra Pokémon-flavored blocks and items |
-| [Handcrafted](https://modrinth.com/mod/handcrafted) | `4.0.3` | both | Furniture: couches, tables, beds and shelves |
-| [Macaw's Bridges](https://modrinth.com/mod/macaws-bridges) | `3.1.2` | both | Bridges and piers for boardwalks |
-| [Macaw's Doors](https://modrinth.com/mod/macaws-doors) | `1.1.5` | both | Doors |
-| [Macaw's Fences and Walls](https://modrinth.com/mod/macaws-fences-and-walls) | `1.2.1` | both | Fences and walls |
-| [Macaw's Furniture](https://modrinth.com/mod/macaws-furniture) | `3.4.1` | both | More furniture |
-| [Macaw's Lights and Lamps](https://modrinth.com/mod/macaws-lights-and-lamps) | `1.1.5` | both | Lamps and lanterns |
-| [Macaw's Paths and Pavings](https://modrinth.com/mod/macaws-paths-and-pavings) | `1.1.2` | both | Paths and pavings for routes |
-| [Macaw's Roofs](https://modrinth.com/mod/macaws-roofs) | `2.3.2` | both | Roof shapes for island houses |
-| [Macaw's Trapdoors](https://modrinth.com/mod/macaws-trapdoors) | `1.1.5` | both | Trapdoors |
-| [Macaw's Windows](https://modrinth.com/mod/macaws-windows) | `2.4.2` | both | Windows, shutters and blinds |
-| [Pokeblocks](https://modrinth.com/mod/pokeblocks) | `1.5.0-1.21.1` | both | Pokémon-themed blocks for Pokémon Centers and Marts |
-| [Supplementaries](https://modrinth.com/mod/supplementaries) | `1.21.1-3.9.9` | both | Decorative and functional blocks: signposts, jars, flags and more |
-
-## Island cuisine: malasadas, pineapples and fresh seafood
-
-| Project | Version | Side | Why |
-| --- | --- | --- | --- |
-| [[Let's Do] Bakery - Farm&Charm Compat](https://modrinth.com/mod/lets-do-bakery-farmcharm-compat) | `2.1.7` | both | Bakery: doughnuts, cakes and pastries (malasadas in spirit) |
-| [AppleSkin](https://modrinth.com/mod/appleskin) | `3.0.6+mc1.21` | both | Shows hunger and saturation values |
-| [Farmer's Delight Refabricated](https://modrinth.com/mod/farmers-delight-refabricated) | `1.21.1-3.3.6` | both | Cooking, crops and meals |
-| [Ocean's Delight](https://modrinth.com/mod/oceans-delight) | `1.0.3+fabric.1.21.1` | both | Seafood dishes |
-| [Pineapple Delight](https://modrinth.com/mod/pineapple-delight) | `1.1.2-1.21.1-fabric` | both | Pineapples and pineapple dishes |
-
-## Rotom Dex and Pokémon interface
-
-| Project | Version | Side | Why |
-| --- | --- | --- | --- |
-| [Better Cobblemon Spectation](https://modrinth.com/mod/better-cobblemon-spectation) | `2.0.3` | client | Better camera when spectating other trainers' battles |
-| [Cobblemon Battle Extras](https://modrinth.com/mod/cobblemon-battle-extras) | `1.13.45` | both | Better battle interface and information |
-| [Cobblemon Catch Rate Display](https://modrinth.com/mod/catch-rate-display) | `2.12.3+fabric` | client | Shows the catch chance of the Poké Ball you are holding |
-| [Cobblemon Party Extras](https://modrinth.com/mod/cobblemon-party-extras) | `1.8.15` | client | Extra party-overlay information |
-| [Cobblemon PokeNav](https://modrinth.com/mod/cobblemon-pokenav) | `2.3.3` | both | Cobblenav: a Rotom Dex-style device for finding and tracking nearby Pokémon |
-| [Cobblemon Poképedia: Cobblepedia](https://modrinth.com/mod/cobblepedia) | `0.7.1-fabric` | both | In-game Pokémon encyclopedia: moves, evolutions and spawns |
-| [Cobblemon Spawn Notification](https://modrinth.com/mod/cobblemon-spawn-notification) | `1.7.3-fabric-2.3.0` | both | Announces shiny and legendary spawns |
-| [MoreCobblemonTweaks](https://modrinth.com/mod/more-cobblemon-tweaks) | `1.3.5-fabric` | client | Quality-of-life tweaks for Cobblemon's screens |
-
-## Pokémon life: Poké Pelago, the Nursery, Poké Marts and trainers
-
-| Project | Version | Side | Why |
-| --- | --- | --- | --- |
-| [CobbleDollars [Cobblemon Addon]](https://modrinth.com/mod/cobbledollars) | `2.0.0+Beta-6.1` | both | Poké Dollars, Poké Mart shopkeepers and prize money |
-| [Cobblemon Capture XP](https://modrinth.com/mod/cobblemon-capture-xp) | `1.7.3-fabric-1.3.0` | both | Your party earns EXP for catching Pokémon, as introduced in Gen 6/7 |
-| [Cobblemon Counter](https://modrinth.com/mod/cobblemon-counter) | `1.7.3-fabric-1.9.0` | both | Catch and KO combos that raise shiny odds, a stand-in for SOS chaining |
-| [Cobblemon Exp. All](https://modrinth.com/mod/exp-all) | `1.0.9` | both | Party-wide Exp. Share, as it worked in Sun and Moon |
-| [Cobblemon Fight or Flight Reborn](https://modrinth.com/mod/cobblemon-fight-or-flight-reborn) | `0.10.9` | both | Wild Pokémon react to you: shy ones flee, aggressive ones attack |
-| [Cobblemon Pasture Loot](https://modrinth.com/mod/cobblemon-pasture-loot) | `1.0.5+1.21.1` | both | Pastured Pokémon bring back items, like Isle Abeens |
-| [Cobbleworkers](https://modrinth.com/mod/cobbleworkers) | `2.0.5+1.7.0` | both | Poké Pelago: Pokémon in a pasture take on jobs such as farming, fishing and gathering |
-| [Cobbreeding](https://modrinth.com/mod/cobbreeding) | `2.2.2` | both | Pokémon Nursery: breed Pokémon and hatch eggs in pastures |
-| [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod) | `0.18.1-beta` | both | Radical Cobblemon Trainers: trainers roam the world to battle, with a series of ever-stronger opponents |
-| [SimpleTMs: TMs and TRs for Cobblemon](https://modrinth.com/mod/simpletms-tms-and-trs-for-cobblemon) | `2.3.3` | both | TMs and TRs, reusable like in Generation 7 |
-
-## Travel: Ride Pager, Town Map and your Bag
-
-| Project | Version | Side | Why |
-| --- | --- | --- | --- |
-| [Carry On](https://modrinth.com/mod/carry-on) | `2.2.6` | both | Pick up chests and small creatures |
-| [Explorer's Compass](https://modrinth.com/mod/explorers-compass) | `1.21.1-2.6.0-fabric` | both | Find a structure |
-| [Nature's Compass](https://modrinth.com/mod/natures-compass) | `1.21.1-2.6.0-fabric` | both | Find a biome, such as a tropical island or a volcano |
-| [Traveler's Backpack](https://modrinth.com/mod/travelersbackpack) | `1.21.1-10.1.39` | both | Backpacks: your Bag |
-| [Waystones](https://modrinth.com/mod/waystones) | `21.1.46+fabric-1.21.1` | both | Fast travel between discovered waystones, like Charizard Glide |
-| [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap) | `fabric-1.21.1-26.5.0` | both | Minimap |
-| [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map) | `fabric-1.21.1-1.46.0` | both | Full-screen Town Map |
+| [Advancement Plaques](https://modrinth.com/mod/advancement-plaques) | `1.6.8` | client | Trial completions pop up as plaques |
+| [Better Advancements](https://modrinth.com/mod/better-advancements) | `0.4.3.21` | client | Larger advancement screen for the Island Challenge tab |
+| [Chat Heads](https://modrinth.com/mod/chat-heads) | `0.15.7` | client | Player heads in chat |
+| [Controlling](https://modrinth.com/mod/controlling) | `19.0.5` | client | Searchable key bindings |
+| [EMI](https://modrinth.com/mod/emi) | `1.1.24+1.21.1+fabric` | both | Recipe viewer |
+| [Enchantment Descriptions](https://modrinth.com/mod/enchantment-descriptions) | `21.1.11` | client | Explains enchantments in tooltips |
+| [Jade 🔍](https://modrinth.com/mod/jade) | `15.10.6+fabric` | both | Tooltip showing what you are looking at, including Pokémon |
+| [Mod Menu](https://modrinth.com/mod/modmenu) | `11.0.5` | client | Mod list and config screens |
+| [Mouse Tweaks](https://modrinth.com/mod/mouse-tweaks) | `1.21-2.26-fabric` | client | Inventory mouse shortcuts |
+| [Shulker Box Tooltip](https://modrinth.com/mod/shulkerboxtooltip) | `5.1.9+1.21.1-fabric` | both | Preview shulker box contents |
+| [Your Options Shall Be Respected (YOSBR)](https://modrinth.com/mod/yosbr) | `0.1.2` | client | Ships default options without overwriting yours |
+| [Zoomify (Zoom)](https://modrinth.com/mod/zoomify) | `2.15.2+1.21.1` | client | Zoom |
 
 ## Performance
 
@@ -133,40 +167,6 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **140** files (138 mods).
 | [Reese's Sodium Options](https://modrinth.com/mod/reeses-sodium-options) | `mc1.21.1-2.2.4+fabric` | client | Better video settings screen |
 | [Sodium](https://modrinth.com/mod/sodium) | `mc1.21.1-0.8.13-fabric` | client | Rendering engine |
 | [Sodium Extra](https://modrinth.com/mod/sodium-extra) | `mc1.21.1-0.9.4+fabric` | client | More Sodium options |
-
-## Alola: Pokémon, Z-Moves and the Island Challenge
-
-| Project | Version | Side | Why |
-| --- | --- | --- | --- |
-| [Cobbleloots: Loot Balls and More!](https://modrinth.com/mod/cobbleloots) | `2.3.0` | both | Item balls lying around the world, like in the games |
-| [Cobblemon Size Variations](https://modrinth.com/mod/cobblemon-size-variations) | `1.4.0` | both | Pokémon come in different sizes; now and then you meet a Totem-sized one |
-| [Cobblemon: Legendary Monuments](https://modrinth.com/mod/legendary-monuments) | `8.1-Love-for-All` | both | Shrines and structures for encountering legendary Pokémon |
-| [Cobblemon: Mega Showdown](https://modrinth.com/mod/cobblemon-mega-showdown) | `1.9.9+1.7.3+1.21.1` | both | Z-Crystals, the Z-Ring, Z-Moves and Ultra Burst (plus Mega Evolution) |
-| [Complete Cobblemon Collection w Legendary Spawns](https://modrinth.com/mod/complete-cobblemon-collection-w-legendary-spawns) | `2.0.1+mod` | both | Models and spawns for the Pokémon Cobblemon hasn't finished: Rockruff and Lycanroc, Oricorio, Grubbin, Minior, the Tapus, Cosmog, Necrozma and the Ultra Beasts |
-
-## Cobblemon core
-
-| Project | Version | Side | Why |
-| --- | --- | --- | --- |
-| [Cobblemon](https://modrinth.com/mod/cobblemon) | `1.7.3` | both | The Pokémon mod. Pinned to 1.7.3, the release the addon ecosystem supports (1.7 brought Poké Ride-style riding) |
-| [Cobblemon Integrations](https://modrinth.com/mod/cobblemon-integrations) | `1.1.7` | both | Glue between Cobblemon and other mods (EMI, Jade and more) |
-
-## The Alolan islands: world generation and structures
-
-| Project | Version | Side | Why |
-| --- | --- | --- | --- |
-| [[Let's Do] Beachparty](https://modrinth.com/mod/lets-do-beachparty) | `2.1.5` | both | Palm trees, coconuts, beach chairs, hammocks, cocktails and a proper beach vibe |
-| [Dungeons and Taverns](https://modrinth.com/mod/dungeons-and-taverns) | `v4.4.4+mod` | both | Taverns, ruins and dungeons to explore between routes |
-| [Hopo Better Underwater Ruins](https://modrinth.com/mod/hopo-better-underwater-ruins) | `1.2.1b` | both | Underwater ruins for your Surf and Dive trips |
-| [Towns and Towers](https://modrinth.com/mod/towns-and-towers) | `1.13.11` | both | More varied villages and outposts to act as Alolan towns |
-| [William Wythers' Expanded Ecosphere](https://modrinth.com/mod/expanded-ecosphere) | `fabric-1.21.1-3.4.7` | both | William Wythers' overworld: tropical islands, tropical volcanoes, beaches and jungles, all with native Cobblemon spawns |
-| [YUNG's Better Desert Temples](https://modrinth.com/mod/yungs-better-desert-temples) | `1.21.1-Fabric-4.1.5` | both | Reworked desert temples, like the Ruins of Abundance in Haina Desert |
-| [YUNG's Better Dungeons](https://modrinth.com/mod/yungs-better-dungeons) | `1.21.1-Fabric-5.1.4` | both | Reworked dungeons |
-| [YUNG's Better Jungle Temples](https://modrinth.com/mod/yungs-better-jungle-temples) | `1.21.1-Fabric-3.1.2` | both | Reworked jungle temples: the Lush Jungle has secrets |
-| [YUNG's Better Mineshafts](https://modrinth.com/mod/yungs-better-mineshafts) | `1.21.1-Fabric-5.1.1` | both | Reworked mineshafts, for Diglett Tunnel |
-| [YUNG's Better Ocean Monuments](https://modrinth.com/mod/yungs-better-ocean-monuments) | `1.21.1-Fabric-4.1.2` | both | Reworked ocean monuments |
-| [YUNG's Bridges](https://modrinth.com/mod/yungs-bridges) | `1.21.1-Fabric-5.1.1` | both | Bridges over rivers |
-| [YUNG's Extras](https://modrinth.com/mod/yungs-extras) | `1.21.1-Fabric-5.1.1` | both | Small decorative structures across the world |
 
 ## Multiplayer
 

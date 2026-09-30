@@ -928,8 +928,12 @@ def write_mods_md(lock: dict) -> None:
              "Generated from `modpack.lock.json` by `tools/modpack.py`. Do not edit by hand.", "",
              f"Minecraft **{lock['minecraft']}**, Fabric Loader **{lock['fabric_loader']}**, "
              f"**{len(files)}** files ({sum(1 for f in files if f['kind'] == 'mod')} mods).", ""]
-    order = list(dict.fromkeys(f["category"] for f in files if f["explicit"]))
-    order += [c for c in cats if c not in order]
+    try:
+        _, entries = load_modlist()
+        order = list(dict.fromkeys(e["category"] for e in entries))
+    except (OSError, KeyError, tomllib.TOMLDecodeError):
+        order = []
+    order = [c for c in order if c in cats] + [c for c in cats if c not in order]
     for cat in order:
         lines += [f"## {cat}", "", "| Project | Version | Side | Why |", "| --- | --- | --- | --- |"]
         for f in sorted(cats[cat], key=lambda f: f["title"].lower()):
