@@ -122,22 +122,8 @@ def player_home(t, rng):
 
 
 def iki_town(t, rng):
-    c = t.c
-    x, z = alola_map.TOWNS["Iki Town"][:2]
-    y = TOWN_Y["Iki Town"]
-    b = B(c, x, y, z, "south")
-    b.disc(0, 0, 0, 30, "minecraft:packed_mud")
-    b.disc(0, 0, 0, 22, "minecraft:dirt_path")
-    place(t, sp.iki_stage, x - 8, y, z + 8, "south", rng)
-    homes = [(x - 38, z - 16, "east"), (x + 38, z - 10, "west"), (x - 36, z + 20, "east"), (x + 36, z + 24, "west"),
-             (x - 8, z - 38, "south")]
-    for i, (hx, hz, f) in enumerate(homes):
-        place(t, arch.house, hx, y, hz, f, rng, W=9, D=7, style="iki", yard=True,
-              label="Kahuna Hala's House" if i == 0 else None)
-    for a in range(0, 360, 40):
-        tx, tz = x + int(26 * math.cos(math.radians(a))), z + int(26 * math.sin(math.radians(a)))
-        furn.place_tall(c, tx, y + 1, tz, "tiki_torch")
-    c.sign(x, y + 1, z + 30, ["Iki Town", "", "Home of the", "Kahuna"], wood="dark_oak", rotation=0)
+    from . import villages
+    villages.iki_town(t, rng)
 
 
 def melemele_misc(t, rng):
