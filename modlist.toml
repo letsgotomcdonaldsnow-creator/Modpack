@@ -74,7 +74,7 @@ mods = [
 title = "The Alolan islands: world generation and structures"
 mods = [
   { id = "expanded-ecosphere", note = "William Wythers' overworld: tropical islands, tropical volcanoes, beaches and jungles, all with native Cobblemon spawns" },
-  { id = "5nraCxl9", note = "Terrain Slabs: half-height grass, sand and dirt so hills and paths are smooth" },
+  { id = "countereds-terrain-slabs", note = "Terrain Slabs: half-height grass, sand and dirt so hills and paths are smooth" },
   { id = "dynamictrees", note = "Dynamic Trees: trees that grow branch by branch and fall when chopped" },
   { id = "wilder-wild", note = "Bushes, new flowers, grass variants, fireflies and more natural foliage" },
   { id = "wilder-flowers", note = "Wildflower and clover patches" },

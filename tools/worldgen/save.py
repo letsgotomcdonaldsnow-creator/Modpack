@@ -40,6 +40,7 @@ def write_setup_pack(world: Path) -> None:
     (fn / "spawn_all.mcfunction").write_text("".join(line(cmd) for x, y, z, cmd in buildings.SETUP))
     (fn / "spawn.mcfunction").write_text(
         'function alola_region:spawn_all {e:""}\n'
+        + "execute store result score #npcs alola_setup if entity @e[type=cobblemon:npc]\n"
         + "scoreboard players set #done alola_setup 1\n"
         + 'tellraw @a [{"text":"[Alola] ","color":"gold"},{"text":"The Alola region is ready. Alola!","color":"yellow"}]\n'
         + "schedule function alola_region:release 200t\n")

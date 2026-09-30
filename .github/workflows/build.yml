@@ -79,6 +79,13 @@ jobs:
             dist/*.mrpack
             build/alola-map.png
 
+      - name: Upload the world for the screenshot tour
+        uses: actions/upload-artifact@v4
+        with:
+          name: world
+          path: build/world/
+          compression-level: 6
+
       - name: Upload lockfile for the client test
         uses: actions/upload-artifact@v4
         with:
@@ -95,7 +102,6 @@ jobs:
           python tools/modpack.py boot --dir build/server --memory 5G --settle 20
           --command "function alola:selftest"
           --command "scoreboard players get #done alola_setup"
-          --command "execute store result score #npcs alola_setup if entity @e[type=cobblemon:npc]"
           --command "scoreboard players get #npcs alola_setup"
           --expect "#done has 1 \[alola_setup\]" "Alola setup function finished"
           --expect "#npcs has [1-9][0-9]+ \[alola_setup\]" "trainers spawned in the Alola world"
@@ -202,6 +208,86 @@ jobs:
           grep -nE "/ERROR\]|/FATAL\]|Exception|Caused by|Mixin apply .* failed" run/logs/latest.log | cut -c1-400 | head -150 || true
           echo "----- last 200 lines -----"
           tail -200 run/logs/latest.log | cut -c1-400 || true
+
+  tour:
+    name: In-game screenshots
+    needs: build
+    if: ${{ !cancelled() && github.ref_type == 'branch' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Get the lockfile and world the build job made
+        uses: actions/download-artifact@v4
+        with:
+          name: lockfile
+          path: .
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: world
+          path: build/world
+
+      - name: Restore download cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache
+          key: downloads-${{ hashFiles('modpack.lock.json', 'modlist.toml') }}
+          restore-keys: downloads-
+
+      - name: Assemble client with the Alola world and the camera tour
+        run: |
+          python tools/modpack.py client --dir run --skip '^distanthorizons$'
+          printf 'renderDistance:10\nsimulationDistance:5\ngraphicsMode:1\nmaxFps:30\ntutorialStep:none\nonboardAccessibility:false\npauseOnLostFocus:false\nfov:0.25\nbiomeBlendRadius:2\nao:true\nentityShadows:true\n' > run/options.txt
+          mkdir -p run/saves run/config
+          cp -r build/world/Alola run/saves/Alola
+          cp -r build/world/tour/alola_tour run/saves/Alola/datapacks/alola_tour
+          printf 'enableShaders=false\n' > run/config/iris.properties
+
+      - name: Fly the camera through Alola and take screenshots
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y xvfb xdotool imagemagick >/dev/null
+          tools/tour.sh
+
+      - name: Upload client log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tour-log
+          path: |
+            run/logs/latest.log
+            run/launcher.log
+            run/crash-reports/
+          if-no-files-found: ignore
+
+      - name: Publish the screenshots
+        if: always()
+        run: |
+          cp run/logs/latest.log tour/client.log 2>/dev/null || true
+          cd tour && zip -q -r ../tour-screenshots.zip . && cd ..
+          ls -la tour-screenshots.zip
+
+      - uses: softprops/action-gh-release@v2
+        if: always()
+        with:
+          tag_name: tour
+          name: Alola Region screenshots (CI)
+          prerelease: true
+          make_latest: false
+          body: In-game screenshots of the Alola Region world from `${{ github.sha }}`, taken by the CI camera tour.
+          files: tour-screenshots.zip
 
   publish:
     name: Publish tested pack to the "latest" release

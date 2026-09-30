@@ -19,6 +19,7 @@ Standard library only (Python 3.11+). Subcommands:
 from __future__ import annotations
 
 import argparse
+import functools
 import hashlib
 import io
 import json
@@ -134,6 +135,17 @@ def parse_version(text: str):
         else:
             return None
     return nums, pre
+
+
+def _cmp_text_versions(a: str, b: str) -> int:
+    pa, pb = parse_version(a), parse_version(b)
+    if pa is None or pb is None:
+        return (a > b) - (a < b)
+    return compare_versions(pa, pb)
+
+
+def version_key(v: str):
+    return functools.cmp_to_key(_cmp_text_versions)(v)
 
 
 def compare_versions(a, b) -> int:
@@ -671,6 +683,7 @@ def cmd_validate(args) -> int:
     for side in ("client", "server"):
         present = [f for f in mods if f["env"][side] != "unsupported"]
         provided: dict[str, list[str]] = {k: list(v) for k, v in builtin_mods(lock["minecraft"], lock["fabric_loader"]).items()}
+        top_versions: dict[str, str] = {}
         top_ids: dict[str, str] = {}
         loaded: list[tuple[str, dict]] = []
         for f in present:
@@ -687,6 +700,7 @@ def cmd_validate(args) -> int:
                     if m["id"] in top_ids:
                         errors.append(f"[{side}] duplicate mod id {m['id']}: {top_ids[m['id']]} and {f['slug']}")
                     top_ids[m["id"]] = f["slug"]
+                    top_versions[m["id"]] = m["version"]
                 for mid in [m["id"], *m["provides"]]:
                     provided.setdefault(mid, []).append(m["version"])
                 loaded.append((f["slug"], m))
@@ -701,8 +715,11 @@ def cmd_validate(args) -> int:
                 elif not any(predicate_matches(pred, v) for v in provided[dep]):
                     errors.append(f"[{side}] {label} requires {dep} {pred}, found {', '.join(sorted(set(provided[dep])))}")
             for dep, pred in m["breaks"].items():
-                if dep in provided and any(predicate_matches(pred, v) for v in provided[dep]):
-                    errors.append(f"[{side}] {label} breaks with {dep} {pred} (found {', '.join(sorted(set(provided[dep])))})")
+                # Fabric loads one copy of each mod id: the top-level jar if there is one, else the newest nested copy.
+                if dep in provided:
+                    chosen = top_versions.get(dep) or max(provided[dep], key=version_key)
+                    if predicate_matches(pred, chosen):
+                        errors.append(f"[{side}] {label} breaks with {dep} {pred} (loaded {chosen})")
         log(f"[{side}] {len(present)} jars, {len(top_ids)} top-level mods")
     log("Declared Cobblemon ranges:")
     for f in mods:

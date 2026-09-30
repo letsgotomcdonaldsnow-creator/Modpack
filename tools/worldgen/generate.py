@@ -85,6 +85,8 @@ def main() -> int:
         from . import save
         save.save_world(c, Path(args.out))
         Path(args.out).parent.joinpath("world-blocks.json").write_text(json.dumps(save.used_states(c), indent=0))
+        from . import tour
+        tour.write(c, Path(args.out).parent / "tour" / "alola_tour")
         print(f"saved: {time.time() - t0:.1f}s")
     if args.check:
         problems = check_states(c)

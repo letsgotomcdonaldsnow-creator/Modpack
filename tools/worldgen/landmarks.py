@@ -6,7 +6,7 @@ import random
 
 import numpy as np
 
-from . import alola_map, buildings as bl, furn, plants, special as sp, terrain as T
+from . import alola_map, buildings as bl, furn, plants, special as sp, terrain as T, tour
 from .canvas import SEA, Canvas
 from .kit import B, connect_all
 
@@ -37,6 +37,7 @@ def ground(c: Canvas, x1, z1, x2, z2, state, y=None):
 
 def place(t, fn, x, y, z, facing, rng, **kw):
     W, D = fn(t.c, x, y, z, facing, rng, **kw)
+    tour.record(fn.__name__, kw.get("label") or kw.get("name"), x, y, z, facing, W, D)
     b = B(t.c, x, y, z, facing)
     xs, zs = zip(*[b.world(u, 0, w)[::2] for u, w in ((-2, -3), (W + 1, -3), (-2, D + 1), (W + 1, D + 1))])
     reserve(t, min(xs), min(zs), max(xs), max(zs))
@@ -524,6 +525,7 @@ def poni(t, rng):
 
 def build_all(c: Canvas, t: T.Terrain, rng: random.Random):
     bl.SETUP.clear()
+    tour.PLACED.clear()
     hauoli(t, rng)
     player_home(t, rng)
     iki_town(t, rng)
