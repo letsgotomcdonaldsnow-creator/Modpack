@@ -27,13 +27,18 @@ def _color(name: str) -> tuple[int, int, int]:
                      ("log", (100, 80, 50)), ("planks", (170, 130, 80)), ("brick", (150, 80, 70)),
                      ("quartz", (235, 230, 225)), ("glass", (180, 220, 240)), ("wool", (210, 210, 210)),
                      ("stone", (130, 130, 130)), ("slab", (150, 150, 150)), ("stairs", (150, 150, 150)),
-                     ("sand", (215, 200, 150)), ("flower", (230, 80, 120)), ("grass", (90, 150, 50))):
+                     ("sand", (215, 200, 150)), ("flower", (230, 80, 120)), ("grass", (90, 150, 50)),
+                     ("poppy", (200, 40, 40)), ("dandelion", (240, 220, 40)), ("tulip", (230, 120, 60)),
+                     ("allium", (180, 100, 220)), ("daisy", (240, 240, 230)), ("cornflower", (80, 110, 230)),
+                     ("fern", (80, 140, 50)), ("mud", (90, 70, 60)), ("wood", (150, 110, 70)), ("bush", (60, 110, 40)),
+                     ("torch", (250, 200, 80)), ("lamp", (250, 230, 150)), ("fence", (140, 110, 70)),
+                     ("concrete", (200, 200, 200)), ("sofa", (200, 50, 50)), ("chair", (160, 120, 80))):
         if key in base:
             return col
     return (200, 60, 200)
 
 
-def render(c: Canvas, path: Path, scale: int = 1) -> None:
+def render(c: Canvas, path: Path, scale: int = 1, crop=None) -> None:
     h = c.height.astype(np.int32)
     wl = c.water.astype(np.int32)
     palette = np.array([_color(s) for s in c.states], dtype=np.float32)
@@ -52,7 +57,7 @@ def render(c: Canvas, path: Path, scale: int = 1) -> None:
             ys = y0 + ly
             zz, xx = np.nonzero(mask)
             cur = top_y[z0 + zz, x0 + xx]
-            upd = ys > cur
+            upd = ys >= cur
             top_y[z0 + zz[upd], x0 + xx[upd]] = ys
             img[z0 + zz[upd], x0 + xx[upd]] = palette[layer[zz[upd], xx[upd]]]
     water = (wl > top_y)
@@ -66,6 +71,9 @@ def render(c: Canvas, path: Path, scale: int = 1) -> None:
     shade = np.clip(1.0 + (-gx - gz) * 0.06, 0.6, 1.35)
     img = img * shade[..., None]
     img = np.clip(img, 0, 255).astype(np.uint8)
+    if crop:
+        x1, z1, x2, z2 = crop
+        img = img[z1 - c.z0:z2 - c.z0, x1 - c.x0:x2 - c.x0]
     if scale > 1:
         img = img[::scale, ::scale]
     hgt, wid = img.shape[:2]

@@ -276,7 +276,7 @@ class Canvas:
                 if not self.chunk_is_default(cx, cz):
                     chunks_by_region.setdefault((cx >> 5, cz >> 5), []).append((cx, cz))
         total = 0
-        now = int(time.time())
+        now = 1_700_000_000  # fixed so identical worlds produce identical files
         for (rx, rz), chunks in sorted(chunks_by_region.items()):
             locations = bytearray(4096)
             stamps = bytearray(4096)

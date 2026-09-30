@@ -901,6 +901,12 @@ def cmd_build(args) -> int:
                     if path.is_file() and path.name != ".gitkeep":
                         zip_add_file(zf, f"{folder}/{path.relative_to(base).as_posix()}", path)
         zip_add_file(zf, f"overrides/mods/{alola_jar.name}", alola_jar)
+        world = BUILD / "world" / "Alola"
+        if world.exists():
+            for path in sorted(world.rglob("*")):
+                if path.is_file():
+                    zip_add_file(zf, f"client-overrides/saves/Alola Region/{path.relative_to(world).as_posix()}", path)
+            log("Included the Alola Region world save")
         zip_add_bytes(zf, "client-overrides/config/yosbr/options.txt", default_options(lock).encode())
         iris = iris_properties(lock)
         if iris:
@@ -981,6 +987,14 @@ def cmd_server(args) -> int:
             shutil.copytree(base, target, dirs_exist_ok=True, ignore=shutil.ignore_patterns(".gitkeep"))
     if args.accept_eula:
         (target / "eula.txt").write_text("eula=true\n")
+    world = BUILD / "world" / "Alola"
+    if world.exists():
+        shutil.copytree(world, target / "Alola", dirs_exist_ok=True)
+        props = target / "server.properties"
+        text = props.read_text() if props.exists() else ""
+        text = "\n".join(ln for ln in text.splitlines() if not ln.startswith("level-name=")) + "\nlevel-name=Alola\n"
+        props.write_text(text)
+        log("Using the Alola Region world (level-name=Alola)")
     log(f"Server assembled in {target} with {count + 1} files (Fabric {lock['fabric_loader']}, installer {installer})")
     log(f"Start it with: java -Xmx6G -jar fabric-server-launch.jar nogui")
     return 0
@@ -1050,6 +1064,7 @@ def cmd_boot(args) -> int:
     booted = done.is_set()
     if booted:
         log(f"Server reached Done after {time.time() - start:.0f}s; running checks and stopping")
+        time.sleep(args.settle)
         for command in args.command or []:
             proc.stdin.write(command + "\n")
             proc.stdin.flush()
@@ -1069,6 +1084,13 @@ def cmd_boot(args) -> int:
     for ln in lines:
         if re.search(r"Unknown function|Unknown or incomplete command|Incorrect argument for command", ln):
             problems.append(f"console command failed: {ln}")
+        if re.search(r"Couldn't load chunk|Failed to read chunk|Recoverable errors when loading section|"
+                     r"Unknown block|Failed to parse block|Chunk file at .* is in the wrong location|"
+                     r"Couldn't (?:read|load) (?:level|region)", ln):
+            problems.append(f"world data: {ln}")
+    for pattern, label in args.expect or []:
+        if not any(re.search(pattern, ln) for ln in lines):
+            problems.append(f"expected '{label}' in the log")
     if args.command and not any("Alola self-test" in ln for ln in lines):
         problems.append("the Alola self-test function did not run")
     ours = [ln for ln in lines if re.search(r"\balola[_:]", ln, re.I) and BAD_LOG.search(ln)]
@@ -1149,9 +1171,31 @@ def _blockstate_props(data: dict) -> dict[str, set[str]]:
     return props
 
 
+def vanilla_block_report(mc: str) -> Path:
+    """Run Mojang's data generator (--reports) for the vanilla block list with every property."""
+    work = BUILD / "vanilla"
+    report = work / "generated" / "reports" / "blocks.json"
+    if report.exists():
+        return report
+    work.mkdir(parents=True, exist_ok=True)
+    manifest = http_get("https://piston-meta.mojang.com/mc/game/version_manifest_v2.json")
+    ver = next(v for v in manifest["versions"] if v["id"] == mc)
+    server = http_get(ver["url"])["downloads"]["server"]
+    jar = work / "server.jar"
+    data = http_get(server["url"], binary=True)
+    if hashlib.sha1(data).hexdigest() != server["sha1"]:
+        raise RuntimeError("vanilla server jar hash mismatch")
+    jar.write_bytes(data)
+    subprocess.run(["java", "-DbundlerMainClass=net.minecraft.data.Main", "-jar", "server.jar", "--reports"],
+                   cwd=work, check=True, stdout=subprocess.DEVNULL)
+    return report
+
+
 def cmd_catalog(args) -> int:
     """Write every block id and its properties (vanilla report + mod blockstate files)."""
     catalog: dict[str, dict] = {}
+    if args.fetch_vanilla and not args.vanilla_report:
+        args.vanilla_report = str(vanilla_block_report(read_lock()["minecraft"]))
     if args.vanilla_report and Path(args.vanilla_report).exists():
         report = json.loads(Path(args.vanilla_report).read_text())
         for name, info in report.items():
@@ -1236,8 +1280,12 @@ def main() -> int:
     b.add_argument("--timeout", type=int, default=900)
     b.add_argument("--command", action="append", help="console command to run once the server is up")
     b.add_argument("--dump", action="append", help="glob of generated files to print after boot")
+    b.add_argument("--settle", type=int, default=0, help="seconds to wait after Done before running commands")
+    b.add_argument("--expect", nargs=2, action="append", metavar=("REGEX", "LABEL"),
+                   help="fail unless a log line matches REGEX")
     ct = sub.add_parser("catalog", help="list every block id/property in the pack")
     ct.add_argument("--vanilla-report", help="blocks.json from the vanilla data generator")
+    ct.add_argument("--fetch-vanilla", action="store_true", help="download the vanilla server and generate the report")
     ct.add_argument("--out", default="tools/worldgen/block_catalog.json")
     v = sub.add_parser("versions", help="list a project's Fabric versions (diagnostics)")
     v.add_argument("slugs", nargs="+")

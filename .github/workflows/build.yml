@@ -63,14 +63,21 @@ jobs:
         continue-on-error: true
         run: python tools/modpack.py validate
 
+      - name: Generate the Alola Region world
+        run: |
+          pip install --quiet numpy
+          python -m tools.worldgen.generate --save --check --preview build/alola-map.png
+
       - name: Build .mrpack
         run: python tools/modpack.py build
 
-      - name: Upload .mrpack
+      - name: Upload .mrpack and map
         uses: actions/upload-artifact@v4
         with:
           name: modpack
-          path: dist/*.mrpack
+          path: |
+            dist/*.mrpack
+            build/alola-map.png
 
       - name: Upload lockfile for the client test
         uses: actions/upload-artifact@v4
@@ -85,20 +92,19 @@ jobs:
         id: boot
         continue-on-error: true
         run: >
-          python tools/modpack.py boot --dir build/server --memory 5G
+          python tools/modpack.py boot --dir build/server --memory 5G --settle 20
           --command "function alola:selftest"
+          --command "scoreboard players get #done alola_setup"
+          --command "execute store result score #npcs alola_setup if entity @e[type=cobblemon:npc]"
+          --command "scoreboard players get #npcs alola_setup"
+          --expect "#done has 1 \[alola_setup\]" "Alola setup function finished"
+          --expect "#npcs has [1-9][0-9]+ \[alola_setup\]" "trainers spawned in the Alola world"
 
       - name: Build the block catalog (vanilla report + every mod's blockstates)
         if: github.ref_type == 'branch'
         continue-on-error: true
         run: |
-          ls build/server
-          jar=$(ls build/server/server.jar build/server/*.jar 2>/dev/null | grep -v fabric-server-launch | head -1)
-          echo "vanilla jar: $jar"
-          (cd build && java -DbundlerMainClass=net.minecraft.data.Main -jar "../$jar" --reports --output reports 2>&1 | tail -5) || true
-          report=$(find build/reports -name blocks.json | head -1)
-          echo "report: $report"
-          python tools/modpack.py catalog ${report:+--vanilla-report "$report"}
+          python tools/modpack.py catalog --fetch-vanilla
           if [ -n "$(git status --porcelain -- tools/worldgen/block_catalog.json)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
@@ -198,29 +204,32 @@ jobs:
           tail -200 run/logs/latest.log | cut -c1-400 || true
 
   publish:
-    name: Publish .mrpack to the branch
+    name: Publish tested pack to the "latest" release
     needs: [build, client]
     if: github.ref_type == 'branch'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref_name }}
-          fetch-depth: 0
-
       - uses: actions/download-artifact@v4
         with:
           name: modpack
           path: dist
 
-      - name: Commit the tested .mrpack
+      - name: Rename for download
         run: |
-          cp dist/*.mrpack Pokemon-Alola-Adventure.mrpack
-          if [ -n "$(git status --porcelain -- Pokemon-Alola-Adventure.mrpack)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
-            git add Pokemon-Alola-Adventure.mrpack
-            git commit -m "Publish tested Pokemon-Alola-Adventure.mrpack"
-            git pull --rebase origin "${GITHUB_REF_NAME}"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
-          fi
+          mkdir -p out
+          cp dist/*.mrpack out/Pokemon-Alola-Adventure.mrpack
+          cp dist/build/alola-map.png out/alola-map.png 2>/dev/null || find dist -name alola-map.png -exec cp {} out/ \;
+
+      - name: Update the rolling release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Pokémon Alola Adventure (latest tested build)
+          prerelease: true
+          make_latest: false
+          body: |
+            Automatically built from `${{ github.sha }}` after a real server and a real client both booted the pack.
+            Import `Pokemon-Alola-Adventure.mrpack` in the Modrinth App or Prism Launcher; the Alola Region world is in your singleplayer list.
+          files: |
+            out/Pokemon-Alola-Adventure.mrpack
+            out/alola-map.png
