@@ -48,9 +48,37 @@ def write_setup_pack(world: Path) -> None:
     print(f"  setup datapack: {len(buildings.SETUP)} commands over {len(chunks)} chunks")
 
 
+def defer_entity_rendered(c: Canvas) -> int:
+    """Blocks drawn only by a block entity renderer (the catalog's #entity_rendered: flags, clocks, sign posts,
+    animated dolls...) need their mod's block entity, which the region writer cannot make. Leave air in the
+    save and let the setup function place them with /setblock, which creates the block entity."""
+    import numpy as np
+    from . import furn
+    from .canvas import MIN_Y, parse_state
+    ids = set(furn.catalog().get("#entity_rendered", {}).get("ids", []))
+    sids = [i for i, st in enumerate(c.states) if i and parse_state(st)[0] in ids]
+    if not sids:
+        return 0
+    air = c.sid("minecraft:air")
+    n = 0
+    for (cx, cz, sy), sec in c.sections.items():
+        hit = np.isin(sec, sids)
+        if not hit.any():
+            continue
+        for ly, lz, lx in zip(*np.nonzero(hit)):
+            x, y, z = cx * 16 + int(lx), MIN_Y + sy * 16 + int(ly), cz * 16 + int(lz)
+            buildings.SETUP.append((x, y, z, f"setblock {x} {y} {z} {c.states[sec[ly, lz, lx]]}"))
+            sec[ly, lz, lx] = air
+            n += 1
+    return n
+
+
 def save_world(c: Canvas, out: Path, name: str = "Alola") -> None:
     if out.exists():
         shutil.rmtree(out)
+    deferred = defer_entity_rendered(c)
+    if deferred:
+        print(f"  {deferred} block-entity-rendered blocks will be placed in game")
     n = c.save_regions(out / "region", log=lambda *_: None)
     write_level_dat(out / "level.dat", name, SPAWN)
     icon = ROOT / "icon.png"

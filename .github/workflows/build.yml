@@ -226,10 +226,10 @@ jobs:
           name: lockfile
           path: .
 
-      - name: Generate the world with the test lab (showroom and sample buildings)
+      - name: Generate the world for the tour
         run: |
           pip install --quiet numpy
-          ALOLA_LAB=1 python -m tools.worldgen.generate --save --out build/tourworld/Alola --preview build/tour-map.png
+          python -m tools.worldgen.generate --save --out build/tourworld/Alola --preview build/tour-map.png
 
       - name: Restore download cache
         uses: actions/cache/restore@v4

@@ -1188,6 +1188,44 @@ def _blockstate_props(data: dict) -> dict[str, set[str]]:
     return props
 
 
+def _model_id(ref: str) -> str:
+    return ref if ":" in ref else "minecraft:" + ref
+
+
+def _blockstate_models(data: dict) -> set[str]:
+    """Every model a blockstate file refers to."""
+    out: set[str] = set()
+
+    def take(v) -> None:
+        for m in (v if isinstance(v, list) else [v]):
+            if isinstance(m, dict) and isinstance(m.get("model"), str):
+                out.add(_model_id(m["model"]))
+
+    for v in (data.get("variants") or {}).values():
+        take(v)
+    for part in data.get("multipart") or []:
+        take(part.get("apply"))
+    return out
+
+
+# vanilla parents that carry no geometry of their own
+_EMPTY_VANILLA = {"minecraft:block/block", "minecraft:builtin/entity", "minecraft:builtin/generated",
+                  "minecraft:item/generated", "minecraft:block/air"}
+
+
+def _model_has_geometry(ref: str, models: dict[str, dict], depth: int = 0) -> bool:
+    ref = _model_id(ref)
+    if depth > 12 or ref in _EMPTY_VANILLA:
+        return False
+    md = models.get(ref)
+    if md is None:
+        return ref.startswith("minecraft:")      # a vanilla shape (cube_all, stairs, ...) or an unknown model
+    if md.get("elements") or md.get("loader"):
+        return True
+    parent = md.get("parent")
+    return bool(parent) and _model_has_geometry(parent, models, depth + 1)
+
+
 def vanilla_block_report(mc: str) -> Path:
     """Run Mojang's data generator (--reports) for the vanilla block list with every property."""
     work = BUILD / "vanilla"
@@ -1218,6 +1256,8 @@ def cmd_catalog(args) -> int:
         for name, info in report.items():
             catalog[name] = {k: sorted(v) for k, v in (info.get("properties") or {}).items()}
     biomes: set[str] = set()
+    models: dict[str, dict] = {}
+    block_models: dict[str, set[str]] = {}
     lock = read_lock()
     for f in lock["files"]:
         if f["kind"] != "mod":
@@ -1228,6 +1268,15 @@ def cmd_catalog(args) -> int:
                 bm = re.match(r"data/([^/]+)/worldgen/biome/(.+)\.json$", n)
                 if bm:
                     biomes.add(f"{bm.group(1)}:{bm.group(2)}")
+                    continue
+                mm = re.match(r"assets/([^/]+)/models/(.+)\.json$", n)
+                if mm and mm.group(1) != "minecraft":
+                    try:
+                        md = load_fmj(zf.read(n))
+                        if isinstance(md, dict):
+                            models[f"{mm.group(1)}:{mm.group(2)}"] = md
+                    except (json.JSONDecodeError, UnicodeDecodeError):
+                        pass
                     continue
                 m = re.match(r"assets/([^/]+)/blockstates/([^/]+)\.json$", n)
                 if not m or m.group(1) == "minecraft":
@@ -1241,9 +1290,14 @@ def cmd_catalog(args) -> int:
                 entry = catalog.setdefault(name, {})
                 for k, vals in props.items():
                     entry[k] = sorted(set(entry.get(k, [])) | vals)
+                block_models.setdefault(name, set()).update(_blockstate_models(data if isinstance(data, dict) else {}))
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
     catalog["#biomes"] = {"ids": sorted(biomes)}
+    # blocks whose models carry no geometry are drawn by a block entity renderer (flags, clocks, sign posts,
+    # animated dolls...): the world generator must let the game place those so their block entity exists
+    catalog["#entity_rendered"] = {"ids": sorted(b for b, ms in block_models.items()
+                                                 if ms and not any(_model_has_geometry(m, models) for m in ms))}
     out.write_text(json.dumps(dict(sorted(catalog.items())), separators=(",", ":"), sort_keys=True) + "\n")
     namespaces = {}
     for k in catalog:
