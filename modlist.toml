@@ -74,6 +74,10 @@ mods = [
 title = "The Alolan islands: world generation and structures"
 mods = [
   { id = "expanded-ecosphere", note = "William Wythers' overworld: tropical islands, tropical volcanoes, beaches and jungles, all with native Cobblemon spawns" },
+  { id = "5nraCxl9", note = "Terrain Slabs: half-height grass, sand and dirt so hills and paths are smooth" },
+  { id = "dynamictrees", note = "Dynamic Trees: trees that grow branch by branch and fall when chopped" },
+  { id = "wilder-wild", note = "Bushes, new flowers, grass variants, fireflies and more natural foliage" },
+  { id = "wilder-flowers", note = "Wildflower and clover patches" },
   { id = "lets-do-beachparty", note = "Palm trees, coconuts, beach chairs, hammocks, cocktails and a proper beach vibe" },
   { id = "towns-and-towers", note = "More varied villages and outposts to act as Alolan towns" },
   { id = "dungeons-and-taverns", note = "Taverns, ruins and dungeons to explore between routes" },
@@ -129,6 +133,8 @@ mods = [
   { id = "lets-do-meadow", note = "Ranch life and wooden decor for Paniola Ranch" },
   { id = "lets-do-vinery", note = "Vineyards, lattices and wooden decor" },
   { id = "every-compat", note = "Decoration blocks in every wood type" },
+  { id = "NnMIY8We", note = "Saro's Road Blocks: asphalt, road markings, curbs and sidewalks for Alola's cities" },
+  { id = "Ba3uA4qP", note = "Saro's Road Signs: real street signs for the routes and cities" },
 ]
 
 [category.travel]
@@ -211,4 +217,5 @@ title = "Multiplayer"
 mods = [
   { id = "simple-voice-chat", note = "Proximity voice chat" },
   { id = "no-chat-reports", note = "Removes chat reporting" },
+  { id = "open-parties-and-claims", note = "Parties and land claims, so players can build their Alola homes safely" },
 ]
