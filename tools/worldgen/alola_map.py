@@ -204,8 +204,8 @@ def build(t: Terrain) -> None:
 SITE_RADIUS = {
     "Iki Town": 46, "Ruins of Conflict": 30, "Verdant Cavern": 14, "Melemele Meadow": 20, "Ten Carat Hill": 18,
     "Kala'e Bay": 14, "Big Wave Beach": 16, "Route 2 Pokemon Center": 20, "Hau'oli Cemetery": 22,
-    "Player's House": 16, "Kukui's Lab": 20, "Paniola Town": 44, "Paniola Ranch": 40, "Brooklet Hill": 16,
-    "Wela Volcano Park": 26, "Route 8": 30, "Lush Jungle": 18, "Memorial Hill": 18, "Ruins of Life": 30,
+    "Player's House": 16, "Kukui's Lab": 20, "Paniola Town": 44, "Paniola Ranch": 44, "Brooklet Hill": 16,
+    "Wela Volcano Park": 26, "Route 8": 30, "Lush Jungle": 22, "Memorial Hill": 18, "Ruins of Life": 30,
     "Malie Garden": 36, "Mount Hokulani": 30, "Blush Mountain": 22, "Tapu Village": 34, "Haina Desert": 16,
     "Ruins of Abundance": 30, "Aether House": 16, "Ula'ula Meadow": 16, "Pokemon League": 40,
     "Poni Wilds": 14, "Hapu's House": 16, "Ruins of Hope": 30, "Exeggutor Island": 18, "Altar of the Sunne": 24,

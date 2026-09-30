@@ -6,7 +6,7 @@ import random
 
 import numpy as np
 
-from . import alola_map, arch, buildings as bl, furn, plants, sites, special as sp, terrain as T, tour
+from . import akala_sites, alola_map, arch, buildings as bl, furn, plants, sites, special as sp, terrain as T, tour
 from .canvas import SEA, Canvas
 from .kit import B, connect_all
 
@@ -176,59 +176,26 @@ def akala(t, rng):
     city.paniola(t, rng)
     # Paniola Ranch
     x, z = alola_map.TOWNS["Paniola Ranch"][:2]
-    y = TOWN_Y["Paniola Ranch"]
-    place(t, sp.barn, x - 7, y, z - 8, "south", rng)
-    for fx in range(x - 35, x + 36):
-        for fz in (z + 2, z + 34):
-            c.set(fx, y + 1, fz, "minecraft:oak_fence")
-    for fz in range(z + 2, z + 35):
-        for fx in (x - 35, x + 35):
-            c.set(fx, y + 1, fz, "minecraft:oak_fence")
-    for k in range(8):
-        bl.SETUP.append((x - 25 + k * 7, y + 1, z + 18, f"spawnpokemonat {x - 25 + k * 7} {y + 1} {z + 18} "
-                         + ["mudbray", "tauros", "miltank", "mudsdale"][k % 4] + " level=15"))
+    place(t, akala_sites.paniola_ranch, x - 35, TOWN_Y["Paniola Ranch"], z + 24, "south", rng)
     # Brooklet Hill (Lana)
     x, z = alola_map.TOWNS["Brooklet Hill"][:2]
-    y = TOWN_Y["Brooklet Hill"]
-    sp.trial_gate(c, x - 3, y, z - 14, "north", rng, "Captain Lana")
-    b = B(c, x - 15, y, z + 5, "south")
-    for u in range(0, 30):
-        for w in range(0, 4):
-            b.set(u, 0, w, "minecraft:spruce_planks")
-    bl.npc(b, 15, 1, 2, "alola:lana")
+    akala_sites.brooklet_hill(c, x, TOWN_Y["Brooklet Hill"], z, rng)
+    reserve(t, x - 30, z - 50, x + 8, z + 4)
     # Royal Avenue
     x, z = alola_map.TOWNS["Royal Avenue"][:2]
     y = TOWN_Y["Royal Avenue"]
-    place(t, sp.royal_dome, x - 18, y, z + 18, "south", rng)
+    place(t, akala_sites.royal_dome, x - 20, y, z + 20, "south", rng)
     place(t, bl.pokemon_center, x - 44, y, z - 26, "south", rng, name="Royal Avenue")
-    place(t, bl.shop, x + 24, y, z - 26, "south", rng, label="Thrifty Megamart", color="minecraft:orange_concrete", W=19, D=15)
+    place(t, arch.shop, x + 24, y, z - 26, "south", rng, label="Thrifty Megamart", kind="mart", W=19, D=15, floors=1)
     # Hano Grand Resort
     x, z = alola_map.TOWNS["Hano Grand Resort"][:2]
-    y = TOWN_Y["Hano Grand Resort"]
-    place(t, bl.hotel, x - 17, y, z - 8, "south", rng, label="Hano Grand Resort", floors=6, W=35, D=17,
-          trim="minecraft:yellow_concrete")
-    pool = B(c, x - 14, y, z + 4, "south")
-    pool.box(0, 0, 0, 28, 0, 12, furn.piece("pool_tile"))
-    pool.box(1, 0, 1, 27, 0, 11, "minecraft:water")
-    pool.box(1, -1, 1, 27, -1, 11, furn.piece("pool_tile"))
-    for k in range(0, 28, 5):
-        c.set(x - 14 + k, y + 1, z + 3, furn.piece("sun_lounger", "south"))
-    for k in range(10):
-        bx, bz = x - 30 + k * 7, z + 30
-        if c.inside(bx, bz) and not c.is_water(bx, bz):
-            beach_set(c, bx, c.surface(bx, bz), bz, rng)
-    # Wela Volcano Park (Kiawe)
+    place(t, akala_sites.hano_resort, x - 22, TOWN_Y["Hano Grand Resort"], z + 15, "south", rng)
+    reserve(t, x - 30, z - 45, x + 30, z + 34)
+    # Wela Volcano Park (Kiawe's stage on the crater rim)
     x, z = alola_map.TOWNS["Wela Volcano Park"][:2]
     y = TOWN_Y["Wela Volcano Park"]
     place(t, bl.shop, x - 30, y, z + 40, "south", rng, label="Wela Volcano Park", color="minecraft:red_concrete", W=11, D=7)
-    b = B(c, x + 24, c.surface(x + 24, z) , z, "west")
-    for u in range(-4, 5):
-        for w in range(0, 9):
-            b.set(u, 0, w, "minecraft:polished_blackstone_bricks")
-    for u in (-4, 4):
-        b.set(u, 1, 0, "minecraft:campfire[lit=true]"), b.set(u, 1, 8, "minecraft:campfire[lit=true]")
-    bl.npc(b, 0, 1, 6, "alola:kiawe")
-    sp.trial_gate(c, *b.world(-3, 0, -2), "west", rng, "Captain Kiawe")
+    place(t, akala_sites.kiawe_stage, x + 43, y, z + 11, "east", rng)
     # Route 8: PC, motel, Aether Base, Fossil Restoration Center
     x, z = alola_map.TOWNS["Route 8"][:2]
     y = TOWN_Y["Route 8"]
@@ -238,11 +205,7 @@ def akala(t, rng):
     place(t, arch.house, x + 6, y, z + 22, "north", rng, W=15, D=9, label="Route 8 Motel", beds=3)
     # Lush Jungle (Mallow)
     x, z = alola_map.TOWNS["Lush Jungle"][:2]
-    y = TOWN_Y["Lush Jungle"]
-    sp.trial_gate(c, x - 3, y, z - 16, "north", rng, "Captain Mallow")
-    b = B(c, x, y, z, "south")
-    b.disc(0, 0, 0, 7, "minecraft:moss_block")
-    bl.npc(b, 0, 1, 0, "alola:mallow")
+    place(t, akala_sites.mallow_kitchen, x + 14, TOWN_Y["Lush Jungle"], z - 14, "north", rng)
     # Konikoni City (Kahuna Olivia's arena north of the market street)
     city.konikoni(t, rng)
     x, z = alola_map.TOWNS["Konikoni City"][:2]
