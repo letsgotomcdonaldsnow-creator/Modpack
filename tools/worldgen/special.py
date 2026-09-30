@@ -407,7 +407,7 @@ def shady_house(c: Canvas, x, y, z, facing, rng):
         for v in (3, 4, 8, 9):
             b.set(u, v, 0, "minecraft:gray_stained_glass_pane")
     b.clear(12, 1, 0, 14, 4, 0)
-    b.hip_roof(0, W - 1, 0, D - 1, 13, "minecraft:blackstone_brick_stairs", "minecraft:polished_blackstone_bricks")
+    b.hip_roof(0, W - 1, 0, D - 1, 13, "minecraft:polished_blackstone_brick_stairs", "minecraft:polished_blackstone_bricks")
     b.set(13, 3, -1, "minecraft:skeleton_skull[rotation=0]")
     b.sign(12, 5, -1, ["Shady House", "", "Team Skull", "HQ"], wood="dark_oak")
     for w in range(3, D - 3, 2):

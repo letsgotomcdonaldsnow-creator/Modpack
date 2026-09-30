@@ -55,6 +55,27 @@ def street_row(t, rng, y, x_start, z_front, side, items, gap=4):
     return x
 
 
+def back_street(t, rng, y, x1, x2, z, roof=None, wall=None, ground_state="minecraft:polished_andesite"):
+    """A residential street with houses on both sides."""
+    c = t.c
+    ground(c, x1, z - 2, x2, z + 2, ground_state, y)
+    kw = {k: v for k, v in (("roof", roof), ("wall", wall)) if v}
+    items = [(bl.house, rng.choice([9, 10, 11]), dict(kw)) for _ in range(40)]
+    for it in items:
+        it[2]["W"] = it[1]
+    xs = x1
+    north = []
+    width = 0
+    for it in items:
+        if width + it[1] + 4 > (x2 - x1):
+            break
+        north.append(it)
+        width += it[1] + 4
+    street_row(t, rng, y, x1, z - 4, "north", north)
+    street_row(t, rng, y, x1 + 3, z + 4, "south", north[:-1])
+    lamps_along(c, x1, z - 3, x2, z - 3, y, every=16)
+
+
 def lamps_along(c, x1, z1, x2, z2, y, every=12):
     n = int(max(abs(x2 - x1), abs(z2 - z1)) / every)
     for i in range(n + 1):
@@ -235,6 +256,7 @@ def akala(t, rng):
         (bl.house, 10, {"W": 10}),
     ])
     lamps_along(c, x - 78, z - 4, x + 78, z - 4, y)
+    back_street(t, rng, y, x - 40, x + 78, z + 32)
     place(t, bl.ferry_terminal, x - 60, y, z - 36, "north", rng, label="Heahea Ferry Terminal", dest="Hau'oli / Malie")
     bl.pier(c, x - 58, SEA + 1, z - 60, "north", length=26)
     bl.ferry_ship(c, x - 50, SEA + 1, z - 70, "west", rng, "S.S. Malie")
@@ -375,6 +397,7 @@ def ulaula(t, rng):
     ])
     for k in range(-85, 90, 10):
         c.set(x + k, y + 1, z - 4, furn.piece("paper_lamp"))
+    back_street(t, rng, y, x - 86, x + 86, z + 38, roof=japanese, wall="minecraft:white_concrete")
     place(t, bl.ferry_terminal, x - 80, y, z + 50, "south", rng, label="Malie Ferry Terminal", dest="Heahea / Seafolk")
     bl.pier(c, x - 110, SEA + 1, z + 20, "east", length=26)
     bl.ferry_ship(c, x - 120, SEA + 1, z + 40, "east", rng, "S.S. Seafolk")
@@ -388,7 +411,7 @@ def ulaula(t, rng):
         b.set(u, 1, 0, "minecraft:red_nether_brick_slab[type=bottom]")
         b.set(u, 0, 0, "minecraft:dark_oak_planks")
     for u in (-15, 15):
-        b.set(u, 1, -1, "minecraft:red_nether_brick_fence"), b.set(u, 1, 1, "minecraft:red_nether_brick_fence")
+        b.set(u, 1, -1, "minecraft:nether_brick_fence"), b.set(u, 1, 1, "minecraft:nether_brick_fence")
     for a in range(0, 360, 45):
         tx, tz = gx + int(18 * math.cos(math.radians(a))), gz + int(18 * math.sin(math.radians(a)))
         plants.cherry(c, tx, c.surface(tx, tz), tz, rng)

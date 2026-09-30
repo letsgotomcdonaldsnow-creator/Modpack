@@ -31,8 +31,15 @@ def write_setup_pack(world: Path) -> None:
         "# Load every chunk that gets a Pokémon Center machine or a trainer, then place them a moment later.\n"
         + "".join(f"forceload add {cx * 16} {cz * 16}\n" for cx, cz in chunks)
         + "schedule function alola_region:spawn 60t\n")
+    # Cobblemon commands are macro lines ($...$(e)) so they are parsed when they run, after Cobblemon has
+    # loaded its NPC classes and species, not when the datapack is first read.
+    def line(cmd: str) -> str:
+        if cmd.startswith(("spawnnpcat", "spawnpokemonat")):
+            return f"${cmd}$(e)\n"
+        return f"{cmd}\n"
+    (fn / "spawn_all.mcfunction").write_text("".join(line(cmd) for x, y, z, cmd in buildings.SETUP))
     (fn / "spawn.mcfunction").write_text(
-        "".join(f"{cmd}\n" for x, y, z, cmd in buildings.SETUP)
+        'function alola_region:spawn_all {e:""}\n'
         + "scoreboard players set #done alola_setup 1\n"
         + 'tellraw @a [{"text":"[Alola] ","color":"gold"},{"text":"The Alola region is ready. Alola!","color":"yellow"}]\n'
         + "schedule function alola_region:release 200t\n")
