@@ -163,6 +163,11 @@ def pokemon_center(c: Canvas, x, y, z, facing, rng, name="Pokémon Center"):
     # waiting sofas and plants
     for u in (6, 10):
         b.set(u, 1, 8, P("pc_sofa", "south"))
+    # a waystone by the door, named after the town
+    from . import multiplayer
+    wx, wy, wz = b.world(12, 1, 2)
+    multiplayer.waystone(c, wx, wy, wz, name if name != "Pokémon Center" else "Pokémon Center", facing=b.dir("front"),
+                         pad=False)
     for (u, w) in ((1, 1), (15, 1), (1, 13), (15, 13)):
         b.set(u, 1, w, P("plant_big"))
     return W, D

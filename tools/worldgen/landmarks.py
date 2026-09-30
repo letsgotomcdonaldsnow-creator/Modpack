@@ -6,7 +6,7 @@ import random
 
 import numpy as np
 
-from . import alola_map, buildings as bl, furn, plants, special as sp, terrain as T, tour
+from . import alola_map, arch, buildings as bl, furn, plants, special as sp, terrain as T, tour
 from .canvas import SEA, Canvas
 from .kit import B, connect_all
 
@@ -56,12 +56,11 @@ def street_row(t, rng, y, x_start, z_front, side, items, gap=4):
     return x
 
 
-def back_street(t, rng, y, x1, x2, z, roof=None, wall=None, ground_state="minecraft:polished_andesite"):
+def back_street(t, rng, y, x1, x2, z, style="plantation", ground_state="minecraft:polished_andesite"):
     """A residential street with houses on both sides."""
     c = t.c
     ground(c, x1, z - 2, x2, z + 2, ground_state, y)
-    kw = {k: v for k, v in (("roof", roof), ("wall", wall)) if v}
-    items = [(bl.house, rng.choice([9, 10, 11]), dict(kw)) for _ in range(40)]
+    items = [(arch.house, rng.choice([9, 11]), {"style": style}) for _ in range(40)]
     for it in items:
         it[2]["W"] = it[1]
     xs = x1
@@ -118,7 +117,10 @@ def hauoli(t, rng):
             c.set(x + dx, y, road_z, "minecraft:white_concrete")
     lamps_along(c, x1, road_z - 6, x2, road_z - 6, y)
     lamps_along(c, x1 + 6, road_z + 6, x2, road_z + 6, y)
-    H = bl.house
+    def house(c_, x_, y_, z_, f_, rng_, **kw):
+        kw.setdefault("style", rng_.choice(["hauoli", "plantation", "plantation"]))
+        return arch.house(c_, x_, y_, z_, f_, rng_, **kw)
+    H = house
     north = [
         (bl.pokemon_center, 17, {"name": "Hau'oli City"}),
         (bl.malasada_shop, 11, {}),
@@ -173,8 +175,8 @@ def player_home(t, rng):
     c = t.c
     x, z = alola_map.TOWNS["Player's House"][:2]
     y = TOWN_Y["Player's House"]
-    place(t, bl.house, x - 6, y, z + 6, "south", rng, W=13, D=11, wall="minecraft:white_terracotta",
-          roof=("minecraft:dark_oak_stairs", "minecraft:dark_oak_planks"), label="Your House", beds=1)
+    place(t, arch.house, x - 6, y, z + 6, "south", rng, W=13, D=11, style="plantation", floors=2,
+          roof_colour="red_terracotta", label="Your House", beds=1, yard=True)
     lx, lz = alola_map.TOWNS["Kukui's Lab"][:2]
     place(t, sp.lab, lx - 6, TOWN_Y["Kukui's Lab"], lz + 5, "south", rng)
 
@@ -190,9 +192,7 @@ def iki_town(t, rng):
     homes = [(x - 38, z - 16, "east"), (x + 38, z - 10, "west"), (x - 36, z + 20, "east"), (x + 36, z + 24, "west"),
              (x - 8, z - 38, "south")]
     for i, (hx, hz, f) in enumerate(homes):
-        place(t, bl.house, hx, y, hz, f, rng, W=9, D=8, wall=rng.choice(["minecraft:stripped_oak_wood[axis=y]",
-              "minecraft:bamboo_block[axis=y]", "minecraft:birch_planks"]),
-              roof=("minecraft:dark_oak_stairs", "minecraft:dark_oak_planks"),
+        place(t, arch.house, hx, y, hz, f, rng, W=9, D=7, style="iki", yard=True,
               label="Kahuna Hala's House" if i == 0 else None)
     for a in range(0, 360, 40):
         tx, tz = x + int(26 * math.cos(math.radians(a))), z + int(26 * math.sin(math.radians(a)))
@@ -206,7 +206,7 @@ def melemele_misc(t, rng):
     x, z = alola_map.TOWNS["Route 2 Pokemon Center"][:2]
     y = TOWN_Y["Route 2 Pokemon Center"]
     place(t, bl.pokemon_center, x + 8, y, z - 8, "west", rng, name="Route 2")
-    place(t, bl.house, x - 20, y, z - 16, "east", rng, W=15, D=9, label="Route 2 Motel", beds=3)
+    place(t, arch.house, x - 20, y, z - 16, "east", rng, W=15, D=9, label="Route 2 Motel", beds=3)
     for row in range(5):
         for k in range(12):
             bx, bz = x - 20 + k * 3, z + 14 + row * 3
@@ -249,12 +249,12 @@ def akala(t, rng):
         (bl.pokemon_center, 17, {"name": "Heahea City"}),
         (bl.hotel, 25, {"label": "Tide Song Hotel", "floors": 5, "W": 25, "trim": "minecraft:light_blue_concrete"}),
         (bl.shop, 15, {"label": "Dimensional Research Lab", "color": "minecraft:purple_concrete", "W": 15}),
-        (bl.house, 10, {"W": 10}), (bl.house, 10, {"W": 10}), (bl.house, 11, {"W": 11}),
+        (arch.house, 11, {"W": 11}), (arch.house, 9, {"W": 9}), (arch.house, 11, {"W": 11}),
     ])
     street_row(t, rng, y, x - 70, z + 5, "south", [
         (bl.shop, 13, {"label": "Surf Association", "color": "minecraft:cyan_concrete"}),
-        (bl.house, 10, {"W": 10}), (bl.house, 9, {"W": 9}), (bl.malasada_shop, 11, {}),
-        (bl.house, 10, {"W": 10}),
+        (arch.house, 11, {"W": 11}), (arch.house, 9, {"W": 9}), (bl.malasada_shop, 11, {}),
+        (arch.house, 11, {"W": 11}),
     ])
     lamps_along(c, x - 78, z - 4, x + 78, z - 4, y)
     back_street(t, rng, y, x - 40, x + 78, z + 32)
@@ -267,13 +267,13 @@ def akala(t, rng):
     ground(c, x - 40, z - 3, x + 40, z + 3, "minecraft:coarse_dirt", y)
     street_row(t, rng, y, x - 40, z - 5, "north", [
         (bl.pokemon_center, 17, {"name": "Paniola Town"}),
-        (bl.house, 11, {"W": 11, "wall": "minecraft:stripped_spruce_wood[axis=y]", "roof": ("minecraft:spruce_stairs", "minecraft:spruce_planks")}),
-        (bl.house, 11, {"W": 11, "wall": "minecraft:stripped_spruce_wood[axis=y]", "roof": ("minecraft:spruce_stairs", "minecraft:spruce_planks")}),
+        (arch.house, 11, {"W": 11, "style": "paniola"}),
+        (arch.house, 11, {"W": 11, "style": "paniola"}),
     ])
     street_row(t, rng, y, x - 36, z + 5, "south", [
         (bl.shop, 13, {"label": "Paniola Saloon", "color": "minecraft:brown_concrete"}),
-        (bl.house, 11, {"W": 11, "wall": "minecraft:stripped_spruce_wood[axis=y]", "roof": ("minecraft:spruce_stairs", "minecraft:spruce_planks")}),
-        (bl.house, 10, {"W": 10}),
+        (arch.house, 11, {"W": 11, "style": "paniola"}),
+        (arch.house, 11, {"W": 11, "style": "paniola"}),
     ])
     x, z = alola_map.TOWNS["Paniola Ranch"][:2]
     y = TOWN_Y["Paniola Ranch"]
@@ -335,7 +335,7 @@ def akala(t, rng):
     place(t, bl.pokemon_center, x - 26, y, z - 8, "south", rng, name="Route 8")
     place(t, bl.shop, x - 4, y, z - 8, "south", rng, label="Fossil Restoration Center", color="minecraft:brown_concrete")
     place(t, bl.shop, x + 14, y, z - 8, "south", rng, label="Aether Base", color="minecraft:yellow_concrete")
-    place(t, bl.house, x + 6, y, z + 22, "north", rng, W=15, D=9, label="Route 8 Motel", beds=3)
+    place(t, arch.house, x + 6, y, z + 22, "north", rng, W=15, D=9, label="Route 8 Motel", beds=3)
     # Lush Jungle (Mallow)
     x, z = alola_map.TOWNS["Lush Jungle"][:2]
     y = TOWN_Y["Lush Jungle"]
@@ -347,18 +347,18 @@ def akala(t, rng):
     x, z = alola_map.TOWNS["Konikoni City"][:2]
     y = TOWN_Y["Konikoni City"]
     ground(c, x - 70, z - 3, x + 70, z + 3, "minecraft:red_terracotta", y)
-    pagoda = ("minecraft:red_nether_brick_stairs", "minecraft:red_nether_bricks")
+    kk = "konikoni"
     street_row(t, rng, y, x - 68, z - 5, "north", [
         (bl.pokemon_center, 17, {"name": "Konikoni City"}),
-        (bl.house, 11, {"W": 11, "wall": "minecraft:white_terracotta", "roof": pagoda, "label": "Olivia's Jewelry"}),
-        (bl.house, 11, {"W": 11, "wall": "minecraft:yellow_terracotta", "roof": pagoda, "label": "Herb Shop"}),
-        (bl.house, 11, {"W": 11, "wall": "minecraft:white_terracotta", "roof": pagoda, "label": "Incense Shop"}),
-        (bl.house, 10, {"W": 10, "roof": pagoda}),
+        (arch.house, 11, {"W": 11, "style": kk, "label": "Olivia's Jewelry"}),
+        (arch.house, 11, {"W": 11, "style": kk, "label": "Herb Shop"}),
+        (arch.house, 11, {"W": 11, "style": kk, "label": "Incense Shop"}),
+        (arch.house, 11, {"W": 11, "style": kk}),
     ])
     street_row(t, rng, y, x - 60, z + 5, "south", [
-        (bl.house, 10, {"W": 10, "roof": pagoda}), (bl.house, 11, {"W": 11, "roof": pagoda}),
+        (arch.house, 11, {"W": 11, "style": kk}), (arch.house, 11, {"W": 11, "style": kk}),
         (bl.shop, 13, {"label": "Konikoni Market", "color": "minecraft:red_concrete"}),
-        (bl.house, 10, {"W": 10, "roof": pagoda}),
+        (arch.house, 11, {"W": 11, "style": kk}),
     ])
     for k in range(-60, 70, 10):
         c.set(x + k, y + 1, z - 4, furn.piece("paper_lamp"))
@@ -379,26 +379,26 @@ def ulaula(t, rng):
     x, z = alola_map.TOWNS["Malie City"][:2]
     y = TOWN_Y["Malie City"]
     ground(c, x - 90, z - 3, x + 90, z + 3, "minecraft:polished_andesite", y)
-    japanese = ("minecraft:deepslate_tile_stairs", "minecraft:deepslate_tiles")
+    ml = {"W": 11, "style": "malie"}
     street_row(t, rng, y, x - 88, z - 5, "north", [
         (bl.pokemon_center, 17, {"name": "Malie City"}),
         (bl.hotel, 27, {"label": "Malie Library", "floors": 2, "W": 27, "D": 19, "wall": "minecraft:stripped_dark_oak_wood[axis=y]",
                          "trim": "minecraft:red_concrete"}),
-        (bl.house, 11, {"W": 11, "wall": "minecraft:white_concrete", "roof": japanese}),
+        (arch.house, 11, dict(ml)),
         (bl.shop, 13, {"label": "Apparel Shop", "color": "minecraft:pink_concrete"}),
-        (bl.house, 11, {"W": 11, "wall": "minecraft:white_concrete", "roof": japanese}),
-        (bl.house, 11, {"W": 11, "wall": "minecraft:white_concrete", "roof": japanese}),
+        (arch.house, 11, dict(ml)),
+        (arch.house, 11, dict(ml)),
     ])
     street_row(t, rng, y, x - 80, z + 5, "south", [
         (bl.shop, 17, {"label": "Malie Community Center", "color": "minecraft:red_concrete", "W": 17}),
         (bl.malasada_shop, 11, {}),
-        (bl.house, 11, {"W": 11, "wall": "minecraft:white_concrete", "roof": japanese}),
-        (bl.house, 11, {"W": 11, "wall": "minecraft:white_concrete", "roof": japanese}),
+        (arch.house, 11, dict(ml)),
+        (arch.house, 11, dict(ml)),
         (bl.shop, 13, {"label": "Poké Mart", "color": "minecraft:blue_concrete"}),
     ])
     for k in range(-85, 90, 10):
         c.set(x + k, y + 1, z - 4, furn.piece("paper_lamp"))
-    back_street(t, rng, y, x - 86, x + 86, z + 38, roof=japanese, wall="minecraft:white_concrete")
+    back_street(t, rng, y, x - 86, x + 86, z + 38, style="malie")
     place(t, bl.ferry_terminal, x - 80, y, z + 50, "south", rng, label="Malie Ferry Terminal", dest="Heahea / Seafolk")
     bl.pier(c, x - 110, SEA + 1, z + 20, "east", length=26)
     bl.ferry_ship(c, x - 120, SEA + 1, z + 40, "east", rng, "S.S. Seafolk")
@@ -417,8 +417,8 @@ def ulaula(t, rng):
         tx, tz = gx + int(18 * math.cos(math.radians(a))), gz + int(18 * math.sin(math.radians(a)))
         plants.cherry(c, tx, c.surface(tx, tz), tz, rng)
         c.set(tx + 2, c.surface(tx + 2, tz) + 1, tz, furn.piece("paper_lamp"))
-    place(t, bl.house, gx + 20, gy, gz - 26, "south", rng, W=11, D=9, wall="minecraft:stripped_bamboo_block[axis=y]",
-          roof=japanese, label="Malie Garden Tea House", beds=0)
+    place(t, arch.house, gx + 20, gy, gz - 26, "south", rng, W=11, D=9, style="malie",
+          label="Malie Garden Tea House", beds=0)
     reserve(t, gx - 22, gz - 22, gx + 22, gz + 22)
     # Mount Hokulani observatory
     x, z = alola_map.TOWNS["Mount Hokulani"][:2]
@@ -431,8 +431,7 @@ def ulaula(t, rng):
     y = TOWN_Y["Tapu Village"]
     place(t, bl.pokemon_center, x - 8, y, z - 12, "south", rng, name="Tapu Village")
     for k, (hx, hz, f) in enumerate(((x - 30, z + 10, "north"), (x + 20, z + 12, "north"), (x + 26, z - 20, "west"))):
-        place(t, bl.house, hx, y, hz, f, rng, W=9, D=8, wall="minecraft:cracked_stone_bricks",
-              roof=("minecraft:cobblestone_stairs", "minecraft:mossy_cobblestone"))
+        place(t, arch.house, hx, y, hz, f, rng, W=9, D=8, style="tapu", yard=True)
     place(t, sp.arena, x - 8, y, z + 36, "north", rng, npc_cls="alola:nanu", label="Kahuna Nanu",
           lines=("Grand Trial", "Ula'ula Island"))
     # Haina Desert: Ruins of Abundance
@@ -442,8 +441,8 @@ def ulaula(t, rng):
     x, z = alola_map.TOWNS["Thrifty Megamart"][:2]
     place(t, sp.megamart, x - 20, TOWN_Y["Thrifty Megamart"], z - 16, "south", rng)
     x, z = alola_map.TOWNS["Aether House"][:2]
-    place(t, bl.house, x - 6, TOWN_Y["Aether House"], z - 6, "south", rng, W=13, D=10, wall="minecraft:white_concrete",
-          roof=("minecraft:quartz_stairs", "minecraft:quartz_block"), label="Aether House", beds=2)
+    place(t, arch.house, x - 6, TOWN_Y["Aether House"], z - 6, "south", rng, W=13, D=11, style="modern", floors=2,
+          label="Aether House", beds=2)
     # Po Town
     x, z = alola_map.TOWNS["Po Town"][:2]
     y = TOWN_Y["Po Town"]
@@ -451,8 +450,7 @@ def ulaula(t, rng):
     place(t, sp.shady_house, x - 13, y, z - 12, "south", rng)
     place(t, bl.pokemon_center, x - 40, y, z + 30, "north", rng, name="Po Town")
     for k, hx in enumerate((x + 20, x + 32)):
-        place(t, bl.house, hx, y, z + 30, "north", rng, W=9, D=8, wall="minecraft:gray_concrete",
-              roof=("minecraft:blackstone_stairs", "minecraft:blackstone"))
+        place(t, arch.house, hx, y, z + 30, "north", rng, W=9, D=8, style="po")
     for gx2 in (x - 5, x + 5):
         bl.SETUP.append((gx2, y + 1, z + 38, f"spawnnpcat {gx2 + 0.5} {y + 1} {z + 38.5} alola:skull_grunt"))
     reserve(t, x - 48, z - 38, x + 48, z + 38)
@@ -476,8 +474,8 @@ def poni(t, rng):
     # Hapu's House + grand trial
     x, z = alola_map.TOWNS["Hapu's House"][:2]
     y = TOWN_Y["Hapu's House"]
-    place(t, bl.house, x - 6, y, z - 4, "south", rng, W=13, D=10, wall="minecraft:stripped_spruce_wood[axis=y]",
-          roof=("minecraft:spruce_stairs", "minecraft:spruce_planks"), label="Hapu's House", beds=1)
+    place(t, arch.house, x - 6, y, z - 4, "south", rng, W=13, D=9, style="paniola", label="Hapu's House", beds=1,
+          yard=True)
     place(t, sp.arena, x + 14, y, z + 6, "east", rng, npc_cls="alola:hapu", label="Kahuna Hapu",
           lines=("Grand Trial", "Poni Island"))
     # Ruins of Hope
@@ -523,9 +521,25 @@ def poni(t, rng):
     sp.cave_entrance(c, x, TOWN_Y["Resolution Cave"], z + 8, "south", rng, depth=20, name="Resolution Cave")
 
 
+EXTRA_WAYSTONES = ["Iki Town", "Aether Paradise", "Ten Carat Hill", "Wela Volcano Park", "Lush Jungle",
+                   "Hano Grand Resort", "Malie Garden", "Vast Poni Canyon", "Altar of the Sunne", "Pokemon League",
+                   "Exeggutor Island", "Mount Hokulani", "Haina Desert"]
+
+
+def waystones(c: Canvas):
+    from . import multiplayer
+    for name in EXTRA_WAYSTONES:
+        x, z, _ = alola_map.TOWNS[name]
+        spot = multiplayer.free_spot(c, x + 8, z + 8)
+        if spot:
+            multiplayer.waystone(c, *spot, name.replace("Pokemon", "Pokémon"))
+
+
 def build_all(c: Canvas, t: T.Terrain, rng: random.Random):
+    from . import multiplayer
     bl.SETUP.clear()
     tour.PLACED.clear()
+    multiplayer.WAYSTONES.clear()
     hauoli(t, rng)
     player_home(t, rng)
     iki_town(t, rng)
@@ -536,4 +550,6 @@ def build_all(c: Canvas, t: T.Terrain, rng: random.Random):
     akala(t, rng)
     ulaula(t, rng)
     poni(t, rng)
+    waystones(c)
     connect_all(c)
+    arch.fix_shapes(c)

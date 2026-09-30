@@ -8,8 +8,7 @@ set -uo pipefail
 
 HMC_VERSION=2.10.0
 MC=1.21.1
-TIMEOUT=${TOUR_TIMEOUT:-2700}
-SETTLE=${TOUR_SETTLE:-24}
+TIMEOUT=${TOUR_TIMEOUT:-3900}
 export DISPLAY=:99
 
 mkdir -p HeadlessMC tour
@@ -58,12 +57,13 @@ while true; do
     xdotool mousemove 800 450 2>/dev/null; sleep 1; xdotool key F1 2>/dev/null
     hid_hud=1
   fi
-  line=$(grep -oE "TOUR [0-9]+ [a-z0-9_]+" "$log" 2>/dev/null | tail -1)
+  line=$(grep -oE "TOUR [0-9]+ [a-z0-9_]+ [0-9]+" "$log" 2>/dev/null | tail -1)
   if [ -n "$line" ]; then
     n=$(echo "$line" | cut -d' ' -f2)
     name=$(echo "$line" | cut -d' ' -f3)
+    dwell=$(echo "$line" | cut -d' ' -f4)
     if (( n > done_n )); then
-      sleep "$SETTLE"
+      sleep $(( dwell > 10 ? dwell - 5 : dwell / 2 ))
       file=$(printf "tour/%02d-%s.png" "$n" "$name")
       import -window root "$file" && echo "captured $file"
       done_n=$n

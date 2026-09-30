@@ -321,8 +321,10 @@ def write_level_dat(path: Path, name: str, spawn: tuple[int, int, int], seed: in
         "clearWeatherTime": 0,
         "Version": {"Id": DATA_VERSION, "Name": "1.21.1", "Series": "main", "Snapshot": nbt.Byte(0)},
         "enabled_features": ["minecraft:vanilla"],
+        # multiplayer-friendly: no creeper/fire damage to the towns, keep your Poké Balls when you faint
         "GameRules": {"spawnRadius": "0", "doInsomnia": "false", "doPatrolSpawning": "false",
-                      "doTraderSpawning": "false", "spawnChunkRadius": "2"},
+                      "doTraderSpawning": "false", "spawnChunkRadius": "2", "mobGriefing": "false",
+                      "doFireTick": "false", "keepInventory": "true", "playersSleepingPercentage": "50"},
         "WorldGenSettings": {
             "seed": nbt.Long(seed),
             "generate_features": nbt.Byte(0),

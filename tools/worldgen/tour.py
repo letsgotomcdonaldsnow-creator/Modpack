@@ -15,7 +15,6 @@ from . import alola_map
 from .canvas import SEA, Canvas
 from .kit import B
 
-PERIOD = 600          # ticks between viewpoints (30 s: time for chunks to load and render)
 PLACED: list[dict] = []   # buildings recorded by landmarks.place
 
 
@@ -120,8 +119,9 @@ def views(c: Canvas) -> list[tuple]:
     return v
 
 
-def write(c: Canvas, out: Path) -> list[tuple]:
-    vs = views(c)
+def write(c: Canvas, out: Path, extra: list[tuple] | None = None) -> list[tuple]:
+    """Write the tour datapack. `extra` are (name, pos, rot, dwell) views, e.g. of the lab."""
+    vs = [(n, pos, rot, 30) for n, pos, rot in views(c)] + list(extra or [])
     if out.exists():
         shutil.rmtree(out)
     fn = out / "data" / "alola_tour" / "function"
@@ -129,20 +129,14 @@ def write(c: Canvas, out: Path) -> list[tuple]:
     (out / "pack.mcmeta").write_text(json.dumps({"pack": {"pack_format": 48, "description": "Alola camera tour (CI)"}}))
     tags = out / "data" / "minecraft" / "tags" / "function"
     tags.mkdir(parents=True)
-    (tags / "load.json").write_text(json.dumps({"values": ["alola_tour:load"]}))
     (tags / "tick.json").write_text(json.dumps({"values": ["alola_tour:tick"]}))
-    (fn / "load.mcfunction").write_text(
-        "scoreboard objectives add tour dummy\n"
-        f"scoreboard players set #period tour {PERIOD}\n")
+    (tags / "load.json").write_text(json.dumps({"values": ["alola_tour:load"]}))
+    (fn / "load.mcfunction").write_text("scoreboard objectives add tour dummy\n")
+    # wait for a player, then start once
     (fn / "tick.mcfunction").write_text(
         "execute unless entity @a run return 0\n"
         "scoreboard players add #t tour 1\n"
-        "execute if score #t tour matches 200 run function alola_tour:start\n"
-        "execute if score #t tour matches ..200 run return 0\n"
-        "scoreboard players operation #m tour = #t tour\n"
-        "scoreboard players remove #m tour 200\n"
-        "scoreboard players operation #m tour %= #period tour\n"
-        "execute if score #m tour matches 0 run function alola_tour:next\n")
+        "execute if score #t tour matches 200 run function alola_tour:start\n")
     (fn / "start.mcfunction").write_text(
         "gamemode spectator @a\n"
         "time set 5000\n"
@@ -150,14 +144,15 @@ def write(c: Canvas, out: Path) -> list[tuple]:
         "weather clear 1000000\n"
         "gamerule doWeatherCycle false\n"
         "gamerule doMobSpawning false\n"
-        'tellraw @a {"text":"TOUR START"}\n')
-    lines = ["scoreboard players add #i tour 1\n"]
-    for i, (name, (x, y, z), (yaw, pitch)) in enumerate(vs, 1):
+        'tellraw @a {"text":"TOUR START"}\n'
+        "schedule function alola_tour:v/1 100t\n")
+    for i, (name, (x, y, z), (yaw, pitch), dwell) in enumerate(vs, 1):
+        nxt = (f"schedule function alola_tour:v/{i + 1} {dwell * 20}t\n" if i < len(vs)
+               else f"schedule function alola_tour:end {dwell * 20}t\n")
         (fn / "v" / f"{i}.mcfunction").write_text(
             f"tp @a {x} {y} {z} {yaw} {pitch}\n"
-            f'tellraw @a {{"text":"TOUR {i} {name}"}}\n')
-        lines.append(f"execute if score #i tour matches {i} run function alola_tour:v/{i}\n")
-    lines.append(f'execute if score #i tour matches {len(vs) + 1} run tellraw @a {{"text":"TOUR END"}}\n')
-    (fn / "next.mcfunction").write_text("".join(lines))
-    print(f"  tour datapack: {len(vs)} viewpoints -> {out}")
+            f'tellraw @a {{"text":"TOUR {i} {name} {dwell}"}}\n' + nxt)
+    (fn / "end.mcfunction").write_text('tellraw @a {"text":"TOUR END"}\n')
+    total = sum(v[3] for v in vs)
+    print(f"  tour datapack: {len(vs)} viewpoints ({total // 60} min) -> {out}")
     return vs

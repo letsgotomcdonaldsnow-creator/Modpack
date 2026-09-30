@@ -54,14 +54,6 @@ SLAB_FOR = {
     **{f"minecraft:{col}_terracotta": TS + f"{col}_terracotta_slab[type=bottom]"
        for col in ("white", "orange", "yellow", "red", "brown", "light_gray", "black", "cyan", "light_blue")},
 }
-# plants that have a lowered twin for standing on a slab
-ON_TOP = {
-    "minecraft:short_grass": TS + "short_grass_on_top", "minecraft:fern": TS + "fern_on_top",
-    "minecraft:poppy": TS + "poppy_on_top", "minecraft:dandelion": TS + "dandelion_on_top",
-    "minecraft:cornflower": TS + "cornflower_on_top", "minecraft:azure_bluet": TS + "azure_bluet_on_top",
-    "minecraft:dead_bush": TS + "dead_bush_on_top", "minecraft:brown_mushroom": TS + "brown_mushroom_on_top",
-    "minecraft:red_mushroom": TS + "red_mushroom_on_top",
-}
 ROOTY = {
     "minecraft:grass_block": "rooty_grass_block", "minecraft:dirt": "rooty_dirt", "minecraft:coarse_dirt": "rooty_coarse_dirt",
     "minecraft:podzol": "rooty_podzol", "minecraft:sand": "rooty_sand", "minecraft:red_sand": "rooty_red_sand",
@@ -98,10 +90,7 @@ class Nature:
         c = self.c
         i, j = self.ij(x, z)
         if self.slabbed[i, j]:
-            state = ON_TOP.get(state)
-            if state is None:
-                return False
-            y += 1
+            return False   # (Terrain Slabs' *_on_top blockstates are not registered blocks in 1.21.1)
         if not is_air(c, x, y + 1, z):
             return False
         c.set(x, y + 1, z, state)
@@ -159,6 +148,12 @@ class Nature:
 
     # ------------------------------------------------------------ Dynamic Trees
     def dt_tree(self, x, y, z, family="oak", size=1.0, shape=None) -> bool:
+        try:
+            return self._dt_tree(x, y, z, family, size, shape)
+        except ValueError:   # no room to grow (blocks are only placed once the whole tree is planned)
+            return False
+
+    def _dt_tree(self, x, y, z, family="oak", size=1.0, shape=None) -> bool:
         """A Dynamic Trees tree: rooty soil, a branch network with pipe-model radii and leaf clusters."""
         c, rng = self.c, self.rng
         shape = shape or family
@@ -227,6 +222,8 @@ class Nature:
                 if not add((cur[0], cur[1] + 1, cur[2]), cur):
                     break
                 cur = (cur[0], cur[1] + 1, cur[2])
+            if cur[1] - root[1] < min(3, height - 1):
+                raise ValueError("trunk blocked")   # nothing is placed yet; dt_tree() skips this tree
             return cur
 
         s = size

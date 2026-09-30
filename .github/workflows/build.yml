@@ -79,13 +79,6 @@ jobs:
             dist/*.mrpack
             build/alola-map.png
 
-      - name: Upload the world for the screenshot tour
-        uses: actions/upload-artifact@v4
-        with:
-          name: world
-          path: build/world/
-          compression-level: 6
-
       - name: Upload lockfile for the client test
         uses: actions/upload-artifact@v4
         with:
@@ -214,7 +207,7 @@ jobs:
     needs: build
     if: ${{ !cancelled() && github.ref_type == 'branch' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
@@ -227,16 +220,16 @@ jobs:
           distribution: temurin
           java-version: "21"
 
-      - name: Get the lockfile and world the build job made
+      - name: Get the lockfile the build job resolved
         uses: actions/download-artifact@v4
         with:
           name: lockfile
           path: .
 
-      - uses: actions/download-artifact@v4
-        with:
-          name: world
-          path: build/world
+      - name: Generate the world with the test lab (showroom and sample buildings)
+        run: |
+          pip install --quiet numpy
+          ALOLA_LAB=1 python -m tools.worldgen.generate --save --out build/tourworld/Alola --preview build/tour-map.png
 
       - name: Restore download cache
         uses: actions/cache/restore@v4
@@ -250,8 +243,8 @@ jobs:
           python tools/modpack.py client --dir run --skip '^distanthorizons$'
           printf 'renderDistance:10\nsimulationDistance:5\ngraphicsMode:1\nmaxFps:30\ntutorialStep:none\nonboardAccessibility:false\npauseOnLostFocus:false\nfov:0.25\nbiomeBlendRadius:2\nao:true\nentityShadows:true\n' > run/options.txt
           mkdir -p run/saves run/config
-          cp -r build/world/Alola run/saves/Alola
-          cp -r build/world/tour/alola_tour run/saves/Alola/datapacks/alola_tour
+          cp -r build/tourworld/Alola run/saves/Alola
+          cp -r build/tourworld/tour/alola_tour run/saves/Alola/datapacks/alola_tour
           printf 'enableShaders=false\n' > run/config/iris.properties
 
       - name: Fly the camera through Alola and take screenshots

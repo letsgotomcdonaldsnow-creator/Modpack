@@ -56,6 +56,8 @@ def check_states(c) -> list[str]:
             continue
         info = cat[name]
         for k, v in props.items():
+            if info and k in info and info[k] == ["true"] and v == "false":
+                continue   # multipart blockstates only mention the 'true' side of booleans
             if info and (k not in info or (info[k] and v not in info[k])):
                 problems.append(f"{state}: property {k}={v} not valid (has {info.get(k, 'no such property')})")
     return problems
@@ -81,12 +83,14 @@ def main() -> int:
         from . import decorate
         decorate.run(c, t)
         print(f"decorated: {time.time() - t0:.1f}s")
+    from . import lab
+    lab_views = lab.build(c)
     if args.save:
         from . import save
         save.save_world(c, Path(args.out))
         Path(args.out).parent.joinpath("world-blocks.json").write_text(json.dumps(save.used_states(c), indent=0))
         from . import tour
-        tour.write(c, Path(args.out).parent / "tour" / "alola_tour")
+        tour.write(c, Path(args.out).parent / "tour" / "alola_tour", lab_views)
         print(f"saved: {time.time() - t0:.1f}s")
     if args.check:
         problems = check_states(c)

@@ -57,6 +57,8 @@ def save_world(c: Canvas, out: Path, name: str = "Alola") -> None:
     if icon.exists():
         shutil.copy2(icon, out / "icon.png")
     write_setup_pack(out)
+    from . import multiplayer
+    multiplayer.write_waystones(out)
     size = sum(f.stat().st_size for f in out.rglob("*") if f.is_file())
     print(f"  world: {n} chunks, {size / 1e6:.1f} MB -> {out}")
 
