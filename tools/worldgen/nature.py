@@ -509,9 +509,7 @@ class Nature:
                     self.palm(x, y, z)
                 elif r < 0.004:
                     self.plant(x, y, z, "minecraft:dead_bush")
-                elif r < 0.006:
-                    self.plant(x, y, z, "beachparty:sand_seastars")
-                elif r < 0.0075:
+                elif r < 0.0055:
                     self.plant(x, y, z, "beachparty:seashell_block")
                 continue
 

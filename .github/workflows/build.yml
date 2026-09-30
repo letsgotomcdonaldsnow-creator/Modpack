@@ -253,7 +253,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y xvfb xdotool imagemagick >/dev/null
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends xvfb xdotool imagemagick >/dev/null
           tools/tour.sh
 
       - name: Upload client log
