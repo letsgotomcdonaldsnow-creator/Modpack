@@ -6,7 +6,7 @@ import random
 
 import numpy as np
 
-from . import alola_map, plants, terrain as T
+from . import alola_map, terrain as T
 from .canvas import SEA, Canvas
 
 
@@ -16,13 +16,17 @@ def run(c: Canvas, t: T.Terrain) -> None:
     for label, pts, width in alola_map.ROUTES:
         draw_route(c, t, pts, width, path_mask, rng)
     t.no_trees |= path_mask
-    from . import landmarks
+    from . import landmarks, nature
     landmarks.build_all(c, t, rng)          # towns and landmarks (marks t.no_trees)
+    wild = nature.Nature(c, t, rng)
+    wild.terrain_slabs()
     for label, pts, width in alola_map.ROUTES:
         route_sign(c, pts, label)
-        encounter_grass(c, t, pts, width, rng)
-    vegetation(c, t, rng)
-    reefs(c, t, rng)
+        encounter_grass(c, t, pts, width, rng, wild.slabbed)
+    wild.vegetation()
+    wild.waters_edge()
+    wild.reefs()
+    print("  nature: " + ", ".join(f"{v} {k}" for k, v in sorted(wild.stats.items())))
 
 
 # ------------------------------------------------------------------ routes
@@ -103,7 +107,7 @@ def route_sign(c: Canvas, points, label):
     c.sign(sx, y + 1, sz, [label, "", "Alola Region", ""], wood="spruce", rotation=rot)
 
 
-def encounter_grass(c: Canvas, t: T.Terrain, points, width, rng):
+def encounter_grass(c: Canvas, t: T.Terrain, points, width, rng, slabbed=None):
     """Patches of tall grass beside the route, where wild Pokémon hide."""
     pts = list(_line(points, 30.0))
     for idx, (x, z) in enumerate(pts[1:-1]):
@@ -122,102 +126,8 @@ def encounter_grass(c: Canvas, t: T.Terrain, points, width, rng):
                 i, j = zz - c.z0, xx - c.x0
                 if t.no_trees[i, j] or c.states[c.top[i, j]] != "minecraft:grass_block":
                     continue
+                if slabbed is not None and slabbed[i, j]:
+                    continue
                 y = c.surface(xx, zz)
                 c.set(xx, y + 1, zz, "minecraft:tall_grass[half=lower]")
                 c.set(xx, y + 2, zz, "minecraft:tall_grass[half=upper]")
-
-
-# -------------------------------------------------------------- vegetation
-
-FLOWERS_WARM = ["minecraft:poppy", "minecraft:dandelion", "minecraft:red_tulip", "minecraft:orange_tulip",
-                "minecraft:pink_tulip", "minecraft:allium", "minecraft:oxeye_daisy", "minecraft:cornflower"]
-
-
-def vegetation(c: Canvas, t: T.Terrain, rng: random.Random):
-    grass = c.sid("minecraft:grass_block")
-    land = t.land & ~t.no_trees & (c.water < c.height)
-    zone = t.zone
-    inland = t.inland
-    ys, xs = np.nonzero(land)
-    order = np.arange(len(ys))
-    np.random.default_rng(5).shuffle(order)
-    count = 0
-    for k in order:
-        i, j = int(ys[k]), int(xs[k])
-        x, z = j + c.x0, i + c.z0
-        zn = int(zone[i, j])
-        top = int(c.top[i, j])
-        y = int(c.height[i, j])
-        roll = rng.random()
-        near_coast = inland[i, j] < 14
-        if top == grass or zn in (T.GARDEN,):
-            if zn in (T.GRASS, T.TOWN, T.FOREST, T.CAVE_HILL, T.RANCH) and near_coast and roll < 0.006:
-                plants.palm(c, x, y, z, rng); count += 1
-            elif zn == T.JUNGLE and roll < 0.02:
-                if rng.random() < 0.25:
-                    plants.jungle_tree(c, x, y, z, rng, big=True)
-                else:
-                    plants.jungle_tree(c, x, y, z, rng)
-                count += 1
-            elif zn == T.JUNGLE and roll < 0.05:
-                plants.bush(c, x, y, z, rng, "jungle")
-            elif zn == T.FOREST and roll < 0.012:
-                (plants.jungle_tree if rng.random() < 0.3 else plants.round_tree)(c, x, y, z, rng); count += 1
-            elif zn in (T.GRASS, T.CAVE_HILL) and roll < 0.0035:
-                (plants.palm if rng.random() < 0.4 else plants.round_tree)(c, x, y, z, rng); count += 1
-            elif zn == T.SAVANNA and roll < 0.004:
-                plants.acacia(c, x, y, z, rng); count += 1
-            elif zn == T.RAINY and roll < 0.01:
-                plants.dark_oak(c, x, y, z, rng); count += 1
-            elif zn == T.GARDEN and roll < 0.01:
-                plants.cherry(c, x, y, z, rng); count += 1
-            elif zn in (T.RANCH,) and roll < 0.001:
-                plants.round_tree(c, x, y, z, rng); count += 1
-            elif y > 150 and roll < 0.008:
-                plants.spruce(c, x, y, z, rng, snowy=y > 170); count += 1
-            elif zn in (T.FLOWERS, T.MEADOW, T.GARDEN) and roll < 0.35:
-                c.set(x, y + 1, z, rng.choice(FLOWERS_WARM))
-            elif roll < 0.30:
-                c.set(x, y + 1, z, "minecraft:short_grass" if rng.random() < 0.85 else "minecraft:fern")
-            elif roll < 0.315:
-                c.set(x, y + 1, z, rng.choice(FLOWERS_WARM))
-        elif zn == T.DESERT and roll < 0.004:
-            plants.cactus(c, x, y, z, rng)
-        elif zn in (T.DESERT, T.CANYON) and roll < 0.008:
-            c.set(x, y + 1, z, "minecraft:dead_bush")
-        elif zn == T.SNOW and y > 150 and y < 185 and roll < 0.006:
-            plants.spruce(c, x, y, z, rng, snowy=True); count += 1
-        elif zn == T.SNOW and roll < 0.5 and c.states[top].endswith("snow_block"):
-            pass
-        elif zn == T.ROCKY and roll < 0.003:
-            plants.boulder(c, x, y, z, rng)
-        elif c.states[top] == "minecraft:sand" and near_coast and zn != T.DESERT and roll < 0.002:
-            plants.palm(c, x, y, z, rng); count += 1
-    print(f"  vegetation: {count} trees")
-
-
-def reefs(c: Canvas, t: T.Terrain, rng: random.Random):
-    """Coral, seagrass and kelp in the warm shallows around the islands."""
-    corals = ["tube", "brain", "bubble", "fire", "horn"]
-    sea = (~t.land) & (c.height < SEA - 2) & (c.height > SEA - 22)
-    ys, xs = np.nonzero(sea)
-    for k in range(len(ys)):
-        roll = rng.random()
-        if roll > 0.09:
-            continue
-        i, j = int(ys[k]), int(xs[k])
-        x, z = j + c.x0, i + c.z0
-        y = int(c.height[i, j])
-        if roll < 0.012:
-            col = rng.choice(corals)
-            c.set(x, y, z, f"minecraft:{col}_coral_block")
-            c.set(x, y + 1, z, f"minecraft:{col}_coral[waterlogged=true]" if rng.random() < 0.6
-                  else f"minecraft:{col}_coral_fan[waterlogged=true]")
-        elif roll < 0.06:
-            c.set(x, y + 1, z, "minecraft:seagrass")
-        elif roll < 0.075 and SEA - y > 6:
-            for dy in range(1, rng.randint(3, SEA - y - 1)):
-                c.set(x, y + dy, z, "minecraft:kelp_plant")
-            c.set(x, y + dy + 1, z, "minecraft:kelp[age=20]")
-        elif roll < 0.08:
-            c.set(x, y + 1, z, "minecraft:sea_pickle[pickles=3,waterlogged=true]")

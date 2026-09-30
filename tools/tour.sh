@@ -34,8 +34,8 @@ xvfb_pid=$!
 sleep 3
 
 java -jar "$HMC" --command launch '.*fabric.*' -regex \
-  --jvm "-Djava.awt.headless=true -Xmx10G" \
-  --game-args "--quickPlaySingleplayer Alola --width 1600 --height 900" </dev/null > run/launcher.log 2>&1 &
+  --jvm '"-Djava.awt.headless=true -Xmx10G"' \
+  --game-args '"--quickPlaySingleplayer Alola --width 1600 --height 900"' </dev/null > run/launcher.log 2>&1 &
 pid=$!
 
 stop_game() { pkill -f KnotClient; sleep 3; pkill -f "$HMC"; kill "$xvfb_pid" 2>/dev/null; }

@@ -29,7 +29,7 @@ java -jar "$HMC" --command fabric "$MC" --java 21 </dev/null
 printf 'onboardAccessibility:false\npauseOnLostFocus:false\n' >> run/options.txt
 
 xvfb-run -a java -Dhmc.check.xvfb=true -jar "$HMC" --command launch '.*fabric.*' -regex \
-  --jvm "-Djava.awt.headless=true -Xmx10G" </dev/null > run/launcher.log 2>&1 &
+  --jvm '"-Djava.awt.headless=true -Xmx10G"' </dev/null > run/launcher.log 2>&1 &
 pid=$!
 
 stop_game() { pkill -f KnotClient; sleep 3; pkill -f "$HMC"; pkill -f Xvfb; }
