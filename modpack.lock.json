@@ -3389,38 +3389,6 @@
       "required_by": []
     },
     {
-      "project_id": "5nraCxl9",
-      "slug": "slabbed",
-      "title": "Slabbed",
-      "kind": "mod",
-      "category": "The Alolan islands: world generation and structures",
-      "explicit": true,
-      "note": "Terrain Slabs: half-height grass, sand and dirt so hills and paths are smooth",
-      "pin": null,
-      "match": null,
-      "side": null,
-      "optional": false,
-      "project_client_side": "unsupported",
-      "project_server_side": "required",
-      "version_id": "114q9gic",
-      "version_number": "0.4.2-beta.1",
-      "version_type": "beta",
-      "filename": "slabbed-0.4.2-beta.1.jar",
-      "path": "mods/slabbed-0.4.2-beta.1.jar",
-      "url": "https://cdn.modrinth.com/data/5nraCxl9/versions/114q9gic/slabbed-0.4.2-beta.1.jar",
-      "sha1": "81b9ad07e099025f0a80c518f365cc57bf6ecd57",
-      "sha512": "c626973044906a853f2e083f80f17d6d2789a9d04de8d7fcf9e63e6abde6a468895a3e52220eb369591e3c6f9c11cdae303b2b6fcd2e27793cc519b3dcee19f8",
-      "size": 173383,
-      "deps": [],
-      "fabric_id": "slabbed",
-      "fabric_version": "0.4.2-beta.1",
-      "env": {
-        "client": "required",
-        "server": "required"
-      },
-      "required_by": []
-    },
-    {
       "project_id": "PtjYWJkn",
       "slug": "sodium-extra",
       "title": "Sodium Extra",
@@ -3650,6 +3618,40 @@
       ],
       "fabric_id": "t_and_t",
       "fabric_version": "1.13.11",
+      "env": {
+        "client": "required",
+        "server": "required"
+      },
+      "required_by": []
+    },
+    {
+      "project_id": "SJu6sklj",
+      "slug": "countereds-terrain-slabs",
+      "title": "Countered's Terrain Slabs",
+      "kind": "mod",
+      "category": "The Alolan islands: world generation and structures",
+      "explicit": true,
+      "note": "Terrain Slabs: half-height grass, sand and dirt so hills and paths are smooth",
+      "pin": null,
+      "match": null,
+      "side": null,
+      "optional": false,
+      "project_client_side": "required",
+      "project_server_side": "required",
+      "version_id": "7uy3h3Wu",
+      "version_number": "3.1.2",
+      "version_type": "release",
+      "filename": "terrain_slabs-fabric-3.1.2.jar",
+      "path": "mods/terrain_slabs-fabric-3.1.2.jar",
+      "url": "https://cdn.modrinth.com/data/SJu6sklj/versions/7uy3h3Wu/terrain_slabs-fabric-3.1.2.jar",
+      "sha1": "6f03374dda370acaf3c524fd913d1f51aa6279e0",
+      "sha512": "ed92aa90d0a27fa887c3e13a25a27f354337dc98b36ddaceea31bd5b654b95227cce9e65718d6f00aa5916dd98f98f0b5b34e6aeaa766c157b618e9db26d6ba7",
+      "size": 376347,
+      "deps": [
+        "lhGA9TYQ"
+      ],
+      "fabric_id": "terrain_slabs",
+      "fabric_version": "3.1.2",
       "env": {
         "client": "required",
         "server": "required"
@@ -4564,6 +4566,7 @@
         "cobblemon-fight-or-flight-reborn",
         "cobblemon-mega-showdown",
         "cobblemon-size-variations",
+        "countereds-terrain-slabs",
         "lets-do-bakery-farmcharm-compat",
         "lets-do-beachparty",
         "lets-do-farm-charm",

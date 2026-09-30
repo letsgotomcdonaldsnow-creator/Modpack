@@ -54,10 +54,10 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **168** files (161 mods).
 | Project | Version | Side | Why |
 | --- | --- | --- | --- |
 | [[Let's Do] Beachparty](https://modrinth.com/mod/lets-do-beachparty) | `2.1.5` | both | Palm trees, coconuts, beach chairs, hammocks, cocktails and a proper beach vibe |
+| [Countered's Terrain Slabs](https://modrinth.com/mod/countereds-terrain-slabs) | `3.1.2` | both | Terrain Slabs: half-height grass, sand and dirt so hills and paths are smooth |
 | [Dungeons and Taverns](https://modrinth.com/mod/dungeons-and-taverns) | `v4.4.4+mod` | both | Taverns, ruins and dungeons to explore between routes |
 | [Dynamic Trees](https://modrinth.com/mod/dynamictrees) | `1.7.2-BETA` | both | Dynamic Trees: trees that grow branch by branch and fall when chopped |
 | [Hopo Better Underwater Ruins](https://modrinth.com/mod/hopo-better-underwater-ruins) | `1.2.1b` | both | Underwater ruins for your Surf and Dive trips |
-| [Slabbed](https://modrinth.com/mod/slabbed) | `0.4.2-beta.1` | both | Terrain Slabs: half-height grass, sand and dirt so hills and paths are smooth |
 | [Towns and Towers](https://modrinth.com/mod/towns-and-towers) | `1.13.11` | both | More varied villages and outposts to act as Alolan towns |
 | [Wilder Flowers](https://modrinth.com/mod/wilder-flowers) | `1.1.0+1.21.1-fabric` | both | Wildflower and clover patches |
 | [Wilder Wild](https://modrinth.com/mod/wilder-wild) | `4.2.1-mc1.21.1` | both | Bushes, new flowers, grass variants, fireflies and more natural foliage |
@@ -205,7 +205,7 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **168** files (161 mods).
 | --- | --- | --- | --- |
 | [[Let's Do] Farm & Charm](https://modrinth.com/mod/lets-do-farm-charm) | `1.1.26` | both | needed by lets-do-bakery-farmcharm-compat |
 | [Accessories](https://modrinth.com/mod/accessories) | `1.1.0-beta.53+1.21.1` | both | needed by cobblemon-mega-showdown, legendary-monuments |
-| [Architectury API](https://modrinth.com/mod/architectury-api) | `13.0.11+fabric` | both | needed by cobblefurnies, cobblemon-fight-or-flight-reborn, cobblemon-mega-showdown, cobblemon-size-variations, lets-do-bakery-farmcharm-compat, lets-do-beachparty, lets-do-farm-charm, lets-do-meadow, lets-do-vinery, more-cobblemon-tweaks, rctapi, simpletms-tms-and-trs-for-cobblemon |
+| [Architectury API](https://modrinth.com/mod/architectury-api) | `13.0.11+fabric` | both | needed by cobblefurnies, cobblemon-fight-or-flight-reborn, cobblemon-mega-showdown, cobblemon-size-variations, countereds-terrain-slabs, lets-do-bakery-farmcharm-compat, lets-do-beachparty, lets-do-farm-charm, lets-do-meadow, lets-do-vinery, more-cobblemon-tweaks, rctapi, simpletms-tms-and-trs-for-cobblemon |
 | [Athena](https://modrinth.com/mod/athena-ctm) | `4.0.6` | both | needed by chipped, cobblefurnies |
 | [Balm](https://modrinth.com/mod/balm) | `21.0.66+fabric-1.21.1` | both | needed by waystones |
 | [Bookshelf](https://modrinth.com/mod/bookshelf-lib) | `21.1.81` | client | needed by enchantment-descriptions |
