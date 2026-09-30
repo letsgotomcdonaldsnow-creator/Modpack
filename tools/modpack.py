@@ -865,8 +865,9 @@ def iris_properties(lock: dict) -> str | None:
     shaders = [f for f in lock["files"] if f["kind"] == "shader"]
     if not shaders:
         return None
-    return (f"shaderPack={shaders[0]['filename']}\n"
-            "enableShaders=false\n")
+    preferred = [f for f in shaders if f["slug"] == "complementary-reimagined"] or shaders
+    return (f"shaderPack={preferred[0]['filename']}\n"
+            "enableShaders=true\n")
 
 
 def cmd_build(args) -> int:
@@ -1120,6 +1121,72 @@ def cmd_inspect(args) -> int:
     return 1
 
 
+# --------------------------------------------------------------------- catalog
+
+def _blockstate_props(data: dict) -> dict[str, set[str]]:
+    props: dict[str, set[str]] = {}
+
+    def add(key: str) -> None:
+        for part in key.split(","):
+            if "=" in part:
+                k, v = part.split("=", 1)
+                props.setdefault(k.strip(), set()).update(x for x in v.split("|") if x)
+
+    for key in (data.get("variants") or {}):
+        add(key)
+
+    def walk_when(when) -> None:
+        if isinstance(when, dict):
+            for k, v in when.items():
+                if k in ("OR", "AND"):
+                    for w in v:
+                        walk_when(w)
+                else:
+                    props.setdefault(k, set()).update(str(v).lower().split("|"))
+
+    for part in data.get("multipart") or []:
+        walk_when(part.get("when"))
+    return props
+
+
+def cmd_catalog(args) -> int:
+    """Write every block id and its properties (vanilla report + mod blockstate files)."""
+    catalog: dict[str, dict] = {}
+    if args.vanilla_report:
+        report = json.loads(Path(args.vanilla_report).read_text())
+        for name, info in report.items():
+            catalog[name] = {k: sorted(v) for k, v in (info.get("properties") or {}).items()}
+    lock = read_lock()
+    for f in lock["files"]:
+        if f["kind"] != "mod":
+            continue
+        path = download(f["url"], f["sha1"], f["filename"])
+        with zipfile.ZipFile(path) as zf:
+            for n in zf.namelist():
+                m = re.match(r"assets/([^/]+)/blockstates/([^/]+)\.json$", n)
+                if not m or m.group(1) == "minecraft":
+                    continue
+                try:
+                    data = load_fmj(zf.read(n))
+                except (json.JSONDecodeError, UnicodeDecodeError):
+                    continue
+                name = f"{m.group(1)}:{m.group(2)}"
+                props = _blockstate_props(data if isinstance(data, dict) else {})
+                entry = catalog.setdefault(name, {})
+                for k, vals in props.items():
+                    entry[k] = sorted(set(entry.get(k, [])) | vals)
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(dict(sorted(catalog.items())), separators=(",", ":"), sort_keys=True) + "\n")
+    namespaces = {}
+    for k in catalog:
+        ns = k.split(":")[0]
+        namespaces[ns] = namespaces.get(ns, 0) + 1
+    log(f"Catalog: {len(catalog)} blocks -> {out}")
+    log("  " + ", ".join(f"{k}={v}" for k, v in sorted(namespaces.items(), key=lambda x: -x[1])))
+    return 0
+
+
 # -------------------------------------------------------------------- versions
 
 def cmd_versions(args) -> int:
@@ -1163,6 +1230,9 @@ def main() -> int:
     b.add_argument("--timeout", type=int, default=900)
     b.add_argument("--command", action="append", help="console command to run once the server is up")
     b.add_argument("--dump", action="append", help="glob of generated files to print after boot")
+    ct = sub.add_parser("catalog", help="list every block id/property in the pack")
+    ct.add_argument("--vanilla-report", help="blocks.json from the vanilla data generator")
+    ct.add_argument("--out", default="tools/worldgen/block_catalog.json")
     v = sub.add_parser("versions", help="list a project's Fabric versions (diagnostics)")
     v.add_argument("slugs", nargs="+")
     v.add_argument("--limit", type=int, default=12)
@@ -1173,7 +1243,7 @@ def main() -> int:
     args = p.parse_args()
     return {"resolve": cmd_resolve, "validate": cmd_validate, "build": cmd_build, "docs": cmd_docs,
             "server": cmd_server, "client": cmd_client, "boot": cmd_boot, "inspect": cmd_inspect,
-            "versions": cmd_versions}[args.cmd](args)
+            "versions": cmd_versions, "catalog": cmd_catalog}[args.cmd](args)
 
 
 if __name__ == "__main__":
