@@ -26,30 +26,31 @@ def _blob(c: Canvas, x, y, z, r, state, rng, density=0.85):
                         c.set(x + dx, y + dy, z + dz, state)
 
 
-def palm(c: Canvas, x, y, z, rng: random.Random, log_state=None, leaf_state=None):
-    """Curved palm with drooping fronds and coconuts (cocoa pods)."""
-    h = rng.randint(7, 11)
+def palm(c: Canvas, x, y, z, rng: random.Random, log_state=None, leaf_state=None, tall=None):
+    """Wilder Wild palm: a trunk that leans once or twice, a star of drooping fronds, hanging coconuts.
+    (x, y, z) is the ground block. log_state/leaf_state are accepted for old callers and ignored."""
+    h = tall or rng.randint(7, 11)
     lean = rng.choice([(1, 0), (-1, 0), (0, 1), (0, -1)])
-    log_state = log_state or log("jungle")
-    leaf_state = leaf_state or leaves("jungle")
     px, pz = x, z
     for i in range(1, h + 1):
-        if i in (h // 2, h - 2) and rng.random() < 0.8:
+        if i in (h // 2, (3 * h) // 4) and rng.random() < 0.75:
             px += lean[0]
             pz += lean[1]
-        c.set(px, y + i, pz, log_state)
+        c.set(px, y + i, pz, "wilderwild:palm_log[axis=y]")
     top = y + h
-    c.set(px, top + 1, pz, leaf_state)
+    frond = "wilderwild:palm_fronds[distance=1,persistent=true,waterlogged=false]"
+    c.set(px, top + 1, pz, frond)
+    c.set(px, top + 2, pz, frond)
     for dx, dz in ((1, 0), (-1, 0), (0, 1), (0, -1), (1, 1), (-1, -1), (1, -1), (-1, 1)):
-        length = rng.randint(3, 5) if dx and dz else rng.randint(4, 6)
+        diag = dx and dz
+        length = rng.randint(2, 3) if diag else rng.randint(3, 5)
         for s in range(1, length + 1):
-            drop = 0 if s < 3 else (1 if s < 5 else 2)
-            c.set(px + dx * s, top + 1 - drop, pz + dz * s, leaf_state)
-            if s == 2 and not (dx and dz):
-                c.set(px + dx * s, top + 2, pz + dz * s, leaf_state)
-    for dx, dz, facing in ((1, 0, "west"), (-1, 0, "east"), (0, 1, "north"), (0, -1, "south")):
-        if rng.random() < 0.6:
-            c.set(px + dx, top - 1, pz + dz, f"minecraft:cocoa[age=2,facing={facing}]")
+            drop = 0 if s < 2 else (1 if s < 4 else 2)
+            c.set(px + dx * s, top + 1 - drop + (1 if s == 1 and not diag else 0), pz + dz * s, frond)
+    for dx, dz in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+        if rng.random() < 0.55:
+            c.set(px + dx, top + 1, pz + dz, frond)          # a coconut hangs from a frond above it
+            c.set(px + dx, top, pz + dz, "wilderwild:coconut[age=2,hanging=true,stage=0]")
 
 
 def jungle_tree(c: Canvas, x, y, z, rng: random.Random, big=False):

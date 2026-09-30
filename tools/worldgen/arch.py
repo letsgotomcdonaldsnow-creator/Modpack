@@ -625,6 +625,8 @@ def register_lab():
 
 # ------------------------------------------------------------- town adapter
 
+STYLES["pokemon_center"] = replace(PLANTATION, name="pokemon_center", roof="mcwroofs:red_concrete",
+                                   roof_cap="minecraft:red_concrete")
 STYLES["tapu"] = replace(PLANTATION, name="tapu",
                          walls=[("minecraft:cracked_stone_bricks", 3), ("minecraft:mossy_stone_bricks", 2),
                                 ("minecraft:stone_bricks", 2)],

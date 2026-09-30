@@ -86,8 +86,24 @@ def pokeball_face(b: B, cu, cv, w, r=3):
 
 # --------------------------------------------------------------- Pokémon Center
 
+def _pc_grounds(b, W, D, rng):
+    """Flower boxes under the storefront, palms at the corners, benches and lamps out front."""
+    from . import plants
+    for u in list(range(1, 6)) + list(range(11, 16)):
+        b.set(u, 1, -1, P("flower_box", "south"))
+    for u in (-2, W + 1):
+        x, _, z = b.world(u, 0, -1)
+        if b.c.inside(x, z):
+            plants.palm(b.c, x, b.c.surface(x, z), z, rng, furn.piece("palm_log"), furn.piece("palm_leaves"), tall=7)
+    for u in (2, W - 3):
+        b.set(u, 1, -3, P("bench", "south"))
+    for u in (0, W - 1):
+        furn.place_tall(b.c, *b.world(u, 1, -3), "street_lamp")
+
+
 def pokemon_center(c: Canvas, x, y, z, facing, rng, name="Pokémon Center"):
-    b = B(c, x, y, z, facing)
+    from . import arch
+    b = arch.Bld(c, x, y, z, facing)
     W, D, H = 17, 15, 7
     base(b, W, D, floor="minecraft:white_concrete")
     # floor pattern: red entrance runner and Poké Ball mosaic
@@ -110,29 +126,36 @@ def pokemon_center(c: Canvas, x, y, z, facing, rng, name="Pokémon Center"):
         for v in (2, 3):
             b.set(0, v, w, "minecraft:glass_pane")
             b.set(W - 1, v, w, "minecraft:glass_pane")
-    b.clear(7, 1, 0, 9, 3, 0)                        # entrance
+    b.clear(7, 1, 0, 9, 3, 0)                        # entrance: sliding glass doors
+    arch.door(b, 7, 1, 0, "mcwdoors:sliding_glass_door", "south", hinge="left")
+    arch.door(b, 9, 1, 0, "mcwdoors:sliding_glass_door", "south", hinge="right")
     for u in (6, 10):
         for v in range(1, 5):
             b.set(u, v, 0, "minecraft:quartz_pillar[axis=y]")
-    # roof and facade
-    b.box(-1, H, -1, W, H, D, "minecraft:red_concrete")
-    b.box(0, H + 1, 0, W - 1, H + 1, D - 1, "minecraft:white_concrete_powder")
+    # white cornice, red hip roof, and the Poké Ball billboard over the entrance
+    b.box(0, H, 0, W - 1, H, D - 1, "minecraft:smooth_quartz")
     for u in range(-1, W + 1):
-        b.set(u, H, -1, "minecraft:white_concrete")
-        b.set(u, H + 1, -1, "minecraft:quartz_slab[type=bottom]")
-    b.box(4, H, 0, 12, H + 7, 0, "minecraft:white_concrete")
-    pokeball_face(b, 8, H + 4, -1, 3)
+        for w in (-1, D):
+            b.set(u, H - 1, w, "minecraft:smooth_quartz_slab[type=top]")
+    for w in range(0, D):
+        for u in (-1, W):
+            b.set(u, H - 1, w, "minecraft:smooth_quartz_slab[type=top]")
+    arch.hip_roof(b, arch.STYLES["pokemon_center"], W, D, H)
+    b.box(4, H - 1, -1, 12, H + 6, -1, "minecraft:white_concrete")
+    for u in range(4, 13):
+        b.set(u, H + 7, -1, "minecraft:red_concrete")
+        b.set(u, H - 1, -2, "minecraft:smooth_quartz_slab[type=top]")
+    pokeball_face(b, 8, H + 3, -2, 3)
+    # slanted red awning on white posts over the doors
     for u in range(5, 12):
-        b.set(u, H + 8, 0, "minecraft:red_concrete")
-    # awning over the door
-    for u in range(5, 12):
-        for w in (-1, -2):
-            b.set(u, 4, w, "minecraft:red_concrete_powder" if w == -1 else "minecraft:red_concrete")
-    b.set(5, 1, -2, "minecraft:white_concrete"), b.set(11, 1, -2, "minecraft:white_concrete")
-    for v in (1, 2, 3):
-        b.set(5, v, -2, "minecraft:quartz_pillar[axis=y]")
-        b.set(11, v, -2, "minecraft:quartz_pillar[axis=y]")
+        b.set(u, 4, -1, "supplementaries:awning_red[bottom=false,facing=south,slanted=true]")
+        b.set(u, 4, -2, "supplementaries:awning_red[bottom=false,facing=south,slanted=true]")
+    for u in (5, 11):
+        for v in (1, 2, 3):
+            b.set(u, v, -3, "minecraft:quartz_pillar[axis=y]")
+        b.set(u, 4, -3, "minecraft:smooth_quartz_slab[type=bottom]")
     b.sign(4, 3, -1, ["§4POKéMON", "§4CENTER", "", name if name != "Pokémon Center" else ""], wood="birch")
+    _pc_grounds(b, W, D, rng)
     # lights
     for u in (3, 8, 13):
         for w in (3, 7, 11):
