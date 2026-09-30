@@ -1,0 +1,42 @@
+{
+  "parent": "alola:island_challenge/grand_trial_hala",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:wishiwashi",
+          "aspects": []
+        }
+      }
+    },
+    "title": {
+      "text": "Trial of Lana: Brooklet Hill"
+    },
+    "description": {
+      "text": "Akala Island: catch 5 Water-type Pokémon"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "catch": {
+      "trigger": "cobblemon:catch_pokemon",
+      "conditions": {
+        "type": "water",
+        "count": 5
+      }
+    }
+  },
+  "requirements": [
+    [
+      "catch"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/trial_lana"
+  },
+  "sends_telemetry_event": false
+}

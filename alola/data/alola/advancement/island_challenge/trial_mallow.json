@@ -1,0 +1,42 @@
+{
+  "parent": "alola:island_challenge/trial_kiawe",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:lurantis",
+          "aspects": []
+        }
+      }
+    },
+    "title": {
+      "text": "Trial of Mallow: Lush Jungle"
+    },
+    "description": {
+      "text": "Akala Island: catch 5 Grass-type Pokémon"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "catch": {
+      "trigger": "cobblemon:catch_pokemon",
+      "conditions": {
+        "type": "grass",
+        "count": 5
+      }
+    }
+  },
+  "requirements": [
+    [
+      "catch"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/trial_mallow"
+  },
+  "sends_telemetry_event": false
+}

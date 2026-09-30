@@ -1,0 +1,42 @@
+{
+  "parent": "alola:island_challenge/grand_trial_olivia",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:togedemaru",
+          "aspects": []
+        }
+      }
+    },
+    "title": {
+      "text": "Trial of Sophocles: Hokulani Observatory"
+    },
+    "description": {
+      "text": "Ula'ula Island: catch 5 Electric-type Pokémon"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "catch": {
+      "trigger": "cobblemon:catch_pokemon",
+      "conditions": {
+        "type": "electric",
+        "count": 5
+      }
+    }
+  },
+  "requirements": [
+    [
+      "catch"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/trial_sophocles"
+  },
+  "sends_telemetry_event": false
+}

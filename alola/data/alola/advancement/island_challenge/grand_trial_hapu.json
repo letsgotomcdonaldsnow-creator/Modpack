@@ -1,0 +1,41 @@
+{
+  "parent": "alola:island_challenge/trial_vast_poni",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:mudsdale",
+          "aspects": []
+        }
+      }
+    },
+    "title": {
+      "text": "Grand Trial: Kahuna Hapu"
+    },
+    "description": {
+      "text": "Poni Island: win 75 Pokémon battles"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "win": {
+      "trigger": "cobblemon:battles_won",
+      "conditions": {
+        "count": 75
+      }
+    }
+  },
+  "requirements": [
+    [
+      "win"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/grand_trial_hapu"
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,10 @@
+guiScale:3
+renderDistance:12
+simulationDistance:8
+particles:0
+narrator:0
+tutorialStep:none
+skipMultiplayerWarning:true
+joinedFirstServer:true
+onboardAccessibility:false
+soundCategory_music:0.6

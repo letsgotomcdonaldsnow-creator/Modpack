@@ -1,0 +1,808 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "alola-pikipek-1",
+      "pokemon": "pikipek",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "2-27",
+      "weight": 18.0,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_jungle"
+        ],
+        "timeRange": "day"
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-trumbeak-1",
+      "pokemon": "trumbeak",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "14-36",
+      "weight": 1.8,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_jungle"
+        ],
+        "timeRange": "day"
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-toucannon-1",
+      "pokemon": "toucannon",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "28-49",
+      "weight": 0.2,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_jungle"
+        ],
+        "timeRange": "day"
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-yungoos-1",
+      "pokemon": "yungoos",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "1-25",
+      "weight": 10.8,
+      "weightMultiplier": {
+        "multiplier": 0.25,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ]
+      }
+    },
+    {
+      "id": "alola-gumshoos-1",
+      "pokemon": "gumshoos",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "20-42",
+      "weight": 1.2,
+      "weightMultiplier": {
+        "multiplier": 0.25,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ]
+      }
+    },
+    {
+      "id": "alola-rattata-alolan-4",
+      "pokemon": "rattata alolan",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "1-25",
+      "weight": 18.0,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "maxY": 0
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-rattata-alolan-5",
+      "pokemon": "rattata alolan",
+      "presets": [
+        "derelict"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "1-25",
+      "weight": 16.8,
+      "condition": {
+        "canSeeSky": false,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "maxY": 0
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-rattata-alolan-6",
+      "pokemon": "rattata alolan",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "1-25",
+      "weight": 18.0,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "timeRange": "night"
+      }
+    },
+    {
+      "id": "alola-rattata-alolan-7",
+      "pokemon": "rattata alolan",
+      "presets": [
+        "derelict"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "1-25",
+      "weight": 16.8,
+      "condition": {
+        "canSeeSky": false,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-raticate-alolan-4",
+      "pokemon": "raticate alolan",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "20-41",
+      "weight": 2.0,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "maxY": 0
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-raticate-alolan-5",
+      "pokemon": "raticate alolan",
+      "presets": [
+        "derelict"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "20-41",
+      "weight": 3.2,
+      "condition": {
+        "canSeeSky": false,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "maxY": 0
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-raticate-alolan-6",
+      "pokemon": "raticate alolan",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "20-41",
+      "weight": 2.0,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "timeRange": "night"
+      }
+    },
+    {
+      "id": "alola-raticate-alolan-7",
+      "pokemon": "raticate alolan",
+      "presets": [
+        "derelict"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "20-41",
+      "weight": 3.2,
+      "condition": {
+        "canSeeSky": false,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-meowth-alolan-5",
+      "pokemon": "meowth alolan",
+      "presets": [
+        "natural",
+        "illager_structures"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "4-29",
+      "weight": 108.0,
+      "weightMultiplier": {
+        "multiplier": 1.5,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "isRaining": false
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_arid",
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-meowth-alolan-6",
+      "pokemon": "meowth alolan",
+      "presets": [
+        "natural",
+        "illager_structures"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "4-29",
+      "weight": 108.0,
+      "weightMultiplier": {
+        "multiplier": 1.5,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ]
+      }
+    },
+    {
+      "id": "alola-meowth-alolan-7",
+      "pokemon": "meowth alolan",
+      "presets": [
+        "illager_structures"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "4-29",
+      "weight": 100.8,
+      "condition": {
+        "canSeeSky": false,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "minY": 62
+      }
+    },
+    {
+      "id": "alola-persian-alolan-5",
+      "pokemon": "persian alolan",
+      "presets": [
+        "natural",
+        "illager_structures"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "28-44",
+      "weight": 12.0,
+      "weightMultiplier": {
+        "multiplier": 1.5,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "isRaining": false
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_arid",
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-persian-alolan-6",
+      "pokemon": "persian alolan",
+      "presets": [
+        "natural",
+        "illager_structures"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "28-44",
+      "weight": 12.0,
+      "weightMultiplier": {
+        "multiplier": 1.5,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ]
+      }
+    },
+    {
+      "id": "alola-persian-alolan-7",
+      "pokemon": "persian alolan",
+      "presets": [
+        "illager_structures"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "28-44",
+      "weight": 19.2,
+      "condition": {
+        "canSeeSky": false,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "minY": 62
+      }
+    },
+    {
+      "id": "alola-cutiefly-1",
+      "pokemon": "cutiefly",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "5-30",
+      "weight": 18.0,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_jungle"
+        ],
+        "timeRange": "day",
+        "isRaining": false
+      },
+      "anticondition": {
+        "neededNearbyBlocks": [
+          "#cobblemon:saccharine_trees"
+        ]
+      }
+    },
+    {
+      "id": "alola-cutiefly-2",
+      "pokemon": "cutiefly",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "5-30",
+      "weight": 3.6,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_jungle"
+        ],
+        "timeRange": "day",
+        "isRaining": false,
+        "neededNearbyBlocks": [
+          "#cobblemon:flowers",
+          "#cobblemon:saccharine_trees"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_floral"
+        ]
+      }
+    },
+    {
+      "id": "alola-cutiefly-3",
+      "pokemon": "cutiefly",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "5-30",
+      "weight": 84.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_jungle"
+        ]
+      },
+      "anticondition": {
+        "structures": [
+          "#the_bumblezone:sempiternal_sanctums"
+        ]
+      }
+    },
+    {
+      "id": "alola-ribombee-1",
+      "pokemon": "ribombee",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "25-46",
+      "weight": 2.0,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_jungle"
+        ],
+        "timeRange": "day",
+        "isRaining": false
+      },
+      "anticondition": {
+        "neededNearbyBlocks": [
+          "#cobblemon:saccharine_trees"
+        ]
+      }
+    },
+    {
+      "id": "alola-ribombee-2",
+      "pokemon": "ribombee",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "25-46",
+      "weight": 0.4,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_jungle"
+        ],
+        "timeRange": "day",
+        "isRaining": false,
+        "neededNearbyBlocks": [
+          "#cobblemon:flowers",
+          "#cobblemon:saccharine_trees"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_floral"
+        ]
+      }
+    },
+    {
+      "id": "alola-ribombee-3",
+      "pokemon": "ribombee",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "25-46",
+      "weight": 36.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_jungle"
+        ]
+      },
+      "anticondition": {
+        "structures": [
+          "#the_bumblezone:sempiternal_sanctums"
+        ]
+      }
+    },
+    {
+      "id": "alola-crabrawler-1",
+      "pokemon": "crabrawler",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "9-34",
+      "weight": 12.0,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-grimer-alolan-10",
+      "pokemon": "grimer alolan",
+      "presets": [
+        "natural",
+        "urban"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "8-33",
+      "weight": 3.36,
+      "weightMultiplier": {
+        "multiplier": 1.5,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ]
+      }
+    },
+    {
+      "id": "alola-grimer-alolan-11",
+      "pokemon": "grimer alolan",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "8-33",
+      "weight": 3.36,
+      "weightMultiplier": {
+        "multiplier": 1.5,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "structures": [
+          "#minecraft:village"
+        ]
+      }
+    },
+    {
+      "id": "alola-grimer-alolan-12",
+      "pokemon": "grimer alolan",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "8-33",
+      "weight": 18.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ]
+      }
+    },
+    {
+      "id": "alola-muk-alolan-10",
+      "pokemon": "muk alolan",
+      "presets": [
+        "natural",
+        "urban"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "38-50",
+      "weight": 0.64,
+      "weightMultiplier": {
+        "multiplier": 1.5,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ]
+      }
+    },
+    {
+      "id": "alola-muk-alolan-11",
+      "pokemon": "muk alolan",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "38-50",
+      "weight": 0.64,
+      "weightMultiplier": {
+        "multiplier": 1.5,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ],
+        "structures": [
+          "#minecraft:village"
+        ]
+      }
+    },
+    {
+      "id": "alola-muk-alolan-12",
+      "pokemon": "muk alolan",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "38-50",
+      "weight": 2.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_beach"
+        ]
+      }
+    }
+  ]
+}

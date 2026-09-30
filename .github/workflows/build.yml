@@ -1,0 +1,117 @@
+name: Build modpack
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      upgrade:
+        description: Re-resolve every mod to its newest compatible version
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Restore download cache
+        uses: actions/cache@v4
+        with:
+          path: .cache
+          key: downloads-${{ hashFiles('modpack.lock.json', 'modlist.toml') }}
+          restore-keys: downloads-
+
+      - name: Resolve mods from Modrinth
+        run: python tools/modpack.py resolve --keep-going ${{ inputs.upgrade && '--upgrade' || '' }}
+
+      - name: Commit lockfile and mod list
+        if: github.ref_type == 'branch'
+        run: |
+          if [ -n "$(git status --porcelain -- modpack.lock.json MODS.md)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+            git add modpack.lock.json MODS.md
+            git commit -m "Update lockfile and MODS.md"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
+
+      - name: Validate mod dependencies (client and server)
+        id: validate
+        continue-on-error: true
+        run: python tools/modpack.py validate
+
+      - name: Inspect ids (diagnostics)
+        if: always()
+        continue-on-error: true
+        run: |
+          python tools/modpack.py inspect cobblemon-mega-showdown 'models/item/.*(ium|_z|ring|bracelet)' --limit 80
+          python tools/modpack.py inspect cobblemon 'models/item/(potion|pasture|shiny_stone|pokemon_model|exp_candy|rare_candy)' --limit 40
+
+      - name: Build .mrpack
+        run: python tools/modpack.py build
+
+      - name: Upload .mrpack
+        uses: actions/upload-artifact@v4
+        with:
+          name: modpack
+          path: dist/*.mrpack
+
+      - name: Assemble server
+        run: python tools/modpack.py server --dir build/server --accept-eula
+
+      - name: Boot server
+        id: boot
+        continue-on-error: true
+        run: >
+          python tools/modpack.py boot --dir build/server --memory 5G
+          --command "function alola:selftest"
+          --dump "config/mega_showdown*" --dump "config/mega_showdown/*" --dump "config/cobblemon/main.json"
+
+      - name: Upload server log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: server-log
+          path: |
+            build/server-boot.log
+            build/server/logs/latest.log
+            build/server/crash-reports/
+          if-no-files-found: ignore
+
+      - name: Fail on problems
+        run: |
+          status=0
+          if [ -s build/resolve-errors.txt ]; then echo "::error::Some mods could not be resolved"; cat build/resolve-errors.txt; status=1; fi
+          if [ "${{ steps.validate.outcome }}" != "success" ]; then echo "::error::Dependency validation failed"; status=1; fi
+          if [ "${{ steps.boot.outcome }}" != "success" ]; then echo "::error::Server boot test failed"; status=1; fi
+          exit $status
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.mrpack
+          generate_release_notes: true

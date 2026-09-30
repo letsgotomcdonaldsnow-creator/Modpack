@@ -1,0 +1,42 @@
+{
+  "parent": "alola:island_challenge/trial_lana",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:salazzle",
+          "aspects": []
+        }
+      }
+    },
+    "title": {
+      "text": "Trial of Kiawe: Wela Volcano Park"
+    },
+    "description": {
+      "text": "Akala Island: catch 5 Fire-type Pokémon"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "catch": {
+      "trigger": "cobblemon:catch_pokemon",
+      "conditions": {
+        "type": "fire",
+        "count": 5
+      }
+    }
+  },
+  "requirements": [
+    [
+      "catch"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/trial_kiawe"
+  },
+  "sends_telemetry_event": false
+}

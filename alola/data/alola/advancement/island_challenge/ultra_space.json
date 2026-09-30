@@ -1,0 +1,32 @@
+{
+  "parent": "alola:island_challenge/island_scan",
+  "display": {
+    "icon": {
+      "id": "minecraft:end_crystal"
+    },
+    "title": {
+      "text": "Beyond the Ultra Wormhole"
+    },
+    "description": {
+      "text": "Travel to the End, Alola's Ultra Space, where the Ultra Beasts come from"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "end": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "minecraft:the_end"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "end"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

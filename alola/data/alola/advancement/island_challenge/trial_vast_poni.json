@@ -1,0 +1,42 @@
+{
+  "parent": "alola:island_challenge/trial_mina",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:kommoo",
+          "aspects": []
+        }
+      }
+    },
+    "title": {
+      "text": "Vast Poni Canyon"
+    },
+    "description": {
+      "text": "Poni Island: catch 3 Dragon-type Pokémon"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "catch": {
+      "trigger": "cobblemon:catch_pokemon",
+      "conditions": {
+        "type": "dragon",
+        "count": 3
+      }
+    }
+  },
+  "requirements": [
+    [
+      "catch"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/trial_vast_poni"
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,154 @@
+{
+  "parent": "alola:island_challenge/island_scan",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:vulpix",
+          "aspects": [
+            "alolan"
+          ]
+        }
+      }
+    },
+    "title": {
+      "text": "Alolan Variants"
+    },
+    "description": {
+      "text": "Catch or evolve all ten Alolan forms: Rattata, Raichu, Sandshrew, Vulpix, Diglett, Meowth, Geodude, Grimer, Exeggutor and Marowak"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "rattata": {
+      "trigger": "cobblemon:aspects_collected",
+      "conditions": {
+        "species": "cobblemon:rattata",
+        "aspects": [
+          "alolan"
+        ]
+      }
+    },
+    "raichu": {
+      "trigger": "cobblemon:aspects_collected",
+      "conditions": {
+        "species": "cobblemon:raichu",
+        "aspects": [
+          "alolan"
+        ]
+      }
+    },
+    "sandshrew": {
+      "trigger": "cobblemon:aspects_collected",
+      "conditions": {
+        "species": "cobblemon:sandshrew",
+        "aspects": [
+          "alolan"
+        ]
+      }
+    },
+    "vulpix": {
+      "trigger": "cobblemon:aspects_collected",
+      "conditions": {
+        "species": "cobblemon:vulpix",
+        "aspects": [
+          "alolan"
+        ]
+      }
+    },
+    "diglett": {
+      "trigger": "cobblemon:aspects_collected",
+      "conditions": {
+        "species": "cobblemon:diglett",
+        "aspects": [
+          "alolan"
+        ]
+      }
+    },
+    "meowth": {
+      "trigger": "cobblemon:aspects_collected",
+      "conditions": {
+        "species": "cobblemon:meowth",
+        "aspects": [
+          "alolan"
+        ]
+      }
+    },
+    "geodude": {
+      "trigger": "cobblemon:aspects_collected",
+      "conditions": {
+        "species": "cobblemon:geodude",
+        "aspects": [
+          "alolan"
+        ]
+      }
+    },
+    "grimer": {
+      "trigger": "cobblemon:aspects_collected",
+      "conditions": {
+        "species": "cobblemon:grimer",
+        "aspects": [
+          "alolan"
+        ]
+      }
+    },
+    "exeggutor": {
+      "trigger": "cobblemon:aspects_collected",
+      "conditions": {
+        "species": "cobblemon:exeggutor",
+        "aspects": [
+          "alolan"
+        ]
+      }
+    },
+    "marowak": {
+      "trigger": "cobblemon:aspects_collected",
+      "conditions": {
+        "species": "cobblemon:marowak",
+        "aspects": [
+          "alolan"
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rattata"
+    ],
+    [
+      "raichu"
+    ],
+    [
+      "sandshrew"
+    ],
+    [
+      "vulpix"
+    ],
+    [
+      "diglett"
+    ],
+    [
+      "meowth"
+    ],
+    [
+      "geodude"
+    ],
+    [
+      "grimer"
+    ],
+    [
+      "exeggutor"
+    ],
+    [
+      "marowak"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/alolan_variants"
+  },
+  "sends_telemetry_event": false
+}

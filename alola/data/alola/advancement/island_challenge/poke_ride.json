@@ -1,0 +1,48 @@
+{
+  "parent": "alola:island_challenge/partner",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:mudsdale",
+          "aspects": []
+        }
+      }
+    },
+    "title": {
+      "text": "Poké Ride"
+    },
+    "description": {
+      "text": "Ride one of your Pokémon"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "ride": {
+      "trigger": "minecraft:started_riding",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "vehicle": {
+                "type": "cobblemon:pokemon"
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "ride"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

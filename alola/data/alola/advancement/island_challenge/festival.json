@@ -1,0 +1,35 @@
+{
+  "parent": "alola:island_challenge/partner",
+  "display": {
+    "icon": {
+      "id": "mega_showdown:z-ring"
+    },
+    "title": {
+      "text": "The Festival at Iki Town"
+    },
+    "description": {
+      "text": "Win your first Pokémon battle to earn a Z-Ring from Kahuna Hala"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "win": {
+      "trigger": "cobblemon:battles_won",
+      "conditions": {
+        "count": 1
+      }
+    }
+  },
+  "requirements": [
+    [
+      "win"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/festival"
+  },
+  "sends_telemetry_event": false
+}

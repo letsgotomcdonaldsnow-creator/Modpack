@@ -1,0 +1,197 @@
+# Pokémon Alola Adventure: the mod list.
+#
+# This file is the source of truth. `python tools/modpack.py resolve` turns it
+# into modpack.lock.json (exact versions, hashes and download URLs from
+# Modrinth), pulling in required libraries automatically. CI does this on every
+# push, then builds the .mrpack and boots a server with it.
+#
+# Entry fields:
+#   id          Modrinth slug or project id
+#   note        why it is in the pack (shown in MODS.md)
+#   kind        "mod" (default), "resourcepack" or "shader"
+#   pin         a version number to lock to (pinned mods are resolved first)
+#   anchor      true = every other mod must accept this mod's version
+#   side        "client", "server" or "both" to override Modrinth's metadata
+#   optional    true = the launcher may let players skip it
+
+[pack]
+name = "Pokemon Alola Adventure"
+version = "1.0.0"
+summary = "Cobblemon on Fabric 1.21.1, rebuilt around Pokémon Sun & Moon: Alolan starters, Z-Moves, the Island Challenge, tropical islands and volcanoes, Poké Pelago, Poké Ride and a whole lot of island life."
+minecraft = "1.21.1"
+game_versions = ["1.21.1", "1.21"]
+fabric_loader = "latest"
+
+# ---------------------------------------------------------------------------
+[category.cobblemon]
+title = "Cobblemon core"
+mods = [
+  { id = "cobblemon", pin = "1.7.3", anchor = true, note = "The Pokémon mod. Pinned to 1.7.3, the release the addon ecosystem supports (1.7 brought Poké Ride-style riding)" },
+  { id = "cobblemon-integrations", note = "Glue between Cobblemon and other mods (EMI, Jade and more)" },
+]
+
+[category.alola]
+title = "Alola: Pokémon, Z-Moves and the Island Challenge"
+mods = [
+  { id = "complete-cobblemon-collection-w-legendary-spawns", note = "Models and spawns for the Pokémon Cobblemon hasn't finished: Rockruff and Lycanroc, Oricorio, Grubbin, Minior, the Tapus, Cosmog, Necrozma and the Ultra Beasts" },
+  { id = "cobblemon-mega-showdown", note = "Z-Crystals, the Z-Ring, Z-Moves and Ultra Burst (plus Mega Evolution)" },
+  { id = "legendary-monuments", note = "Shrines and structures for encountering legendary Pokémon" },
+  { id = "cobblemon-size-variations", note = "Pokémon come in different sizes; now and then you meet a Totem-sized one" },
+  { id = "cobbleloots", note = "Item balls lying around the world, like in the games" },
+]
+
+[category.pokemon_life]
+title = "Pokémon life: Poké Pelago, the Nursery, Poké Marts and trainers"
+mods = [
+  { id = "cobbleworkers", note = "Poké Pelago: Pokémon in a pasture take on jobs such as farming, fishing and gathering" },
+  { id = "cobblemon-pasture-loot", note = "Pastured Pokémon bring back items, like Isle Abeens" },
+  { id = "cobbreeding", note = "Pokémon Nursery: breed Pokémon and hatch eggs in pastures" },
+  { id = "cobbledollars", note = "Poké Dollars, Poké Mart shopkeepers and prize money" },
+  { id = "rctmod", note = "Radical Cobblemon Trainers: trainers roam the world to battle, with a series of ever-stronger opponents" },
+  { id = "simpletms-tms-and-trs-for-cobblemon", note = "TMs and TRs, reusable like in Generation 7" },
+  { id = "cobblemon-capture-xp", note = "Your party earns EXP for catching Pokémon, as introduced in Gen 6/7" },
+  { id = "exp-all", note = "Party-wide Exp. Share, as it worked in Sun and Moon" },
+  { id = "cobblemon-counter", note = "Catch and KO combos that raise shiny odds, a stand-in for SOS chaining" },
+  { id = "cobblemon-fight-or-flight-reborn", note = "Wild Pokémon react to you: shy ones flee, aggressive ones attack" },
+]
+
+[category.pokemon_ui]
+title = "Rotom Dex and Pokémon interface"
+mods = [
+  { id = "cobblemon-pokenav", note = "Cobblenav: a Rotom Dex-style device for finding and tracking nearby Pokémon" },
+  { id = "cobblepedia", note = "In-game Pokémon encyclopedia: moves, evolutions and spawns" },
+  { id = "cobblemon-spawn-notification", note = "Announces shiny and legendary spawns" },
+  { id = "cobblemon-battle-extras", note = "Better battle interface and information" },
+  { id = "more-cobblemon-tweaks", side = "client", note = "Quality-of-life tweaks for Cobblemon's screens" },
+  { id = "cobblemon-party-extras", side = "client", note = "Extra party-overlay information" },
+  { id = "catch-rate-display", side = "client", note = "Shows the catch chance of the Poké Ball you are holding" },
+  { id = "better-cobblemon-spectation", side = "client", note = "Better camera when spectating other trainers' battles" },
+]
+
+[category.world]
+title = "The Alolan islands: world generation and structures"
+mods = [
+  { id = "expanded-ecosphere", note = "William Wythers' overworld: tropical islands, tropical volcanoes, beaches and jungles, all with native Cobblemon spawns" },
+  { id = "lets-do-beachparty", note = "Palm trees, coconuts, beach chairs, hammocks, cocktails and a proper beach vibe" },
+  { id = "towns-and-towers", note = "More varied villages and outposts to act as Alolan towns" },
+  { id = "dungeons-and-taverns", note = "Taverns, ruins and dungeons to explore between routes" },
+  { id = "hopo-better-underwater-ruins", note = "Underwater ruins for your Surf and Dive trips" },
+  { id = "yungs-better-ocean-monuments", note = "Reworked ocean monuments" },
+  { id = "yungs-better-jungle-temples", note = "Reworked jungle temples: the Lush Jungle has secrets" },
+  { id = "yungs-better-desert-temples", note = "Reworked desert temples, like the Ruins of Abundance in Haina Desert" },
+  { id = "yungs-better-mineshafts", note = "Reworked mineshafts, for Diglett Tunnel" },
+  { id = "yungs-better-dungeons", note = "Reworked dungeons" },
+  { id = "yungs-extras", note = "Small decorative structures across the world" },
+  { id = "yungs-bridges", note = "Bridges over rivers" },
+]
+
+[category.food]
+title = "Island cuisine: malasadas, pineapples and fresh seafood"
+mods = [
+  { id = "farmers-delight-refabricated", note = "Cooking, crops and meals" },
+  { id = "pineapple-delight", note = "Pineapples and pineapple dishes" },
+  { id = "oceans-delight", note = "Seafood dishes" },
+  { id = "croptopia", note = "Tropical fruit such as bananas, mangoes, coconuts and kiwis, plus hundreds of recipes" },
+  { id = "lets-do-bakery-farmcharm-compat", note = "Bakery: doughnuts, cakes and pastries (malasadas in spirit)" },
+  { id = "cobblecuisine", note = "Pokémon-themed foods and treats" },
+  { id = "appleskin", note = "Shows hunger and saturation values" },
+]
+
+[category.building]
+title = "Building Hau'oli City: furniture and decor"
+mods = [
+  { id = "cobblefurnies", note = "Pokémon-themed furniture" },
+  { id = "pokeblocks", note = "Pokémon-themed blocks for Pokémon Centers and Marts" },
+  { id = "cobblemon-additions", note = "Extra Pokémon-flavored blocks and items" },
+  { id = "handcrafted", note = "Furniture: couches, tables, beds and shelves" },
+  { id = "macaws-furniture", note = "More furniture" },
+  { id = "macaws-roofs", note = "Roof shapes for island houses" },
+  { id = "macaws-windows", note = "Windows, shutters and blinds" },
+  { id = "macaws-doors", note = "Doors" },
+  { id = "macaws-bridges", note = "Bridges and piers for boardwalks" },
+  { id = "macaws-fences-and-walls", note = "Fences and walls" },
+  { id = "macaws-lights-and-lamps", note = "Lamps and lanterns" },
+  { id = "macaws-paths-and-pavings", note = "Paths and pavings for routes" },
+  { id = "macaws-trapdoors", note = "Trapdoors" },
+  { id = "supplementaries", note = "Decorative and functional blocks: signposts, jars, flags and more" },
+  { id = "amendments", note = "Small vanilla block improvements that pair with Supplementaries" },
+  { id = "another-furniture", note = "Even more furniture" },
+  { id = "beautify-refabricated", note = "Hanging pots, trellises and botanical decor" },
+]
+
+[category.travel]
+title = "Travel: Ride Pager, Town Map and your Bag"
+mods = [
+  { id = "waystones", note = "Fast travel between discovered waystones, like Charizard Glide" },
+  { id = "xaeros-minimap", note = "Minimap" },
+  { id = "xaeros-world-map", note = "Full-screen Town Map" },
+  { id = "natures-compass", note = "Find a biome, such as a tropical island or a volcano" },
+  { id = "explorers-compass", note = "Find a structure" },
+  { id = "travelersbackpack", note = "Backpacks: your Bag" },
+  { id = "carry-on", note = "Pick up chests and small creatures" },
+]
+
+[category.atmosphere]
+title = "Atmosphere: sun, sea and sound"
+mods = [
+  { id = "shoulder-surfing-reloaded", side = "client", note = "Over-the-shoulder third-person camera, like the 3DS games" },
+  { id = "ambientsounds", side = "client", note = "Waves, wind, jungle birds and night insects" },
+  { id = "sound-physics-remastered", side = "client", note = "Realistic reverb in caves and Pokémon Centers" },
+  { id = "presence-footsteps", side = "client", note = "Footstep sounds on sand, wood and grass" },
+  { id = "wakes", side = "client", note = "Wakes and splashes behind boats and swimmers" },
+  { id = "particle-rain", side = "client", note = "Rain, snow and sand particles" },
+  { id = "fallingleaves", side = "client", note = "Leaves drift down from trees" },
+  { id = "visuality", side = "client", note = "Sparkles, water splashes and other small particles" },
+  { id = "lambdynamiclights", side = "client", note = "Held torches and fiery Pokémon light the area" },
+  { id = "continuity", side = "client", note = "Connected textures" },
+  { id = "entity-model-features", side = "client", note = "Needed by Fresh Animations" },
+  { id = "entitytexturefeatures", side = "client", note = "Needed by Fresh Animations" },
+  { id = "3dskinlayers", side = "client", note = "3D player skin layers" },
+  { id = "not-enough-animations", side = "client", note = "Third-person player animations" },
+  { id = "iris", side = "client", note = "Shader support (shaders start off; turn them on under Video Settings > Shader Packs)" },
+  { id = "distanthorizons", side = "client", note = "See distant islands on the horizon (turn off in its settings on slow PCs)" },
+  { id = "complementary-reimagined", kind = "shader", note = "Bright, colorful shader for tropical sunsets; bundled, off by default" },
+  { id = "fresh-animations", kind = "resourcepack", note = "Livelier vanilla mob animations" },
+]
+
+[category.qol]
+title = "Interface and quality of life"
+mods = [
+  { id = "modmenu", side = "client", note = "Mod list and config screens" },
+  { id = "emi", note = "Recipe viewer" },
+  { id = "jade", note = "Tooltip showing what you are looking at, including Pokémon" },
+  { id = "better-advancements", side = "client", note = "Larger advancement screen for the Island Challenge tab" },
+  { id = "advancement-plaques", side = "client", note = "Trial completions pop up as plaques" },
+  { id = "mouse-tweaks", side = "client", note = "Inventory mouse shortcuts" },
+  { id = "controlling", side = "client", note = "Searchable key bindings" },
+  { id = "zoomify", side = "client", note = "Zoom" },
+  { id = "shulkerboxtooltip", note = "Preview shulker box contents" },
+  { id = "enchantment-descriptions", side = "client", note = "Explains enchantments in tooltips" },
+  { id = "chat-heads", side = "client", note = "Player heads in chat" },
+  { id = "yosbr", note = "Ships default options without overwriting yours" },
+]
+
+[category.performance]
+title = "Performance"
+mods = [
+  { id = "sodium", side = "client", note = "Rendering engine" },
+  { id = "sodium-extra", side = "client", note = "More Sodium options" },
+  { id = "reeses-sodium-options", side = "client", note = "Better video settings screen" },
+  { id = "lithium", note = "Game logic optimizations" },
+  { id = "ferrite-core", note = "Memory usage optimizations" },
+  { id = "modernfix", note = "Faster startup and lower memory use" },
+  { id = "immediatelyfast", side = "client", note = "Faster immediate-mode rendering" },
+  { id = "entityculling", side = "client", note = "Skips rendering hidden entities, which helps with many Pokémon around" },
+  { id = "moreculling", side = "client", note = "More culling" },
+  { id = "dynamic-fps", side = "client", note = "Lowers FPS when the game is in the background" },
+  { id = "krypton", note = "Network stack optimizations" },
+  { id = "noisium", note = "Faster world generation" },
+  { id = "clumps", note = "Merges XP orbs" },
+]
+
+[category.multiplayer]
+title = "Multiplayer"
+mods = [
+  { id = "simple-voice-chat", note = "Proximity voice chat" },
+  { id = "no-chat-reports", note = "Removes chat reporting" },
+]

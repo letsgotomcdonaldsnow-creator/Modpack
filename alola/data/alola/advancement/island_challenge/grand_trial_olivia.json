@@ -1,0 +1,43 @@
+{
+  "parent": "alola:island_challenge/trial_mallow",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:geodude",
+          "aspects": [
+            "alolan"
+          ]
+        }
+      }
+    },
+    "title": {
+      "text": "Grand Trial: Kahuna Olivia"
+    },
+    "description": {
+      "text": "Akala Island: win 25 Pokémon battles"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "win": {
+      "trigger": "cobblemon:battles_won",
+      "conditions": {
+        "count": 25
+      }
+    }
+  },
+  "requirements": [
+    [
+      "win"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/grand_trial_olivia"
+  },
+  "sends_telemetry_event": false
+}

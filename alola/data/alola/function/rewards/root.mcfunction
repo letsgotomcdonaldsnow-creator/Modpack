@@ -1,0 +1,1 @@
+tellraw @s [{"text": "[Island Challenge] ", "color": "gold", "bold": true}, {"text": "Alola! Choose your partner Pokémon, then take on the island trials. Press L to follow your progress.", "color": "yellow", "bold": false}]

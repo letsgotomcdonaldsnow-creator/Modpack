@@ -1,0 +1,2087 @@
+{
+  "enabled": true,
+  "neededInstalledMods": [],
+  "neededUninstalledMods": [],
+  "spawns": [
+    {
+      "id": "alola-bounsweet-1",
+      "pokemon": "bounsweet",
+      "presets": [
+        "natural",
+        "treetop"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "1-21",
+      "weight": 3.6,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-steenee-1",
+      "pokemon": "steenee",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "18-29",
+      "weight": 0.36,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-tsareena-1",
+      "pokemon": "tsareena",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "28-51",
+      "weight": 0.04,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-fomantis-1",
+      "pokemon": "fomantis",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "1-25",
+      "weight": 18.0,
+      "weightMultiplier": {
+        "multiplier": 0.25,
+        "condition": {
+          "timeRange": "day"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-fomantis-2",
+      "pokemon": "fomantis",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "1-25",
+      "weight": 10.8,
+      "weightMultiplier": {
+        "multiplier": 0.25,
+        "condition": {
+          "timeRange": "day"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-fomantis-3",
+      "pokemon": "fomantis",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "1-25",
+      "weight": 18.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "structures": [
+          "#the_bumblezone:sempiternal_sanctums"
+        ]
+      }
+    },
+    {
+      "id": "alola-lurantis-1",
+      "pokemon": "lurantis",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "34-48",
+      "weight": 2.0,
+      "weightMultiplier": {
+        "multiplier": 0.25,
+        "condition": {
+          "timeRange": "day"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-lurantis-2",
+      "pokemon": "lurantis",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "34-48",
+      "weight": 1.2,
+      "weightMultiplier": {
+        "multiplier": 0.25,
+        "condition": {
+          "timeRange": "day"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-lurantis-3",
+      "pokemon": "lurantis",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "34-48",
+      "weight": 2.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "structures": [
+          "#the_bumblezone:sempiternal_sanctums"
+        ]
+      }
+    },
+    {
+      "id": "alola-morelull-1",
+      "pokemon": "morelull",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "4-29",
+      "weight": 3.6,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ],
+        "maxLight": 7
+      }
+    },
+    {
+      "id": "alola-morelull-2",
+      "pokemon": "morelull",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "4-29",
+      "weight": 3.6,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "structures": [
+          "cobblemon:shipwreck_coves/lush_shipwreck_cove"
+        ],
+        "minY": -41,
+        "maxY": 9
+      }
+    },
+    {
+      "id": "alola-morelull-3",
+      "pokemon": "morelull",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "4-29",
+      "weight": 18.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-morelull-4",
+      "pokemon": "morelull",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "4-29",
+      "weight": 3.6,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ],
+        "structures": [
+          "cobblemon:shipwreck_coves/lush_shipwreck_cove"
+        ],
+        "minY": -41,
+        "maxY": 9
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_lush"
+        ]
+      }
+    },
+    {
+      "id": "alola-shiinotic-1",
+      "pokemon": "shiinotic",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "24-41",
+      "weight": 0.4,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ],
+        "maxLight": 7
+      }
+    },
+    {
+      "id": "alola-shiinotic-2",
+      "pokemon": "shiinotic",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "24-41",
+      "weight": 0.4,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "structures": [
+          "cobblemon:shipwreck_coves/lush_shipwreck_cove"
+        ],
+        "minY": -41,
+        "maxY": 9
+      }
+    },
+    {
+      "id": "alola-shiinotic-3",
+      "pokemon": "shiinotic",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "24-41",
+      "weight": 2.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-shiinotic-4",
+      "pokemon": "shiinotic",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "24-41",
+      "weight": 0.4,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ],
+        "structures": [
+          "cobblemon:shipwreck_coves/lush_shipwreck_cove"
+        ],
+        "minY": -41,
+        "maxY": 9
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_lush"
+        ]
+      }
+    },
+    {
+      "id": "alola-comfey-1",
+      "pokemon": "comfey",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "24-49",
+      "weight": 20.0,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ],
+        "isRaining": false
+      }
+    },
+    {
+      "id": "alola-comfey-2",
+      "pokemon": "comfey",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "rare",
+      "level": "24-49",
+      "weight": 20.0,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ],
+        "isRaining": false,
+        "neededNearbyBlocks": [
+          "#cobblemon:flowers"
+        ]
+      }
+    },
+    {
+      "id": "alola-comfey-3",
+      "pokemon": "comfey",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "24-49",
+      "weight": 4.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ],
+        "isRaining": false
+      },
+      "anticondition": {
+        "structures": [
+          "#the_bumblezone:sempiternal_sanctums"
+        ]
+      }
+    },
+    {
+      "id": "alola-dewpider-3",
+      "pokemon": "dewpider",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "2-27",
+      "weight": 10.08,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1,
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-dewpider-4",
+      "pokemon": "dewpider",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "2-27",
+      "weight": 3.6,
+      "weightMultiplier": {
+        "multiplier": 3.0,
+        "condition": {
+          "minLureLevel": 3
+        }
+      },
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ],
+        "minLureLevel": 1
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-dewpider-5",
+      "pokemon": "dewpider",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "2-27",
+      "weight": 10.08,
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1,
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-dewpider-6",
+      "pokemon": "dewpider",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "2-27",
+      "weight": 3.6,
+      "weightMultiplier": {
+        "multiplier": 3.0,
+        "condition": {
+          "minLureLevel": 3
+        }
+      },
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ],
+        "minLureLevel": 1
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-dewpider-1",
+      "pokemon": "dewpider",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "2-27",
+      "weight": 16.8,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-dewpider-2",
+      "pokemon": "dewpider",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "seafloor",
+      "bucket": "common",
+      "level": "2-27",
+      "weight": 3.6,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-araquanid-3",
+      "pokemon": "araquanid",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "22-45",
+      "weight": 1.92,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1,
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-araquanid-4",
+      "pokemon": "araquanid",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "22-45",
+      "weight": 0.4,
+      "weightMultiplier": {
+        "multiplier": 3.0,
+        "condition": {
+          "minLureLevel": 3
+        }
+      },
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ],
+        "minLureLevel": 1
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-araquanid-5",
+      "pokemon": "araquanid",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "22-45",
+      "weight": 1.92,
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1,
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-araquanid-6",
+      "pokemon": "araquanid",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "22-45",
+      "weight": 0.4,
+      "weightMultiplier": {
+        "multiplier": 3.0,
+        "condition": {
+          "minLureLevel": 3
+        }
+      },
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ],
+        "minLureLevel": 1
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-araquanid-1",
+      "pokemon": "araquanid",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "22-45",
+      "weight": 3.2,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-araquanid-2",
+      "pokemon": "araquanid",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "seafloor",
+      "bucket": "common",
+      "level": "22-45",
+      "weight": 0.4,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_jungle",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-salandit-1",
+      "pokemon": "salandit",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "7-32",
+      "weight": 19.8,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ]
+      }
+    },
+    {
+      "id": "alola-salandit-2",
+      "pokemon": "salandit",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "7-32",
+      "weight": 19.8,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ],
+        "neededNearbyBlocks": [
+          "minecraft:lava"
+        ]
+      }
+    },
+    {
+      "id": "alola-salandit-3",
+      "pokemon": "salandit",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "7-32",
+      "weight": 19.8,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ]
+      }
+    },
+    {
+      "id": "alola-salandit-4",
+      "pokemon": "salandit",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "7-32",
+      "weight": 11.88,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ]
+      }
+    },
+    {
+      "id": "alola-salazzle-1",
+      "pokemon": "salazzle",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "33-48",
+      "weight": 0.2,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ]
+      }
+    },
+    {
+      "id": "alola-salazzle-2",
+      "pokemon": "salazzle",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "33-48",
+      "weight": 0.2,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ],
+        "neededNearbyBlocks": [
+          "minecraft:lava"
+        ]
+      }
+    },
+    {
+      "id": "alola-salazzle-3",
+      "pokemon": "salazzle",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "33-48",
+      "weight": 0.2,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ]
+      }
+    },
+    {
+      "id": "alola-salazzle-4",
+      "pokemon": "salazzle",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "33-48",
+      "weight": 0.12,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ]
+      }
+    },
+    {
+      "id": "alola-marowak-alolan-2",
+      "pokemon": "marowak alolan",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "28-43",
+      "weight": 1.2,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ]
+      }
+    },
+    {
+      "id": "alola-marowak-alolan-3",
+      "pokemon": "marowak alolan",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "28-43",
+      "weight": 2.0,
+      "condition": {
+        "biomes": [
+          "#cobblemon:is_volcanic"
+        ]
+      }
+    },
+    {
+      "id": "alola-mudbray-1",
+      "pokemon": "mudbray",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "14-39",
+      "weight": 3.6,
+      "weightMultiplier": {
+        "multiplier": 0.25,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-mudsdale-1",
+      "pokemon": "mudsdale",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "30-50",
+      "weight": 0.4,
+      "weightMultiplier": {
+        "multiplier": 0.25,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-stufful-1",
+      "pokemon": "stufful",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "9-34",
+      "weight": 18.0,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_jungle"
+        ]
+      }
+    },
+    {
+      "id": "alola-bewear-1",
+      "pokemon": "bewear",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "27-50",
+      "weight": 2.0,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_tropical_island",
+          "#cobblemon:is_jungle"
+        ]
+      }
+    },
+    {
+      "id": "alola-wishiwashi-1",
+      "pokemon": "wishiwashi",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "submerged",
+      "bucket": "common",
+      "level": "1-18",
+      "weight": 20.0,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-wishiwashi-2",
+      "pokemon": "wishiwashi",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "1-18",
+      "weight": 20.0,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-wishiwashi-3",
+      "pokemon": "wishiwashi",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "submerged",
+      "bucket": "common",
+      "level": "1-18",
+      "weight": 20.0,
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-wishiwashi-4",
+      "pokemon": "wishiwashi",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "1-18",
+      "weight": 20.0,
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-mareanie-1",
+      "pokemon": "mareanie",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "6-31",
+      "weight": 10.08,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-mareanie-2",
+      "pokemon": "mareanie",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "seafloor",
+      "bucket": "common",
+      "level": "6-31",
+      "weight": 3.6,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-mareanie-3",
+      "pokemon": "mareanie",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "6-31",
+      "weight": 16.8,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-mareanie-4",
+      "pokemon": "mareanie",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "6-31",
+      "weight": 20.0,
+      "weightMultiplier": {
+        "multiplier": 0.6,
+        "condition": {
+          "minLureLevel": 1,
+          "maxLureLevel": 2
+        }
+      },
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ],
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-mareanie-5",
+      "pokemon": "mareanie",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "6-31",
+      "weight": 16.8,
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-mareanie-6",
+      "pokemon": "mareanie",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "6-31",
+      "weight": 20.0,
+      "weightMultiplier": {
+        "multiplier": 0.6,
+        "condition": {
+          "minLureLevel": 1,
+          "maxLureLevel": 2
+        }
+      },
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ],
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-toxapex-1",
+      "pokemon": "toxapex",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "38-50",
+      "weight": 1.92,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-toxapex-2",
+      "pokemon": "toxapex",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "seafloor",
+      "bucket": "common",
+      "level": "38-50",
+      "weight": 0.4,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-toxapex-3",
+      "pokemon": "toxapex",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "38-50",
+      "weight": 3.2,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-toxapex-4",
+      "pokemon": "toxapex",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "38-50",
+      "weight": 2.0,
+      "weightMultiplier": {
+        "multiplier": 0.6,
+        "condition": {
+          "minLureLevel": 1,
+          "maxLureLevel": 2
+        }
+      },
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ],
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-toxapex-5",
+      "pokemon": "toxapex",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "38-50",
+      "weight": 3.2,
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-toxapex-6",
+      "pokemon": "toxapex",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "38-50",
+      "weight": 2.0,
+      "weightMultiplier": {
+        "multiplier": 0.6,
+        "condition": {
+          "minLureLevel": 1,
+          "maxLureLevel": 2
+        }
+      },
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean",
+          "#cobblemon:is_beach"
+        ],
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-wimpod-1",
+      "pokemon": "wimpod",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "1-23",
+      "weight": 16.8,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-wimpod-2",
+      "pokemon": "wimpod",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "1-23",
+      "weight": 16.8,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "neededNearbyBlocks": [
+          "minecraft:water"
+        ]
+      }
+    },
+    {
+      "id": "alola-wimpod-3",
+      "pokemon": "wimpod",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "1-23",
+      "weight": 10.08,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "neededNearbyBlocks": [
+          "minecraft:water"
+        ],
+        "maxY": 0
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-wimpod-4",
+      "pokemon": "wimpod",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "seafloor",
+      "bucket": "uncommon",
+      "level": "1-23",
+      "weight": 10.08,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "maxY": 0
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-wimpod-5",
+      "pokemon": "wimpod",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "1-23",
+      "weight": 16.8,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-wimpod-6",
+      "pokemon": "wimpod",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "1-23",
+      "weight": 18.0,
+      "weightMultiplier": {
+        "multiplier": 0.6,
+        "condition": {
+          "minLureLevel": 1,
+          "maxLureLevel": 2
+        }
+      },
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-wimpod-7",
+      "pokemon": "wimpod",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "1-23",
+      "weight": 18.0,
+      "weightMultiplier": {
+        "multiplier": 0.6,
+        "condition": {
+          "minLureLevel": 0,
+          "maxLureLevel": 1
+        }
+      },
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-wimpod-8",
+      "pokemon": "wimpod",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "1-23",
+      "weight": 16.8,
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-wimpod-9",
+      "pokemon": "wimpod",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "1-23",
+      "weight": 18.0,
+      "weightMultiplier": {
+        "multiplier": 0.6,
+        "condition": {
+          "minLureLevel": 1,
+          "maxLureLevel": 2
+        }
+      },
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-golisopod-1",
+      "pokemon": "golisopod",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "30-53",
+      "weight": 3.2,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ]
+      }
+    },
+    {
+      "id": "alola-golisopod-2",
+      "pokemon": "golisopod",
+      "presets": [
+        "natural",
+        "wild"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "30-53",
+      "weight": 3.2,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "neededNearbyBlocks": [
+          "minecraft:water"
+        ]
+      }
+    },
+    {
+      "id": "alola-golisopod-3",
+      "pokemon": "golisopod",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "30-53",
+      "weight": 1.92,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "neededNearbyBlocks": [
+          "minecraft:water"
+        ],
+        "maxY": 0
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-golisopod-4",
+      "pokemon": "golisopod",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "seafloor",
+      "bucket": "uncommon",
+      "level": "30-53",
+      "weight": 1.92,
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "maxY": 0
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-golisopod-5",
+      "pokemon": "golisopod",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "30-53",
+      "weight": 3.2,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-golisopod-6",
+      "pokemon": "golisopod",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "30-53",
+      "weight": 2.0,
+      "weightMultiplier": {
+        "multiplier": 0.6,
+        "condition": {
+          "minLureLevel": 1,
+          "maxLureLevel": 2
+        }
+      },
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-golisopod-7",
+      "pokemon": "golisopod",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "30-53",
+      "weight": 2.0,
+      "weightMultiplier": {
+        "multiplier": 0.6,
+        "condition": {
+          "minLureLevel": 0,
+          "maxLureLevel": 1
+        }
+      },
+      "condition": {
+        "minSkyLight": 0,
+        "maxSkyLight": 7,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_deep_dark"
+        ]
+      }
+    },
+    {
+      "id": "alola-golisopod-8",
+      "pokemon": "golisopod",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "uncommon",
+      "level": "30-53",
+      "weight": 3.2,
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ]
+      },
+      "anticondition": {
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-golisopod-9",
+      "pokemon": "golisopod",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "30-53",
+      "weight": 2.0,
+      "weightMultiplier": {
+        "multiplier": 0.6,
+        "condition": {
+          "minLureLevel": 1,
+          "maxLureLevel": 2
+        }
+      },
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "minLureLevel": 1
+      }
+    },
+    {
+      "id": "alola-sandygast-1",
+      "pokemon": "sandygast",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "7-32",
+      "weight": 3.6,
+      "weightMultiplier": {
+        "multiplier": 1.5,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "neededBaseBlocks": [
+          "#minecraft:sand",
+          "#c:sand"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-palossand-1",
+      "pokemon": "palossand",
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "common",
+      "level": "42-48",
+      "weight": 0.4,
+      "weightMultiplier": {
+        "multiplier": 1.5,
+        "condition": {
+          "timeRange": "night"
+        }
+      },
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_tropical_island"
+        ],
+        "neededBaseBlocks": [
+          "#minecraft:sand",
+          "#c:sand"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_freezing"
+        ]
+      }
+    },
+    {
+      "id": "alola-pyukumuku-1",
+      "pokemon": "pyukumuku",
+      "presets": [
+        "natural"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "grounded",
+      "bucket": "uncommon",
+      "level": "16-41",
+      "weight": 12.0,
+      "condition": {
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean"
+        ]
+      }
+    },
+    {
+      "id": "alola-pyukumuku-2",
+      "pokemon": "pyukumuku",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "seafloor",
+      "bucket": "common",
+      "level": "16-41",
+      "weight": 4.0,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean"
+        ],
+        "minY": 48
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_frozen_ocean"
+        ]
+      }
+    },
+    {
+      "id": "alola-pyukumuku-3",
+      "pokemon": "pyukumuku",
+      "presets": [
+        "water"
+      ],
+      "type": "pokemon",
+      "spawnablePositionType": "seafloor",
+      "bucket": "common",
+      "level": "16-41",
+      "weight": 20.0,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean"
+        ]
+      }
+    },
+    {
+      "id": "alola-pyukumuku-4",
+      "pokemon": "pyukumuku",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "16-41",
+      "weight": 4.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 3.0,
+          "condition": {
+            "minLureLevel": 2,
+            "maxLureLevel": 2
+          }
+        },
+        {
+          "multiplier": 5.0,
+          "condition": {
+            "minLureLevel": 3
+          }
+        }
+      ],
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_frozen_ocean"
+        ]
+      }
+    },
+    {
+      "id": "alola-pyukumuku-5",
+      "pokemon": "pyukumuku",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "16-41",
+      "weight": 20.0,
+      "condition": {
+        "canSeeSky": true,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean"
+        ]
+      }
+    },
+    {
+      "id": "alola-pyukumuku-6",
+      "pokemon": "pyukumuku",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "16-41",
+      "weight": 4.0,
+      "weightMultipliers": [
+        {
+          "multiplier": 3.0,
+          "condition": {
+            "minLureLevel": 2,
+            "maxLureLevel": 2
+          }
+        },
+        {
+          "multiplier": 5.0,
+          "condition": {
+            "minLureLevel": 3
+          }
+        }
+      ],
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean"
+        ]
+      },
+      "anticondition": {
+        "biomes": [
+          "#cobblemon:is_frozen_ocean"
+        ]
+      }
+    },
+    {
+      "id": "alola-pyukumuku-7",
+      "pokemon": "pyukumuku",
+      "type": "pokemon",
+      "spawnablePositionType": "fishing",
+      "bucket": "common",
+      "level": "16-41",
+      "weight": 20.0,
+      "condition": {
+        "canSeeSky": false,
+        "minSkyLight": 8,
+        "maxSkyLight": 15,
+        "biomes": [
+          "#cobblemon:is_beach",
+          "#cobblemon:is_warm_ocean",
+          "#cobblemon:is_lukewarm_ocean"
+        ]
+      }
+    }
+  ]
+}

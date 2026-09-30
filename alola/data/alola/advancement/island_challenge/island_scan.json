@@ -1,0 +1,36 @@
+{
+  "parent": "alola:island_challenge/partner",
+  "display": {
+    "icon": {
+      "id": "cobblemon:ultra_ball"
+    },
+    "title": {
+      "text": "Pokédex Completion: 100"
+    },
+    "description": {
+      "text": "Catch 100 Pokémon"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "catch": {
+      "trigger": "cobblemon:catch_pokemon",
+      "conditions": {
+        "type": "any",
+        "count": 100
+      }
+    }
+  },
+  "requirements": [
+    [
+      "catch"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/island_scan"
+  },
+  "sends_telemetry_event": false
+}

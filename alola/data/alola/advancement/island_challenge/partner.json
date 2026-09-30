@@ -1,0 +1,38 @@
+{
+  "parent": "alola:island_challenge/root",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:rowlet",
+          "aspects": []
+        }
+      }
+    },
+    "title": {
+      "text": "Choose Your Partner"
+    },
+    "description": {
+      "text": "Pick Rowlet, Litten or Popplio as your first Pokémon"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "starter": {
+      "trigger": "cobblemon:pick_starter"
+    }
+  },
+  "requirements": [
+    [
+      "starter"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/partner"
+  },
+  "sends_telemetry_event": false
+}

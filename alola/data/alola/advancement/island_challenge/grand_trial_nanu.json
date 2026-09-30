@@ -1,0 +1,43 @@
+{
+  "parent": "alola:island_challenge/trial_acerola",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:persian",
+          "aspects": [
+            "alolan"
+          ]
+        }
+      }
+    },
+    "title": {
+      "text": "Grand Trial: Kahuna Nanu"
+    },
+    "description": {
+      "text": "Ula'ula Island: win 50 Pokémon battles"
+    },
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "win": {
+      "trigger": "cobblemon:battles_won",
+      "conditions": {
+        "count": 50
+      }
+    }
+  },
+  "requirements": [
+    [
+      "win"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/grand_trial_nanu"
+  },
+  "sends_telemetry_event": false
+}

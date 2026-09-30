@@ -1,0 +1,68 @@
+{
+  "parent": "alola:island_challenge/grand_trial_hapu",
+  "display": {
+    "icon": {
+      "id": "cobblemon:master_ball"
+    },
+    "title": {
+      "text": "First Champion of Alola"
+    },
+    "description": {
+      "text": "Clear every trial and grand trial, then win 100 Pokémon battles"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "trials": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type_specific": {
+                "type": "minecraft:player",
+                "advancements": {
+                  "alola:island_challenge/trial_ilima": true,
+                  "alola:island_challenge/grand_trial_hala": true,
+                  "alola:island_challenge/trial_lana": true,
+                  "alola:island_challenge/trial_kiawe": true,
+                  "alola:island_challenge/trial_mallow": true,
+                  "alola:island_challenge/grand_trial_olivia": true,
+                  "alola:island_challenge/trial_sophocles": true,
+                  "alola:island_challenge/trial_acerola": true,
+                  "alola:island_challenge/grand_trial_nanu": true,
+                  "alola:island_challenge/trial_mina": true,
+                  "alola:island_challenge/trial_vast_poni": true,
+                  "alola:island_challenge/grand_trial_hapu": true
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "battles": {
+      "trigger": "cobblemon:battles_won",
+      "conditions": {
+        "count": 100
+      }
+    }
+  },
+  "requirements": [
+    [
+      "trials"
+    ],
+    [
+      "battles"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/champion"
+  },
+  "sends_telemetry_event": false
+}

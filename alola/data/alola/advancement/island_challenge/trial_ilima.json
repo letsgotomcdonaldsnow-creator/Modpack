@@ -1,0 +1,42 @@
+{
+  "parent": "alola:island_challenge/festival",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:gumshoos",
+          "aspects": []
+        }
+      }
+    },
+    "title": {
+      "text": "Trial of Ilima: Verdant Cavern"
+    },
+    "description": {
+      "text": "Melemele Island: catch 3 Normal-type Pokémon"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "catch": {
+      "trigger": "cobblemon:catch_pokemon",
+      "conditions": {
+        "type": "normal",
+        "count": 3
+      }
+    }
+  },
+  "requirements": [
+    [
+      "catch"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/trial_ilima"
+  },
+  "sends_telemetry_event": false
+}

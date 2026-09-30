@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "alola_adventure",
+  "version": "1.0.0",
+  "name": "Alola Adventure",
+  "description": "The glue of the Pokemon Alola Adventure modpack: Alolan starters, Alola spawn boosts for tropical islands, beaches, jungles, volcanoes and warm seas, and the Island Challenge advancement tab with Z-Crystal rewards.",
+  "authors": ["Pokemon Alola Adventure modpack"],
+  "contact": {
+    "sources": "https://github.com/letsgotomcdonaldsnow-creator/Modpack"
+  },
+  "license": "MIT",
+  "icon": "assets/alola/icon.png",
+  "environment": "*",
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.21.1",
+    "fabric-api": "*",
+    "cobblemon": ">=1.7.0"
+  }
+}

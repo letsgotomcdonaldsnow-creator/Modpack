@@ -1,0 +1,29 @@
+{
+  "parent": "alola:island_challenge/partner",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pasture"
+    },
+    "title": {
+      "text": "Poké Pelago"
+    },
+    "description": {
+      "text": "Put a Pokémon to work in a pasture"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "pasture": {
+      "trigger": "cobblemon:pasture_use"
+    }
+  },
+  "requirements": [
+    [
+      "pasture"
+    ]
+  ],
+  "sends_telemetry_event": false
+}

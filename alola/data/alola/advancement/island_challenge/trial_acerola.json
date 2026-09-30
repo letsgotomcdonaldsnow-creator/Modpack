@@ -1,0 +1,42 @@
+{
+  "parent": "alola:island_challenge/trial_sophocles",
+  "display": {
+    "icon": {
+      "id": "cobblemon:pokemon_model",
+      "components": {
+        "cobblemon:pokemon_item": {
+          "species": "cobblemon:mimikyu",
+          "aspects": []
+        }
+      }
+    },
+    "title": {
+      "text": "Trial of Acerola: Thrifty Megamart"
+    },
+    "description": {
+      "text": "Ula'ula Island: catch 5 Ghost-type Pokémon"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "catch": {
+      "trigger": "cobblemon:catch_pokemon",
+      "conditions": {
+        "type": "ghost",
+        "count": 5
+      }
+    }
+  },
+  "requirements": [
+    [
+      "catch"
+    ]
+  ],
+  "rewards": {
+    "function": "alola:rewards/trial_acerola"
+  },
+  "sends_telemetry_event": false
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "alola:island_challenge/island_scan",
+  "display": {
+    "icon": {
+      "id": "cobblemon:shiny_stone"
+    },
+    "title": {
+      "text": "A Different Color"
+    },
+    "description": {
+      "text": "Catch a shiny Pokémon"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "shiny": {
+      "trigger": "cobblemon:catch_shiny_pokemon",
+      "conditions": {
+        "count": 1
+      }
+    }
+  },
+  "requirements": [
+    [
+      "shiny"
+    ]
+  ],
+  "sends_telemetry_event": false
+}
