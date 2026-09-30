@@ -381,6 +381,10 @@ class Resolver:
             versions = [v for v in versions if v["id"] == pin or v["version_number"] == pin
                         or v["version_number"].split("+")[0] == pin
                         or re.search(rf"(^|[^0-9.]){re.escape(pin)}([^0-9]|$)", v["version_number"])]
+        match = entry.get("match")
+        if match:
+            versions = [v for v in versions if re.search(match, v["version_number"])
+                        or any(re.search(match, f["filename"]) for f in v["files"])]
         exact = [v for v in versions if self.minecraft in v["game_versions"]]
         loose = [v for v in versions if self.minecraft not in v["game_versions"]]
         ordered = exact + loose
@@ -416,6 +420,8 @@ class Resolver:
         cands = self.candidates(entry, versions)
         if not cands:
             where = f"pin {entry['pin']!r}" if entry.get("pin") else f"{'/'.join(KIND_LOADERS[kind])} {self.minecraft}"
+            if entry.get("match"):
+                where += f" matching {entry['match']!r}"
             self.errors.append(f"{project['slug']}: no version for {where}")
             return None
         if kind != "mod" or entry.get("skip_compat"):
@@ -462,6 +468,7 @@ class Resolver:
             "explicit": explicit,
             "note": entry.get("note", ""),
             "pin": entry.get("pin"),
+            "match": entry.get("match"),
             "side": entry.get("side"),
             "optional": bool(entry.get("optional")),
             "project_client_side": project.get("client_side"),
@@ -482,7 +489,8 @@ class Resolver:
 
     def reuse(self, entry: dict, project: dict) -> dict | None:
         old = self.old.get(project["id"])
-        if not old or old.get("pin") != entry.get("pin") or old.get("kind") != entry["kind"]:
+        if not old or old.get("pin") != entry.get("pin") or old.get("match") != entry.get("match") \
+                or old.get("kind") != entry["kind"]:
             return None
         rec = dict(old)
         rec.update(category=entry.get("category", old["category"]), note=entry.get("note", ""),
@@ -531,7 +539,9 @@ class Resolver:
                 if pick is None:
                     continue
                 rec = self.record(entry, proj, pick, is_explicit)
-                log(f"  + {rec['slug']:<44} {rec['version_number']}")
+                deps = pick["mods"][0]["depends"] if pick["mods"] else {}
+                extra = f"  [cobblemon {deps['cobblemon']}]" if "cobblemon" in deps else ""
+                log(f"  + {rec['slug']:<44} {rec['version_number']}{extra}")
             if entry.get("anchor"):
                 self.add_anchor(rec)
             self.chosen[proj["id"]] = rec
@@ -609,7 +619,8 @@ def explicit_env(f: dict) -> dict:
     elif side == "both":
         client = server = "required"
     else:
-        client = "unsupported" if f.get("project_client_side") == "unsupported" else "required"
+        # Single-player runs an integrated server, so server-side mods belong on the client too.
+        client = "required"
         server = "unsupported" if f.get("project_server_side") == "unsupported" else "required"
     if f.get("optional") and client != "unsupported":
         client = "optional"
@@ -692,6 +703,11 @@ def cmd_validate(args) -> int:
                 if dep in provided and any(predicate_matches(pred, v) for v in provided[dep]):
                     errors.append(f"[{side}] {label} breaks with {dep} {pred} (found {', '.join(sorted(set(provided[dep])))})")
         log(f"[{side}] {len(present)} jars, {len(top_ids)} top-level mods")
+    log("Declared Cobblemon ranges:")
+    for f in mods:
+        jar = infos[f["project_id"]]
+        if jar and "cobblemon" in jar[0]["depends"]:
+            log(f"  {f['slug']:<48} {f['version_number']:<36} cobblemon {jar[0]['depends']['cobblemon']}")
     errors += check_alola_ids(lock)
     for e in sorted(set(errors)):
         log(f"VALIDATE-ERROR: {e}")
@@ -1004,6 +1020,25 @@ def cmd_inspect(args) -> int:
     return 1
 
 
+# -------------------------------------------------------------------- versions
+
+def cmd_versions(args) -> int:
+    pack, _ = load_modlist()
+    for slug in args.slugs:
+        try:
+            versions = api(f"/project/{slug}/version", loaders=["fabric"],
+                           game_versions=pack.get("game_versions", [pack["minecraft"]]))
+        except urllib.error.HTTPError as e:
+            log(f"{slug}: HTTP {e.code}")
+            continue
+        versions.sort(key=lambda v: v["date_published"], reverse=True)
+        log(f"== {slug}: {len(versions)} fabric versions")
+        for v in versions[: args.limit]:
+            f = Resolver.primary_file(v)
+            log(f"  {v['date_published'][:10]} {v['version_type']:<7} {v['version_number']:<40} {f['filename']}")
+    return 0
+
+
 # ------------------------------------------------------------------------ main
 
 def main() -> int:
@@ -1024,13 +1059,17 @@ def main() -> int:
     b.add_argument("--timeout", type=int, default=900)
     b.add_argument("--command", action="append", help="console command to run once the server is up")
     b.add_argument("--dump", action="append", help="glob of generated files to print after boot")
+    v = sub.add_parser("versions", help="list a project's Fabric versions (diagnostics)")
+    v.add_argument("slugs", nargs="+")
+    v.add_argument("--limit", type=int, default=12)
     i = sub.add_parser("inspect")
     i.add_argument("slug")
     i.add_argument("pattern")
     i.add_argument("--limit", type=int, default=200)
     args = p.parse_args()
     return {"resolve": cmd_resolve, "validate": cmd_validate, "build": cmd_build, "docs": cmd_docs,
-            "server": cmd_server, "boot": cmd_boot, "inspect": cmd_inspect}[args.cmd](args)
+            "server": cmd_server, "boot": cmd_boot, "inspect": cmd_inspect,
+            "versions": cmd_versions}[args.cmd](args)
 
 
 if __name__ == "__main__":

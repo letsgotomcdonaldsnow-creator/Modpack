@@ -18,7 +18,7 @@ FUN = DATA / "function" / "rewards"
 NS = "alola:island_challenge"
 
 # Item ids of the Z-Ring and Z-Crystals added by Cobblemon: Mega Showdown.
-Z_RING = "mega_showdown:z-ring"
+Z_RING = "mega_showdown:z_ring"
 Z = "mega_showdown:{}_z"
 
 

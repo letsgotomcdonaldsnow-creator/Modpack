@@ -10,6 +10,8 @@
 #   note        why it is in the pack (shown in MODS.md)
 #   kind        "mod" (default), "resourcepack" or "shader"
 #   pin         a version number to lock to (pinned mods are resolved first)
+#   match       regex a version number or file name must contain, for addons
+#               that publish separate builds per Cobblemon version
 #   anchor      true = every other mod must accept this mod's version
 #   side        "client", "server" or "both" to override Modrinth's metadata
 #   optional    true = the launcher may let players skip it
@@ -34,7 +36,7 @@ mods = [
 title = "Alola: Pokémon, Z-Moves and the Island Challenge"
 mods = [
   { id = "complete-cobblemon-collection-w-legendary-spawns", note = "Models and spawns for the Pokémon Cobblemon hasn't finished: Rockruff and Lycanroc, Oricorio, Grubbin, Minior, the Tapus, Cosmog, Necrozma and the Ultra Beasts" },
-  { id = "cobblemon-mega-showdown", note = "Z-Crystals, the Z-Ring, Z-Moves and Ultra Burst (plus Mega Evolution)" },
+  { id = "cobblemon-mega-showdown", match = '\+1\.7\.3', note = "Z-Crystals, the Z-Ring, Z-Moves and Ultra Burst (plus Mega Evolution)" },
   { id = "legendary-monuments", note = "Shrines and structures for encountering legendary Pokémon" },
   { id = "cobblemon-size-variations", note = "Pokémon come in different sizes; now and then you meet a Totem-sized one" },
   { id = "cobbleloots", note = "Item balls lying around the world, like in the games" },
@@ -43,7 +45,7 @@ mods = [
 [category.pokemon_life]
 title = "Pokémon life: Poké Pelago, the Nursery, Poké Marts and trainers"
 mods = [
-  { id = "cobbleworkers", note = "Poké Pelago: Pokémon in a pasture take on jobs such as farming, fishing and gathering" },
+  { id = "cobbleworkers", match = '\+1\.7', note = "Poké Pelago: Pokémon in a pasture take on jobs such as farming, fishing and gathering" },
   { id = "cobblemon-pasture-loot", note = "Pastured Pokémon bring back items, like Isle Abeens" },
   { id = "cobbreeding", note = "Pokémon Nursery: breed Pokémon and hatch eggs in pastures" },
   { id = "cobbledollars", note = "Poké Dollars, Poké Mart shopkeepers and prize money" },
@@ -65,7 +67,7 @@ mods = [
   { id = "more-cobblemon-tweaks", side = "client", note = "Quality-of-life tweaks for Cobblemon's screens" },
   { id = "cobblemon-party-extras", side = "client", note = "Extra party-overlay information" },
   { id = "catch-rate-display", side = "client", note = "Shows the catch chance of the Poké Ball you are holding" },
-  { id = "better-cobblemon-spectation", side = "client", note = "Better camera when spectating other trainers' battles" },
+  { id = "better-cobblemon-spectation", match = '1\.7', side = "client", note = "Better camera when spectating other trainers' battles" },
 ]
 
 [category.world]
@@ -91,9 +93,7 @@ mods = [
   { id = "farmers-delight-refabricated", note = "Cooking, crops and meals" },
   { id = "pineapple-delight", note = "Pineapples and pineapple dishes" },
   { id = "oceans-delight", note = "Seafood dishes" },
-  { id = "croptopia", note = "Tropical fruit such as bananas, mangoes, coconuts and kiwis, plus hundreds of recipes" },
   { id = "lets-do-bakery-farmcharm-compat", note = "Bakery: doughnuts, cakes and pastries (malasadas in spirit)" },
-  { id = "cobblecuisine", note = "Pokémon-themed foods and treats" },
   { id = "appleskin", note = "Shows hunger and saturation values" },
 ]
 

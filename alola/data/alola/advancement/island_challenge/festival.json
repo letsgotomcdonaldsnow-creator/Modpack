@@ -2,7 +2,7 @@
   "parent": "alola:island_challenge/partner",
   "display": {
     "icon": {
-      "id": "mega_showdown:z-ring"
+      "id": "mega_showdown:z_ring"
     },
     "title": {
       "text": "The Festival at Iki Town"

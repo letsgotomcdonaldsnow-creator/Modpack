@@ -63,12 +63,13 @@ jobs:
         continue-on-error: true
         run: python tools/modpack.py validate
 
-      - name: Inspect ids (diagnostics)
+      - name: Version diagnostics
         if: always()
         continue-on-error: true
-        run: |
-          python tools/modpack.py inspect cobblemon-mega-showdown 'models/item/.*(ium|_z|ring|bracelet)' --limit 80
-          python tools/modpack.py inspect cobblemon 'models/item/(potion|pasture|shiny_stone|pokemon_model|exp_candy|rare_candy)' --limit 40
+        run: >
+          python tools/modpack.py versions cobblemon-mega-showdown cobbleworkers better-cobblemon-spectation
+          complete-cobblemon-collection-w-legendary-spawns legendary-monuments cobblemon-fight-or-flight-reborn
+          exp-all cobbledollars cobbleloots
 
       - name: Build .mrpack
         run: python tools/modpack.py build
