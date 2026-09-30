@@ -196,6 +196,143 @@ def pokemon_league(c: Canvas, x, y, z, facing, rng: random.Random):
     return W, D + 4
 
 
+# =============================================================== Aether Paradise
+
+AETHER_Y = "minecraft:yellow_concrete"
+
+
+def _octagon(r, du, dw):
+    return abs(du) <= r and abs(dw) <= r and abs(du) + abs(dw) <= r * 1.42
+
+
+def aether_paradise(c: Canvas, cx, y, cz, rng: random.Random):
+    """The Aether Foundation's artificial island: dock ring at sea level, main deck, central tower,
+    conservation greenhouse, entrance hall with a Pokémon Center, Lusamine's mansion on a terrace."""
+    from .canvas import SEA
+    b = arch.Bld(c, cx, y, cz, "south")
+    R = 58
+    floor_y = SEA - 18
+    # support pillars from the sea bed and the dock ring at sea level
+    for du in range(-R - 8, R + 9):
+        for dw in range(-R - 8, R + 9):
+            inner = _octagon(R, du, dw)
+            dock = _octagon(R + 8, du, dw) and not _octagon(R + 1, du, dw)
+            if dock:
+                b.set(du, SEA + 1 - y, dw, AETHER_Y if not _octagon(R + 7, du, dw) else "minecraft:white_concrete")
+            if inner:
+                edge = not _octagon(R - 1, du, dw)
+                b.set(du, 0, dw, "minecraft:white_concrete" if edge else
+                      ("minecraft:smooth_quartz" if (du // 6 + dw // 6) % 2 else "minecraft:quartz_block"))
+                b.set(du, -1, dw, "minecraft:white_concrete")
+                if edge:
+                    b.set(du, 1, dw, "minecraft:white_stained_glass_pane")
+            if (inner or dock) and du % 12 == 0 and dw % 12 == 0:
+                for v in range(floor_y - y, 0 if inner else SEA + 1 - y):
+                    b.set(du, v, dw, "minecraft:quartz_pillar[axis=y]")
+    # stripes and the landing emblem
+    for k in range(-R + 3, R - 2):
+        b.set(k, 0, 0, AETHER_Y)
+        b.set(0, 0, k, AETHER_Y)
+    for du in range(-9, 10):
+        for dw in range(-9, 10):
+            d = math.hypot(du, dw)
+            if d <= 9.4:
+                b.set(du, 0, 30 + dw, AETHER_Y if 7.5 < d or abs(du) <= 1 or abs(dw) <= 1 else "minecraft:white_concrete")
+    # central tower: banded white drum with windows, glass lift, observation deck on top
+    for v in range(1, 46):
+        for du in range(-9, 10):
+            for dw in range(-9, 10):
+                if not _octagon(9, du, dw):
+                    continue
+                ring = not _octagon(8, du, dw)
+                if ring:
+                    b.set(du, v, dw, "minecraft:light_blue_stained_glass" if v % 5 in (2, 3) else "minecraft:white_concrete")
+                elif v % 5 == 0:
+                    b.set(du, v, dw, "minecraft:smooth_quartz")
+    for v in range(1, 46):
+        for du in (-1, 0, 1):
+            for dw in (-1, 0, 1):
+                b.set(du, v, dw, "minecraft:air" if (du, dw) == (0, 0) else "minecraft:glass")
+    for v in range(1, 45):
+        b.set(0, v, -2, "minecraft:ladder[facing=north]")
+    for du in (-1, 0, 1):                     # doorway into the tower on the entrance side
+        for v in (1, 2, 3):
+            for dw in (8, 9):
+                b.set(du, v, dw, "minecraft:air")
+    for du in range(-14, 15):
+        for dw in range(-14, 15):
+            if _octagon(14, du, dw) and not _octagon(8, du, dw):
+                b.set(du, 46, dw, "minecraft:smooth_quartz")
+                if not _octagon(13, du, dw):
+                    b.set(du, 47, dw, "minecraft:white_stained_glass_pane")
+    b.sign(0, 2, -10, ["Aether Paradise", "", "Aether Foundation", ""], wood="birch", wall=False)
+    # conservation area: glass greenhouse with trees, grass, a pond and flowers
+    gx, gz = -34, 12
+    b.dome(gx, gz, 1, 19, "minecraft:glass")
+    b.disc(gx, gz, 0, 18.5, "minecraft:grass_block")
+    b.disc(gx, gz, 0, 5.5, "minecraft:water")
+    for _ in range(40):
+        a, r = rng.uniform(0, math.tau), rng.uniform(7, 16)
+        fu, fw = gx + round(r * math.cos(a)), gz + round(r * math.sin(a))
+        b.set(fu, 1, fw, rng.choice(["wilderwild:pink_hibiscus", "wilderwild:yellow_hibiscus", "minecraft:allium",
+                                     "minecraft:short_grass", "minecraft:fern", "wilderwild:white_hibiscus"]))
+    for a in range(0, 360, 60):
+        tu, tw = gx + round(11 * math.cos(math.radians(a))), gz + round(11 * math.sin(math.radians(a)))
+        for v in range(1, 6):
+            b.set(tu, v, tw, "minecraft:birch_log[axis=y]")
+        for du in range(-2, 3):
+            for dw in range(-2, 3):
+                for dv in (5, 6, 7):
+                    if abs(du) + abs(dw) + (dv - 6) ** 2 <= 3:
+                        b.set(tu + du, dv, tw + dw, "minecraft:azalea_leaves[persistent=true]")
+    # entrance hall on the far side of the landing emblem (local +w), with Pokémon Center and Mart
+    ew1, ew2 = 36, 50
+    for du in range(-14, 15):
+        for dw in range(ew1, ew2 + 1):
+            wall = abs(du) == 14 or dw in (ew1, ew2)
+            for v in range(1, 9):
+                b.set(du, v, dw, ("minecraft:light_blue_stained_glass" if 2 <= v <= 6 and dw == ew2 and du % 3
+                                  else "minecraft:white_concrete") if wall else "minecraft:air")
+            b.set(du, 9, dw, "minecraft:smooth_quartz" if wall else "minecraft:glass" if abs(du) < 10 else "minecraft:smooth_quartz")
+    for v in range(1, 5):
+        for du in (-2, -1, 0, 1, 2):
+            b.set(du, v, ew2, "minecraft:air")
+    for du in range(-13, 14):
+        b.set(du, 8, ew2 + 1, AETHER_Y)
+    for dw in range(ew1 + 2, ew1 + 8):
+        b.set(-11, 1, dw, "minecraft:red_concrete"), b.set(-11, 2, dw, "minecraft:smooth_quartz_slab[type=bottom]")
+        b.set(11, 1, dw, "minecraft:light_blue_concrete"), b.set(11, 2, dw, "minecraft:smooth_quartz_slab[type=bottom]")
+    setup_cmd(b, -12, 1, ew1 + 4, "setblock {x} {y} {z} cobblemon:healing_machine[facing=east]")
+    npc(b, -12, 1, ew1 + 6, "alola:nurse")
+    merchant(b, 12, 1, ew1 + 5, name="Aether Mart", look="left")
+    for dw in range(ew1 + 2, ew2 - 1, 4):
+        b.set(-6, 1, dw, furn.piece("sofa_white", "east")), b.set(6, 1, dw, furn.piece("sofa_white", "west"))
+    npc(b, 0, 1, ew1 + 3, "alola:gladion")
+    from . import multiplayer
+    multiplayer.waystone(c, *b.world(8, 1, ew2 - 3), "Aether Paradise", facing="north", pad=False)
+    b.sign(0, 7, ew2 + 1, ["Aether Foundation", "", "Welcome to", "Aether Paradise"], wood="birch")
+    # Lusamine's mansion on a raised terrace (local -w), facing the tower, with a formal garden
+    tv = 6
+    for du in range(-24, 25):
+        for dw in range(-54, -26):
+            if _octagon(R - 2, du, dw):
+                for v in range(1, tv):
+                    b.set(du, v, dw, "minecraft:white_concrete" if abs(du) == 24 or dw == -27 else "minecraft:smooth_quartz")
+                b.set(du, tv, dw, "minecraft:grass_block" if abs(du) > 3 else "minecraft:smooth_quartz")
+    for k in range(tv):
+        for du in (-2, -1, 0, 1, 2):
+            b.set(du, k + 1, -26 + (tv - 1 - k) - tv + 1, "minecraft:quartz_stairs[facing=south,half=bottom,shape=straight]")
+    arch.build_house(c, cx + 10, y + tv, cz + 30, "north", rng, style="modern", W=21, D=13, floors=2,
+                     label="Lusamine", yard=False)
+    for du in range(-22, 23, 4):
+        for dw in (-28, -52):
+            if abs(du) > 3:
+                b.set(du, tv + 1, dw, rng.choice(["minecraft:white_tulip", "wilderwild:white_hibiscus", "minecraft:lily_of_the_valley"]))
+    npc(b, 0, tv + 1, -28, "alola:lusamine")
+    npc(b, 6, 1, 20, "alola:plumeria")
+    return R, R
+
+
 E4_THEMES = {
     "Fighting": ("minecraft:stripped_oak_wood[axis=y]", "minecraft:bamboo_mosaic", "minecraft:oak_planks",
                  "minecraft:torch", "minecraft:orange_wall_banner"),

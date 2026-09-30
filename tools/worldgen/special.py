@@ -190,54 +190,6 @@ def battle_tree(c: Canvas, x, y, z, facing, rng):
     return W, D
 
 
-# ------------------------------------------------------------------ aether paradise
-def aether_paradise(c: Canvas, cx, y, cz, rng):
-    """Octagonal white platform on stilts over the sea, with a conservation dome."""
-    b = B(c, cx, y, cz, "south")
-    R = 70
-    for du in range(-R, R + 1):
-        for dw in range(-R, R + 1):
-            if abs(du) + abs(dw) <= R * 1.3 and abs(du) <= R and abs(dw) <= R:
-                edge = abs(du) + abs(dw) > R * 1.3 - 2 or abs(du) >= R - 1 or abs(dw) >= R - 1
-                b.set(du, 0, dw, "minecraft:white_concrete" if edge else "minecraft:smooth_quartz")
-                b.set(du, -1, dw, "minecraft:white_concrete")
-                if edge:
-                    b.set(du, 1, dw, "minecraft:white_stained_glass_pane")
-                if (du % 16 == 0 and dw % 16 == 0):
-                    for v in range(SEA - y - 22, -1):
-                        b.set(du, v, dw, "minecraft:quartz_pillar[axis=y]")
-    # yellow/white stripes like the Aether logo
-    for du in range(-R + 4, R - 3):
-        b.set(du, 0, 0, "minecraft:yellow_concrete")
-        b.set(0, 0, du, "minecraft:yellow_concrete")
-    # conservation dome
-    b.dome(-30, -30, 1, 22, "minecraft:glass")
-    b.disc(-30, -30, 0, 21, "minecraft:grass_block")
-    b.disc(-30, -30, 0, 6, "minecraft:water")
-    # main lobby building with elevator tower
-    b.box(10, 1, 10, 50, 8, 40, "minecraft:white_concrete", walls_only=True)
-    b.box(10, 9, 10, 50, 9, 40, "minecraft:smooth_quartz")
-    for u in range(12, 49, 3):
-        for v in (3, 4, 5):
-            b.set(u, v, 10, "minecraft:light_blue_stained_glass_pane")
-    b.clear(28, 1, 10, 32, 5, 10)
-    b.cylinder(30, 26, 1, 40, 5, "minecraft:white_concrete")
-    b.cylinder(30, 26, 10, 38, 4, "minecraft:light_blue_stained_glass")
-    b.dome(30, 26, 40, 6, "minecraft:white_concrete")
-    for w in range(12, 40, 6):
-        b.set(14, 1, w, P("sofa_white", "east")), b.set(46, 1, w, P("plant_big"))
-    b.sign(30, 7, 9, ["Aether", "Paradise", "", "Aether Foundation"], wood="birch")
-    npc(b, 30, 1, 20, "alola:lusamine")
-    npc(b, 24, 1, 16, "alola:gladion")
-    npc(b, 36, 1, 16, "alola:plumeria")
-    npc(b, 20, 1, 14, "alola:nurse")
-    setup_cmd(b, 20, 1, 12, "setblock {x} {y} {z} cobblemon:healing_machine")
-    # docks
-    for w in range(R, R + 18):
-        for u in range(-3, 4):
-            b.set(u, 0, w, "minecraft:white_concrete")
-
-
 # ------------------------------------------------------------------ small landmarks
 def lighthouse(c: Canvas, x, y, z, facing, rng):
     b = B(c, x, y, z, facing)

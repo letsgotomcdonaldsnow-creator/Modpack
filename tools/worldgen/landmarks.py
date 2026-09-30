@@ -378,7 +378,7 @@ def poni(t, rng):
     sp.cave_entrance(c, x, TOWN_Y["Resolution Cave"], z + 8, "south", rng, depth=20, name="Resolution Cave")
 
 
-EXTRA_WAYSTONES = ["Iki Town", "Aether Paradise", "Ten Carat Hill", "Wela Volcano Park", "Lush Jungle",
+EXTRA_WAYSTONES = ["Iki Town", "Ten Carat Hill", "Wela Volcano Park", "Lush Jungle",
                    "Hano Grand Resort", "Malie Garden", "Vast Poni Canyon", "Altar of the Sunne", "Pokemon League",
                    "Exeggutor Island", "Mount Hokulani", "Haina Desert"]
 
@@ -402,7 +402,8 @@ def build_all(c: Canvas, t: T.Terrain, rng: random.Random):
     iki_town(t, rng)
     melemele_misc(t, rng)
     x, z, y = alola_map.TOWNS["Aether Paradise"]
-    sp.aether_paradise(c, x, y, z, rng)
+    from . import grand
+    grand.aether_paradise(c, x, y, z, rng)
     reserve(t, x - 75, z - 75, x + 75, z + 95)
     akala(t, rng)
     ulaula(t, rng)
