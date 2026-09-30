@@ -361,7 +361,10 @@ def build_house(c: Canvas, x, y, z, facing, rng: random.Random, style="plantatio
     else:
         hip_roof(b, st, W, D, rtop)
     # inside
-    furnish(b, st, W, D, floors, b0, rng, beds=beds, kind=interior or st.interior)
+    kind = interior or st.interior
+    furnish(b, st, W, D, floors, b0, rng, beds=beds, kind=kind)
+    if floors > 1:
+        upstairs(b, st, W, D, floors, b0, rng, beds=beds, kind=kind)
     if label:
         b.sign(du + 1, b0 + 2, -1, [label], wood="birch")
     if yard:
@@ -500,7 +503,8 @@ def furnish(b: Bld, st: Style, W, D, floors, b0, rng, beds=1, kind="home"):
     b.piece(W - 3, v, 1, "armchair", "west")
     b.set(3, v, 2, furn.piece("rug"))
     b.piece(1, v, split - 1, "plant_big")
-    b.piece(W - 2, v, split - 1, "bookshelf", "west")
+    if floors == 1:                      # in taller houses this corner holds the ladder upstairs
+        b.piece(W - 2, v, split - 1, "bookshelf", "west")
     b.piece(W // 2, b0 + st.story_h - 1, split // 2, "ceiling_lamp")
     # kitchen strip on the back-left
     for w in range(split + 1, D - 1):
@@ -520,6 +524,37 @@ def furnish(b: Bld, st: Style, W, D, floors, b0, rng, beds=1, kind="home"):
     b.piece(W // 2 + 1, v, split + 1, "wardrobe", "south")
     b.piece(W - 2, v, split + 1, "doll_rowlet" if rng.random() < 0.5 else "doll_mimikyu", "west")
     b.piece(W // 2 + 2, b0 + st.story_h - 1, (split + D) // 2, "ceiling_lamp")
+
+
+def upstairs(b: Bld, st: Style, W, D, floors, b0, rng, beds=1, kind="home"):
+    """A ladder up through every floor and, in homes, bedrooms upstairs."""
+    H = st.story_h
+    if kind == "empty":
+        lu, lw, lf, back = W - 2, D - 2, "west", None      # against the right wall, back corner
+    else:
+        lu, lw, lf, back = W - 2, max(3, D // 2) - 1, "south", max(3, D // 2)   # on the partition
+    for v in range(b0 + 1, b0 + H * (floors - 1) + 1):
+        if back is not None and v > b0 + H and b.get(lu, v, back) == "minecraft:air":
+            b.set(lu, v, back, st.inner_wall)
+        b.set(lu, v, lw, f"minecraft:ladder[facing={lf}]")
+    if kind != "home":
+        return
+    colours = ["red", "light_blue", "yellow", "pink", "white", "lime", "orange", "cyan"]
+    for f in range(1, floors):
+        v = b0 + f * H + 1
+        for i in range(max(1, beds)):
+            bu = 2 + 2 * i
+            if bu > W // 2 - 1:
+                break
+            b.bed(bu, v, D - 3, rng.choice(colours), facing="north")
+            b.piece(bu + 1, v, D - 2, "drawer", "north")
+        b.piece(1, v, 1, "wardrobe", "east")
+        b.piece(W - 3, v, 1, "desk", "south")
+        b.piece(W - 3, v, 2, "chair", "north")
+        b.piece(1, v, D - 2, "plant_big")
+        b.set(W // 2, v, D // 2, furn.piece("rug"))
+        b.piece(W // 2, v, 1, rng.choice(["doll_rowlet", "doll_mimikyu", "doll_palossand", "pot_flower"]), "south")
+        b.piece(W // 2, b0 + (f + 1) * H - 1, D // 2, "ceiling_lamp")
 
 
 # ----------------------------------------------------------------- the yard
@@ -726,6 +761,8 @@ def shop(c: Canvas, x, y, z, facing, rng: random.Random, label="Shop", kind="mar
         b.piece(2, v0 + 1, D - 2, "sofa", "north")
         b.piece(3, v0 + 1, D - 2, "sofa", "north")
         b.piece(2, v0 + 1, D - 4, "table")
+    for v in range(1, top - 3 if floors > 1 else 1):    # ladder from the back of the shop up to the flats
+        b.set(1, v, D - 2, "minecraft:ladder[facing=east]")
     # flat roof with parapet, rooftop kit
     rt = top + 1
     for u in range(-1, W + 1):
