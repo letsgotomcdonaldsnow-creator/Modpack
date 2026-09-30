@@ -139,6 +139,15 @@ class Terrain:
                 cut = np.clip(1 - d / width, 0, 1) ** 0.6 * depth
                 self.carved = np.maximum(self.carved, cut)
 
+    BLEND_MAX = 48      # widest apron round a flattened site
+
+    def _box(self, xa, za, xb, zb):
+        """Array slices covering a world box grown by BLEND_MAX, clipped to the canvas."""
+        m = self.BLEND_MAX
+        i1 = max(0, za - m - self.c.z0); i2 = min(self.c.d, zb + m + 1 - self.c.z0)
+        j1 = max(0, xa - m - self.c.x0); j2 = min(self.c.w, xb + m + 1 - self.c.x0)
+        return slice(i1, i2), slice(j1, j2)
+
     def flatten(self, x1, z1, x2, z2, y, margin=16, zone=None):
         xa, xb = min(x1, x2), max(x1, x2)
         za, zb = min(z1, z2), max(z1, z2)
@@ -148,9 +157,8 @@ class Terrain:
         core = d == 0
         self.fixed[core] = y
         self.land |= core
-        blend = (d > 0) & (d < margin)
-        w = (1 - d[blend] / margin) ** 2
-        self._blend_targets.append((blend, w, y))
+        sz, sx = self._box(xa, za, xb, zb)
+        self._blend_targets.append((sz, sx, d[sz, sx].astype(np.float32), y, margin))
         self.no_trees |= core
         if zone is not None:
             self.zone[core] = zone
@@ -160,9 +168,8 @@ class Terrain:
         core = d <= r
         self.fixed[core] = y
         self.land |= core
-        blend = (d > r) & (d < r + margin)
-        w = (1 - (d[blend] - r) / margin) ** 2
-        self._blend_targets.append((blend, w, y))
+        sz, sx = self._box(int(x - r), int(z - r), int(x + r), int(z + r))
+        self._blend_targets.append((sz, sx, np.maximum(d[sz, sx] - r, 0).astype(np.float32), y, margin))
         self.no_trees |= core
         if zone is not None:
             self.zone[core] = zone
@@ -220,8 +227,15 @@ class Terrain:
         h = np.where((~land) & (off >= 34), FLAT_FLOOR, h)
 
         h = h - self.carved
-        for mask, w, y in self._blend_targets:
-            h[mask] = h[mask] * (1 - w) + y * w
+        # ease every flattened site into the land round it: the apron widens with the height difference
+        # (about 2.4 blocks out per block of height) and follows a smoothstep, so no slope is steeper than ~0.6
+        for sz, sx, d, y, margin in self._blend_targets:
+            hs = h[sz, sx]
+            m = np.clip(np.abs(hs - y) * 2.4, margin, self.BLEND_MAX)
+            t = np.clip(1 - d / m, 0, 1)
+            w = t * t * (3 - 2 * t)
+            apron = (d > 0) & land[sz, sx]
+            hs[apron] = hs[apron] * (1 - w[apron]) + y * w[apron]
         fixed = ~np.isnan(self.fixed)
         h[fixed] = self.fixed[fixed]
         hi = np.round(h).astype(np.int16)
