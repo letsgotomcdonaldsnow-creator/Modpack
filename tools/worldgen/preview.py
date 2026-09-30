@@ -42,7 +42,7 @@ def _color(name: str) -> tuple[int, int, int]:
     return (200, 60, 200)
 
 
-def render(c: Canvas, path: Path, scale: int = 1, crop=None) -> None:
+def render(c: Canvas, path: Path, scale: int = 1, crop=None, zoom: int = 1) -> None:
     h = c.height.astype(np.int32)
     wl = c.water.astype(np.int32)
     palette = np.array([_color(s) for s in c.states], dtype=np.float32)
@@ -80,6 +80,8 @@ def render(c: Canvas, path: Path, scale: int = 1, crop=None) -> None:
         img = img[z1 - c.z0:z2 - c.z0, x1 - c.x0:x2 - c.x0]
     if scale > 1:
         img = img[::scale, ::scale]
+    if zoom > 1:
+        img = np.repeat(np.repeat(img, zoom, axis=0), zoom, axis=1)
     hgt, wid = img.shape[:2]
     raw = b"".join(b"\x00" + img[y].tobytes() for y in range(hgt))
 

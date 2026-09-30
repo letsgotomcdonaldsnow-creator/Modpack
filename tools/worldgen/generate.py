@@ -69,6 +69,8 @@ def main() -> int:
     ap.add_argument("--preview", default=str(ROOT / "build/alola-map.png"))
     ap.add_argument("--terrain-only", action="store_true")
     ap.add_argument("--crops", nargs="*", default=[])
+    ap.add_argument("--crop-radius", type=int, default=130)
+    ap.add_argument("--zoom", type=int, default=1, help="upscale factor for the crop images")
     ap.add_argument("--save", action="store_true", help="write the world save")
     ap.add_argument("--check", action="store_true", help="fail if a block or property is not in the catalog")
     args = ap.parse_args()
@@ -105,9 +107,9 @@ def main() -> int:
         from . import alola_map as am
         for name in args.crops:
             x, z, _ = am.TOWNS[name]
-            r = 130
+            r = args.crop_radius
             out = Path(args.preview).with_name("crop-" + name.lower().replace(" ", "-").replace("'", "") + ".png")
-            preview.render(c, out, crop=(x - r, z - r, x + r, z + r))
+            preview.render(c, out, crop=(x - r, z - r, x + r, z + r), zoom=args.zoom)
     print(f"preview: {time.time() - t0:.1f}s")
     return 0
 

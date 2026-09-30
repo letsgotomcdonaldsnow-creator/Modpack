@@ -6,7 +6,7 @@ import random
 
 import numpy as np
 
-from . import alola_map, arch, buildings as bl, furn, plants, special as sp, terrain as T, tour
+from . import alola_map, arch, buildings as bl, furn, plants, sites, special as sp, terrain as T, tour
 from .canvas import SEA, Canvas
 from .kit import B, connect_all
 
@@ -121,7 +121,8 @@ def player_home(t, rng):
     place(t, arch.house, x - 6, y, z + 6, "south", rng, W=13, D=11, style="plantation", floors=2,
           roof_colour="red_terracotta", label="Your House", beds=1, yard=True)
     lx, lz = alola_map.TOWNS["Kukui's Lab"][:2]
-    place(t, sp.lab, lx - 6, TOWN_Y["Kukui's Lab"], lz + 5, "south", rng)
+    place(t, sites.kukui_lab, lx - 8, TOWN_Y["Kukui's Lab"], lz - 2, "south", rng)
+    reserve(t, lx - 12, lz - 16, lx + 12, lz + 17)
 
 
 def iki_town(t, rng):
@@ -151,7 +152,7 @@ def melemele_misc(t, rng):
     reserve(t, x - 15, z - 30, x + 15, z + 16)
     # Ruins of Conflict (Tapu Koko)
     x, z = alola_map.TOWNS["Ruins of Conflict"][:2]
-    place(t, sp.tapu_ruins, x - 9, TOWN_Y["Ruins of Conflict"], z + 10, "south", rng, tapu="koko", name="Ruins of Conflict")
+    place(t, sites.tapu_ruins, x - 13, TOWN_Y["Ruins of Conflict"], z + 22, "south", rng, tapu="koko", name="Ruins of Conflict")
     # Ten Carat Hill and Melemele Meadow signs, Big Wave Beach
     for name in ("Ten Carat Hill", "Melemele Meadow", "Kala'e Bay", "Big Wave Beach"):
         x, z = alola_map.TOWNS[name][:2]
@@ -162,7 +163,7 @@ def melemele_misc(t, rng):
         bx, bz = x - 15 + k * 6, z + 6
         if c.inside(bx, bz) and not c.is_water(bx, bz):
             beach_set(c, bx, c.surface(bx, bz), bz, rng)
-    place(t, sp.arena, -560 - 8, TOWN_Y["Iki Town"], -770 - 40, "south", rng, npc_cls="alola:hau", label="Hau's spot",
+    place(t, sites.court, -560 - 13, TOWN_Y["Iki Town"], -770 - 40, "south", rng, npc_cls="alola:hau", label="Hau's spot",
           lines=("Iki Town", "Rival battle"))
 
 
@@ -246,13 +247,13 @@ def akala(t, rng):
     city.konikoni(t, rng)
     x, z = alola_map.TOWNS["Konikoni City"][:2]
     y = TOWN_Y["Konikoni City"]
-    place(t, sp.arena, x - 8, y, z - 40, "south", rng, npc_cls="alola:olivia", label="Kahuna Olivia",
+    place(t, sites.court, x - 13, y, z - 40, "south", rng, npc_cls="alola:olivia", label="Kahuna Olivia",
           lines=("Grand Trial", "Akala Island"))
     # Memorial Hill + Ruins of Life
     x, z = alola_map.TOWNS["Memorial Hill"][:2]
     place(t, sp.grave_field, x - 12, TOWN_Y["Memorial Hill"], z + 8, "south", rng, rows=4, cols=8, name="Memorial Hill")
     x, z = alola_map.TOWNS["Ruins of Life"][:2]
-    place(t, sp.tapu_ruins, x - 9, TOWN_Y["Ruins of Life"], z + 10, "south", rng, tapu="lele", name="Ruins of Life")
+    place(t, sites.tapu_ruins, x - 13, TOWN_Y["Ruins of Life"], z + 22, "south", rng, tapu="lele", name="Ruins of Life")
 
 
 # ======================================================================= Ula'ula
@@ -281,7 +282,7 @@ def ulaula(t, rng):
     reserve(t, gx - 22, gz - 22, gx + 22, gz + 22)
     # Mount Hokulani observatory
     x, z = alola_map.TOWNS["Mount Hokulani"][:2]
-    place(t, sp.observatory, x - 10, TOWN_Y["Mount Hokulani"], z + 10, "south", rng)
+    place(t, sites.observatory, x - 18, TOWN_Y["Mount Hokulani"], z + 13, "south", rng)
     # Blush Mountain power plant
     x, z = alola_map.TOWNS["Blush Mountain"][:2]
     place(t, sp.power_plant, x - 12, TOWN_Y["Blush Mountain"], z + 8, "south", rng)
@@ -291,14 +292,14 @@ def ulaula(t, rng):
     place(t, bl.pokemon_center, x - 8, y, z - 12, "south", rng, name="Tapu Village")
     for k, (hx, hz, f) in enumerate(((x - 30, z + 10, "north"), (x + 20, z + 12, "north"), (x + 26, z - 20, "west"))):
         place(t, arch.house, hx, y, hz, f, rng, W=9, D=8, style="tapu", yard=True)
-    place(t, sp.arena, x - 8, y, z + 36, "north", rng, npc_cls="alola:nanu", label="Kahuna Nanu",
+    place(t, sites.court, x - 3, y, z + 36, "north", rng, npc_cls="alola:nanu", label="Kahuna Nanu",
           lines=("Grand Trial", "Ula'ula Island"))
     # Haina Desert: Ruins of Abundance
     x, z = alola_map.TOWNS["Ruins of Abundance"][:2]
-    place(t, sp.tapu_ruins, x - 9, TOWN_Y["Ruins of Abundance"], z + 10, "south", rng, tapu="bulu", name="Ruins of Abundance")
+    place(t, sites.tapu_ruins, x - 13, TOWN_Y["Ruins of Abundance"], z + 22, "south", rng, tapu="bulu", name="Ruins of Abundance")
     # Thrifty Megamart (abandoned), Aether House
     x, z = alola_map.TOWNS["Thrifty Megamart"][:2]
-    place(t, sp.megamart, x - 20, TOWN_Y["Thrifty Megamart"], z - 16, "south", rng)
+    place(t, sites.megamart, x - 20, TOWN_Y["Thrifty Megamart"], z + 7, "south", rng)
     x, z = alola_map.TOWNS["Aether House"][:2]
     place(t, arch.house, x - 6, TOWN_Y["Aether House"], z - 6, "south", rng, W=13, D=11, style="modern", floors=2,
           label="Aether House", beds=2)
@@ -336,11 +337,11 @@ def poni(t, rng):
     y = TOWN_Y["Hapu's House"]
     place(t, arch.house, x - 6, y, z - 4, "south", rng, W=13, D=9, style="paniola", label="Hapu's House", beds=1,
           yard=True)
-    place(t, sp.arena, x + 14, y, z + 6, "east", rng, npc_cls="alola:hapu", label="Kahuna Hapu",
+    place(t, sites.court, x + 10, y, z - 13, "west", rng, npc_cls="alola:hapu", label="Kahuna Hapu",
           lines=("Grand Trial", "Poni Island"))
     # Ruins of Hope
     x, z = alola_map.TOWNS["Ruins of Hope"][:2]
-    place(t, sp.tapu_ruins, x - 9, TOWN_Y["Ruins of Hope"], z + 10, "south", rng, tapu="fini", name="Ruins of Hope")
+    place(t, sites.tapu_ruins, x - 13, TOWN_Y["Ruins of Hope"], z + 22, "south", rng, tapu="fini", name="Ruins of Hope")
     # Exeggutor Island: giant palms
     x, z = alola_map.TOWNS["Exeggutor Island"][:2]
     for k in range(10):
@@ -353,10 +354,10 @@ def poni(t, rng):
     sp.trial_gate(c, x - 3, y, z + 6, "south", rng, "Vast Poni Canyon")
     bl.SETUP.append((x, y + 1, z - 10, f"spawnnpcat {x + 0.5} {y + 1} {z - 9.5} alola:totem_kommoo"))
     x, z = alola_map.TOWNS["Altar of the Sunne"][:2]
-    place(t, sp.altar, x - 12, TOWN_Y["Altar of the Sunne"], z + 12, "south", rng)
+    place(t, sites.altar, x - 15, TOWN_Y["Altar of the Sunne"], z + 16, "south", rng)
     # Battle Tree
     x, z = alola_map.TOWNS["Battle Tree"][:2]
-    place(t, sp.battle_tree, x - 20, TOWN_Y["Battle Tree"], z + 20, "south", rng)
+    place(t, sites.battle_tree, x - 30, TOWN_Y["Battle Tree"], z + 26, "south", rng)
     place(t, bl.pokemon_center, x - 44, TOWN_Y["Battle Tree"], z + 30, "south", rng, name="Battle Tree")
     # Poni Meadow (Mina)
     x, z = alola_map.TOWNS["Poni Meadow"][:2]

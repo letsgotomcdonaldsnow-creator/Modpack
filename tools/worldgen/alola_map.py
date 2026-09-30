@@ -202,14 +202,14 @@ def build(t: Terrain) -> None:
 
 
 SITE_RADIUS = {
-    "Iki Town": 46, "Ruins of Conflict": 16, "Verdant Cavern": 14, "Melemele Meadow": 20, "Ten Carat Hill": 18,
+    "Iki Town": 46, "Ruins of Conflict": 30, "Verdant Cavern": 14, "Melemele Meadow": 20, "Ten Carat Hill": 18,
     "Kala'e Bay": 14, "Big Wave Beach": 16, "Route 2 Pokemon Center": 20, "Hau'oli Cemetery": 22,
-    "Player's House": 16, "Kukui's Lab": 14, "Paniola Town": 44, "Paniola Ranch": 40, "Brooklet Hill": 16,
-    "Wela Volcano Park": 26, "Route 8": 30, "Lush Jungle": 18, "Memorial Hill": 18, "Ruins of Life": 16,
-    "Malie Garden": 36, "Mount Hokulani": 28, "Blush Mountain": 22, "Tapu Village": 34, "Haina Desert": 16,
-    "Ruins of Abundance": 16, "Aether House": 16, "Ula'ula Meadow": 16, "Pokemon League": 40,
-    "Poni Wilds": 14, "Hapu's House": 16, "Ruins of Hope": 16, "Exeggutor Island": 18, "Altar of the Sunne": 22,
-    "Vast Poni Canyon": 16, "Poni Plains": 18, "Battle Tree": 38, "Poni Meadow": 18, "Resolution Cave": 12,
+    "Player's House": 16, "Kukui's Lab": 20, "Paniola Town": 44, "Paniola Ranch": 40, "Brooklet Hill": 16,
+    "Wela Volcano Park": 26, "Route 8": 30, "Lush Jungle": 18, "Memorial Hill": 18, "Ruins of Life": 30,
+    "Malie Garden": 36, "Mount Hokulani": 30, "Blush Mountain": 22, "Tapu Village": 34, "Haina Desert": 16,
+    "Ruins of Abundance": 30, "Aether House": 16, "Ula'ula Meadow": 16, "Pokemon League": 40,
+    "Poni Wilds": 14, "Hapu's House": 16, "Ruins of Hope": 30, "Exeggutor Island": 18, "Altar of the Sunne": 24,
+    "Vast Poni Canyon": 16, "Poni Plains": 18, "Battle Tree": 46, "Poni Meadow": 18, "Resolution Cave": 12,
     "Poni Grove": 16, "Hano Grand Resort": 40, "Royal Avenue": 44,
 }
 RECT_SITES = {

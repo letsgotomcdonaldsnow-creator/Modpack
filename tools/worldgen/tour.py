@@ -132,6 +132,39 @@ def views(c: Canvas) -> list[tuple]:
     if house:
         v.append(facade(c, "house_front", house, dist=10, height=3))
         v.append(inside(c, "house_inside", house, house["W"] // 2, 1, house["D"] - 2))
+    # the landmark sites (sites.py)
+    for label in ("Ruins of Conflict", "Ruins of Life", "Ruins of Abundance", "Ruins of Hope"):
+        p = _first("tapu_ruins", label)
+        if p:
+            slug = label.lower().replace(" ", "_")
+            v.append(facade(c, slug, p, dist=18, height=7))
+            if label == "Ruins of Conflict":
+                v.append(inside(c, slug + "_sanctum", p, 13, 33, 44, v=7.6))
+    p = _first("battle_tree")
+    if p:
+        v.append(facade(c, "battle_tree_approach", p, dist=24, height=6))
+        v.append(inside(c, "battle_tree_court", p, 30, 4, 40, v=10.6))
+        v.append(inside(c, "battle_tree_hall", p, 30, 38, 47, v=10.6))
+    p = _first("kukui_lab")
+    if p:
+        v.append(facade(c, "kukui_lab", p, dist=22, height=5))
+        v.append(inside(c, "kukui_lab_inside", p, 5, 2, 11))
+    p = _first("court", "Kahuna Olivia")
+    if p:
+        v.append(facade(c, "olivia_court", p, dist=6, height=9))
+    p = _first("observatory")
+    if p:
+        v.append(facade(c, "hokulani_observatory", p, dist=16, height=6))
+    p = _first("megamart")
+    if p:
+        v.append(facade(c, "thrifty_megamart", p, dist=4, height=5))
+        v.append(inside(c, "thrifty_megamart_inside", p, 20, 2, 26))
+    p = _first("altar")
+    if p:
+        v.append(facade(c, "altar_of_the_sunne", p, dist=12, height=8))
+    p = _first("trainers_school")
+    if p:
+        v.append(facade(c, "trainers_school", p, dist=26, height=9))
     return v
 
 
