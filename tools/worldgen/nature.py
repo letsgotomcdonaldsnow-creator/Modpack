@@ -16,7 +16,7 @@ from collections import defaultdict
 
 import numpy as np
 
-from . import terrain as T
+from . import furn, terrain as T
 from .canvas import NONE, SEA, Canvas
 
 TS = "terrain_slabs:"
@@ -396,6 +396,75 @@ class Nature:
         self.take(x, z, 1)
         self.stats["palms"] += 1
         return True
+
+    # --------------------------------------------------------- apricorn trees
+    APRICORNS = ("red", "yellow", "green", "blue", "pink", "white", "black")
+
+    def apricorn_tree(self, x, y, z, colour=None) -> bool:
+        """Cobblemon apricorn tree with ripe apricorns hanging off the canopy, ready to pick."""
+        c, rng = self.c, self.rng
+        i, j = self.ij(x, z)
+        if self.slabbed[i, j] or not self.free_disc(x, z, 3):
+            return False
+        colour = colour or rng.choice(self.APRICORNS)
+        h = rng.randint(4, 5)
+        if not all(is_air(c, x, y + k, z) for k in range(1, h + 3)):
+            return False
+        for k in range(1, h + 1):
+            c.set(x, y + k, z, "cobblemon:apricorn_log[axis=y]")
+        leaves = "cobblemon:apricorn_leaves[persistent=true]"
+        cells = []
+        for dx in range(-2, 3):
+            for dz in range(-2, 3):
+                for dy in range(-1, 3):
+                    d = math.sqrt(dx * dx + dz * dz + (dy - 0.5) ** 2 * 1.3)
+                    p = (x + dx, y + h + dy, z + dz)
+                    if d <= 2.5 and (dx or dz or dy > 0) and is_air(c, *p):
+                        c.set(*p, leaves)
+                        cells.append(p)
+        placed = 0
+        for lx, ly, lz in rng.sample(cells, len(cells)):
+            if placed >= 6 or ly > y + h:
+                continue
+            for (dx, dz), facing in (((1, 0), "west"), ((-1, 0), "east"), ((0, 1), "north"), ((0, -1), "south")):
+                fx, fz = lx + dx, lz + dz
+                if is_air(c, fx, ly, fz) and (fx, ly, fz) not in cells:
+                    c.set(fx, ly, fz, f"cobblemon:{colour}_apricorn[age=3,facing={facing}]")
+                    placed += 1
+                    break
+        self.take(x, z, 2)
+        self.stats["apricorn trees"] += 1
+        return True
+
+    def route_extras(self, routes):
+        """Along every route: apricorn trees a few blocks off the path and a rest stop now and then."""
+        c, rng = self.c, self.rng
+        for label, pts, width in routes:
+            dist = 0.0
+            for (x1, z1), (x2, z2) in zip(pts, pts[1:]):
+                seg = math.hypot(x2 - x1, z2 - z1)
+                n = max(1, int(seg // 45))
+                for k in range(n):
+                    f = (k + 0.5) / n
+                    px, pz = x1 + (x2 - x1) * f, z1 + (z2 - z1) * f
+                    nx, nz = -(z2 - z1) / (seg or 1), (x2 - x1) / (seg or 1)
+                    side = 1 if (k + int(dist)) % 2 else -1
+                    off = width / 2 + rng.randint(5, 9)
+                    tx, tz = int(px + nx * off * side), int(pz + nz * off * side)
+                    if c.inside(tx, tz) and not c.is_water(tx, tz) and c.states[c.top[tz - c.z0, tx - c.x0]] == "minecraft:grass_block":
+                        self.apricorn_tree(tx, c.surface(tx, tz), tz)
+                    if (k + int(dist // 45)) % 4 == 0:
+                        bx, bz = int(px - nx * (width / 2 + 2) * side), int(pz - nz * (width / 2 + 2) * side)
+                        if c.inside(bx, bz) and not c.is_water(bx, bz):
+                            gy = c.surface(bx, bz)
+                            ii, jj = self.ij(bx, bz)
+                            if not self.slabbed[ii, jj] and is_air(c, bx, gy + 1, bz) and is_air(c, bx, gy + 2, bz):
+                                face = ("east" if nx * side < 0 else "west") if abs(nx) > abs(nz) else \
+                                       ("south" if nz * side < 0 else "north")
+                                c.set(bx, gy + 1, bz, furn.piece("bench", face))
+                                furn.place_tall(c, bx + (1 if abs(nz) > abs(nx) else 0), gy + 1,
+                                                bz + (1 if abs(nx) >= abs(nz) else 0), "tiki_torch")
+                dist += seg
 
     # ---------------------------------------------------------- small things
     def leaf_bush(self, x, y, z, leaves="minecraft:oak_leaves", flowers=None):

@@ -83,6 +83,19 @@ def views(c: Canvas) -> list[tuple]:
     v.append(("hauoli_boulevard", (-880.5, 74, -454.5), _look((-880, 74, -454), (-800, 68, -462))))
     v.append(("hauoli_plaza", (-790.5, 72, -418.5), _look((-790, 72, -418), (-790, 67, -440))))
     v.append(("hauoli_north_street", (-760.5, 71, -497.5), _look((-760, 71, -497), (-700, 68, -497))))
+
+    def street(name, x, z, tx, tz, h=5):
+        y = c.surface(x, z) + h
+        v.append((name, (x + 0.5, y, z + 0.5), _look((x, y, z), (tx, y - h + 2, tz))))
+
+    hx, hz, _ = T["Heahea City"]
+    street("heahea_main_street", hx - 70, hz - 10, hx + 10, hz - 10)
+    mx, mz, _ = T["Malie City"]
+    street("malie_main_street", mx - 80, mz, mx + 10, mz)
+    kx, kz, _ = T["Konikoni City"]
+    street("konikoni_market", kx - 60, kz, kx + 20, kz)
+    ix, iz, _ = T["Iki Town"]
+    street("iki_town_stage", ix, iz + 28, ix, iz, h=8)
     town("Hau'oli Marina", dist=50, height=20, azimuth=150)
     town("Iki Town", dist=55, height=28)
     town("Player's House", dist=35, height=14)
