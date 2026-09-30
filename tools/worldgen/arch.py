@@ -847,13 +847,22 @@ def shop(c: Canvas, x, y, z, facing, rng: random.Random, label="Shop", kind="mar
         b.piece(W // 2 + 2, v0 + 1, -1, "plant")
     # roof: a coloured hip roof on some, a flat roof with rooftop kit on the rest
     rt = top + 1
-    if style == "modern" and W >= 9 and D >= 9 and rng.random() < 0.45:
-        col = rng.choice(SHOP_ROOFS)
+    tiled = style != "modern" and macaw(st.roof) and rng.random() < 0.75
+    if (style == "modern" and W >= 9 and D >= 9 and rng.random() < 0.45) or tiled:
+        roof_st = st if tiled else replace(st, roof=f"mcwroofs:{rng.choice(SHOP_ROOFS)}",
+                                           roof_cap=f"minecraft:{rng.choice(SHOP_ROOFS)}")
         for u in range(0, W):
             for w in range(0, D):
                 edge = u in (0, W - 1) or w in (0, D - 1)
                 b.set(u, rt - 1, w, axis_log(st.beam, "x") if edge else st.floor)
-        hip_roof(b, replace(st, roof=f"mcwroofs:{col}", roof_cap=f"minecraft:{col}"), W, D, rt)
+        hip_roof(b, roof_st, W, D, rt)
+        if tiled and floors > 1 and style == "konikoni":
+            # pagoda-style skirt roof round the first floor line (not over the shop awning)
+            for u in range(-1, W + 1):
+                b.set(u, H, D, roof_piece(st.roof, "south"))
+            for w in range(0, D):
+                b.set(-1, H, w, roof_piece(st.roof, "east"))
+                b.set(W, H, w, roof_piece(st.roof, "west"))
     else:
         for u in range(-1, W + 1):
             for w in range(-1, D + 1):

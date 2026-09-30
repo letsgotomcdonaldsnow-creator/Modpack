@@ -196,14 +196,15 @@ FILLER_SHOPS = [("cafe", "Café"), ("market", "Market"), ("apparel", "Boutique")
 
 
 def _shop_items(rng, shops, depth, floors=(2, 3), style="modern"):
-    """The named shops first, then ordinary ones for as long as there are lots."""
+    """The named shops first, then ordinary ones for as long as there are lots. `style` may be a list."""
     k = 0
     while True:
         kind, label = shops[k] if k < len(shops) else rng.choice(FILLER_SHOPS)
         k += 1
         W = rng.choice([11, 13])
+        st = rng.choice(style) if isinstance(style, (list, tuple)) else style
         yield arch.shop, W, depth, {"kind": kind, "label": label, "W": W, "D": depth, "floors": rng.choice(floors),
-                                    "style": style}
+                                    "style": st}
 
 
 def hauoli(t, rng):
@@ -366,11 +367,11 @@ def konikoni(t, rng):
     city.building(bl.pokemon_center, x0 - 40, main.z1 + streets.front(main, -1), "south", 17, 15, name="Konikoni City")
     shops = [("apparel", "Olivia's Jewelry"), ("market", "Herb Shop"), ("market", "Incense Shop"),
              ("market", "Konikoni Market"), ("cafe", "Noodle Restaurant"), ("mart", "Poké Mart")]
-    it = _shop_items(rng, shops, 10, floors=(2,), style="konikoni")
+    it = _shop_items(rng, shops, 10, floors=(1, 2, 2, 3), style=["konikoni", "konikoni", "malie", "modern"])
     for a, b in ((X1 + 1, x0 - 6), (x0 + 6, X2)):
         city.frontage(main, -1, a, b, it, depth=10)
         city.frontage(main, +1, a, b, it, depth=9)
-    homes = _houses(rng, ["konikoni"], 10, n=40)
+    homes = _houses(rng, ["konikoni", "konikoni", "malie", "plantation"], 10, n=40)
     for a, b in ((X1 + 1, x0 - 6), (x0 + 6, x0 + 40)):
         city.frontage(south, -1, a, b, homes, depth=9)
         city.frontage(south, +1, a, b, homes, depth=10)
@@ -383,8 +384,59 @@ def konikoni(t, rng):
             for v in range(1, 7):
                 if c.get(x, y + v, z0 + dz) == "minecraft:air":
                     c.set(x, y + v, z0 + dz, "minecraft:dark_oak_fence")
+    # market stalls down alternate sides of the street, and a gateway at each end
+    for k, x in enumerate(range(X1 + 8, X2 - 6, 14)):
+        if abs(x - x0) < 8:
+            continue
+        market_stall(c, x, y, z0 + (2 if k % 2 else -2), "north" if k % 2 else "south", rng)
+    for gx in (X1, X2):
+        paifang(c, gx, y, z0, rng, "Konikoni City")
     city.finish()
     return city
+
+
+def market_stall(c: Canvas, x, y, z, facing, rng):
+    """A 3x2 market stall: barrel-and-crate counter, corner posts, a striped canopy, goods and a lantern."""
+    b = arch.Bld(c, x - 1 if facing == "south" else x + 1, y, z, facing)
+    goods = ["minecraft:melon", "minecraft:pumpkin", "minecraft:hay_block[axis=y]", "minecraft:potted_red_tulip",
+             "minecraft:potted_cactus", "minecraft:cake", "minecraft:potted_bamboo", "minecraft:decorated_pot[facing=south]"]
+    col = rng.choice(["red", "orange", "yellow", "white"])
+    for u in range(3):
+        b.set(u, 1, 0, "minecraft:barrel[facing=up]" if u % 2 else furn.piece("crate"))
+        b.set(u, 2, 0, rng.choice(goods))
+    for u in (-1, 3):
+        for w in (0, 1):
+            for v in (1, 2):
+                b.set(u, v, w, "minecraft:dark_oak_fence")
+    for u in range(-1, 4):
+        for w in (-1, 0, 1):
+            b.set(u, 3, w, f"minecraft:{col if (u + w) % 2 else 'white'}_wool" if w == 0 else f"minecraft:{col}_carpet"
+                  if (u + w) % 2 else "minecraft:white_carpet")
+    b.set(1, 1, 1, "minecraft:spruce_stairs[facing=north,half=bottom,shape=straight]")
+
+
+def paifang(c: Canvas, x, y, z, rng, name):
+    """A red gateway across a north-south span at x: two pillars on stone bases, a coloured beam and a tiled
+    double roof with upturned ends."""
+    b = arch.Bld(c, x, y, z - 5, "west")
+    for u in (0, 10):
+        b.set(u, 1, 0, "minecraft:polished_blackstone")
+        for v in range(2, 8):
+            b.set(u, v, 0, "minecraft:red_concrete")
+    for u in range(-1, 12):
+        b.set(u, 6, 0, "minecraft:red_nether_bricks" if u % 3 else "minecraft:gold_block")
+        b.set(u, 8, 0, "minecraft:dark_oak_planks")
+        for w, fc in ((-1, "south"), (1, "north")):
+            b.set(u, 9, w, f"minecraft:deepslate_tile_stairs[facing={fc},half=bottom,shape=straight]")
+        b.set(u, 9, 0, "minecraft:deepslate_tiles")
+        b.set(u, 10, 0, "minecraft:deepslate_tile_slab[type=bottom]")
+    for u, fc in ((-2, "west"), (12, "east")):             # upturned ends
+        b.set(u, 9, 0, f"minecraft:deepslate_tile_stairs[facing={fc},half=bottom,shape=straight]")
+    for u in range(3, 8):
+        b.set(u, 7, 0, "minecraft:red_concrete")
+    b.sign(5, 7, -1, [name], wood="dark_oak", glow=True)
+    for u in (2, 8):
+        b.set(u, 5, 0, "minecraft:lantern[hanging=true]")
 
 
 # ================================================================= Paniola Town
