@@ -231,6 +231,18 @@ class Terrain:
         for mask, level, depth in self._lake_masks:
             hi[mask] = np.minimum(hi[mask], level - 1 - np.clip(self.inland_from(mask), 0, depth))
             water[mask] = level
+            # graded shores: the ground climbs 0.7 blocks per block away from the waterline
+            # instead of standing as a wall around the lake (flattened town sites are left alone)
+            ring = mask.copy()
+            for d in range(1, 14):
+                grown = ring.copy()
+                grown[1:, :] |= ring[:-1, :]
+                grown[:-1, :] |= ring[1:, :]
+                grown[:, 1:] |= ring[:, :-1]
+                grown[:, :-1] |= ring[:, 1:]
+                edge = grown & ~ring & ~fixed
+                hi[edge] = np.minimum(hi[edge], level + int(d * 0.7))
+                ring = grown
         c.height[:] = hi
         c.water[:] = water
         self.h = hi
@@ -305,12 +317,28 @@ def apply_surface(t: Terrain, biome_for_zone: dict[int, str], seed: int = 3) -> 
     # snow line on high peaks, frozen tops
     high = land & (h >= 178)
     top[high], sub[high] = c.sid("snow_block"), c.sid("packed_ice")
-    # volcanic rock mixture
+    # volcanic rock in natural patches (smooth noise, not per-block speckle): tuff and gabbro on the
+    # lower flanks, basalt and blackstone higher up, scorched sand drifts, magma only near the summit
     vol = zone == VOLCANIC
-    mix = np.array([c.sid("basalt[axis=y]"), c.sid("blackstone"), c.sid("tuff"), c.sid("smooth_basalt"),
-                    c.sid("magma_block")], dtype=np.uint16)
-    pick = rng.choice(5, size=int(vol.sum()), p=[0.35, 0.3, 0.15, 0.17, 0.03])
-    top[vol] = mix[pick]
+    if vol.any():
+        det = t.detail
+        hv = h[vol].astype(np.float32)
+        top_h = float(hv.max()) if hv.size else 0.0
+        low = h < top_h - 45
+        pal = {
+            "tuff": c.sid("tuff"), "gabbro": c.sid("wilderwild:gabbro"), "basalt": c.sid("basalt[axis=y]"),
+            "smooth": c.sid("smooth_basalt"), "black": c.sid("blackstone"), "scorched": c.sid("wilderwild:scorched_red_sand"),
+            "magma": c.sid("magma_block"), "gravel": c.sid("gravel"),
+        }
+        vt = np.where(det > 0.45, pal["scorched"],
+             np.where(det > 0.15, pal["smooth"],
+             np.where(det > -0.2, pal["basalt"],
+             np.where(det > -0.5, pal["black"], pal["gabbro"]))))
+        vt = np.where(low & (det < 0.1), np.where(det < -0.3, pal["tuff"], pal["gravel"]), vt)
+        near_top = h > top_h - 12
+        speck = rng.random(zone.shape) < 0.12
+        vt = np.where(near_top & speck, pal["magma"], vt)
+        top[vol] = vt[vol].astype(np.uint16)
     # canyon strata: color by height
     can = zone == CANYON
     band = np.array([c.sid(b) for b in CANYON_BANDS], dtype=np.uint16)
