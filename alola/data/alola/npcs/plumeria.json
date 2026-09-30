@@ -1,0 +1,46 @@
+{
+  "resourceIdentifier": "cobblemon:npc",
+  "hitbox": "player",
+  "names": [
+    "Plumeria"
+  ],
+  "interaction": {
+    "type": "dialogue",
+    "dialogue": "alola:plumeria"
+  },
+  "battleConfiguration": {
+    "canChallenge": true
+  },
+  "canDespawn": false,
+  "isMovable": false,
+  "isInvulnerable": true,
+  "isLeashable": false,
+  "allowProjectileHits": false,
+  "hideNameTag": false,
+  "skill": 4,
+  "autoHealParty": true,
+  "randomizePartyOrder": false,
+  "party": {
+    "type": "simple",
+    "pokemon": [
+      "golbat level=37",
+      "salazzle level=38"
+    ]
+  },
+  "config": [
+    {
+      "variableName": "player_win_command",
+      "displayName": "Win command",
+      "description": "Command run when a player beats this trainer.",
+      "type": "TEXT",
+      "defaultValue": ""
+    },
+    {
+      "variableName": "challenge_cooldown",
+      "displayName": "Cooldown",
+      "description": "Ticks before the same player can challenge again.",
+      "type": "NUMBER",
+      "defaultValue": "0"
+    }
+  ]
+}

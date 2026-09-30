@@ -1,0 +1,95 @@
+{
+  "initializationAction": [
+    "c.npc.set_chatting();",
+    "v.healer = c.npc.find_nearby_block('cobblemon:healing_machine');",
+    "v.has_healer = v.healer != 0;",
+    "v.full_health = c.player.is_party_at_full_health();",
+    "v.has_charge = v.has_healer == true && v.full_health == false && q.player.can_heal_at_healer(v.healer) == true;",
+    "v.landing_page = !v.has_healer ? 'no_healer' : (v.full_health ? 'full_health' : (v.has_charge ? 'has_charge' : 'no_charge'));"
+  ],
+  "speakers": {
+    "npc": {
+      "name": {
+        "type": "expression",
+        "expression": "q.npc.name"
+      },
+      "face": "q.npc.face(false);"
+    },
+    "player": {
+      "name": {
+        "type": "expression",
+        "expression": "q.player.username"
+      },
+      "face": "q.player.face();"
+    }
+  },
+  "pages": [
+    {
+      "id": "greeting",
+      "speaker": "npc",
+      "lines": [
+        "Alola! Welcome to the Pokémon Center."
+      ],
+      "input": "q.dialogue.set_page(v.landing_page);"
+    },
+    {
+      "id": "no_healer",
+      "speaker": "npc",
+      "lines": [
+        "Oh dear, the healing machine is missing..."
+      ],
+      "input": "q.dialogue.close();"
+    },
+    {
+      "id": "full_health",
+      "speaker": "npc",
+      "lines": [
+        "Your Pokémon are already in perfect health! We hope to see you again!"
+      ],
+      "input": "q.dialogue.close();"
+    },
+    {
+      "id": "no_charge",
+      "speaker": "npc",
+      "lines": [
+        "The machine is recharging. Please come back a little later!"
+      ],
+      "input": "q.dialogue.close();"
+    },
+    {
+      "id": "has_charge",
+      "speaker": "npc",
+      "lines": [
+        "Shall I restore your Pokémon to full health?"
+      ],
+      "input": {
+        "type": "option",
+        "vertical": false,
+        "options": [
+          {
+            "text": "Yes, please",
+            "value": "yes",
+            "action": [
+              "v.callback_dialogue = 'alola:nurse_healed';",
+              "c.npc.run_action_effect('npc_heal_player_pokemon');",
+              "q.dialogue.close();"
+            ]
+          },
+          {
+            "text": "No thanks",
+            "value": "no",
+            "action": "q.dialogue.set_page('bye');"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bye",
+      "speaker": "npc",
+      "lines": [
+        "We hope to see you again!"
+      ],
+      "input": "q.dialogue.close();"
+    }
+  ]
+}

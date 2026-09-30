@@ -92,8 +92,13 @@ jobs:
         if: github.ref_type == 'branch'
         continue-on-error: true
         run: |
-          (cd build/server && java -DbundlerMainClass=net.minecraft.data.Main -jar server.jar --reports --output ../reports >/dev/null 2>&1) || true
-          python tools/modpack.py catalog --vanilla-report build/reports/reports/blocks.json
+          ls build/server
+          jar=$(ls build/server/server.jar build/server/*.jar 2>/dev/null | grep -v fabric-server-launch | head -1)
+          echo "vanilla jar: $jar"
+          (cd build && java -DbundlerMainClass=net.minecraft.data.Main -jar "../$jar" --reports --output reports 2>&1 | tail -5) || true
+          report=$(find build/reports -name blocks.json | head -1)
+          echo "report: $report"
+          python tools/modpack.py catalog ${report:+--vanilla-report "$report"}
           if [ -n "$(git status --porcelain -- tools/worldgen/block_catalog.json)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898299+github-actions[bot]@users.noreply.github.com"

@@ -1,0 +1,49 @@
+{
+  "resourceIdentifier": "cobblemon:npc",
+  "hitbox": "player",
+  "names": [
+    "Elite Four Hala"
+  ],
+  "interaction": {
+    "type": "dialogue",
+    "dialogue": "alola:e4_hala"
+  },
+  "battleConfiguration": {
+    "canChallenge": true
+  },
+  "canDespawn": false,
+  "isMovable": false,
+  "isInvulnerable": true,
+  "isLeashable": false,
+  "allowProjectileHits": false,
+  "hideNameTag": false,
+  "skill": 5,
+  "autoHealParty": true,
+  "randomizePartyOrder": false,
+  "party": {
+    "type": "simple",
+    "pokemon": [
+      "hariyama level=54",
+      "primeape level=54",
+      "bewear level=54",
+      "poliwrath level=54",
+      "crabominable level=55"
+    ]
+  },
+  "config": [
+    {
+      "variableName": "player_win_command",
+      "displayName": "Win command",
+      "description": "Command run when a player beats this trainer.",
+      "type": "TEXT",
+      "defaultValue": ""
+    },
+    {
+      "variableName": "challenge_cooldown",
+      "displayName": "Cooldown",
+      "description": "Ticks before the same player can challenge again.",
+      "type": "NUMBER",
+      "defaultValue": "0"
+    }
+  ]
+}

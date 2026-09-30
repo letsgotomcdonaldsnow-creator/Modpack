@@ -1,0 +1,48 @@
+{
+  "resourceIdentifier": "cobblemon:npc",
+  "hitbox": "player",
+  "names": [
+    "Kahuna Hapu"
+  ],
+  "interaction": {
+    "type": "dialogue",
+    "dialogue": "alola:hapu"
+  },
+  "battleConfiguration": {
+    "canChallenge": true
+  },
+  "canDespawn": false,
+  "isMovable": false,
+  "isInvulnerable": true,
+  "isLeashable": false,
+  "allowProjectileHits": false,
+  "hideNameTag": false,
+  "skill": 5,
+  "autoHealParty": true,
+  "randomizePartyOrder": false,
+  "party": {
+    "type": "simple",
+    "pokemon": [
+      "dugtrio alolan level=47",
+      "gastrodon level=47",
+      "flygon level=47",
+      "mudsdale level=48"
+    ]
+  },
+  "config": [
+    {
+      "variableName": "player_win_command",
+      "displayName": "Win command",
+      "description": "Command run when a player beats this trainer.",
+      "type": "TEXT",
+      "defaultValue": "advancement grant {{player}} only alola:island_challenge/grand_trial_hapu"
+    },
+    {
+      "variableName": "challenge_cooldown",
+      "displayName": "Cooldown",
+      "description": "Ticks before the same player can challenge again.",
+      "type": "NUMBER",
+      "defaultValue": "0"
+    }
+  ]
+}

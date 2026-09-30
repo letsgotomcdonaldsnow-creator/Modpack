@@ -1,0 +1,16 @@
+{
+  "resourceIdentifier": "cobblemon:npc",
+  "hitbox": "player",
+  "names": [
+    "Nurse"
+  ],
+  "interaction": {
+    "type": "dialogue",
+    "dialogue": "alola:nurse"
+  },
+  "canDespawn": false,
+  "isMovable": false,
+  "isInvulnerable": true,
+  "isLeashable": false,
+  "allowProjectileHits": false
+}

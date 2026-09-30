@@ -1,0 +1,28 @@
+{
+  "speakers": {
+    "npc": {
+      "name": {
+        "type": "expression",
+        "expression": "q.npc.name"
+      },
+      "face": "q.npc.face(false);"
+    },
+    "player": {
+      "name": {
+        "type": "expression",
+        "expression": "q.player.username"
+      },
+      "face": "q.player.face();"
+    }
+  },
+  "pages": [
+    {
+      "id": "healed",
+      "speaker": "npc",
+      "lines": [
+        "Your Pokémon have been restored to full health. We hope to see you again!"
+      ],
+      "input": "q.dialogue.close();"
+    }
+  ]
+}

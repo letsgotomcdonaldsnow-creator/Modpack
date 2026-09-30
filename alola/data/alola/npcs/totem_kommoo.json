@@ -1,0 +1,45 @@
+{
+  "resourceIdentifier": "cobblemon:npc",
+  "hitbox": "player",
+  "names": [
+    "Totem Kommo-o"
+  ],
+  "interaction": {
+    "type": "dialogue",
+    "dialogue": "alola:totem_kommoo"
+  },
+  "battleConfiguration": {
+    "canChallenge": true
+  },
+  "canDespawn": false,
+  "isMovable": false,
+  "isInvulnerable": true,
+  "isLeashable": false,
+  "allowProjectileHits": false,
+  "hideNameTag": false,
+  "skill": 4,
+  "autoHealParty": true,
+  "randomizePartyOrder": false,
+  "party": {
+    "type": "simple",
+    "pokemon": [
+      "kommoo level=45 pokeball=ultra_ball"
+    ]
+  },
+  "config": [
+    {
+      "variableName": "player_win_command",
+      "displayName": "Win command",
+      "description": "Command run when a player beats this trainer.",
+      "type": "TEXT",
+      "defaultValue": "advancement grant {{player}} only alola:island_challenge/trial_vast_poni"
+    },
+    {
+      "variableName": "challenge_cooldown",
+      "displayName": "Cooldown",
+      "description": "Ticks before the same player can challenge again.",
+      "type": "NUMBER",
+      "defaultValue": "0"
+    }
+  ]
+}

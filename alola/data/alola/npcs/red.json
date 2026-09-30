@@ -1,0 +1,50 @@
+{
+  "resourceIdentifier": "cobblemon:npc",
+  "hitbox": "player",
+  "names": [
+    "Red"
+  ],
+  "interaction": {
+    "type": "dialogue",
+    "dialogue": "alola:red"
+  },
+  "battleConfiguration": {
+    "canChallenge": true
+  },
+  "canDespawn": false,
+  "isMovable": false,
+  "isInvulnerable": true,
+  "isLeashable": false,
+  "allowProjectileHits": false,
+  "hideNameTag": false,
+  "skill": 5,
+  "autoHealParty": true,
+  "randomizePartyOrder": false,
+  "party": {
+    "type": "simple",
+    "pokemon": [
+      "pikachu level=50",
+      "lapras level=50",
+      "snorlax level=50",
+      "venusaur level=50",
+      "charizard level=50",
+      "blastoise level=50"
+    ]
+  },
+  "config": [
+    {
+      "variableName": "player_win_command",
+      "displayName": "Win command",
+      "description": "Command run when a player beats this trainer.",
+      "type": "TEXT",
+      "defaultValue": ""
+    },
+    {
+      "variableName": "challenge_cooldown",
+      "displayName": "Cooldown",
+      "description": "Ticks before the same player can challenge again.",
+      "type": "NUMBER",
+      "defaultValue": "0"
+    }
+  ]
+}

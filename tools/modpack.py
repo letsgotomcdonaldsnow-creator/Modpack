@@ -1152,7 +1152,7 @@ def _blockstate_props(data: dict) -> dict[str, set[str]]:
 def cmd_catalog(args) -> int:
     """Write every block id and its properties (vanilla report + mod blockstate files)."""
     catalog: dict[str, dict] = {}
-    if args.vanilla_report:
+    if args.vanilla_report and Path(args.vanilla_report).exists():
         report = json.loads(Path(args.vanilla_report).read_text())
         for name, info in report.items():
             catalog[name] = {k: sorted(v) for k, v in (info.get("properties") or {}).items()}

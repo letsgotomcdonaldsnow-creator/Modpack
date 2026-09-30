@@ -1,0 +1,55 @@
+{
+  "initializationAction": "(q.npc.is_in_battle_with(q.player) || !q.npc.is_doing_activity('minecraft:idle', 'cobblemon:battling')) ? q.dialogue.close()",
+  "speakers": {
+    "npc": {
+      "name": {
+        "type": "expression",
+        "expression": "q.npc.name"
+      },
+      "face": "q.npc.face(false);"
+    },
+    "player": {
+      "name": {
+        "type": "expression",
+        "expression": "q.player.username"
+      },
+      "face": "q.player.face();"
+    }
+  },
+  "pages": [
+    {
+      "id": "intro",
+      "speaker": "npc",
+      "lines": [
+        "Pokémon League: Fore! Let's see how far your team can fly!"
+      ],
+      "input": {
+        "type": "option",
+        "vertical": false,
+        "options": [
+          {
+            "text": "Battle!",
+            "value": "battle",
+            "action": [
+              "q.dialogue.close();",
+              "q.npc.start_battle(q.player);"
+            ]
+          },
+          {
+            "text": "Not yet",
+            "value": "cancel",
+            "action": "q.dialogue.set_page('later');"
+          }
+        ]
+      }
+    },
+    {
+      "id": "later",
+      "speaker": "npc",
+      "lines": [
+        "Come back when you're ready!"
+      ],
+      "input": "q.dialogue.close();"
+    }
+  ]
+}
