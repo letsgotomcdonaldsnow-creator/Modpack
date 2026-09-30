@@ -207,7 +207,7 @@ SITE_RADIUS = {
     "Player's House": 16, "Kukui's Lab": 14, "Paniola Town": 44, "Paniola Ranch": 40, "Brooklet Hill": 16,
     "Wela Volcano Park": 26, "Route 8": 30, "Lush Jungle": 18, "Memorial Hill": 18, "Ruins of Life": 16,
     "Malie Garden": 36, "Mount Hokulani": 28, "Blush Mountain": 22, "Tapu Village": 34, "Haina Desert": 16,
-    "Ruins of Abundance": 16, "Aether House": 16, "Ula'ula Meadow": 16, "Pokemon League": 34,
+    "Ruins of Abundance": 16, "Aether House": 16, "Ula'ula Meadow": 16, "Pokemon League": 40,
     "Poni Wilds": 14, "Hapu's House": 16, "Ruins of Hope": 16, "Exeggutor Island": 18, "Altar of the Sunne": 22,
     "Vast Poni Canyon": 16, "Poni Plains": 18, "Battle Tree": 38, "Poni Meadow": 18, "Resolution Cave": 12,
     "Poni Grove": 16, "Hano Grand Resort": 40, "Royal Avenue": 44,

@@ -161,55 +161,6 @@ def megamart(c: Canvas, x, y, z, facing, rng, abandoned=True):
     return W, D
 
 
-# ------------------------------------------------------------------ league
-def pokemon_league(c: Canvas, x, y, z, facing, rng):
-    b = B(c, x, y, z, facing)
-    W, D = 45, 45
-    base(b, W, D, floor="minecraft:polished_deepslate", found="minecraft:deepslate_bricks", clear=40)
-    b.box(0, 1, 0, W - 1, 12, D - 1, "minecraft:deepslate_bricks", walls_only=True)
-    b.box(0, 13, 0, W - 1, 13, D - 1, "minecraft:polished_deepslate")
-    for u in range(W):
-        b.set(u, 12, 0, "minecraft:gold_block" if u % 4 == 0 else "minecraft:deepslate_tiles")
-    b.clear(20, 1, 0, 24, 7, 0)
-    for v in range(1, 12):
-        b.set(19, v, -1, "minecraft:quartz_pillar[axis=y]"), b.set(25, v, -1, "minecraft:quartz_pillar[axis=y]")
-    pokeball_face(b, 22, 10, -1, 3)
-    b.sign(22, 5, -2, ["§6POKéMON", "§6LEAGUE", "", "Mount Lanakila"], wood="dark_oak", wall=False)
-    # central hall with the four Elite Four doors
-    b.box(20, 0, 1, 24, 0, 22, "minecraft:red_carpet")
-    for u in range(20, 25):
-        for w in range(1, 23):
-            b.set(u, 0, w, "minecraft:red_concrete")
-    rooms = [("e4_hala", 2, 2, "minecraft:orange_concrete", "Fighting"), ("e4_olivia", 32, 2, "minecraft:brown_concrete", "Rock"),
-             ("e4_acerola", 2, 22, "minecraft:purple_concrete", "Ghost"), ("e4_kahili", 32, 22, "minecraft:light_blue_concrete", "Flying")]
-    for cls, u0, w0, color, typ in rooms:
-        b.box(u0, 1, w0, u0 + 10, 8, w0 + 10, "minecraft:deepslate_tiles", walls_only=True)
-        b.box(u0 + 1, 0, w0 + 1, u0 + 9, 0, w0 + 9, color)
-        pokeball_disc(b, u0 + 5, w0 + 5, 0, 3)
-        door_u = u0 + 10 if u0 < 20 else u0
-        b.clear(door_u, 1, w0 + 4, door_u, 3, w0 + 6)
-        for u in (u0 + 1, u0 + 9):
-            for w in (w0 + 1, w0 + 9):
-                b.set(u, 1, w, "minecraft:soul_lantern[hanging=false]")
-        npc(b, u0 + 5, 1, w0 + 8, f"alola:{cls}")
-        b.sign(u0 + 5, 3, w0 + 9, [f"Elite Four", typ + "-type"], wood="dark_oak")
-    # champion's room upstairs
-    for i in range(10):
-        for u in range(20, 25):
-            b.set(u, 1 + i, 23 + i, "minecraft:deepslate_brick_stairs[facing=south]")
-    b.box(10, 13, 30, 34, 13, 44, "minecraft:smooth_quartz")
-    b.box(10, 14, 30, 34, 22, 44, "minecraft:light_blue_stained_glass", walls_only=True)
-    b.box(10, 23, 30, 34, 23, 44, "minecraft:quartz_block")
-    pokeball_disc(b, 22, 37, 13, 5)
-    npc(b, 22, 14, 42, "alola:champion_kukui")
-    b.sign(22, 15, 44, ["Champion", "of Alola"], wood="dark_oak")
-    for u in (12, 32):
-        for w in (32, 42):
-            for v in range(14, 23):
-                b.set(u, v, w, "minecraft:gold_block" if v % 3 == 0 else "minecraft:quartz_pillar[axis=y]")
-    return W, D
-
-
 # ------------------------------------------------------------------ battle tree
 def battle_tree(c: Canvas, x, y, z, facing, rng):
     b = B(c, x, y, z, facing)

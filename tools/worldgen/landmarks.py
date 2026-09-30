@@ -312,7 +312,8 @@ def ulaula(t, rng):
     reserve(t, x - 48, z - 38, x + 48, z + 38)
     # Pokémon League on Mount Lanakila
     x, z = alola_map.TOWNS["Pokemon League"][:2]
-    place(t, sp.pokemon_league, x - 22, TOWN_Y["Pokemon League"], z + 22, "south", rng)
+    from . import grand
+    place(t, grand.pokemon_league, x - 22, TOWN_Y["Pokemon League"], z + 31, "south", rng)
 
 
 # ======================================================================= Poni
