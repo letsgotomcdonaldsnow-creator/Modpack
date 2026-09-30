@@ -747,6 +747,8 @@ def shop(c: Canvas, x, y, z, facing, rng: random.Random, label="Shop", kind="mar
         for u in range(W - 5, W - 2):
             b.piece(u, v, 2, "counter", "south")
         b.set(W - 4, v + 1, 2, "another_furniture:service_bell")
+        from .buildings import merchant
+        merchant(b, W - 4, v, 3, name=f"{label} Clerk" if len(label) < 22 else "Shopkeeper")
     elif inside == "cafe":
         for u in range(2, W - 2):
             b.piece(u, v, D - 3, "counter", "south")

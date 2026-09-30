@@ -26,6 +26,19 @@ def npc(b: B, u, v, w, cls: str):
     setup_cmd(b, u, v, w, "spawnnpcat {xc} {y} {zc} " + cls)
 
 
+YAW = {"south": 0, "west": 90, "north": 180, "east": -90}
+
+
+def merchant(b: B, u, v, w, name="Poké Mart Clerk", look="front"):
+    """A CobbleDollars shopkeeper behind a counter (facing `look`, a local direction): a working Poké Mart."""
+    x, y, z = b.world(u, v, w)
+    yaw = YAW[b.dir(look)]
+    label = '{"text":"' + name.replace('"', "").replace("'", "") + '"}'
+    SETUP.append((x, y, z, f"summon cobbledollars:cobble_merchant {x + 0.5} {y} {z + 0.5} "
+                           f"{{NoAI:1b,Invulnerable:1b,PersistenceRequired:1b,Silent:1b,Rotation:[{yaw}f,0f],"
+                           f"CustomName:'{label}'}}"))
+
+
 def P(name, facing="south"):
     return furn.piece(name, facing)
 
@@ -159,7 +172,7 @@ def pokemon_center(c: Canvas, x, y, z, facing, rng, name="Pokémon Center"):
         b.set(15, 1, w, P("crate", "west"))
         b.set(15, 2, w, "minecraft:bookshelf" if w % 3 else P("jar"))
     b.sign(14, 4, 9, ["§1POKé MART", "", "Poké Balls", "Potions"], wood="birch")
-    npc(b, 14, 1, 6, "alola:nurse")  # clerk (heals too)
+    merchant(b, 14, 1, 6, look="left")   # a CobbleDollars shopkeeper: buy Poké Balls and Potions here
     # waiting sofas and plants
     for u in (6, 10):
         b.set(u, 1, 8, P("pc_sofa", "south"))
