@@ -196,6 +196,56 @@ def pokemon_league(c: Canvas, x, y, z, facing, rng: random.Random):
     return W, D + 4
 
 
+# =============================================================== Trainers' School
+
+def trainers_school(c: Canvas, x, y, z, facing, rng: random.Random):
+    """Two storeys of classrooms with a clock and a flagpole, and a fenced schoolyard with a battle court."""
+    b = arch.Bld(c, x, y, z, facing)
+    W, D = 33, 13
+    YARD = 18
+    b.clear_above(-2, -YARD - 2, W + 1, D + 1, 20)
+    b.foundation(-1, -YARD - 1, W, D, "minecraft:stone_bricks")
+    st = arch.replace(arch.STYLES["plantation"], walls=[("minecraft:white_terracotta", 5), ("minecraft:calcite", 1)],
+                      roof="mcwroofs:green_terracotta", roof_cap="minecraft:green_terracotta", porch=0, planter=False,
+                      shutter=None, window="minecraft:glass_pane")
+    arch.build_house(c, x, y, z, facing, rng, style=st, W=W, D=D, floors=2, yard=False, interior="empty")
+    # classrooms: rows of desks and a blackboard on each floor
+    for f in range(2):
+        v = 1 + f * st.story_h
+        for u in range(3, W - 3, 3):
+            for w in range(3, D - 3, 3):
+                b.piece(u, v, w, "desk", "south")
+                b.piece(u, v, w + 1, "chair", "south")
+        for u in range(W // 2 - 3, W // 2 + 4):
+            b.set(u, v + 1, 1, "supplementaries:blackboard[facing=north]" if u % 2 else "minecraft:green_terracotta")
+    # clock above the door and a flagpole
+    b.set(W // 2, 2 * st.story_h + 1, -1, "supplementaries:clock_block")
+    for v in range(1, 12):
+        b.set(W + 2, v, -YARD + 2, "minecraft:iron_bars" if v < 11 else "minecraft:lightning_rod[facing=up]")
+    b.set(W + 3, 10, -YARD + 2, "supplementaries:flag_red[facing=east]")
+    # schoolyard: court with a Poké Ball centre, fence, benches, a tree
+    for u in range(-1, W + 1):
+        for w in range(-YARD, 0):
+            b.set(u, 0, w, "minecraft:smooth_stone" if (u in (-1, W) or w == -YARD) else "minecraft:dirt_path")
+    for u in range(4, W - 4):
+        for w in (-YARD + 3, -4):
+            b.set(u, 0, w, "minecraft:white_concrete")
+    for w in range(-YARD + 3, -3):
+        b.set(4, 0, w, "minecraft:white_concrete"), b.set(W - 5, 0, w, "minecraft:white_concrete")
+    for u in range(4, W - 4):
+        b.set(u, 0, -YARD // 2 - 2, "minecraft:white_concrete")
+    pokeball_disc(b, W // 2, -YARD // 2 - 2, 0, 2)
+    for u in range(-1, W + 1):
+        b.set(u, 1, -YARD, "mcwfences:oak_picket_fence") if abs(u - W // 2) > 1 else None
+    for w in range(-YARD + 1, 0):
+        b.set(-1, 1, w, "mcwfences:oak_picket_fence"), b.set(W, 1, w, "mcwfences:oak_picket_fence")
+    for u in (2, W - 3):
+        b.piece(u, 1, -2, "bench", "north")
+    b.sign(W // 2 + 2, 2, -YARD - 1, ["Trainers' School", "", "Hau'oli City", ""], wood="birch", wall=False)
+    npc(b, W // 2, 1, -YARD // 2 + 2, "alola:ilima")          # Ilima drops in on the school in Sun & Moon
+    return W + 4, D + YARD
+
+
 # =============================================================== Aether Paradise
 
 AETHER_Y = "minecraft:yellow_concrete"

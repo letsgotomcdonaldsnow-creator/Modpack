@@ -109,6 +109,9 @@ def hauoli(t, rng):
     city.hauoli(t, rng)
     mx, mz, _ = alola_map.TOWNS["Hau'oli Marina"]
     reserve(t, mx - 20, mz - 10, mx + 20, mz + 60)
+    # Trainers' School on the Outskirts, its schoolyard gate opening onto Route 1
+    from . import grand
+    place(t, grand.trainers_school, -606, TOWN_Y["Hau'oli Outskirts"], -493, "south", rng)
 
 
 def player_home(t, rng):

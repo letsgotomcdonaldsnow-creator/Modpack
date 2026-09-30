@@ -299,8 +299,11 @@ jobs:
       - name: Rename for download
         run: |
           mkdir -p out
-          cp dist/*.mrpack out/Pokemon-Alola-Adventure.mrpack
-          cp dist/build/alola-map.png out/alola-map.png 2>/dev/null || find dist -name alola-map.png -exec cp {} out/ \;
+          # the artifact keeps its dist/ and build/ folders, so search rather than guess the layout
+          find dist -name '*.mrpack' -exec cp {} out/Pokemon-Alola-Adventure.mrpack \;
+          find dist -name alola-map.png -exec cp {} out/alola-map.png \;
+          ls -la out
+          test -s out/Pokemon-Alola-Adventure.mrpack
 
       - name: Update the rolling release
         uses: softprops/action-gh-release@v2
