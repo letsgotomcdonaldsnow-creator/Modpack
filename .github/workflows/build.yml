@@ -63,14 +63,6 @@ jobs:
         continue-on-error: true
         run: python tools/modpack.py validate
 
-      - name: Version diagnostics
-        if: always()
-        continue-on-error: true
-        run: >
-          python tools/modpack.py versions cobblemon-mega-showdown cobbleworkers better-cobblemon-spectation
-          complete-cobblemon-collection-w-legendary-spawns legendary-monuments cobblemon-fight-or-flight-reborn
-          exp-all cobbledollars cobbleloots
-
       - name: Build .mrpack
         run: python tools/modpack.py build
 
@@ -79,6 +71,12 @@ jobs:
         with:
           name: modpack
           path: dist/*.mrpack
+
+      - name: Upload lockfile for the client test
+        uses: actions/upload-artifact@v4
+        with:
+          name: lockfile
+          path: modpack.lock.json
 
       - name: Assemble server
         run: python tools/modpack.py server --dir build/server --accept-eula
@@ -89,7 +87,6 @@ jobs:
         run: >
           python tools/modpack.py boot --dir build/server --memory 5G
           --command "function alola:selftest"
-          --dump "config/mega_showdown*" --dump "config/mega_showdown/*" --dump "config/cobblemon/main.json"
 
       - name: Upload server log
         if: always()
@@ -116,3 +113,64 @@ jobs:
         with:
           files: dist/*.mrpack
           generate_release_notes: true
+
+  client:
+    name: Boot client
+    needs: build
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Get the lockfile the build job resolved
+        uses: actions/download-artifact@v4
+        with:
+          name: lockfile
+          path: .
+
+      - name: Restore download cache
+        uses: actions/cache/restore@v4
+        with:
+          path: .cache
+          key: downloads-${{ hashFiles('modpack.lock.json', 'modlist.toml') }}
+          restore-keys: downloads-
+
+      - name: Assemble client
+        run: python tools/modpack.py client --dir run
+
+      - name: Launch the client, join a world, quit
+        uses: headlesshq/mc-runtime-test@4.5.1
+        with:
+          mc: "1.21.1"
+          modloader: fabric
+          regex: .*fabric.*
+          mc-runtime-test: fabric
+          java: "21"
+          headlessmc-command: --jvm "-Djava.awt.headless=true -Xmx6G"
+
+      - name: Upload client log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-log
+          path: |
+            run/logs/latest.log
+            run/crash-reports/
+          if-no-files-found: ignore
+
+      - name: Show client problems
+        if: failure()
+        run: |
+          ls run/crash-reports 2>/dev/null && head -150 run/crash-reports/*.txt || true
+          grep -nE "ERROR|Exception|Caused by|Mixin apply .* failed" run/logs/latest.log | head -120 || true
+          tail -80 run/logs/latest.log || true

@@ -35,7 +35,7 @@ mods = [
 [category.alola]
 title = "Alola: Pokémon, Z-Moves and the Island Challenge"
 mods = [
-  { id = "complete-cobblemon-collection-w-legendary-spawns", note = "Models and spawns for the Pokémon Cobblemon hasn't finished: Rockruff and Lycanroc, Oricorio, Grubbin, Minior, the Tapus, Cosmog, Necrozma and the Ultra Beasts" },
+  { id = "complete-cobblemon-collection-w-legendary-spawns", pin = "2.0.1+mod", note = "Models and spawns for the Pokémon Cobblemon hasn't finished: Rockruff and Lycanroc, Oricorio, Grubbin, Minior, the Tapus, Cosmog, Necrozma and the Ultra Beasts" },
   { id = "cobblemon-mega-showdown", match = '\+1\.7\.3', note = "Z-Crystals, the Z-Ring, Z-Moves and Ultra Burst (plus Mega Evolution)" },
   { id = "legendary-monuments", note = "Shrines and structures for encountering legendary Pokémon" },
   { id = "cobblemon-size-variations", note = "Pokémon come in different sizes; now and then you meet a Totem-sized one" },
@@ -54,7 +54,7 @@ mods = [
   { id = "cobblemon-capture-xp", note = "Your party earns EXP for catching Pokémon, as introduced in Gen 6/7" },
   { id = "exp-all", note = "Party-wide Exp. Share, as it worked in Sun and Moon" },
   { id = "cobblemon-counter", note = "Catch and KO combos that raise shiny odds, a stand-in for SOS chaining" },
-  { id = "cobblemon-fight-or-flight-reborn", note = "Wild Pokémon react to you: shy ones flee, aggressive ones attack" },
+  { id = "cobblemon-fight-or-flight-reborn", pin = "0.10.9", note = "Wild Pokémon react to you: shy ones flee, aggressive ones attack" },
 ]
 
 [category.pokemon_ui]
@@ -67,7 +67,7 @@ mods = [
   { id = "more-cobblemon-tweaks", side = "client", note = "Quality-of-life tweaks for Cobblemon's screens" },
   { id = "cobblemon-party-extras", side = "client", note = "Extra party-overlay information" },
   { id = "catch-rate-display", side = "client", note = "Shows the catch chance of the Poké Ball you are holding" },
-  { id = "better-cobblemon-spectation", match = '1\.7', side = "client", note = "Better camera when spectating other trainers' battles" },
+  { id = "better-cobblemon-spectation", pin = "2.0.3", side = "client", note = "Better camera when spectating other trainers' battles" },
 ]
 
 [category.world]

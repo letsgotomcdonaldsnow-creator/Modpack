@@ -12,6 +12,7 @@ Standard library only (Python 3.11+). Subcommands:
   build     Build the Alola data mod and the .mrpack into dist/.
   docs      Regenerate MODS.md from the lockfile.
   server    Assemble a runnable Fabric server from the lockfile.
+  client    Assemble a client game directory (used by the CI client test).
   boot      Start that server, wait for "Done", stop it, and check the log.
   inspect   List files inside a locked jar (handy for finding item ids).
 """
@@ -926,6 +927,42 @@ def cmd_server(args) -> int:
     return 0
 
 
+# ---------------------------------------------------------------------- client
+
+def cmd_client(args) -> int:
+    """Assemble a client game directory (what a launcher would install from the .mrpack)."""
+    lock = read_lock()
+    target = Path(args.dir).resolve()
+    count = 0
+    for f in lock["files"]:
+        if f["env"]["client"] == "unsupported":
+            continue
+        if args.skip and any(re.search(rx, f["slug"]) for rx in args.skip):
+            log(f"  skipping {f['slug']}")
+            continue
+        src = download(f["url"], f["sha1"], f["filename"])
+        dest = target / f["path"]
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dest)
+        count += 1
+    jar = build_alola_jar()
+    (target / "mods").mkdir(parents=True, exist_ok=True)
+    shutil.copy2(jar, target / "mods" / jar.name)
+    for folder in ("overrides", "client-overrides"):
+        base = ROOT / folder
+        if base.exists():
+            shutil.copytree(base, target, dirs_exist_ok=True, ignore=shutil.ignore_patterns(".gitkeep"))
+    yosbr = target / "config" / "yosbr"
+    yosbr.mkdir(parents=True, exist_ok=True)
+    (yosbr / "options.txt").write_text(default_options(lock), encoding="utf-8")
+    iris = iris_properties(lock)
+    if iris:
+        (yosbr / "config").mkdir(exist_ok=True)
+        (yosbr / "config" / "iris.properties").write_text(iris, encoding="utf-8")
+    log(f"Client assembled in {target} with {count + 1} files")
+    return 0
+
+
 # ------------------------------------------------------------------------ boot
 
 BAD_LOG = re.compile(r"(Exception|Error|Failed|Couldn't|Could not|Unable|Unknown|Invalid|Missing)", re.I)
@@ -970,6 +1007,11 @@ def cmd_boot(args) -> int:
     log_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
     problems = []
+    for ln in lines:
+        if re.search(r"Unknown function|Unknown or incomplete command|Incorrect argument for command", ln):
+            problems.append(f"console command failed: {ln}")
+    if args.command and not any("Alola self-test" in ln for ln in lines):
+        problems.append("the Alola self-test function did not run")
     ours = [ln for ln in lines if re.search(r"\balola[_:]", ln, re.I) and BAD_LOG.search(ln)]
     for ln in ours:
         problems.append(f"alola content: {ln}")
@@ -1053,6 +1095,9 @@ def main() -> int:
     s = sub.add_parser("server")
     s.add_argument("--dir", default="build/server")
     s.add_argument("--accept-eula", action="store_true", help="write eula.txt (you must agree to the Minecraft EULA)")
+    c = sub.add_parser("client")
+    c.add_argument("--dir", default="build/client")
+    c.add_argument("--skip", action="append", help="regex of slugs to leave out")
     b = sub.add_parser("boot")
     b.add_argument("--dir", default="build/server")
     b.add_argument("--memory", default="6G")
@@ -1068,7 +1113,7 @@ def main() -> int:
     i.add_argument("--limit", type=int, default=200)
     args = p.parse_args()
     return {"resolve": cmd_resolve, "validate": cmd_validate, "build": cmd_build, "docs": cmd_docs,
-            "server": cmd_server, "boot": cmd_boot, "inspect": cmd_inspect,
+            "server": cmd_server, "client": cmd_client, "boot": cmd_boot, "inspect": cmd_inspect,
             "versions": cmd_versions}[args.cmd](args)
 
 

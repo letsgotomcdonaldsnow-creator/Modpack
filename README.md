@@ -16,7 +16,8 @@ bundles about 110 hand-picked mods plus their libraries. See [MODS.md](MODS.md) 
 | Alola's Pokémon everywhere | 55 Alola natives and Alolan forms spawn about twice as often in island habitats (see [Alola spawns](#alola-spawns)) |
 | Alolan Raichu, Exeggutor and Marowak | Cobblemon's regional evolutions happen on tropical islands, beaches and volcanoes |
 | Completing the Alola Pokédex | [Complete Cobblemon Collection](https://modrinth.com/mod/complete-cobblemon-collection-w-legendary-spawns) adds the Pokémon Cobblemon hasn't finished: Rockruff, Oricorio, Grubbin, Minior, the Tapus, Cosmog, Necrozma, Ultra Beasts and more, including legendary spawns |
-| Z-Ring, Z-Crystals and Z-Moves | [Mega Showdown](https://modrinth.com/mod/cobblemon-mega-showdown), with Z-Crystals as Island Challenge rewards |
+| Z-Ring, Z-Crystals and Z-Moves | [Mega Showdown](https://modrinth.com/mod/cobblemon-mega-showdown), with Z-Crystals as Island Challenge rewards. Mega Evolution and Ultra Burst stay on. Dynamax and Terastallization come from later generations, so they are off |
+| 1 in 4096 shiny odds | Cobblemon's shiny rate is set to the Generation 6/7 odds (Cobblemon's default is 1 in 8192) |
 | The Island Challenge | A custom advancement tab (press `L`) with 7 captain trials, 4 Kahuna grand trials and the Champion title |
 | Trainers on every route | [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod) |
 | Poké Ride | Cobblemon 1.7 riding |
