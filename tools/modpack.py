@@ -1156,6 +1156,7 @@ def cmd_catalog(args) -> int:
         report = json.loads(Path(args.vanilla_report).read_text())
         for name, info in report.items():
             catalog[name] = {k: sorted(v) for k, v in (info.get("properties") or {}).items()}
+    biomes: set[str] = set()
     lock = read_lock()
     for f in lock["files"]:
         if f["kind"] != "mod":
@@ -1163,6 +1164,10 @@ def cmd_catalog(args) -> int:
         path = download(f["url"], f["sha1"], f["filename"])
         with zipfile.ZipFile(path) as zf:
             for n in zf.namelist():
+                bm = re.match(r"data/([^/]+)/worldgen/biome/(.+)\.json$", n)
+                if bm:
+                    biomes.add(f"{bm.group(1)}:{bm.group(2)}")
+                    continue
                 m = re.match(r"assets/([^/]+)/blockstates/([^/]+)\.json$", n)
                 if not m or m.group(1) == "minecraft":
                     continue
@@ -1177,6 +1182,7 @@ def cmd_catalog(args) -> int:
                     entry[k] = sorted(set(entry.get(k, [])) | vals)
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
+    catalog["#biomes"] = {"ids": sorted(biomes)}
     out.write_text(json.dumps(dict(sorted(catalog.items())), separators=(",", ":"), sort_keys=True) + "\n")
     namespaces = {}
     for k in catalog:
