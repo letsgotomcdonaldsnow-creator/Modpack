@@ -23,7 +23,11 @@ def _color(name: str) -> tuple[int, int, int]:
     base = name.split("[", 1)[0].split(":", 1)[-1]
     if base in COLORS:
         return COLORS[base]
-    for key, col in (("terracotta", (160, 90, 60)), ("concrete", (200, 200, 200)), ("leaves", (50, 120, 40)),
+    for key, col in (("asphalt", (58, 58, 62)), ("linie", (58, 58, 62)), ("stufe", (58, 58, 62)),
+                     ("sidewalk", (175, 175, 170)), ("grass_slab", (98, 160, 60)), ("sand_slab", (219, 207, 163)),
+                     ("path_slab", (148, 122, 65)), ("_branch", (100, 80, 50)), ("palm_fronds", (60, 140, 50)),
+                     ("hibiscus", (230, 90, 140)), ("wildflowers", (230, 160, 80)), ("flagstone", (200, 190, 150)),
+                     ("paving", (190, 180, 150)), ("terracotta", (160, 90, 60)), ("concrete", (200, 200, 200)), ("leaves", (50, 120, 40)),
                      ("log", (100, 80, 50)), ("planks", (170, 130, 80)), ("brick", (150, 80, 70)),
                      ("quartz", (235, 230, 225)), ("glass", (180, 220, 240)), ("wool", (210, 210, 210)),
                      ("stone", (130, 130, 130)), ("slab", (150, 150, 150)), ("stairs", (150, 150, 150)),

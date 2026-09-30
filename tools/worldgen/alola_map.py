@@ -17,8 +17,8 @@ X0, Z0, SIZE = -1280, -1280, 2560
 # name: (x, z, ground y) -- ground y is the flattened height of the site
 TOWNS = {
     # Melemele Island
-    "Hau'oli City": (-790, -440, 66),
-    "Hau'oli Marina": (-955, -452, 65),
+    "Hau'oli City": (-772, -456, 66),
+    "Hau'oli Marina": (-960, -464, 65),
     "Hau'oli Outskirts": (-600, -468, 67),
     "Iki Town": (-555, -770, 92),
     "Route 2 Pokemon Center": (-900, -600, 74),
@@ -213,7 +213,7 @@ SITE_RADIUS = {
     "Poni Grove": 16, "Hano Grand Resort": 40, "Royal Avenue": 44,
 }
 RECT_SITES = {
-    "Hau'oli City": (175, 38), "Hau'oli Marina": (30, 24), "Hau'oli Outskirts": (60, 20), "Heahea City": (80, 50),
+    "Hau'oli City": (157, 50), "Hau'oli Marina": (25, 8), "Hau'oli Outskirts": (60, 20), "Heahea City": (80, 50),
     "Konikoni City": (70, 40), "Malie City": (90, 60), "Po Town": (48, 38), "Thrifty Megamart": (34, 26),
     "Seafolk Village": (40, 30), "Aether Paradise": (1, 1),
 }

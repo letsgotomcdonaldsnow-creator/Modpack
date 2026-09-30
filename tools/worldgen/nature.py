@@ -312,12 +312,15 @@ class Nature:
         for p, parent in nodes.items():
             r = min(maxr, max(1, math.ceil(math.sqrt(area[p]) - 0.2)))
             c.set(*p, f"{DT}{family}_branch[radius={r},waterlogged=false]")
-        leaf = f"{DT}{family}_leaves[distance=1,persistent=true,waterlogged=false]"
+        # Vanilla leaves: the Dynamic Trees Fabric beta only tints its own leaves after an integrated server starts
+        # (grey in singleplayer screenshots, likely untinted for dedicated-server clients).
+        leaf = f"minecraft:{family}_leaves[persistent=true]"
         for (cx, cy, cz), rh, rv in canopy:
             self._cluster(cx, cy, cz, rh, rv, leaf)
         if shape == "jungle":
             self._vines_around(canopy)
-        c.set(x, y, z, f"{DT}{soil}[fertility=0,is_variant=false]")
+        # No rooty soil: without it Dynamic Trees never ticks this tree, so its tips cannot rot
+        # (DT only counts its own leaves as support) and the tree stays exactly as built.
         self.take(x, z, 2 if shape != "spruce" else 1)
         self.stats[f"dynamic {family} trees"] += 1
         return True

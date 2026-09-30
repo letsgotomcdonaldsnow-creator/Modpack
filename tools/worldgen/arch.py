@@ -645,3 +645,129 @@ def house(c: Canvas, x, y, z, facing, rng: random.Random, W=None, D=None, style=
     build_house(c, ox, oy, oz, facing, rng, style=style, W=W, D=D, floors=floors, label=label,
                 roof_colour=roof_colour, beds=beds, yard=yard)
     return W, D + st.porch
+
+
+# ------------------------------------------------------------------- shops
+
+SHOP_KINDS = {
+    # kind: (awning colour, fascia block, interior)
+    "mart": ("blue", "minecraft:blue_concrete", "mart"),
+    "apparel": ("pink", "minecraft:pink_concrete", "apparel"),
+    "salon": ("magenta", "minecraft:magenta_concrete", "salon"),
+    "cafe": ("orange", "minecraft:orange_concrete", "cafe"),
+    "malasada": ("pink", "minecraft:pink_terracotta", "cafe"),
+    "bureau": ("cyan", "minecraft:cyan_concrete", "office"),
+    "police": ("blue", "minecraft:blue_concrete", "office"),
+    "market": ("red", "minecraft:red_concrete", "mart"),
+    "ice_cream": ("light_blue", "minecraft:light_blue_concrete", "cafe"),
+    "surf": ("cyan", "minecraft:cyan_terracotta", "mart"),
+    "office": ("gray", "minecraft:light_gray_concrete", "office"),
+}
+
+
+def shop(c: Canvas, x, y, z, facing, rng: random.Random, label="Shop", kind="mart", W=13, D=11, floors=2,
+         style="modern", **_):
+    """A street shop: glass storefront, striped awning, name on the fascia, flats above, roof terrace."""
+    st = STYLES[style]
+    awn, fascia, inside = SHOP_KINDS.get(kind, SHOP_KINDS["mart"])
+    b = Bld(c, x, y, z, facing)
+    H = 5                                   # tall shop floor
+    top = H + 4 * (floors - 1)
+    b.clear_above(-1, -2, W, D + 1, top + 8)
+    b.foundation(-1, -1, W, D, st.plinth)
+    b.box(0, 0, 0, W - 1, 0, D - 1, st.floor)
+    # shell
+    for v in range(1, top + 1):
+        for u in range(W):
+            for w in (0, D - 1):
+                b.set(u, v, w, pick(rng, st.walls))
+        for w in range(D):
+            for u in (0, W - 1):
+                b.set(u, v, w, pick(rng, st.walls))
+    for (u, w) in ((0, 0), (W - 1, 0), (0, D - 1), (W - 1, D - 1)):
+        for v in range(1, top + 1):
+            b.set(u, v, w, st.frame)
+    # storefront glass with a transom, double door in the middle
+    for u in range(1, W - 1):
+        for v in range(1, 4):
+            b.set(u, v, 0, "minecraft:glass_pane")
+        b.set(u, 4, 0, fascia)
+        b.set(u, 5, 0, fascia)
+    du = W // 2
+    door(b, du - 1, 1, 0, "mcwdoors:store_door", "south", hinge="left")
+    door(b, du, 1, 0, "mcwdoors:store_door", "south", hinge="right")
+    b.set(du - 1, 3, 0, "minecraft:glass_pane"), b.set(du, 3, 0, "minecraft:glass_pane")
+    # awning over the pavement
+    for u in range(0, W):
+        b.set(u, 4, -1, f"supplementaries:awning_{awn}[bottom=false,facing=south,slanted=true]")
+    b.sign(du - 1, 5, -1, [label[:15], label[15:30]], wood="birch", glow=True)
+    lamp_pair(b, 0, W - 1, 3, -1)
+    # upper floors: flats with balconies
+    for f in range(1, floors):
+        v0 = H + 4 * (f - 1)
+        for u in range(1, W - 1):
+            for w in range(1, D - 1):
+                b.set(u, v0, w, st.floor)
+        for u in range(2, W - 2, 3):
+            for dv in (2, 3):
+                b.set(u, v0 + dv, 0, st.window)
+                b.set(u + 1, v0 + dv, 0, st.window) if u + 1 < W - 2 else None
+            b.set(u, v0 + 1, -1, f"{st.trim_slab}[type=top]")
+            b.set(u + 1, v0 + 1, -1, f"{st.trim_slab}[type=top]") if u + 1 < W - 2 else None
+            b.set(u, v0 + 2, -1, "minecraft:potted_red_tulip" if rng.random() < 0.5 else "minecraft:potted_fern")
+        for w in range(2, D - 2, 3):
+            for dv in (2, 3):
+                b.set(0, v0 + dv, w, st.window)
+                b.set(W - 1, v0 + dv, w, st.window)
+        b.piece(W // 2, v0 + 3, D // 2, "ceiling_lamp")
+        b.bed(W - 3, v0 + 1, D - 3, rng.choice(["white", "light_blue", "yellow"]), facing="north")
+        b.piece(2, v0 + 1, D - 2, "sofa", "north")
+        b.piece(3, v0 + 1, D - 2, "sofa", "north")
+        b.piece(2, v0 + 1, D - 4, "table")
+    # flat roof with parapet, rooftop kit
+    rt = top + 1
+    for u in range(-1, W + 1):
+        for w in range(-1, D + 1):
+            edge = u in (-1, W) or w in (-1, D)
+            b.set(u, rt - 1, w, st.beam if edge else st.roof_cap)
+            if edge:
+                b.set(u, rt, w, f"{st.trim_slab}[type=bottom]")
+    b.set(2, rt, D - 3, "minecraft:iron_block"), b.set(3, rt, D - 3, "minecraft:iron_trapdoor[half=bottom,facing=north,open=false]")
+    b.set(W - 3, rt, D - 3, "minecraft:barrel[facing=up]"), b.set(W - 3, rt + 1, D - 3, "minecraft:lightning_rod[facing=up]")
+    # interior
+    v = 1
+    b.piece(W // 2, H - 1, D // 2, "ceiling_lamp")
+    if inside == "mart":
+        for u in range(2, W - 2):
+            b.piece(u, v, D - 2, "crate", "north")
+            b.piece(u, v + 1, D - 2, "crate", "north")
+        for w in range(3, D - 3, 2):
+            for u in (2, W - 3):
+                b.piece(u, v, w, "crate", "east" if u == 2 else "west")
+        for u in range(W - 5, W - 2):
+            b.piece(u, v, 2, "counter", "south")
+        b.set(W - 4, v + 1, 2, "another_furniture:service_bell")
+    elif inside == "cafe":
+        for u in range(2, W - 2):
+            b.piece(u, v, D - 3, "counter", "south")
+        b.set(3, v + 1, D - 3, "minecraft:cake")
+        for (tu, tw) in ((2, 2), (W - 3, 2), (W // 2, 4)):
+            b.piece(tu, v, tw, "table")
+            b.piece(tu - 1, v, tw, "chair", "east")
+            b.piece(tu + 1, v, tw, "chair", "west")
+    elif inside == "salon":
+        for u in range(2, W - 2, 2):
+            b.piece(u, v, D - 2, "chair_modern", "south")
+            b.set(u, v + 1, D - 1, "minecraft:glass")
+        b.piece(W - 3, v, 2, "counter", "south")
+    elif inside == "apparel":
+        for u in range(2, W - 2, 2):
+            b.set(u, v, D - 3, "minecraft:oak_fence")
+            b.set(u, v + 1, D - 3, rng.choice(["minecraft:red_banner", "minecraft:light_blue_banner", "minecraft:yellow_banner"]))
+        b.piece(W - 3, v, 2, "counter", "south")
+    else:   # office
+        for u in range(2, W - 2, 3):
+            b.piece(u, v, D - 3, "desk", "south")
+            b.piece(u, v, D - 2, "chair_modern", "south")
+        b.piece(2, v, 2, "plant_big")
+    return W, D

@@ -73,13 +73,16 @@ def views(c: Canvas) -> list[tuple]:
         v.append(orbit(c, name.lower().replace(" ", "_").replace("'", ""), x, z, y, **kw))
 
     # islands from the air
-    v.append(orbit(c, "melemele_from_air", -700, -560, 70, dist=260, height=190, azimuth=150))
-    v.append(orbit(c, "akala_from_air", -700, 420, 90, dist=280, height=200, azimuth=200))
-    v.append(orbit(c, "ulaula_from_air", 250, -330, 90, dist=300, height=210, azimuth=160))
-    v.append(orbit(c, "poni_from_air", 560, 420, 80, dist=280, height=190, azimuth=210))
+    # (kept within the 10-chunk render distance of the tour client)
+    v.append(orbit(c, "melemele_from_air", -700, -560, 70, dist=110, height=95, azimuth=150))
+    v.append(orbit(c, "akala_from_air", -700, 420, 90, dist=110, height=95, azimuth=200))
+    v.append(orbit(c, "ulaula_from_air", 250, -330, 90, dist=110, height=95, azimuth=160))
+    v.append(orbit(c, "poni_from_air", 560, 420, 80, dist=110, height=95, azimuth=210))
     # towns and landmarks
     town("Hau'oli City", dist=70, height=30)
-    town("Hau'oli City", dist=20, height=3, azimuth=250)
+    v.append(("hauoli_boulevard", (-880.5, 74, -454.5), _look((-880, 74, -454), (-800, 68, -462))))
+    v.append(("hauoli_plaza", (-790.5, 72, -418.5), _look((-790, 72, -418), (-790, 67, -440))))
+    v.append(("hauoli_north_street", (-760.5, 71, -497.5), _look((-760, 71, -497), (-700, 68, -497))))
     town("Hau'oli Marina", dist=50, height=20, azimuth=150)
     town("Iki Town", dist=55, height=28)
     town("Player's House", dist=35, height=14)
@@ -146,12 +149,18 @@ def write(c: Canvas, out: Path, extra: list[tuple] | None = None) -> list[tuple]
         "gamerule doMobSpawning false\n"
         'tellraw @a {"text":"TOUR START"}\n'
         "schedule function alola_tour:v/1 100t\n")
+    (fn / "s").mkdir()
     for i, (name, (x, y, z), (yaw, pitch), dwell) in enumerate(vs, 1):
-        nxt = (f"schedule function alola_tour:v/{i + 1} {dwell * 20}t\n" if i < len(vs)
-               else f"schedule function alola_tour:end {dwell * 20}t\n")
+        # v/i moves the camera; s/i (dwell seconds later) says "SHOT", the script grabs the screen
+        # right away, and the camera only moves on 4 seconds after that.
         (fn / "v" / f"{i}.mcfunction").write_text(
             f"tp @a {x} {y} {z} {yaw} {pitch}\n"
-            f'tellraw @a {{"text":"TOUR {i} {name} {dwell}"}}\n' + nxt)
+            f'tellraw @a {{"text":"TOUR {i} {name} {dwell}"}}\n'
+            f"schedule function alola_tour:s/{i} {max(1, dwell - 4) * 20}t\n")
+        nxt = f"alola_tour:v/{i + 1}" if i < len(vs) else "alola_tour:end"
+        (fn / "s" / f"{i}.mcfunction").write_text(
+            f'tellraw @a {{"text":"SHOT {i} {name}"}}\n'
+            f"schedule function {nxt} 80t\n")
     (fn / "end.mcfunction").write_text('tellraw @a {"text":"TOUR END"}\n')
     total = sum(v[3] for v in vs)
     print(f"  tour datapack: {len(vs)} viewpoints ({total // 60} min) -> {out}")

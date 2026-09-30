@@ -57,14 +57,13 @@ while true; do
     xdotool mousemove 800 450 2>/dev/null; sleep 1; xdotool key F1 2>/dev/null
     hid_hud=1
   fi
-  line=$(grep -oE "TOUR [0-9]+ [a-z0-9_]+ [0-9]+" "$log" 2>/dev/null | tail -1)
+  # the datapack says "SHOT <n> <name>" and waits 4 s before moving the camera: grab the screen now
+  line=$(grep -oE "SHOT [0-9]+ [a-z0-9_]+" "$log" 2>/dev/null | tail -1)
   if [ -n "$line" ]; then
     n=$(echo "$line" | cut -d' ' -f2)
     name=$(echo "$line" | cut -d' ' -f3)
-    dwell=$(echo "$line" | cut -d' ' -f4)
     if (( n > done_n )); then
-      sleep $(( dwell > 10 ? dwell - 5 : dwell / 2 ))
-      file=$(printf "tour/%02d-%s.png" "$n" "$name")
+      file=$(printf "tour/%03d-%s.png" "$n" "$name")
       import -window root "$file" && echo "captured $file"
       done_n=$n
     fi
@@ -73,7 +72,7 @@ while true; do
     echo "Tour finished with $done_n screenshots after $(( $(date +%s) - start ))s."
     break
   fi
-  sleep 2
+  sleep 1
 done
 stop_game
 ls tour | head -80

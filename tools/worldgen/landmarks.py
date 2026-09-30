@@ -105,69 +105,9 @@ def beach_set(c, x, y, z, rng, facing="south"):
 # ======================================================================= Melemele
 
 def hauoli(t, rng):
-    c = t.c
-    y = TOWN_Y["Hau'oli City"]
-    x1, x2 = -960, -620
-    road_z = -440
-    ground(c, x1, road_z - 4, x2, road_z + 4, "minecraft:gray_concrete", y)
-    ground(c, x1, road_z - 6, x2, road_z - 5, "minecraft:smooth_stone", y)
-    ground(c, x1, road_z + 5, x2, road_z + 6, "minecraft:smooth_stone", y)
-    for x in range(x1, x2, 6):
-        for dx in range(3):
-            c.set(x + dx, y, road_z, "minecraft:white_concrete")
-    lamps_along(c, x1, road_z - 6, x2, road_z - 6, y)
-    lamps_along(c, x1 + 6, road_z + 6, x2, road_z + 6, y)
-    def house(c_, x_, y_, z_, f_, rng_, **kw):
-        kw.setdefault("style", rng_.choice(["hauoli", "plantation", "plantation"]))
-        return arch.house(c_, x_, y_, z_, f_, rng_, **kw)
-    H = house
-    north = [
-        (bl.pokemon_center, 17, {"name": "Hau'oli City"}),
-        (bl.malasada_shop, 11, {}),
-        (bl.shop, 13, {"label": "Apparel Shop", "color": "minecraft:pink_concrete"}),
-        (bl.shop, 13, {"label": "Salon", "color": "minecraft:magenta_concrete"}),
-        (bl.hotel, 23, {"label": "Hau'oli City Hall", "floors": 3, "wall": "minecraft:smooth_quartz",
-                         "trim": "minecraft:yellow_concrete"}),
-        (bl.shop, 13, {"label": "Tourist Bureau", "color": "minecraft:cyan_concrete"}),
-        (bl.shop, 13, {"label": "Police Station", "color": "minecraft:blue_concrete"}),
-        (H, 10, {"W": 10}), (H, 9, {"W": 9}), (H, 11, {"W": 11}),
-        (bl.hotel, 29, {"label": "Trainers' School", "floors": 2, "W": 29, "D": 17, "wall": "minecraft:white_terracotta",
-                         "trim": "minecraft:green_concrete"}),
-        (H, 10, {"W": 10}), (H, 9, {"W": 9}),
-    ]
-    street_row(t, rng, y, x1 + 38, road_z - 8, "north", north)
-    south = [
-        (bl.hotel, 31, {"label": "Hau'oli Shopping Mall", "floors": 2, "W": 31, "D": 17, "trim": "minecraft:orange_concrete"}),
-        (bl.shop, 13, {"label": "Poké Mart", "color": "minecraft:blue_concrete"}),
-        (H, 10, {"W": 10}), (H, 11, {"W": 11}), (H, 9, {"W": 9}),
-        (bl.shop, 13, {"label": "Ice Cream Shop", "color": "minecraft:light_blue_concrete"}),
-        (H, 10, {"W": 10}), (H, 10, {"W": 10}), (H, 11, {"W": 11}), (H, 9, {"W": 9}),
-    ]
-    street_row(t, rng, y, x1 + 42, road_z + 8, "south", south)
-    # palms in planters along the boulevard
-    for x in range(x1 + 10, x2, 24):
-        planter_palm(c, x, y, road_z - 6, rng)
-    # central fountain plaza
-    fx, fz = -790, road_z
-    b = B(c, fx, y, fz, "south")
-    b.disc(0, 0, 0, 9, "minecraft:smooth_stone")
-    b.disc(0, 0, 0, 5, "minecraft:water")
-    b.cylinder(0, 0, 1, 1, 5, "minecraft:quartz_block")
-    for v in range(1, 5):
-        b.set(0, v, 0, "minecraft:quartz_pillar[axis=y]")
-    b.set(0, 5, 0, "minecraft:water")
-    c.sign(fx, y + 1, fz + 8, ["Hau'oli City", "", "Melemele Island", ""], wood="birch", rotation=0)
-    # beachfront south of the city
-    for x in range(x1 + 20, x2 - 40, 14):
-        z = road_z + 42
-        if c.inside(x, z) and not c.is_water(x, z):
-            beach_set(c, x, c.surface(x, z), z, rng)
-    # marina: pier and ferry
-    mx, mz = -955, -452
-    place(t, bl.ferry_terminal, mx - 7, TOWN_Y["Hau'oli Marina"], mz + 10, "south", rng, label="Hau'oli Marina",
-          dest="Heahea City")
-    bl.pier(c, mx - 2, SEA + 1, mz + 14, "north", length=40, width=5)
-    bl.ferry_ship(c, mx + 6, SEA + 1, mz + 18, "north", rng, "S.S. Heahea")
+    from . import city
+    city.hauoli(t, rng)
+    mx, mz, _ = alola_map.TOWNS["Hau'oli Marina"]
     reserve(t, mx - 20, mz - 10, mx + 20, mz + 60)
 
 

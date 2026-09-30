@@ -241,7 +241,9 @@ jobs:
       - name: Assemble client with the Alola world and the camera tour
         run: |
           python tools/modpack.py client --dir run --skip '^distanthorizons$'
-          printf 'renderDistance:10\nsimulationDistance:5\ngraphicsMode:1\nmaxFps:30\ntutorialStep:none\nonboardAccessibility:false\npauseOnLostFocus:false\nfov:0.25\nbiomeBlendRadius:2\nao:true\nentityShadows:true\n' > run/options.txt
+          # the pack's own defaults (resource packs etc.), then the tour's overrides (later keys win)
+          cp run/config/yosbr/options.txt run/options.txt
+          printf 'renderDistance:10\nsimulationDistance:5\ngraphicsMode:1\nmaxFps:30\ntutorialStep:none\nonboardAccessibility:false\npauseOnLostFocus:false\nfov:0.25\nbiomeBlendRadius:2\nao:true\nentityShadows:true\n' >> run/options.txt
           mkdir -p run/saves run/config
           cp -r build/tourworld/Alola run/saves/Alola
           cp -r build/tourworld/tour/alola_tour run/saves/Alola/datapacks/alola_tour
