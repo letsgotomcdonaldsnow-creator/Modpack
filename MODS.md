@@ -2,7 +2,7 @@
 
 Generated from `modpack.lock.json` by `tools/modpack.py`. Do not edit by hand.
 
-Minecraft **1.21.1**, Fabric Loader **0.19.5**, **142** files (140 mods).
+Minecraft **1.21.1**, Fabric Loader **0.19.5**, **139** files (137 mods).
 
 ## Interface and quality of life
 
@@ -72,35 +72,21 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **142** files (140 mods).
 | --- | --- | --- | --- |
 | [[Let's Do] Bakery - Farm&Charm Compat](https://modrinth.com/mod/lets-do-bakery-farmcharm-compat) | `2.1.7` | both | Bakery: doughnuts, cakes and pastries (malasadas in spirit) |
 | [AppleSkin](https://modrinth.com/mod/appleskin) | `3.0.6+mc1.21` | both | Shows hunger and saturation values |
-| [CobbleCuisine](https://modrinth.com/mod/cobblecuisine) | `1.2.1` | both | Pokémon-themed foods and treats |
 | [Farmer's Delight Refabricated](https://modrinth.com/mod/farmers-delight-refabricated) | `1.21.1-3.3.6` | both | Cooking, crops and meals |
 | [Ocean's Delight](https://modrinth.com/mod/oceans-delight) | `1.0.3+fabric.1.21.1` | both | Seafood dishes |
 | [Pineapple Delight](https://modrinth.com/mod/pineapple-delight) | `1.1.2-1.21.1-fabric` | both | Pineapples and pineapple dishes |
-
-## Rotom Dex and Pokémon interface
-
-| Project | Version | Side | Why |
-| --- | --- | --- | --- |
-| [Better Cobblemon Spectation](https://modrinth.com/mod/better-cobblemon-spectation) | `0.0.0-1.8` | client | Better camera when spectating other trainers' battles |
-| [Cobblemon Battle Extras](https://modrinth.com/mod/cobblemon-battle-extras) | `1.13.45` | both | Better battle interface and information |
-| [Cobblemon Catch Rate Display](https://modrinth.com/mod/catch-rate-display) | `2.12.3+fabric` | client | Shows the catch chance of the Poké Ball you are holding |
-| [Cobblemon Party Extras](https://modrinth.com/mod/cobblemon-party-extras) | `1.8.15` | client | Extra party-overlay information |
-| [Cobblemon PokeNav](https://modrinth.com/mod/cobblemon-pokenav) | `2.3.3` | both | Cobblenav: a Rotom Dex-style device for finding and tracking nearby Pokémon |
-| [Cobblemon Poképedia: Cobblepedia](https://modrinth.com/mod/cobblepedia) | `0.7.1-fabric` | both | In-game Pokémon encyclopedia: moves, evolutions and spawns |
-| [Cobblemon Spawn Notification](https://modrinth.com/mod/cobblemon-spawn-notification) | `1.7.3-fabric-2.3.0` | server | Announces shiny and legendary spawns |
-| [MoreCobblemonTweaks](https://modrinth.com/mod/more-cobblemon-tweaks) | `1.3.5-fabric` | client | Quality-of-life tweaks for Cobblemon's screens |
 
 ## Pokémon life: Poké Pelago, the Nursery, Poké Marts and trainers
 
 | Project | Version | Side | Why |
 | --- | --- | --- | --- |
 | [CobbleDollars [Cobblemon Addon]](https://modrinth.com/mod/cobbledollars) | `2.0.0+Beta-6.1` | both | Poké Dollars, Poké Mart shopkeepers and prize money |
-| [Cobblemon Capture XP](https://modrinth.com/mod/cobblemon-capture-xp) | `1.7.3-fabric-1.3.0` | server | Your party earns EXP for catching Pokémon, as introduced in Gen 6/7 |
+| [Cobblemon Capture XP](https://modrinth.com/mod/cobblemon-capture-xp) | `1.7.3-fabric-1.3.0` | both | Your party earns EXP for catching Pokémon, as introduced in Gen 6/7 |
 | [Cobblemon Counter](https://modrinth.com/mod/cobblemon-counter) | `1.7.3-fabric-1.9.0` | both | Catch and KO combos that raise shiny odds, a stand-in for SOS chaining |
 | [Cobblemon Exp. All](https://modrinth.com/mod/exp-all) | `1.0.9` | both | Party-wide Exp. Share, as it worked in Sun and Moon |
 | [Cobblemon Fight or Flight Reborn](https://modrinth.com/mod/cobblemon-fight-or-flight-reborn) | `0.11.0` | both | Wild Pokémon react to you: shy ones flee, aggressive ones attack |
 | [Cobblemon Pasture Loot](https://modrinth.com/mod/cobblemon-pasture-loot) | `1.0.5+1.21.1` | both | Pastured Pokémon bring back items, like Isle Abeens |
-| [Cobbleworkers](https://modrinth.com/mod/cobbleworkers) | `2.0.5+1.8.0` | server | Poké Pelago: Pokémon in a pasture take on jobs such as farming, fishing and gathering |
+| [Cobbleworkers](https://modrinth.com/mod/cobbleworkers) | `2.0.5+1.7.0` | both | Poké Pelago: Pokémon in a pasture take on jobs such as farming, fishing and gathering |
 | [Cobbreeding](https://modrinth.com/mod/cobbreeding) | `2.2.2` | both | Pokémon Nursery: breed Pokémon and hatch eggs in pastures |
 | [Radical Cobblemon Trainers](https://modrinth.com/mod/rctmod) | `0.18.1-beta` | both | Radical Cobblemon Trainers: trainers roam the world to battle, with a series of ever-stronger opponents |
 | [SimpleTMs: TMs and TRs for Cobblemon](https://modrinth.com/mod/simpletms-tms-and-trs-for-cobblemon) | `2.3.3` | both | TMs and TRs, reusable like in Generation 7 |
@@ -117,6 +103,18 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **142** files (140 mods).
 | [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap) | `fabric-1.21.1-26.5.0` | both | Minimap |
 | [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map) | `fabric-1.21.1-1.46.0` | both | Full-screen Town Map |
 
+## Rotom Dex and Pokémon interface
+
+| Project | Version | Side | Why |
+| --- | --- | --- | --- |
+| [Cobblemon Battle Extras](https://modrinth.com/mod/cobblemon-battle-extras) | `1.13.45` | both | Better battle interface and information |
+| [Cobblemon Catch Rate Display](https://modrinth.com/mod/catch-rate-display) | `2.12.3+fabric` | client | Shows the catch chance of the Poké Ball you are holding |
+| [Cobblemon Party Extras](https://modrinth.com/mod/cobblemon-party-extras) | `1.8.15` | client | Extra party-overlay information |
+| [Cobblemon PokeNav](https://modrinth.com/mod/cobblemon-pokenav) | `2.3.3` | both | Cobblenav: a Rotom Dex-style device for finding and tracking nearby Pokémon |
+| [Cobblemon Poképedia: Cobblepedia](https://modrinth.com/mod/cobblepedia) | `0.7.1-fabric` | both | In-game Pokémon encyclopedia: moves, evolutions and spawns |
+| [Cobblemon Spawn Notification](https://modrinth.com/mod/cobblemon-spawn-notification) | `1.7.3-fabric-2.3.0` | both | Announces shiny and legendary spawns |
+| [MoreCobblemonTweaks](https://modrinth.com/mod/more-cobblemon-tweaks) | `1.3.5-fabric` | client | Quality-of-life tweaks for Cobblemon's screens |
+
 ## Performance
 
 | Project | Version | Side | Why |
@@ -130,7 +128,7 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **142** files (140 mods).
 | [Lithium](https://modrinth.com/mod/lithium) | `mc1.21.1-0.15.4-fabric` | both | Game logic optimizations |
 | [ModernFix](https://modrinth.com/mod/modernfix) | `5.25.1+mc1.21.1` | both | Faster startup and lower memory use |
 | [More Culling](https://modrinth.com/mod/moreculling) | `1.0.10` | client | More culling |
-| [Noisium](https://modrinth.com/mod/noisium) | `2.3.0+mc1.21-1.21.1` | server | Faster world generation |
+| [Noisium](https://modrinth.com/mod/noisium) | `2.3.0+mc1.21-1.21.1` | both | Faster world generation |
 | [Reese's Sodium Options](https://modrinth.com/mod/reeses-sodium-options) | `mc1.21.1-2.2.4+fabric` | client | Better video settings screen |
 | [Sodium](https://modrinth.com/mod/sodium) | `mc1.21.1-0.8.13-fabric` | client | Rendering engine |
 | [Sodium Extra](https://modrinth.com/mod/sodium-extra) | `mc1.21.1-0.9.4+fabric` | client | More Sodium options |
@@ -142,7 +140,7 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **142** files (140 mods).
 | [Cobbleloots: Loot Balls and More!](https://modrinth.com/mod/cobbleloots) | `2.3.0` | both | Item balls lying around the world, like in the games |
 | [Cobblemon Size Variations](https://modrinth.com/mod/cobblemon-size-variations) | `1.4.0` | both | Pokémon come in different sizes; now and then you meet a Totem-sized one |
 | [Cobblemon: Legendary Monuments](https://modrinth.com/mod/legendary-monuments) | `8.1-Love-for-All` | both | Shrines and structures for encountering legendary Pokémon |
-| [Cobblemon: Mega Showdown](https://modrinth.com/mod/cobblemon-mega-showdown) | `1.0+1.8+1.21.1-release-hotfix` | both | Z-Crystals, the Z-Ring, Z-Moves and Ultra Burst (plus Mega Evolution) |
+| [Cobblemon: Mega Showdown](https://modrinth.com/mod/cobblemon-mega-showdown) | `1.9.9+1.7.3+1.21.1` | both | Z-Crystals, the Z-Ring, Z-Moves and Ultra Burst (plus Mega Evolution) |
 | [Complete Cobblemon Collection w Legendary Spawns](https://modrinth.com/mod/complete-cobblemon-collection-w-legendary-spawns) | `2.21` | both | Models and spawns for the Pokémon Cobblemon hasn't finished: Rockruff and Lycanroc, Oricorio, Grubbin, Minior, the Tapus, Cosmog, Necrozma and the Ultra Beasts |
 
 ## Cobblemon core
@@ -161,13 +159,13 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **142** files (140 mods).
 | [Hopo Better Underwater Ruins](https://modrinth.com/mod/hopo-better-underwater-ruins) | `1.2.1b` | both | Underwater ruins for your Surf and Dive trips |
 | [Towns and Towers](https://modrinth.com/mod/towns-and-towers) | `1.13.11` | both | More varied villages and outposts to act as Alolan towns |
 | [William Wythers' Expanded Ecosphere](https://modrinth.com/mod/expanded-ecosphere) | `fabric-1.21.1-3.4.7` | both | William Wythers' overworld: tropical islands, tropical volcanoes, beaches and jungles, all with native Cobblemon spawns |
-| [YUNG's Better Desert Temples](https://modrinth.com/mod/yungs-better-desert-temples) | `1.21.1-Fabric-4.1.5` | server | Reworked desert temples, like the Ruins of Abundance in Haina Desert |
-| [YUNG's Better Dungeons](https://modrinth.com/mod/yungs-better-dungeons) | `1.21.1-Fabric-5.1.4` | server | Reworked dungeons |
-| [YUNG's Better Jungle Temples](https://modrinth.com/mod/yungs-better-jungle-temples) | `1.21.1-Fabric-3.1.2` | server | Reworked jungle temples: the Lush Jungle has secrets |
-| [YUNG's Better Mineshafts](https://modrinth.com/mod/yungs-better-mineshafts) | `1.21.1-Fabric-5.1.1` | server | Reworked mineshafts, for Diglett Tunnel |
-| [YUNG's Better Ocean Monuments](https://modrinth.com/mod/yungs-better-ocean-monuments) | `1.21.1-Fabric-4.1.2` | server | Reworked ocean monuments |
-| [YUNG's Bridges](https://modrinth.com/mod/yungs-bridges) | `1.21.1-Fabric-5.1.1` | server | Bridges over rivers |
-| [YUNG's Extras](https://modrinth.com/mod/yungs-extras) | `1.21.1-Fabric-5.1.1` | server | Small decorative structures across the world |
+| [YUNG's Better Desert Temples](https://modrinth.com/mod/yungs-better-desert-temples) | `1.21.1-Fabric-4.1.5` | both | Reworked desert temples, like the Ruins of Abundance in Haina Desert |
+| [YUNG's Better Dungeons](https://modrinth.com/mod/yungs-better-dungeons) | `1.21.1-Fabric-5.1.4` | both | Reworked dungeons |
+| [YUNG's Better Jungle Temples](https://modrinth.com/mod/yungs-better-jungle-temples) | `1.21.1-Fabric-3.1.2` | both | Reworked jungle temples: the Lush Jungle has secrets |
+| [YUNG's Better Mineshafts](https://modrinth.com/mod/yungs-better-mineshafts) | `1.21.1-Fabric-5.1.1` | both | Reworked mineshafts, for Diglett Tunnel |
+| [YUNG's Better Ocean Monuments](https://modrinth.com/mod/yungs-better-ocean-monuments) | `1.21.1-Fabric-4.1.2` | both | Reworked ocean monuments |
+| [YUNG's Bridges](https://modrinth.com/mod/yungs-bridges) | `1.21.1-Fabric-5.1.1` | both | Bridges over rivers |
+| [YUNG's Extras](https://modrinth.com/mod/yungs-extras) | `1.21.1-Fabric-5.1.1` | both | Small decorative structures across the world |
 
 ## Multiplayer
 
@@ -192,13 +190,12 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **142** files (140 mods).
 | [Cobblemon Tim Core](https://modrinth.com/mod/cobblemon-tim-core) | `1.7.3-fabric-1.32.0` | both | needed by cobblemon-capture-xp, cobblemon-counter, cobblemon-spawn-notification |
 | [CreativeCore](https://modrinth.com/mod/creativecore) | `2.13.48` | client | needed by ambientsounds |
 | [Cristel Lib](https://modrinth.com/mod/cristel-lib) | `fabric-1.21.1-3.1.7` | both | needed by expanded-ecosphere, towns-and-towers |
-| [Fabric API](https://modrinth.com/mod/fabric-api) | `0.116.17+1.21.1` | both | needed by 3dskinlayers, accessories, ambientsounds, appleskin, architectury-api, athena-ctm, balm, bookshelf-lib, catch-rate-display, chipped, clumps, cobbledollars, cobblefurnies, cobbleloots, cobblemon, cobblemon-battle-extras, cobblemon-integrations, cobblemon-mega-showdown, cobblemon-party-extras, cobblemon-pokenav, continuity, controlling, creativecore, cristel-lib, dynamic-fps, enchantment-descriptions, entityculling, expanded-ecosphere, fallingleaves, farmers-delight-refabricated, forge-config-api-port, geckolib, handcrafted, iceberg, lambdynamiclights, lithostitched, macaws-bridges, macaws-doors, macaws-fences-and-walls, macaws-furniture, macaws-lights-and-lamps, macaws-paths-and-pavings, macaws-roofs, macaws-trapdoors, macaws-windows, midnightlib, modmenu, mouse-tweaks, no-chat-reports, not-enough-animations, owo-lib, particle-rain, patchouli, prickle, resourceful-lib, searchables, shoulder-surfing-reloaded, shulkerboxtooltip, simpletms-tms-and-trs-for-cobblemon, travelersbackpack, visuality, wakes, waystones, xaeros-minimap, xaeros-world-map, yacl, yungs-api, yungs-better-desert-temples, yungs-better-dungeons, yungs-better-jungle-temples, yungs-better-mineshafts, yungs-better-ocean-monuments, yungs-bridges, yungs-extras, zoomify |
-| [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin) | `1.14.1+kotlin.2.4.20` | both | needed by catch-rate-display, cobblecuisine, cobblemon-integrations, zoomify |
+| [Fabric API](https://modrinth.com/mod/fabric-api) | `0.116.17+1.21.1` | both | needed by 3dskinlayers, accessories, ambientsounds, appleskin, architectury-api, athena-ctm, balm, bookshelf-lib, catch-rate-display, chipped, clumps, cobbledollars, cobblefurnies, cobbleloots, cobblemon, cobblemon-battle-extras, cobblemon-integrations, cobblemon-mega-showdown, cobblemon-party-extras, cobblemon-pokenav, continuity, controlling, creativecore, cristel-lib, dynamic-fps, enchantment-descriptions, entityculling, expanded-ecosphere, fallingleaves, farmers-delight-refabricated, forge-config-api-port, geckolib, handcrafted, iceberg, lambdynamiclights, lithostitched, macaws-bridges, macaws-doors, macaws-fences-and-walls, macaws-furniture, macaws-lights-and-lamps, macaws-paths-and-pavings, macaws-roofs, macaws-trapdoors, macaws-windows, modmenu, mouse-tweaks, no-chat-reports, not-enough-animations, owo-lib, particle-rain, patchouli, prickle, resourceful-lib, searchables, shoulder-surfing-reloaded, shulkerboxtooltip, simpletms-tms-and-trs-for-cobblemon, travelersbackpack, visuality, wakes, waystones, xaeros-minimap, xaeros-world-map, yacl, yungs-api, yungs-better-desert-temples, yungs-better-dungeons, yungs-better-jungle-temples, yungs-better-mineshafts, yungs-better-ocean-monuments, yungs-bridges, yungs-extras, zoomify |
+| [Fabric Language Kotlin](https://modrinth.com/mod/fabric-language-kotlin) | `1.14.1+kotlin.2.4.20` | both | needed by catch-rate-display, cobblemon-integrations, zoomify |
 | [Forge Config API Port](https://modrinth.com/mod/forge-config-api-port) | `v21.1.6-1.21.1-Fabric` | both | needed by cobblemon-integrations, rctmod, shoulder-surfing-reloaded |
 | [Geckolib](https://modrinth.com/mod/geckolib) | `4.9.3` | both | needed by pokeblocks |
 | [Iceberg](https://modrinth.com/mod/iceberg) | `1.3.2` | client | needed by advancement-plaques |
 | [Lithostitched](https://modrinth.com/mod/lithostitched) | `1.8.0-fabric-21.1` | both | needed by legendary-monuments |
-| [MidnightLib](https://modrinth.com/mod/midnightlib) | `1.9.3+1.21.1-fabric` | both | needed by cobblecuisine |
 | [Moonlight Lib](https://modrinth.com/mod/moonlight) | `1.21.1-3.7.0` | both | needed by amendments, supplementaries |
 | [oωo (owo-lib)](https://modrinth.com/mod/owo-lib) | `0.12.15.4+1.21` | both | needed by accessories, cobblemon-mega-showdown |
 | [Patchouli](https://modrinth.com/mod/patchouli) | `1.21.1-93-fabric` | both | needed by cobblepedia |
@@ -209,4 +206,4 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **142** files (140 mods).
 | [Text Placeholder API](https://modrinth.com/mod/placeholder-api) | `2.4.2+1.21` | client | needed by modmenu |
 | [Trinkets](https://modrinth.com/mod/trinkets) | `3.10.0` | both | needed by lets-do-beachparty |
 | [YetAnotherConfigLib (YACL)](https://modrinth.com/mod/yacl) | `3.8.2+1.21.1-fabric` | client | needed by zoomify |
-| [YUNG's API](https://modrinth.com/mod/yungs-api) | `1.21.1-Fabric-5.1.9` | server | needed by yungs-better-desert-temples, yungs-better-dungeons, yungs-better-jungle-temples, yungs-better-mineshafts, yungs-better-ocean-monuments, yungs-bridges, yungs-extras |
+| [YUNG's API](https://modrinth.com/mod/yungs-api) | `1.21.1-Fabric-5.1.9` | both | needed by yungs-better-desert-temples, yungs-better-dungeons, yungs-better-jungle-temples, yungs-better-mineshafts, yungs-better-ocean-monuments, yungs-bridges, yungs-extras |

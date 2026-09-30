@@ -169,39 +169,6 @@
       "required_by": []
     },
     {
-      "project_id": "MpFeVYoR",
-      "slug": "better-cobblemon-spectation",
-      "title": "Better Cobblemon Spectation",
-      "kind": "mod",
-      "category": "Rotom Dex and Pokémon interface",
-      "explicit": true,
-      "note": "Better camera when spectating other trainers' battles",
-      "pin": null,
-      "side": "client",
-      "optional": false,
-      "project_client_side": "required",
-      "project_server_side": "unsupported",
-      "version_id": "R5sI3yFR",
-      "version_number": "0.0.0-1.8",
-      "version_type": "beta",
-      "filename": "BattleCam-2.0.0-1.8.jar",
-      "path": "mods/BattleCam-2.0.0-1.8.jar",
-      "url": "https://cdn.modrinth.com/data/MpFeVYoR/versions/R5sI3yFR/BattleCam-2.0.0-1.8.jar",
-      "sha1": "2a9f3299460616f2e7040554fe2b7aa443a42a56",
-      "sha512": "61d1f7407bd97ee57004525a463fa7ede6015a2b6ae8e7f71072e4d48800f385a9382172d2b2b603f692d3133798e43b7c2f5ba225a53495d58468cb9e428877",
-      "size": 109052,
-      "deps": [
-        "MdwFAVRL"
-      ],
-      "fabric_id": "battlecam",
-      "fabric_version": "0.1.0-alpha",
-      "env": {
-        "client": "required",
-        "server": "unsupported"
-      },
-      "required_by": []
-    },
-    {
       "project_id": "DhSSvaxs",
       "slug": "beautify-refabricated",
       "title": "Beautify: Refabricated",
@@ -292,7 +259,7 @@
       "fabric_id": "capture_xp",
       "fabric_version": "1.7.3-fabric-1.3.0",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": []
@@ -421,41 +388,6 @@
       ],
       "fabric_id": "clumps",
       "fabric_version": "19.0.0.1",
-      "env": {
-        "client": "required",
-        "server": "required"
-      },
-      "required_by": []
-    },
-    {
-      "project_id": "dlx62Wp3",
-      "slug": "cobblecuisine",
-      "title": "CobbleCuisine",
-      "kind": "mod",
-      "category": "Island cuisine: malasadas, pineapples and fresh seafood",
-      "explicit": true,
-      "note": "Pokémon-themed foods and treats",
-      "pin": null,
-      "side": null,
-      "optional": false,
-      "project_client_side": "required",
-      "project_server_side": "required",
-      "version_id": "XURDFSEi",
-      "version_number": "1.2.1",
-      "version_type": "beta",
-      "filename": "CobbleCuisine-1.2.1.jar",
-      "path": "mods/CobbleCuisine-1.2.1.jar",
-      "url": "https://cdn.modrinth.com/data/dlx62Wp3/versions/XURDFSEi/CobbleCuisine-1.2.1.jar",
-      "sha1": "545714ccd140d435d3968b4c448462c68ea3b876",
-      "sha512": "0c2ebc64e22b5629332cbbb6978c778b136380eb022a2b5f7f4e002acd2fbc8d9e9302ac053e60d4b0a38d2741d82c86da40c491415beaa48750dd4f55ff24f7",
-      "size": 829110,
-      "deps": [
-        "Ha28R6CL",
-        "MdwFAVRL",
-        "codAaoxh"
-      ],
-      "fabric_id": "cobblecuisine",
-      "fabric_version": "1.2.1",
       "env": {
         "client": "required",
         "server": "required"
@@ -668,9 +600,7 @@
         "server": "required"
       },
       "required_by": [
-        "better-cobblemon-spectation",
         "catch-rate-display",
-        "cobblecuisine",
         "cobbledollars",
         "cobblefurnies",
         "cobbleloots",
@@ -877,24 +807,25 @@
       "explicit": true,
       "note": "Poké Pelago: Pokémon in a pasture take on jobs such as farming, fishing and gathering",
       "pin": null,
+      "match": "\\+1\\.7",
       "side": null,
       "optional": false,
       "project_client_side": "unsupported",
       "project_server_side": "required",
-      "version_id": "llwrszjl",
-      "version_number": "2.0.5+1.8.0",
+      "version_id": "qW3KB1li",
+      "version_number": "2.0.5+1.7.0",
       "version_type": "release",
-      "filename": "cobbleworkers-fabric-2.0.5+1.8.0.jar",
-      "path": "mods/cobbleworkers-fabric-2.0.5+1.8.0.jar",
-      "url": "https://cdn.modrinth.com/data/i3XVG2gn/versions/llwrszjl/cobbleworkers-fabric-2.0.5%2B1.8.0.jar",
-      "sha1": "22a8aa82734c0c7bcc422047ed8e154cc4745cdc",
-      "sha512": "2be79c6ebbd6e28ae13c4bf7d2ff7f0eac484c48cf0f37f8a12c918920c245809d85045bb6da8f3ad99e68db9adcbd93f12c35cad99b706605f9cfbe6f759308",
-      "size": 270520,
+      "filename": "cobbleworkers-fabric-2.0.5+1.7.0.jar",
+      "path": "mods/cobbleworkers-fabric-2.0.5+1.7.0.jar",
+      "url": "https://cdn.modrinth.com/data/i3XVG2gn/versions/qW3KB1li/cobbleworkers-fabric-2.0.5%2B1.7.0.jar",
+      "sha1": "1b59d33aed21cdd1da8b0fc3cfe2873628d2042c",
+      "sha512": "b99eee3ed0cb75bd474f0777bd6105bdb1c6f2b2a4c6c7f1e36cf58a56b926cec29d7feaab101b15df4d16ed93923206b6366a1f855e361fc3f6a898bac75676",
+      "size": 270521,
       "deps": [],
       "fabric_id": "cobbleworkers",
-      "fabric_version": "2.0.5+1.8.0",
+      "fabric_version": "2.0.5+1.7.0",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": []
@@ -2220,19 +2151,20 @@
       "explicit": true,
       "note": "Z-Crystals, the Z-Ring, Z-Moves and Ultra Burst (plus Mega Evolution)",
       "pin": null,
+      "match": "\\+1\\.7\\.3",
       "side": null,
       "optional": false,
       "project_client_side": "required",
       "project_server_side": "required",
-      "version_id": "we79kHpG",
-      "version_number": "1.0+1.8+1.21.1-release-hotfix",
+      "version_id": "13b1fBn2",
+      "version_number": "1.9.9+1.7.3+1.21.1",
       "version_type": "release",
-      "filename": "mega_showdown-fabric-1.0+1.8+1.21.1-release-hotfix.jar",
-      "path": "mods/mega_showdown-fabric-1.0+1.8+1.21.1-release-hotfix.jar",
-      "url": "https://cdn.modrinth.com/data/SszvX85I/versions/we79kHpG/mega_showdown-fabric-1.0%2B1.8%2B1.21.1-release-hotfix.jar",
-      "sha1": "a89f80298f8f975e3b2c290bc4519daf06802376",
-      "sha512": "55cee6905de40ac2a5ac9fab2fc5502c8fab77c6294134ada515481a2757b8354a79e03abbc71763870afee1d440581e3ba06b912f1aebdd4cd432d02555714f",
-      "size": 20182807,
+      "filename": "mega_showdown-fabric-1.9.9+1.7.3+1.21.1.jar",
+      "path": "mods/mega_showdown-fabric-1.9.9+1.7.3+1.21.1.jar",
+      "url": "https://cdn.modrinth.com/data/SszvX85I/versions/13b1fBn2/mega_showdown-fabric-1.9.9%2B1.7.3%2B1.21.1.jar",
+      "sha1": "24fea20eea912ae6a0f8006901c782a94e1ea82f",
+      "sha512": "d44d1382e42f457f0a31f1dc1119c74952efd27e9cc24757872fa397f390d13635c8bfe5f4236b9ca7d2e8fe05e8bbc8f50fe13e6edbe76e8addc517598f89a1",
+      "size": 20450537,
       "deps": [
         "MdwFAVRL",
         "P7dR8mSH",
@@ -2241,7 +2173,7 @@
         "lhGA9TYQ"
       ],
       "fabric_id": "mega_showdown",
-      "fabric_version": "1.0+1.8+1.21.1-release-hotfix",
+      "fabric_version": "1.9.9+1.7.3+1.21.1",
       "env": {
         "client": "required",
         "server": "required"
@@ -2505,7 +2437,7 @@
       "fabric_id": "noisium",
       "fabric_version": "2.3.0+mc1.21-1.21.1",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": []
@@ -3066,7 +2998,7 @@
       "fabric_id": "spawn_notification",
       "fabric_version": "1.7.3-fabric-2.3.0",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": []
@@ -3431,7 +3363,7 @@
       "fabric_id": "betterdeserttemples",
       "fabric_version": "1.21.1-Fabric-4.1.5",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": []
@@ -3466,7 +3398,7 @@
       "fabric_id": "betterdungeons",
       "fabric_version": "1.21.1-Fabric-5.1.4",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": []
@@ -3501,7 +3433,7 @@
       "fabric_id": "betterjungletemples",
       "fabric_version": "1.21.1-Fabric-3.1.2",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": []
@@ -3536,7 +3468,7 @@
       "fabric_id": "bettermineshafts",
       "fabric_version": "1.21.1-Fabric-5.1.1",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": []
@@ -3571,7 +3503,7 @@
       "fabric_id": "betteroceanmonuments",
       "fabric_version": "1.21.1-Fabric-4.1.2",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": []
@@ -3606,7 +3538,7 @@
       "fabric_id": "yungsbridges",
       "fabric_version": "1.21.1-Fabric-5.1.1",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": []
@@ -3641,7 +3573,7 @@
       "fabric_id": "yungsextras",
       "fabric_version": "1.21.1-Fabric-5.1.1",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": []
@@ -4194,7 +4126,6 @@
         "macaws-roofs",
         "macaws-trapdoors",
         "macaws-windows",
-        "midnightlib",
         "modmenu",
         "mouse-tweaks",
         "no-chat-reports",
@@ -4257,7 +4188,6 @@
       },
       "required_by": [
         "catch-rate-display",
-        "cobblecuisine",
         "cobblemon-integrations",
         "zoomify"
       ]
@@ -4438,41 +4368,6 @@
       },
       "required_by": [
         "legendary-monuments"
-      ]
-    },
-    {
-      "project_id": "codAaoxh",
-      "slug": "midnightlib",
-      "title": "MidnightLib",
-      "kind": "mod",
-      "category": "Libraries & dependencies",
-      "explicit": false,
-      "note": "",
-      "pin": null,
-      "side": null,
-      "optional": false,
-      "project_client_side": "optional",
-      "project_server_side": "optional",
-      "version_id": "as2ZKoB1",
-      "version_number": "1.9.3+1.21.1-fabric",
-      "version_type": "release",
-      "filename": "midnightlib-fabric-1.9.3+1.21.1.jar",
-      "path": "mods/midnightlib-fabric-1.9.3+1.21.1.jar",
-      "url": "https://cdn.modrinth.com/data/codAaoxh/versions/as2ZKoB1/midnightlib-fabric-1.9.3%2B1.21.1.jar",
-      "sha1": "6595a90351e827b99b36fa2c6ef1dde1a4c8fdf1",
-      "sha512": "bfab6bec9dfe4800237861df4d1749cc42770a81599d7a4f2c3dd83efca91347faa113240c63e20c1135593cce6dbcde517512083c4dfd5efab12df0f4f95e69",
-      "size": 58781,
-      "deps": [
-        "P7dR8mSH"
-      ],
-      "fabric_id": "midnightlib",
-      "fabric_version": "1.9.3",
-      "env": {
-        "client": "required",
-        "server": "required"
-      },
-      "required_by": [
-        "cobblecuisine"
       ]
     },
     {
@@ -4888,7 +4783,7 @@
       "fabric_id": "yungsapi",
       "fabric_version": "1.21.1-Fabric-5.1.9",
       "env": {
-        "client": "unsupported",
+        "client": "required",
         "server": "required"
       },
       "required_by": [
