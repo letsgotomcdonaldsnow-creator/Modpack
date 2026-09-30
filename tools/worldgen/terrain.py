@@ -60,6 +60,8 @@ class Terrain:
         self.fixed = np.full(shape, np.nan, dtype=np.float32)   # forced heights (towns, paths)
         self.lakes = np.full(shape, -1, dtype=np.int16)          # lake water level where >= 0
         self.no_trees = np.zeros(shape, dtype=bool)
+        self.garden = np.zeros(shape, dtype=bool)                # town lots left open: yards, lawns, backs
+        self.built = np.zeros(shape, dtype=bool)                 # town building footprints
         self.carved = np.zeros(shape, dtype=np.float32)
         self.field = np.full(shape, -1.0, dtype=np.float32)
         self.coast = fbm(shape, 72, seed + 31, 4)

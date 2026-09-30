@@ -436,6 +436,60 @@ class Nature:
         self.stats["apricorn trees"] += 1
         return True
 
+    def gardens(self):
+        """Town lots left open become gardens: shrubs hugging the building backs, shade trees and palms
+        spaced across lawns, flowers and bushes between them."""
+        c, t, rng = self.c, self.t, self.rng
+        g = t.garden
+        if not g.any():
+            return
+        built = t.built
+        near = built.copy()                         # within one block of a building
+        near[1:, :] |= built[:-1, :]
+        near[:-1, :] |= built[1:, :]
+        near[:, 1:] |= built[:, :-1]
+        near[:, :-1] |= built[:, 1:]
+        blocked = ~g                                # trees keep 2 blocks from anything that is not garden
+        for _ in range(2):
+            b2 = blocked.copy()
+            b2[1:, :] |= blocked[:-1, :]
+            b2[:-1, :] |= blocked[1:, :]
+            b2[:, 1:] |= blocked[:, :-1]
+            b2[:, :-1] |= blocked[:, 1:]
+            blocked = b2
+        roomy = g & ~blocked
+        hedges = ["minecraft:azalea_leaves[persistent=true]", "minecraft:flowering_azalea_leaves[persistent=true]",
+                  "minecraft:oak_leaves[persistent=true]"]
+        flowers = [WW + "pink_hibiscus", WW + "red_hibiscus", WW + "yellow_hibiscus", WW + "white_hibiscus",
+                   "minecraft:allium", "minecraft:azure_bluet", "minecraft:oxeye_daisy", "minecraft:short_grass"]
+        ys, xs = np.nonzero(g)
+        order = rng.sample(range(len(ys)), len(ys))
+        for k in order:
+            i, j = int(ys[k]), int(xs[k])
+            x, z = j + c.x0, i + c.z0
+            y = int(c.height[i, j])
+            if self.slabbed[i, j] or not is_air(c, x, y + 1, z):
+                continue
+            r = rng.random()
+            if near[i, j] and not built[i, j]:
+                if r < 0.55:
+                    c.set(x, y + 1, z, rng.choice(hedges))
+                continue
+            if roomy[i, j] and r < 0.04 and not self.taken[max(0, i - 3):i + 4, max(0, j - 3):j + 4].any():
+                ok = self.palm(x, y, z, tall=rng.randint(6, 9)) if rng.random() < 0.45 else \
+                    self.dt_tree(x, y, z, rng.choice(["oak", "oak", "birch", "jungle", "cherry"]), size=rng.uniform(0.55, 0.75))
+                if ok:
+                    self.take(x, z, 3)
+                    self.stats["garden trees"] += 1
+                continue
+            if r < 0.06:
+                self.plant(x, y, z, rng.choice(flowers))
+            elif r < 0.075:
+                self.ww_bush(x, y, z)
+            elif r < 0.085:
+                self.leaf_bush(x, y, z, rng.choice(["minecraft:azalea_leaves", "minecraft:oak_leaves"]),
+                               "minecraft:flowering_azalea_leaves")
+
     def route_extras(self, routes):
         """Along every route: apricorn trees a few blocks off the path and a rest stop now and then."""
         c, rng = self.c, self.rng

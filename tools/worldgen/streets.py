@@ -109,6 +109,63 @@ def paint(c: Canvas, s: Street, rng: random.Random):
             for side in (-1, 1):
                 x, z = _cell(s, t + 4, side * (s.half + s.sidewalk))
                 c.set(x, s.y + 1, z, furn.piece("bench", _face_in(s, side)))
+    # street trees in pits along wide sidewalks: palms and flowering plumerias, between the lamps
+    if s.sidewalk >= 3:
+        for t in range(12, length - 5, 12):
+            for side in (-1, 1):
+                x, z = _cell(s, t, side * (s.half + 2))
+                if not c.inside(x, z) or c.get(x, s.y + 1, z) != "minecraft:air":
+                    continue
+                i, j = z - c.z0, x - c.x0
+                c.top[i, j] = c.sid("minecraft:grass_block")
+                if (t // 12 + (side > 0)) % 2:
+                    plants.palm(c, x, s.y, z, rng, tall=rng.randint(6, 8))
+                else:
+                    plumeria(c, x, s.y, z, rng)
+                for d in (-1, 1):
+                    xx, zz = _cell(s, t + d, side * (s.half + 2))
+                    if c.inside(xx, zz) and c.get(xx, s.y + 1, zz) == "minecraft:air":
+                        c.set(xx, s.y + 1, zz, rng.choice(["minecraft:flowering_azalea_leaves[persistent=true]",
+                                                            "minecraft:azalea_leaves[persistent=true]"]))
+
+
+def plumeria(c: Canvas, x, y, z, rng: random.Random):
+    """A small frangipani: a short forked grey trunk under a flat crown of flowering leaves."""
+    h = rng.randint(3, 4)
+    for k in range(1, h + 1):
+        c.set(x, y + k, z, "minecraft:birch_log[axis=y]" if k < h else "minecraft:birch_wood[axis=y]")
+    for dx in range(-2, 3):
+        for dz in range(-2, 3):
+            for dy in (0, 1):
+                d = abs(dx) + abs(dz) + dy
+                if d <= 3 - dy and not (abs(dx) == 2 and abs(dz) == 2) and c.get(x + dx, y + h + dy, z + dz) == "minecraft:air":
+                    c.set(x + dx, y + h + dy, z + dz, "minecraft:flowering_azalea_leaves[persistent=true]"
+                          if rng.random() < 0.6 else "minecraft:azalea_leaves[persistent=true]")
+
+
+def junctions(c: Canvas, streets: list, rng: random.Random):
+    """Traffic lights where two main streets cross, stop signs where a side street meets one."""
+    for a in streets:
+        if not a.along_x or a.paving:
+            continue
+        for b in streets:
+            if b.along_x or b.paving:
+                continue
+            if not (min(a.x1, a.x2) < b.x1 < max(a.x1, a.x2) and min(b.z1, b.z2) <= a.z1 <= max(b.z1, b.z2)):
+                continue
+            x, z = b.x1, a.z1
+            lights = a.lanes >= 2 or b.lanes >= 2
+            for sx, sz in ((-1, -1), (1, -1), (-1, 1), (1, 1)):
+                cx, cz = x + sx * (b.half + 1), z + sz * (a.half + 1)
+                if not c.inside(cx, cz) or c.get(cx, a.y + 1, cz) != "minecraft:air":
+                    continue
+                face = "north" if sz < 0 else "south"      # toward traffic coming along the side street
+                c.set(cx, a.y + 1, cz, RS + "pfosten")
+                if lights:
+                    c.set(cx, a.y + 2, cz, RS + "pfosten")
+                    c.set(cx, a.y + 3, cz, f"{RS}trafficlight[facing={face},light_state={rng.choice(['green', 'red'])}]")
+                else:
+                    c.set(cx, a.y + 2, cz, f"{RS}stopp_schild[facing={face}]")
 
 
 def _face_in(s: Street, side: int) -> str:

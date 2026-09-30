@@ -702,10 +702,68 @@ SHOP_KINDS = {
 }
 
 
+# street facades for the "modern" shops: (weight, wall mix, corner frame, string course slab, shutter)
+FACADES = [
+    (5, [("minecraft:white_concrete", 6), ("minecraft:smooth_quartz", 1)], "minecraft:smooth_quartz",
+     "minecraft:smooth_quartz_slab", None),
+    (3, [("minecraft:smooth_sandstone", 5), ("minecraft:cut_sandstone", 1)], "minecraft:cut_sandstone",
+     "minecraft:smooth_sandstone_slab", "minecraft:jungle_trapdoor"),
+    (2, [("minecraft:white_terracotta", 5), ("minecraft:calcite", 1)], "minecraft:stripped_birch_log[axis=y]",
+     "minecraft:smooth_quartz_slab", "minecraft:birch_trapdoor"),
+    (2, [("minecraft:light_blue_terracotta", 1)], "minecraft:smooth_quartz", "minecraft:smooth_quartz_slab",
+     "minecraft:oak_trapdoor"),
+    (2, [("minecraft:pink_terracotta", 1)], "minecraft:smooth_quartz", "minecraft:smooth_quartz_slab",
+     "minecraft:dark_oak_trapdoor"),
+    (1, [("minecraft:yellow_terracotta", 1)], "minecraft:smooth_quartz", "minecraft:smooth_quartz_slab",
+     "minecraft:spruce_trapdoor"),
+]
+SHOP_ROOFS = ["red_terracotta", "light_blue_terracotta", "cyan_terracotta", "green_terracotta", "orange_terracotta",
+              "brown_terracotta", "gray_terracotta", "blue_terracotta"]
+
+
+def _rooftop(b: Bld, W, D, rt, rng):
+    """Something on every flat roof: AC units, a water tank, solar panels, a roof garden or an aerial."""
+    kit = rng.choice(["ac", "tank", "solar", "garden", "ac"])
+    if kit == "ac" or kit == "tank":
+        for u in range(2, W - 3, 4):
+            b.set(u, rt, D - 3, "minecraft:iron_block")
+            b.set(u + 1, rt, D - 3, "minecraft:iron_trapdoor[half=bottom,facing=north,open=false]")
+    if kit == "tank":
+        for dv in range(3):
+            b.set(W - 3, rt + dv, 2, "minecraft:barrel[facing=up]" if dv < 2 else "minecraft:spruce_slab[type=bottom]")
+        b.set(W - 3, rt + 3, 2, "minecraft:lightning_rod[facing=up]")
+    elif kit == "solar":
+        for u in range(1, W - 1):
+            for w in range(2, D - 2, 2):
+                b.set(u, rt, w, "minecraft:daylight_detector[inverted=false,power=0]")
+    elif kit == "garden":
+        for u in range(1, W - 1):
+            for w in range(1, D - 1):
+                if u in (1, W - 2) or w in (1, D - 2):
+                    b.set(u, rt, w, "minecraft:grass_block")
+                    b.set(u, rt + 1, w, rng.choice(["minecraft:azalea_leaves[persistent=true]",
+                                                    "minecraft:flowering_azalea_leaves[persistent=true]",
+                                                    "wilderwild:pink_hibiscus", "minecraft:short_grass"]))
+        b.piece(W // 2, rt, D // 2, "bench", "south")
+        b.piece(W // 2 - 2, rt, D // 2, "umbrella")
+    else:
+        b.set(2, rt, 2, "minecraft:lightning_rod[facing=up]")
+
+
 def shop(c: Canvas, x, y, z, facing, rng: random.Random, label="Shop", kind="mart", W=13, D=11, floors=2,
          style="modern", **_):
-    """A street shop: glass storefront, striped awning, name on the fascia, flats above, roof terrace."""
+    """A street shop: glass storefront, striped awning, name on the fascia, flats above with shuttered
+    windows and sometimes a balcony, then a flat roof with rooftop kit or a coloured Macaw's hip roof."""
     st = STYLES[style]
+    course, shutter = st.trim_slab, st.shutter
+    if style == "modern":
+        tot = sum(f[0] for f in FACADES)
+        r = rng.random() * tot
+        for wt, walls, frame, course, shutter in FACADES:
+            r -= wt
+            if r <= 0:
+                break
+        st = replace(st, walls=walls, frame=frame)
     awn, fascia, inside = SHOP_KINDS.get(kind, SHOP_KINDS["mart"])
     b = Bld(c, x, y, z, facing)
     H = 5                                   # tall shop floor
@@ -745,13 +803,22 @@ def shop(c: Canvas, x, y, z, facing, rng: random.Random, label="Shop", kind="mar
         for u in range(1, W - 1):
             for w in range(1, D - 1):
                 b.set(u, v0, w, st.floor)
+        if f >= 2:                                          # string course at the floor line
+            for u in range(0, W):
+                b.set(u, v0, -1, f"{course}[type=top]")
         for u in range(2, W - 2, 3):
+            pair = u + 1 < W - 2
             for dv in (2, 3):
                 b.set(u, v0 + dv, 0, st.window)
-                b.set(u + 1, v0 + dv, 0, st.window) if u + 1 < W - 2 else None
-            b.set(u, v0 + 1, -1, f"{st.trim_slab}[type=top]")
-            b.set(u + 1, v0 + 1, -1, f"{st.trim_slab}[type=top]") if u + 1 < W - 2 else None
+                b.set(u + 1, v0 + dv, 0, st.window) if pair else None
+            b.set(u, v0 + 1, -1, f"{course}[type=top]")
+            b.set(u + 1, v0 + 1, -1, f"{course}[type=top]") if pair else None
             b.set(u, v0 + 2, -1, "minecraft:potted_red_tulip" if rng.random() < 0.5 else "minecraft:potted_fern")
+            if shutter:
+                for su in (u - 1, u + (2 if pair else 1)):
+                    for dv in (2, 3):
+                        if b.get(su, v0 + dv, -1) == "minecraft:air":
+                            b.set(su, v0 + dv, -1, f"{shutter}[facing=south,half=bottom,open=true]")
         for w in range(2, D - 2, 3):
             for dv in (2, 3):
                 b.set(0, v0 + dv, w, st.window)
@@ -763,16 +830,38 @@ def shop(c: Canvas, x, y, z, facing, rng: random.Random, label="Shop", kind="mar
         b.piece(2, v0 + 1, D - 4, "table")
     for v in range(1, top - 3 if floors > 1 else 1):    # ladder from the back of the shop up to the flats
         b.set(1, v, D - 2, "minecraft:ladder[facing=east]")
-    # flat roof with parapet, rooftop kit
+    # a balcony across the top floor now and then
+    if floors > 1 and W >= 11 and rng.random() < 0.4:
+        v0 = H + 4 * (floors - 2)
+        for u in range(1, W - 1):
+            b.set(u, v0, -1, f"{course}[type=top]")
+            b.set(u, v0, -2, f"{course}[type=top]")
+            b.set(u, v0 + 1, -2, "minecraft:white_stained_glass_pane")
+            for dv in (1, 2, 3):
+                here = b.get(u, v0 + dv, -1)
+                if "trapdoor" in here or "potted" in here or "slab" in here:
+                    b.set(u, v0 + dv, -1, "minecraft:air")
+        b.set(0, v0 + 1, -2, "minecraft:white_stained_glass_pane"), b.set(W - 1, v0 + 1, -2, "minecraft:white_stained_glass_pane")
+        door(b, W // 2, v0 + 1, 0, "mcwdoors:sliding_glass_door", "south")
+        b.piece(W // 2 - 2, v0 + 1, -1, "chair", "south")
+        b.piece(W // 2 + 2, v0 + 1, -1, "plant")
+    # roof: a coloured hip roof on some, a flat roof with rooftop kit on the rest
     rt = top + 1
-    for u in range(-1, W + 1):
-        for w in range(-1, D + 1):
-            edge = u in (-1, W) or w in (-1, D)
-            b.set(u, rt - 1, w, st.beam if edge else st.roof_cap)
-            if edge:
-                b.set(u, rt, w, f"{st.trim_slab}[type=bottom]")
-    b.set(2, rt, D - 3, "minecraft:iron_block"), b.set(3, rt, D - 3, "minecraft:iron_trapdoor[half=bottom,facing=north,open=false]")
-    b.set(W - 3, rt, D - 3, "minecraft:barrel[facing=up]"), b.set(W - 3, rt + 1, D - 3, "minecraft:lightning_rod[facing=up]")
+    if style == "modern" and W >= 9 and D >= 9 and rng.random() < 0.45:
+        col = rng.choice(SHOP_ROOFS)
+        for u in range(0, W):
+            for w in range(0, D):
+                edge = u in (0, W - 1) or w in (0, D - 1)
+                b.set(u, rt - 1, w, axis_log(st.beam, "x") if edge else st.floor)
+        hip_roof(b, replace(st, roof=f"mcwroofs:{col}", roof_cap=f"minecraft:{col}"), W, D, rt)
+    else:
+        for u in range(-1, W + 1):
+            for w in range(-1, D + 1):
+                edge = u in (-1, W) or w in (-1, D)
+                b.set(u, rt - 1, w, st.beam if edge else st.roof_cap)
+                if edge:
+                    b.set(u, rt, w, f"{st.trim_slab}[type=bottom]")
+        _rooftop(b, W, D, rt, rng)
     # interior
     v = 1
     b.piece(W // 2, H - 1, D // 2, "ceiling_lamp")

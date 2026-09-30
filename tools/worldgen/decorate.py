@@ -24,6 +24,7 @@ def run(c: Canvas, t: T.Terrain) -> None:
         route_sign(c, pts, label)
         encounter_grass(c, t, pts, width, rng, wild.slabbed)
     wild.route_extras(alola_map.ROUTES)
+    wild.gardens()
     wild.vegetation()
     wild.waters_edge()
     wild.reefs()

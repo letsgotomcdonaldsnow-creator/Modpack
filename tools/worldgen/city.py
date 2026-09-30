@@ -58,7 +58,22 @@ class City:
         tour.record(fn.__name__, kw.get("label") or kw.get("name"), x, self.y, z, facing, W2, D2)
         xs, zs = zip(*[b.world(u, 0, w)[::2] for u, w in ((-1, -1), (W2, -1), (-1, D2), (W2, D2))])
         self.mark(min(xs), min(zs), max(xs), max(zs))
+        c = self.c
+        self.t.built[min(zs) - c.z0:max(zs) - c.z0 + 1, min(xs) - c.x0:max(xs) - c.x0 + 1] = True
         return True
+
+    def finish(self):
+        """Signals at the junctions, and hand the open lots to the gardeners (Nature.gardens)."""
+        streets.junctions(self.c, self.streets, self.rng)
+        c, t = self.c, self.t
+        ys, xs = np.nonzero(self.occ)
+        if not len(ys):
+            return
+        i1, i2, j1, j2 = ys.min(), ys.max() + 1, xs.min(), xs.max() + 1
+        open_ = ~self.occ[i1:i2, j1:j2]
+        flat = c.height[i1:i2, j1:j2] == self.y
+        dry = c.water[i1:i2, j1:j2] <= c.height[i1:i2, j1:j2]
+        t.garden[i1:i2, j1:j2] |= open_ & flat & dry
 
     def frontage(self, s: streets.Street, side: int, a: int, b: int, items: Iterable, depth: int, gap=2):
         """Line buildings up along street `s` between positions a..b (x for E-W streets, z for N-S),
@@ -230,6 +245,7 @@ def hauoli(t, rng):
     lplace(t, bl.ferry_terminal, mx - 7, my, mz + 4, "south", rng, label="Hau'oli Marina", dest="Heahea City")
     bl.pier(t.c, mx - 2, SEA + 1, mz + 9, "north", length=40, width=5)
     bl.ferry_ship(t.c, mx + 6, SEA + 1, mz + 14, "north", rng, "S.S. Heahea")
+    city.finish()
     return city
 
 
@@ -285,6 +301,7 @@ def heahea(t, rng):
     for a, b in blocks:
         city.frontage(south, -1, a, b, homes, depth=11)
         city.frontage(south, +1, a, b, homes, depth=11)
+    city.finish()
     return city
 
 
@@ -323,6 +340,7 @@ def malie(t, rng):
         city.frontage(north, -1, a, b, homes, depth=11)
         city.frontage(south, -1, a, b, homes, depth=11)
         city.frontage(south, +1, a, b, homes, depth=11)
+    city.finish()
     return city
 
 
@@ -365,6 +383,7 @@ def konikoni(t, rng):
             for v in range(1, 7):
                 if c.get(x, y + v, z0 + dz) == "minecraft:air":
                     c.set(x, y + v, z0 + dz, "minecraft:dark_oak_fence")
+    city.finish()
     return city
 
 
@@ -385,4 +404,5 @@ def paniola(t, rng):
     city.frontage(main, +1, x0 - 40, x0 + 40, it, depth=11)
     homes = _houses(rng, ["paniola"], 11, n=20)
     city.frontage(main, -1, x0 - 40, x0 + 40, homes, depth=11)
+    city.finish()
     return city
