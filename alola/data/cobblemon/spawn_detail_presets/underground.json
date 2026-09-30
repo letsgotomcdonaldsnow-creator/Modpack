@@ -1,0 +1,6 @@
+{
+  "condition": {
+    "canSeeSky": false,
+    "maxY": 50
+  }
+}
