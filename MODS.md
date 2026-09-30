@@ -2,7 +2,7 @@
 
 Generated from `modpack.lock.json` by `tools/modpack.py`. Do not edit by hand.
 
-Minecraft **1.21.1**, Fabric Loader **0.19.5**, **139** files (137 mods).
+Minecraft **1.21.1**, Fabric Loader **0.19.5**, **140** files (138 mods).
 
 ## Interface and quality of life
 
@@ -76,6 +76,19 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **139** files (137 mods).
 | [Ocean's Delight](https://modrinth.com/mod/oceans-delight) | `1.0.3+fabric.1.21.1` | both | Seafood dishes |
 | [Pineapple Delight](https://modrinth.com/mod/pineapple-delight) | `1.1.2-1.21.1-fabric` | both | Pineapples and pineapple dishes |
 
+## Rotom Dex and Pokémon interface
+
+| Project | Version | Side | Why |
+| --- | --- | --- | --- |
+| [Better Cobblemon Spectation](https://modrinth.com/mod/better-cobblemon-spectation) | `2.0.3` | client | Better camera when spectating other trainers' battles |
+| [Cobblemon Battle Extras](https://modrinth.com/mod/cobblemon-battle-extras) | `1.13.45` | both | Better battle interface and information |
+| [Cobblemon Catch Rate Display](https://modrinth.com/mod/catch-rate-display) | `2.12.3+fabric` | client | Shows the catch chance of the Poké Ball you are holding |
+| [Cobblemon Party Extras](https://modrinth.com/mod/cobblemon-party-extras) | `1.8.15` | client | Extra party-overlay information |
+| [Cobblemon PokeNav](https://modrinth.com/mod/cobblemon-pokenav) | `2.3.3` | both | Cobblenav: a Rotom Dex-style device for finding and tracking nearby Pokémon |
+| [Cobblemon Poképedia: Cobblepedia](https://modrinth.com/mod/cobblepedia) | `0.7.1-fabric` | both | In-game Pokémon encyclopedia: moves, evolutions and spawns |
+| [Cobblemon Spawn Notification](https://modrinth.com/mod/cobblemon-spawn-notification) | `1.7.3-fabric-2.3.0` | both | Announces shiny and legendary spawns |
+| [MoreCobblemonTweaks](https://modrinth.com/mod/more-cobblemon-tweaks) | `1.3.5-fabric` | client | Quality-of-life tweaks for Cobblemon's screens |
+
 ## Pokémon life: Poké Pelago, the Nursery, Poké Marts and trainers
 
 | Project | Version | Side | Why |
@@ -84,7 +97,7 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **139** files (137 mods).
 | [Cobblemon Capture XP](https://modrinth.com/mod/cobblemon-capture-xp) | `1.7.3-fabric-1.3.0` | both | Your party earns EXP for catching Pokémon, as introduced in Gen 6/7 |
 | [Cobblemon Counter](https://modrinth.com/mod/cobblemon-counter) | `1.7.3-fabric-1.9.0` | both | Catch and KO combos that raise shiny odds, a stand-in for SOS chaining |
 | [Cobblemon Exp. All](https://modrinth.com/mod/exp-all) | `1.0.9` | both | Party-wide Exp. Share, as it worked in Sun and Moon |
-| [Cobblemon Fight or Flight Reborn](https://modrinth.com/mod/cobblemon-fight-or-flight-reborn) | `0.11.0` | both | Wild Pokémon react to you: shy ones flee, aggressive ones attack |
+| [Cobblemon Fight or Flight Reborn](https://modrinth.com/mod/cobblemon-fight-or-flight-reborn) | `0.10.9` | both | Wild Pokémon react to you: shy ones flee, aggressive ones attack |
 | [Cobblemon Pasture Loot](https://modrinth.com/mod/cobblemon-pasture-loot) | `1.0.5+1.21.1` | both | Pastured Pokémon bring back items, like Isle Abeens |
 | [Cobbleworkers](https://modrinth.com/mod/cobbleworkers) | `2.0.5+1.7.0` | both | Poké Pelago: Pokémon in a pasture take on jobs such as farming, fishing and gathering |
 | [Cobbreeding](https://modrinth.com/mod/cobbreeding) | `2.2.2` | both | Pokémon Nursery: breed Pokémon and hatch eggs in pastures |
@@ -102,18 +115,6 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **139** files (137 mods).
 | [Waystones](https://modrinth.com/mod/waystones) | `21.1.46+fabric-1.21.1` | both | Fast travel between discovered waystones, like Charizard Glide |
 | [Xaero's Minimap](https://modrinth.com/mod/xaeros-minimap) | `fabric-1.21.1-26.5.0` | both | Minimap |
 | [Xaero's World Map](https://modrinth.com/mod/xaeros-world-map) | `fabric-1.21.1-1.46.0` | both | Full-screen Town Map |
-
-## Rotom Dex and Pokémon interface
-
-| Project | Version | Side | Why |
-| --- | --- | --- | --- |
-| [Cobblemon Battle Extras](https://modrinth.com/mod/cobblemon-battle-extras) | `1.13.45` | both | Better battle interface and information |
-| [Cobblemon Catch Rate Display](https://modrinth.com/mod/catch-rate-display) | `2.12.3+fabric` | client | Shows the catch chance of the Poké Ball you are holding |
-| [Cobblemon Party Extras](https://modrinth.com/mod/cobblemon-party-extras) | `1.8.15` | client | Extra party-overlay information |
-| [Cobblemon PokeNav](https://modrinth.com/mod/cobblemon-pokenav) | `2.3.3` | both | Cobblenav: a Rotom Dex-style device for finding and tracking nearby Pokémon |
-| [Cobblemon Poképedia: Cobblepedia](https://modrinth.com/mod/cobblepedia) | `0.7.1-fabric` | both | In-game Pokémon encyclopedia: moves, evolutions and spawns |
-| [Cobblemon Spawn Notification](https://modrinth.com/mod/cobblemon-spawn-notification) | `1.7.3-fabric-2.3.0` | both | Announces shiny and legendary spawns |
-| [MoreCobblemonTweaks](https://modrinth.com/mod/more-cobblemon-tweaks) | `1.3.5-fabric` | client | Quality-of-life tweaks for Cobblemon's screens |
 
 ## Performance
 
@@ -141,7 +142,7 @@ Minecraft **1.21.1**, Fabric Loader **0.19.5**, **139** files (137 mods).
 | [Cobblemon Size Variations](https://modrinth.com/mod/cobblemon-size-variations) | `1.4.0` | both | Pokémon come in different sizes; now and then you meet a Totem-sized one |
 | [Cobblemon: Legendary Monuments](https://modrinth.com/mod/legendary-monuments) | `8.1-Love-for-All` | both | Shrines and structures for encountering legendary Pokémon |
 | [Cobblemon: Mega Showdown](https://modrinth.com/mod/cobblemon-mega-showdown) | `1.9.9+1.7.3+1.21.1` | both | Z-Crystals, the Z-Ring, Z-Moves and Ultra Burst (plus Mega Evolution) |
-| [Complete Cobblemon Collection w Legendary Spawns](https://modrinth.com/mod/complete-cobblemon-collection-w-legendary-spawns) | `2.21` | both | Models and spawns for the Pokémon Cobblemon hasn't finished: Rockruff and Lycanroc, Oricorio, Grubbin, Minior, the Tapus, Cosmog, Necrozma and the Ultra Beasts |
+| [Complete Cobblemon Collection w Legendary Spawns](https://modrinth.com/mod/complete-cobblemon-collection-w-legendary-spawns) | `2.0.1+mod` | both | Models and spawns for the Pokémon Cobblemon hasn't finished: Rockruff and Lycanroc, Oricorio, Grubbin, Minior, the Tapus, Cosmog, Necrozma and the Ultra Beasts |
 
 ## Cobblemon core
 
