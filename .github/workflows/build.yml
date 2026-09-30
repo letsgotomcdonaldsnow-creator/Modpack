@@ -146,7 +146,14 @@ jobs:
           restore-keys: downloads-
 
       - name: Assemble client
-        run: python tools/modpack.py client --dir run
+        # Distant Horizons is left out: it only renders far-away terrain and is slow under software OpenGL.
+        run: |
+          python tools/modpack.py client --dir run --skip '^distanthorizons$'
+          printf 'renderDistance:4\nsimulationDistance:5\ngraphicsMode:0\nmaxFps:30\ntutorialStep:none\n' > run/options.txt
+
+      - name: Arm a 20-minute watchdog for the client
+        run: |
+          nohup bash -c 'sleep 1200; echo "watchdog fired" > run/watchdog.txt; pkill -f KnotClient; sleep 5; pkill -f headlessmc-launcher' >/dev/null 2>&1 &
 
       - name: Launch the client, join a world, quit
         uses: headlesshq/mc-runtime-test@4.5.1
@@ -171,6 +178,37 @@ jobs:
       - name: Show client problems
         if: failure()
         run: |
+          cat run/watchdog.txt 2>/dev/null || true
           ls run/crash-reports 2>/dev/null && head -150 run/crash-reports/*.txt || true
-          grep -nE "ERROR|Exception|Caused by|Mixin apply .* failed" run/logs/latest.log | head -120 || true
-          tail -80 run/logs/latest.log || true
+          echo "----- errors -----"
+          grep -nE "/ERROR\]|/FATAL\]|Exception|Caused by|Mixin apply .* failed" run/logs/latest.log | cut -c1-400 | head -150 || true
+          echo "----- last 200 lines -----"
+          tail -200 run/logs/latest.log | cut -c1-400 || true
+
+  publish:
+    name: Publish .mrpack to the branch
+    needs: [build, client]
+    if: github.ref_type == 'branch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: modpack
+          path: dist
+
+      - name: Commit the tested .mrpack
+        run: |
+          cp dist/*.mrpack Pokemon-Alola-Adventure.mrpack
+          if [ -n "$(git status --porcelain -- Pokemon-Alola-Adventure.mrpack)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898299+github-actions[bot]@users.noreply.github.com"
+            git add Pokemon-Alola-Adventure.mrpack
+            git commit -m "Publish tested Pokemon-Alola-Adventure.mrpack"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi

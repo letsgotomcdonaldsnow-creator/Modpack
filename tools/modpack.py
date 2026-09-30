@@ -710,6 +710,8 @@ def cmd_validate(args) -> int:
         if jar and "cobblemon" in jar[0]["depends"]:
             log(f"  {f['slug']:<48} {f['version_number']:<36} cobblemon {jar[0]['depends']['cobblemon']}")
     errors += check_alola_ids(lock)
+    for w in check_spawn_presets(lock):
+        log(f"VALIDATE-WARNING: {w}")
     for e in sorted(set(errors)):
         log(f"VALIDATE-ERROR: {e}")
     if errors:
@@ -717,6 +719,22 @@ def cmd_validate(args) -> int:
         return 1
     log("All dependencies satisfied on client and server.")
     return 0
+
+
+# --------------------------------------------------------- reproducible zips
+
+ZIP_DATE = (2024, 1, 1, 0, 0, 0)
+
+
+def zip_add_bytes(zf: zipfile.ZipFile, name: str, data: bytes) -> None:
+    info = zipfile.ZipInfo(name, date_time=ZIP_DATE)
+    info.compress_type = zipfile.ZIP_DEFLATED
+    info.external_attr = 0o644 << 16
+    zf.writestr(info, data)
+
+
+def zip_add_file(zf: zipfile.ZipFile, name: str, path: Path) -> None:
+    zip_add_bytes(zf, name, path.read_bytes())
 
 
 # ----------------------------------------------------------------- alola jar
@@ -748,6 +766,39 @@ def alola_ids() -> tuple[set[str], set[str]]:
         for m in re.finditer(r"^\s*give\s+\S+\s+([a-z0-9_.-]+:[a-z0-9_./-]+)", path.read_text(encoding="utf-8"), re.M):
             items.add(m.group(1))
     return items, species
+
+
+def check_spawn_presets(lock: dict) -> list[str]:
+    """Warn about Cobblemon spawn entries that use presets no installed mod defines."""
+    defined: set[str] = set()
+    used: dict[str, set[str]] = {}
+    sources = [(f["slug"], download(f["url"], f["sha1"], f["filename"]).read_bytes())
+               for f in lock["files"] if f["kind"] == "mod"]
+    alola_zip = io.BytesIO()
+    with zipfile.ZipFile(alola_zip, "w") as zf:
+        for path in ALOLA_SRC.rglob("*.json"):
+            zf.write(path, path.relative_to(ALOLA_SRC).as_posix())
+    sources.append(("alola-adventure", alola_zip.getvalue()))
+    for slug, data in sources:
+        try:
+            zf = zipfile.ZipFile(io.BytesIO(data))
+        except zipfile.BadZipFile:
+            continue
+        with zf:
+            for n in zf.namelist():
+                m = re.match(r"data/[^/]+/spawn_detail_presets/(.+)\.json$", n)
+                if m:
+                    defined.add(m.group(1))
+                elif re.match(r"data/[^/]+/spawn_pool_world/.+\.json$", n):
+                    try:
+                        spawns = load_fmj(zf.read(n)).get("spawns", [])
+                    except (json.JSONDecodeError, AttributeError):
+                        continue
+                    for sp in spawns:
+                        for preset in sp.get("presets", []) or []:
+                            used.setdefault(preset, set()).add(slug)
+    return [f"spawn preset '{preset}' is not defined by any installed mod; used by {', '.join(sorted(slugs))}"
+            for preset, slugs in sorted(used.items()) if preset not in defined]
 
 
 def check_alola_ids(lock: dict) -> list[str]:
@@ -792,7 +843,7 @@ def build_alola_jar() -> Path:
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zf:
         for path in sorted(ALOLA_SRC.rglob("*")):
             if path.is_file():
-                zf.write(path, path.relative_to(ALOLA_SRC).as_posix())
+                zip_add_file(zf, path.relative_to(ALOLA_SRC).as_posix(), path)
     return out
 
 
@@ -841,20 +892,23 @@ def cmd_build(args) -> int:
     name = re.sub(r"[^A-Za-z0-9]+", "-", pack["name"]).strip("-")
     out = DIST / f"{name}-{pack['version']}.mrpack"
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zf:
-        zf.writestr("modrinth.index.json", json.dumps(index, indent=2, ensure_ascii=False))
-        for folder, prefix in (("overrides", "overrides"), ("client-overrides", "client-overrides"),
-                               ("server-overrides", "server-overrides")):
+        zip_add_bytes(zf, "modrinth.index.json", json.dumps(index, indent=2, ensure_ascii=False).encode())
+        for folder in ("overrides", "client-overrides", "server-overrides"):
             base = ROOT / folder
             if base.exists():
                 for path in sorted(base.rglob("*")):
                     if path.is_file() and path.name != ".gitkeep":
-                        zf.write(path, f"{prefix}/{path.relative_to(base).as_posix()}")
-        zf.write(alola_jar, f"overrides/mods/{alola_jar.name}")
-        zf.writestr("client-overrides/config/yosbr/options.txt", default_options(lock))
+                        zip_add_file(zf, f"{folder}/{path.relative_to(base).as_posix()}", path)
+        zip_add_file(zf, f"overrides/mods/{alola_jar.name}", alola_jar)
+        zip_add_bytes(zf, "client-overrides/config/yosbr/options.txt", default_options(lock).encode())
         iris = iris_properties(lock)
         if iris:
-            zf.writestr("client-overrides/config/yosbr/config/iris.properties", iris)
+            zip_add_bytes(zf, "client-overrides/config/yosbr/config/iris.properties", iris.encode())
     log(f"Wrote {out.relative_to(ROOT)} ({out.stat().st_size // 1024} KiB, {len(index['files'])} files)")
+    if args.publish:
+        published = ROOT / f"{name}.mrpack"
+        shutil.copy2(out, published)
+        log(f"Copied to {published.relative_to(ROOT)}")
     return 0
 
 
@@ -1090,7 +1144,8 @@ def main() -> int:
     r.add_argument("--upgrade", action="store_true", help="re-resolve every mod instead of keeping locked versions")
     r.add_argument("--keep-going", action="store_true", help="exit 0 even if some mods could not be resolved")
     sub.add_parser("validate")
-    sub.add_parser("build")
+    bd = sub.add_parser("build")
+    bd.add_argument("--publish", action="store_true", help="also copy the .mrpack to the repository root")
     sub.add_parser("docs")
     s = sub.add_parser("server")
     s.add_argument("--dir", default="build/server")
